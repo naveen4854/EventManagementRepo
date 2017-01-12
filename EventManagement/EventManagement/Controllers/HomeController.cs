@@ -10,6 +10,7 @@ namespace EventManagement.Controllers
     {
         public ActionResult Index()
         {
+            ViewBag.Title = "asd";
             return View();
         }
     }
