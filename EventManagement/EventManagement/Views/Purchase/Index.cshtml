@@ -1,0 +1,50 @@
+﻿@model EventManagement.Models.Purchase
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div style="    padding: 90px 40px 40px 40px;">
+    <h1>Purchase Tickets here</h1>
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary()
+        <h3>Bill to:</h3>
+            <div class="form-group">
+                <label>First Name</label>
+                @Html.TextBoxFor(x => x.FirstName, new { @class = "form-control" })
+                <label>Last Name</label>
+                @Html.TextBoxFor(x => x.LastName, new { @class = "form-control" })
+            </div>
+            @*<div class="form-group">
+                    <label>Credit Card Number</label>
+                    @Html.TextBoxFor(x => x.CreditCardNumber, new { @class = "form-control" })
+                </div>*@
+            <div class="form-group">
+                @*<label>Expiration Date</label>*@
+                @* @Html.TextBoxFor(x=>x.ExpirationMonth, new {@class="form-control"})
+                    @Html.TextBoxFor(x=>x.ExpriationYear, new {@class="form-control"})*@
+
+            </div>
+            <div class="form-group">
+                <label>Address</label>
+                @Html.TextBoxFor(x => x.Address, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label>City</label>
+                @Html.TextBoxFor(x => x.City, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label>State</label>
+                @Html.TextBoxFor(x => x.State, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label>Zip Code</label>
+                @Html.TextBoxFor(x => x.ZipCode, new { @class = "form-control" })
+            </div>
+
+            <div class="text-center">
+                <input class="btn btn-primary" type="submit" value="Proceed to Payment" />
+                @*@Html.ActionLink("Proceed to Payment")*@
+            </div>
+    }
+</div>
