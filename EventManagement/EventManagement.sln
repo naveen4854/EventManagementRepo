@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventManagement.Web", "Even
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventManagement.DataModels", "EventManagement.Models\EventManagement.DataModels.csproj", "{365B3531-CAEE-49B9-A872-3AB74004204D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventManagement.DAL", "EventManagement.DAL\EventManagement.DAL.csproj", "{CF3A9AC3-5DEB-4667-9915-8E334B3BDC3A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventManagement.BLL", "EventManagement.BLL\EventManagement.BLL.csproj", "{8C01E59F-0CA2-4C9A-91B0-D52EB293C8E1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{365B3531-CAEE-49B9-A872-3AB74004204D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{365B3531-CAEE-49B9-A872-3AB74004204D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{365B3531-CAEE-49B9-A872-3AB74004204D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF3A9AC3-5DEB-4667-9915-8E334B3BDC3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF3A9AC3-5DEB-4667-9915-8E334B3BDC3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF3A9AC3-5DEB-4667-9915-8E334B3BDC3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF3A9AC3-5DEB-4667-9915-8E334B3BDC3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C01E59F-0CA2-4C9A-91B0-D52EB293C8E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C01E59F-0CA2-4C9A-91B0-D52EB293C8E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C01E59F-0CA2-4C9A-91B0-D52EB293C8E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C01E59F-0CA2-4C9A-91B0-D52EB293C8E1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

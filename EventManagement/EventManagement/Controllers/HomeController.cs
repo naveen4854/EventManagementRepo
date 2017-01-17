@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EventManagement.BLL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,6 +12,8 @@ namespace EventManagement.Controllers
         public ActionResult Index()
         {
             ViewBag.Title = "asd";
+            ConferenceManager a = new ConferenceManager();
+            var c = a.getConference();
             return View();
         }
     }
