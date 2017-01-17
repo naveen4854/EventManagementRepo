@@ -20,5 +20,25 @@ namespace EventManagement.Controllers
             var c = a.GetConferences();
             return PartialView(c);
         }
+
+        public ActionResult PartialAboutUs()
+        {
+            return PartialView();
+        }
+
+        public ActionResult PartialRegistrationPolicy()
+        {
+            return PartialView();
+        }
+
+        public ActionResult PartialContactUs()
+        {
+            return PartialView();
+        }
+
+        public ActionResult PartialHome()
+        {
+            return PartialView();
+        }
     }
 }

@@ -223,6 +223,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\ConferenceController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PurchaseController.cs" />
     <Compile Include="Global.asax.cs">
@@ -250,6 +251,10 @@
     <Content Include="Views\Purchase\Index.cshtml" />
     <Content Include="scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Home\PartialConferences.cshtml" />
+    <Content Include="Views\Home\PartialAboutUs.cshtml" />
+    <Content Include="Views\Home\PartialRegistrationPolicy.cshtml" />
+    <Content Include="Views\Home\PartialContactUs.cshtml" />
+    <Content Include="Views\Home\PartialHome.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -260,6 +265,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Conference\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EventManagement.BLL\EventManagement.BLL.csproj">
