@@ -65,4 +65,7 @@
   <ItemGroup>
     <Build Include="dbo\Tables\Conference.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="EventManagement.Database.publish.xml" />
+  </ItemGroup>
 </Project>
