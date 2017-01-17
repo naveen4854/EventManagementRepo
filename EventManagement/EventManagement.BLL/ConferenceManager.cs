@@ -14,8 +14,8 @@ namespace EventManagement.BLL
         public ConferenceManager() {
             c = new ConferenceOperations();
         }
-        public List<ConferenceDTO> getConference() {
-            return c.getConference();
+        public List<ConferenceDTO> GetConferences() {
+            return c.GetConferences();
         }
     }
 }

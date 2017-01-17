@@ -11,7 +11,7 @@ namespace EventManagement.DAL.Operations
     public class ConferenceOperations
     {
         private EventManagementEntities managementConsoleEntities = new EventManagementEntities();
-        public List<ConferenceDTO> getConference() {
+        public List<ConferenceDTO> GetConferences() {
             return managementConsoleEntities.Conferences.Select(q => new ConferenceDTO
             {
                 Id = q.Id,

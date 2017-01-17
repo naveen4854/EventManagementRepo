@@ -11,10 +11,14 @@ namespace EventManagement.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Title = "asd";
-            ConferenceManager a = new ConferenceManager();
-            var c = a.getConference();
             return View();
+        }
+
+        public ActionResult PartialConferences()
+        {
+            ConferenceManager a = new ConferenceManager();
+            var c = a.GetConferences();
+            return PartialView(c);
         }
     }
 }

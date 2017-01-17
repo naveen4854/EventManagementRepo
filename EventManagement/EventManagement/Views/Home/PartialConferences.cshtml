@@ -1,0 +1,35 @@
+﻿@model IEnumerable<EventManagement.DataModels.ConferenceDTO>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-md-9">
+            <div id="event-carousel" class="carousel slide" data-interval="false">
+                <h2 class="heading">Our Conferences</h2>
+                <a class="even-control-left" href="#event-carousel" data-slide="prev"><i class="fa fa-angle-left"></i></a>
+                <a class="even-control-right" href="#event-carousel" data-slide="next"><i class="fa fa-angle-right"></i></a>
+                <div class="carousel-inner">
+                   
+                            @for (int i = 0; i <= Model.Count() / 3; i++)
+                            {
+                                <div class="item @if (i == 0) { <text>active</text>} ">
+                                    <div class="row">
+                                        @{ var obj = Model.Skip(i * 3).Take(3);}
+                                        @foreach (var well in obj)
+                                        {
+                                            <div class="col-sm-4">
+                                                <div class="single-event">
+                                                    <img class="img-responsive" src="@Url.Content("~/Content/images/event/event1.jpg")" alt="event-image">
+                                                    <h4>@well.Name</h4>
+                                                    <h5>@well.Desc</h5>
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            }
+                      
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

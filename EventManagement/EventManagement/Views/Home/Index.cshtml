@@ -147,73 +147,13 @@
 
     </div>
 </section><!--/#about-->
+<div>
+
+    @*@Html.Partial("PartialConferences")*@
+</div>
+
 <section id="conferences">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12 col-md-9">
-                <div id="event-carousel" class="carousel slide" data-interval="false">
-                    <h2 class="heading">Our Conferences</h2>
-                    <a class="even-control-left" href="#event-carousel" data-slide="prev"><i class="fa fa-angle-left"></i></a>
-                    <a class="even-control-right" href="#event-carousel" data-slide="next"><i class="fa fa-angle-right"></i></a>
-                    <div class="carousel-inner">
-                        <div class="item active">
-                            <div class="row">
-                                <div class="col-sm-4">
-                                    <div class="single-event">
-                                        <img class="img-responsive" src="@Url.Content("~/Content/images/event/event1.jpg")" alt="event-image">
-                                        <h4>Conference 1</h4>
-                                        <h5>Saidabad</h5>
-                                    </div>
-                                </div>
-                                <div class="col-sm-4">
-                                    <div class="single-event">
-                                        <img class="img-responsive" src="@Url.Content("~/Content/images/event/event2.jpg")" alt="event-image">
-                                        <h4>Conference 2</h4>
-                                        <h5>vKukatpally</h5>
-                                    </div>
-                                </div>
-                                <div class="col-sm-4">
-                                    <div class="single-event">
-                                        <img class="img-responsive" src="@Url.Content("~/Content/images/event/event3.jpg")" alt="event-image">
-                                        <h4>Conference 3</h4>
-                                        <h5>Secunderabad</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="row">
-                                <div class="col-sm-4">
-                                    <div class="single-event">
-                                        <img class="img-responsive" src="@Url.Content("~/Content/images/event/event1.jpg")" alt="event-image">
-                                        <h4>Conference 4</h4>
-                                        <h5>Hyderabad</h5>
-                                    </div>
-                                </div>
-                                <div class="col-sm-4">
-                                    <div class="single-event">
-                                        <img class="img-responsive" src="@Url.Content("~/Content/images/event/event2.jpg")" alt="event-image">
-                                        <h4>Conference 5</h4>
-                                        <h5>Patha Basthi</h5>
-                                    </div>
-                                </div>
-                                <div class="col-sm-4">
-                                    <div class="single-event">
-                                        <img class="img-responsive" src="@Url.Content("~/Content/images/event/event3.jpg")" alt="event-image">
-                                        <h4>Conference 6</h4>
-                                        <h5>Malakpet</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            @*<div class="guitar">
-                    <img class="img-responsive" src="@Url.Content("~/Content/images/guitar.png")" alt="guitar">
-                </div>*@
-        </div>
-    </div>
+    @{ Html.RenderAction("PartialConferences", "Home"); }
 </section><!--/#event-->
 
 <section id="regPolicy">
