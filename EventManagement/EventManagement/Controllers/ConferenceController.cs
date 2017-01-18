@@ -8,8 +8,7 @@ namespace EventManagement.Controllers
 {
     public class ConferenceController : Controller
     {
-        // GET: Conference
-        public ActionResult Index()
+        public ActionResult Index(int id)
         {
             return View();
         }

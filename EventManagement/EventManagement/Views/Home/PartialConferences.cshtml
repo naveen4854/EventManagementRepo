@@ -16,7 +16,7 @@
                                 @foreach (var well in obj)
                                 {
                                     <div class="col-sm-3">
-                                        <div class="single-event">
+                                        <div class="single-event" onclick="redirectConference(@well.Id)">
                                             <img class="img-responsive" src="@Url.Content("~/Content/images/event/event1.jpg")" alt="event-image">
                                             <h4>@well.Name</h4>
                                             <h5>@well.Desc</h5>
@@ -25,9 +25,19 @@
                                 }
                             </div>
                         </div>
-                     }
+                                    }
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script>
+
+    function redirectConference(id) {
+        $(".single-event").click(function (event) {
+            event.preventDefault();
+            var url = '@Url.Action("Index", "Conference",new { id = "ID"})'.replace("ID", parseInt(id));
+            window.open(url, '_blank');
+        });
+    }
+</script>
