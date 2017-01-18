@@ -1,7 +1,23 @@
 ﻿
 @model List<string>
 
-@foreach (var well in Model)
-{
-    <h2>@well</h2>
-}
+<div id="main-slider" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+        @for (int i = 0; i < Model.Count(); i++)
+        {
+            <li data-target="#main-slider" data-slide-to="@i" class="@if (i == 0) { <text>active</text>}"></li>
+        }
+    </ol>
+    <div class="carousel-inner">
+        @for (int i = 0; i < Model.Count(); i++)
+        {
+            <div class="item @if (i == 0) { <text>active</text>}">
+                <img class="img-responsive" src="@Url.Content("~/Content/images/" + Model[i])" alt="slider">
+                <div class="carousel-caption">
+                    <h2>register for our next event </h2>
+                    <a href="#contact">GRAB YOUR TICKETS <i class="fa fa-angle-right"></i></a>
+                </div>
+            </div>
+        }
+    </div>
+</div>

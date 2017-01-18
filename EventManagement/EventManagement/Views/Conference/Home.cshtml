@@ -5,8 +5,6 @@
     Layout = "~/Views/Shared/_ConferenceLayout.cshtml";
 }
 
-<h2>@Model.Desc</h2>
-
 <section id="home">
     @{ Html.RenderAction("PartialHome", "Conference", new { images = Model.ImageUrls }); }
 </section>
