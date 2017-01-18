@@ -26,5 +26,6 @@ namespace EventManagement.DAL.Models
         }
     
         public virtual DbSet<Conference> Conferences { get; set; }
+        public virtual DbSet<ConferenceImage> ConferenceImages { get; set; }
     }
 }

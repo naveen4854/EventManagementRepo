@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EventManagement.BLL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,9 +9,14 @@ namespace EventManagement.Controllers
 {
     public class ConferenceController : Controller
     {
-        public ActionResult Index(int id)
+        public ActionResult Home(int id)
         {
-            return View();
+            var a = new ConferenceManager();
+            return View(a.GetConference(id));
+        }
+        public ActionResult PartialHome(List<string> images)
+        {
+            return PartialView(images);
         }
     }
 }

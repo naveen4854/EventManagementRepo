@@ -13,7 +13,10 @@ namespace EventManagement.Controllers
         {
             return View();
         }
-
+        public ActionResult PartialHome()
+        {
+            return PartialView();
+        }
         public ActionResult PartialConferences()
         {
             ConferenceManager a = new ConferenceManager();
@@ -32,11 +35,6 @@ namespace EventManagement.Controllers
         }
 
         public ActionResult PartialContactUs()
-        {
-            return PartialView();
-        }
-
-        public ActionResult PartialHome()
         {
             return PartialView();
         }

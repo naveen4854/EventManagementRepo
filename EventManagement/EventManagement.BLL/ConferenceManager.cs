@@ -17,5 +17,10 @@ namespace EventManagement.BLL
         public List<ConferenceDTO> GetConferences() {
             return c.GetConferences();
         }
+
+        public ConferenceDTO GetConference(int id)
+        {
+            return c.GetConference(id);
+        }
     }
 }

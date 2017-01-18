@@ -1,0 +1,28 @@
+﻿@model EventManagement.DataModels.ConferenceDTO
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_ConferenceLayout.cshtml";
+}
+
+<h2>@Model.Desc</h2>
+
+<section id="home">
+    @{ Html.RenderAction("PartialHome", "Conference", new { images = Model.ImageUrls }); }
+</section>
+
+@*<section id="about">
+    @{ Html.RenderAction("PartialAboutUs", "Home"); }
+</section>
+
+<section id="conferences">
+    @{ Html.RenderAction("PartialConferences", "Home"); }
+</section>
+
+<section id="regPolicy">
+    @{ Html.RenderAction("PartialRegistrationPolicy", "Home"); }
+</section>
+
+<section id="contact">
+    @{ Html.RenderAction("PartialContactUs", "Home"); }
+</section>*@

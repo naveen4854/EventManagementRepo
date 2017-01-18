@@ -20,5 +20,18 @@ namespace EventManagement.DAL.Operations
                 ShortDesc = q.ShortDescription
             }).ToList();
         }
+
+        public ConferenceDTO GetConference(int Id)
+        {
+            var conf = managementConsoleEntities.Conferences.FirstOrDefault(q => q.Id == Id);
+            return new ConferenceDTO
+            {
+                Id = conf.Id,
+                Name = conf.Name,
+                Desc = conf.Description,
+                ShortDesc = conf.ShortDescription,
+                ImageUrls = conf.ConferenceImages.Select(q => q.ImageUrl).ToList()
+            };
+        }
     }
 }

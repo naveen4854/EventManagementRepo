@@ -36,7 +36,7 @@
     function redirectConference(id) {
         $(".single-event").click(function (event) {
             event.preventDefault();
-            var url = '@Url.Action("Index", "Conference",new { id = "ID"})'.replace("ID", parseInt(id));
+            var url = '@Url.Action("Home", "Conference",new { id = "ID"})'.replace("ID", parseInt(id));
             window.open(url, '_blank');
         });
     }

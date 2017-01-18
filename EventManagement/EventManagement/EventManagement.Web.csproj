@@ -158,7 +158,17 @@
     <Content Include="Content\images\header-bg.png" />
     <Content Include="Content\images\light.png" />
     <Content Include="Content\images\logo.png" />
+    <Content Include="Content\images\logo1.jpg" />
+    <Content Include="Content\images\logo2.jpg" />
     <Content Include="Content\images\map-icon.png" />
+    <Content Include="Content\images\Nanotechnology_1.jpg" />
+    <Content Include="Content\images\Nanotechnology_2.jpg" />
+    <Content Include="Content\images\Nanotechnology_3.jpg" />
+    <Content Include="Content\images\Nanotechnology_4.jpg" />
+    <Content Include="Content\images\Nanotechnology_5.jpg" />
+    <Content Include="Content\images\Nanotechnology_6.jpg" />
+    <Content Include="Content\images\Nanotechnology_7.jpg" />
+    <Content Include="Content\images\Nanotechnology_8.jpg" />
     <Content Include="Content\images\performar-bg.jpg" />
     <Content Include="Content\images\slider\bg1.jpg" />
     <Content Include="Content\images\slider\bg10.jpg" />
@@ -257,6 +267,9 @@
     <Content Include="Views\Home\PartialHome.cshtml" />
     <Content Include="Views\Shared\_ConferenceLayout.cshtml" />
     <Content Include="Views\Conference\Index.cshtml" />
+    <Content Include="Views\Conference\Home.cshtml" />
+    <Content Include="Views\Conference\_partialHome.cshtml" />
+    <Content Include="Views\Conference\PartialHome.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

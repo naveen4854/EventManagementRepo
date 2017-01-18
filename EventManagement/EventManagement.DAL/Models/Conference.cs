@@ -14,10 +14,19 @@ namespace EventManagement.DAL.Models
     
     public partial class Conference
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Conference()
+        {
+            this.ConferenceImages = new HashSet<ConferenceImage>();
+        }
+    
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public string ShortDescription { get; set; }
         public bool Active { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ConferenceImage> ConferenceImages { get; set; }
     }
 }
