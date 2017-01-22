@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConferenceDTO.cs" />
+    <Compile Include="ConferenceTeamDTO.cs" />
     <Compile Include="Purchase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

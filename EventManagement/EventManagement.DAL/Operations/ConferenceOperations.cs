@@ -33,5 +33,39 @@ namespace EventManagement.DAL.Operations
                 ImageUrls = conf.ConferenceImages.Select(q => q.ImageUrl).ToList()
             };
         }
+
+        public ConferenceDTO GetConferenceTeam(int id)
+        {
+            var conf = managementConsoleEntities.ConferenceTeams.Where(q => q.FK_ConferenceId == id && !q.Chair).Select(q=>new ConferenceTeamDTO {
+                ConferenceId = q.FK_ConferenceId,
+                Name = q.Name,
+                Info = q.Info,
+                isChair = q.Chair,
+                Biography = q.Biography,
+                ImageUrl = q.ImageUrl
+            }).ToList();
+            return new ConferenceDTO
+            {
+                team = conf
+            };
+        }
+
+        public ConferenceDTO GetConferenceChair(int id)
+        {
+            var conf = managementConsoleEntities.ConferenceTeams.Where(q => q.FK_ConferenceId == id && q.Chair).Select(q => new ConferenceTeamDTO
+            {
+                ConferenceId = q.FK_ConferenceId,
+                Name = q.Name,
+                Info = q.Info,
+                isChair = q.Chair,
+                Biography = q.Biography,
+                ImageUrl = q.ImageUrl
+            }).ToList();
+            return new ConferenceDTO
+            {
+                team = conf
+            };
+        }
+
     }
 }

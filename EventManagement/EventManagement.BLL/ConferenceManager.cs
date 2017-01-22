@@ -22,5 +22,15 @@ namespace EventManagement.BLL
         {
             return c.GetConference(id);
         }
+
+        public ConferenceDTO GetConferenceTeam(int id)
+        {
+            return c.GetConferenceTeam(id);
+        }
+
+        public object GetConferenceChair(int id)
+        {
+            return c.GetConferenceChair(id);
+        }
     }
 }

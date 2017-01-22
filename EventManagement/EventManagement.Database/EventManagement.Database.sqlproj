@@ -68,6 +68,8 @@
     <Build Include="dbo\Tables\ConferenceImages.sql" />
     <Build Include="Security\IIS APPPOOL_mysite.sql" />
     <Build Include="Security\RoleMemberships.sql" />
+    <Build Include="dbo\Tables\ConferenceTeam.sql" />
+    <Build Include="Security\IIS APPPOOL_mysite_1.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="EventManagement.Database.publish.xml" />

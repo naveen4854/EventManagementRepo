@@ -250,3 +250,4 @@ paket-files/
 # JetBrains Rider
 .idea/
 *.sln.iml
+/EventManagement/EventManagement.Database/Security/IIS APPPOOL_mysite_1.sql

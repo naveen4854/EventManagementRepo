@@ -13,5 +13,6 @@ namespace EventManagement.DataModels
         public string Desc { get; set; }
         public string ShortDesc { get; set; }
         public List<string> ImageUrls { get; set; }
+        public List<ConferenceTeamDTO> team { get; set; }
     }
 }

@@ -18,6 +18,7 @@ namespace EventManagement.DAL.Models
         public Conference()
         {
             this.ConferenceImages = new HashSet<ConferenceImage>();
+            this.ConferenceTeams = new HashSet<ConferenceTeam>();
         }
     
         public int Id { get; set; }
@@ -28,5 +29,7 @@ namespace EventManagement.DAL.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ConferenceImage> ConferenceImages { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ConferenceTeam> ConferenceTeams { get; set; }
     }
 }

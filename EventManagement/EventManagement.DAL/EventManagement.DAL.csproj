@@ -57,6 +57,9 @@
     <Compile Include="Models\ConferenceImage.cs">
       <DependentUpon>EventManagementModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ConferenceTeam.cs">
+      <DependentUpon>EventManagementModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\EventManagementModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
