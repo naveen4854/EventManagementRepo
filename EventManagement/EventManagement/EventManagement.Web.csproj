@@ -301,7 +301,6 @@
     <Content Include="Views\Home\PartialContactUs.cshtml" />
     <Content Include="Views\Home\PartialHome.cshtml" />
     <Content Include="Views\Shared\_ConferenceLayout.cshtml" />
-    <Content Include="Views\Conference\Index.cshtml" />
     <Content Include="Views\Conference\Home.cshtml" />
     <Content Include="Views\Conference\PartialHome.cshtml" />
     <Content Include="Views\Conference\ConferenceTeam.cshtml" />

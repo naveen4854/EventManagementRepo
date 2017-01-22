@@ -23,6 +23,7 @@ namespace EventManagement.Controllers
         [Route("Conference/{id}/Team")]
         public ActionResult Team(int id)
         {
+            ViewData["ConferenceId"] = id;
             var a = new ConferenceManager();
             return View(a.GetConferenceTeam(id));
         }
@@ -30,6 +31,7 @@ namespace EventManagement.Controllers
         [Route("Conference/{id}/Chair")]
         public ActionResult Chair(int id)
         {
+            ViewData["ConferenceId"] = id;
             var a = new ConferenceManager();
             return View(a.GetConferenceChair(id));
         }
