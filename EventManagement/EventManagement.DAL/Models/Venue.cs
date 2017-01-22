@@ -12,26 +12,19 @@ namespace EventManagement.DAL.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Conference
+    public partial class Venue
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Conference()
+        public Venue()
         {
-            this.ConferenceImages = new HashSet<ConferenceImage>();
-            this.ConferenceTeams = new HashSet<ConferenceTeam>();
+            this.Conferences = new HashSet<Conference>();
         }
     
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public string ShortDescription { get; set; }
-        public bool Active { get; set; }
-        public int FK_VenueId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ConferenceImage> ConferenceImages { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ConferenceTeam> ConferenceTeams { get; set; }
-        public virtual Venue Venue { get; set; }
+        public virtual ICollection<Conference> Conferences { get; set; }
     }
 }

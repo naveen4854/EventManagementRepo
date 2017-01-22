@@ -75,6 +75,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EventManagementModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Venue.cs">
+      <DependentUpon>EventManagementModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Operations\ConferenceOperations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

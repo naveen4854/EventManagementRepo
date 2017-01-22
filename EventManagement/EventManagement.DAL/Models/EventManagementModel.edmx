@@ -14,6 +14,7 @@
           <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
           <Property Name="ShortDescription" Type="nvarchar" MaxLength="500" />
           <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="FK_VenueId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="ConferenceImages">
           <Key>
@@ -36,6 +37,26 @@
           <Property Name="Biography" Type="varchar(max)" />
           <Property Name="ImageUrl" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
+        <EntityType Name="Venue">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Description" Type="varchar(max)" />
+        </EntityType>
+        <Association Name="FK_Conference_Venue">
+          <End Role="Venue" Type="Self.Venue" Multiplicity="1" />
+          <End Role="Conference" Type="Self.Conference" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Venue">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Conference">
+              <PropertyRef Name="FK_VenueId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ConferenceImages_Conference">
           <End Role="Conference" Type="Self.Conference" Multiplicity="1" />
           <End Role="ConferenceImages" Type="Self.ConferenceImages" Multiplicity="*" />
@@ -64,6 +85,11 @@
           <EntitySet Name="Conference" EntityType="Self.Conference" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ConferenceImages" EntityType="Self.ConferenceImages" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ConferenceTeam" EntityType="Self.ConferenceTeam" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Venue" EntityType="Self.Venue" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Conference_Venue" Association="Self.FK_Conference_Venue">
+            <End Role="Venue" EntitySet="Venue" />
+            <End Role="Conference" EntitySet="Conference" />
+          </AssociationSet>
           <AssociationSet Name="FK_ConferenceImages_Conference" Association="Self.FK_ConferenceImages_Conference">
             <End Role="Conference" EntitySet="Conference" />
             <End Role="ConferenceImages" EntitySet="ConferenceImages" />
@@ -89,6 +115,11 @@
             <End Role="Conference" EntitySet="Conferences" />
             <End Role="ConferenceTeam" EntitySet="ConferenceTeams" />
           </AssociationSet>
+          <EntitySet Name="Venues" EntityType="EventManagementModel.Venue" />
+          <AssociationSet Name="FK_Conference_Venue" Association="EventManagementModel.FK_Conference_Venue">
+            <End Role="Venue" EntitySet="Venues" />
+            <End Role="Conference" EntitySet="Conferences" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Conference">
           <Key>
@@ -101,6 +132,8 @@
           <Property Name="Active" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="ConferenceImages" Relationship="EventManagementModel.FK_ConferenceImages_Conference" FromRole="Conference" ToRole="ConferenceImage" />
           <NavigationProperty Name="ConferenceTeams" Relationship="EventManagementModel.FK_ConferenceTeam_Conference" FromRole="Conference" ToRole="ConferenceTeam" />
+          <Property Name="FK_VenueId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Venue" Relationship="EventManagementModel.FK_Conference_Venue" FromRole="Conference" ToRole="Venue" />
         </EntityType>
         <EntityType Name="ConferenceImage">
           <Key>
@@ -149,6 +182,27 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Venue">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Conferences" Relationship="EventManagementModel.FK_Conference_Venue" FromRole="Venue" ToRole="Conference" />
+        </EntityType>
+        <Association Name="FK_Conference_Venue">
+          <End Type="EventManagementModel.Venue" Role="Venue" Multiplicity="1" />
+          <End Type="EventManagementModel.Conference" Role="Conference" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Venue">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Conference">
+              <PropertyRef Name="FK_VenueId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -158,6 +212,7 @@
           <EntitySetMapping Name="Conferences">
             <EntityTypeMapping TypeName="EventManagementModel.Conference">
               <MappingFragment StoreEntitySet="Conference">
+                <ScalarProperty Name="FK_VenueId" ColumnName="FK_VenueId" />
                 <ScalarProperty Name="Active" ColumnName="Active" />
                 <ScalarProperty Name="ShortDescription" ColumnName="ShortDescription" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
@@ -185,6 +240,15 @@
                 <ScalarProperty Name="Info" ColumnName="Info" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="FK_ConferenceId" ColumnName="FK_ConferenceId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Venues">
+            <EntityTypeMapping TypeName="EventManagementModel.Venue">
+              <MappingFragment StoreEntitySet="Venue">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

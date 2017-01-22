@@ -70,6 +70,7 @@
     <Build Include="Security\RoleMemberships.sql" />
     <Build Include="dbo\Tables\ConferenceTeam.sql" />
     <Build Include="Security\IIS APPPOOL_mysite_1.sql" />
+    <Build Include="dbo\Tables\Venue.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="EventManagement.Database.publish.xml" />
