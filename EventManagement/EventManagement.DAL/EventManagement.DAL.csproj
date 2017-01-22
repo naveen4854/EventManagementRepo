@@ -75,6 +75,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EventManagementModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Program.cs">
+      <DependentUpon>EventManagementModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Venue.cs">
       <DependentUpon>EventManagementModel.tt</DependentUpon>
     </Compile>

@@ -32,5 +32,10 @@ namespace EventManagement.BLL
         {
             return c.GetConferenceChair(id);
         }
+
+        public object GetConferenceProgram(int id)
+        {
+            return c.GetConferenceProgram(id);
+        }
     }
 }

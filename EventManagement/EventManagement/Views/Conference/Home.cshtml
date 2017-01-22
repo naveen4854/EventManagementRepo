@@ -10,17 +10,17 @@
 </section>
 
 @*<section id="about">
-    @{ Html.RenderAction("PartialAboutUs", "Home"); }
-</section>
+        @{ Html.RenderAction("PartialAboutUs", "Home"); }
+    </section>
 
-<section id="conferences">
-    @{ Html.RenderAction("PartialConferences", "Home"); }
-</section>
+    <section id="conferences">
+        @{ Html.RenderAction("PartialConferences", "Home"); }
+    </section>
 
-<section id="regPolicy">
-    @{ Html.RenderAction("PartialRegistrationPolicy", "Home"); }
-</section>
+    <section id="regPolicy">
+        @{ Html.RenderAction("PartialRegistrationPolicy", "Home"); }
+    </section>*@
 
-<section id="contact">
-    @{ Html.RenderAction("PartialContactUs", "Home"); }
-</section>*@
+<section id="venue">
+    @{ Html.RenderAction("PartialVenue", "Conference", new { venue = Model.Venue }); }
+</section>

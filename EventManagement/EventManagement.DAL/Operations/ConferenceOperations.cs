@@ -30,7 +30,27 @@ namespace EventManagement.DAL.Operations
                 Name = conf.Name,
                 Desc = conf.Description,
                 ShortDesc = conf.ShortDescription,
-                ImageUrls = conf.ConferenceImages.Select(q => q.ImageUrl).ToList()
+                ImageUrls = conf.ConferenceImages.Select(q => q.ImageUrl).ToList(),
+                Venue = new VenueDTO
+                {
+                    Id = conf.Venue.Id,
+                    Name = conf.Venue.Name,
+                    Desc = conf.Venue.Description
+                }
+            };
+        }
+
+        public object GetConferenceProgram(int id)
+        {
+            var conf = managementConsoleEntities.Conferences.FirstOrDefault(q => q.Id == id);
+            return new ConferenceDTO
+            {
+                Id = conf.Id,
+                Name = conf.Name,
+                Desc = conf.Description,
+                ShortDesc = conf.ShortDescription,
+                ImageUrls = conf.ConferenceImages.Select(q => q.ImageUrl).ToList(),
+                Programs = conf.Programs.Select(q => new ProgramDTO { name = q.Name }).ToList()
             };
         }
 
@@ -46,7 +66,7 @@ namespace EventManagement.DAL.Operations
             }).ToList();
             return new ConferenceDTO
             {
-                team = conf
+                Team = conf
             };
         }
 
@@ -63,7 +83,7 @@ namespace EventManagement.DAL.Operations
             }).ToList();
             return new ConferenceDTO
             {
-                team = conf
+                Team = conf
             };
         }
 

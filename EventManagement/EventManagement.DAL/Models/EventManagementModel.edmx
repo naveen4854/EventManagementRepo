@@ -15,6 +15,8 @@
           <Property Name="ShortDescription" Type="nvarchar" MaxLength="500" />
           <Property Name="Active" Type="bit" Nullable="false" />
           <Property Name="FK_VenueId" Type="int" Nullable="false" />
+          <Property Name="startDt" Type="datetime" Nullable="false" />
+          <Property Name="endDt" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="ConferenceImages">
           <Key>
@@ -36,6 +38,19 @@
           <Property Name="Chair" Type="bit" Nullable="false" />
           <Property Name="Biography" Type="varchar(max)" />
           <Property Name="ImageUrl" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Program">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Info" Type="varchar" MaxLength="50" />
+          <Property Name="Title" Type="varchar" MaxLength="200" />
+          <Property Name="ImageUrl" Type="varchar" MaxLength="50" />
+          <Property Name="Abstract" Type="varchar(max)" />
+          <Property Name="FK_ConferenceId" Type="int" Nullable="false" />
+          <Property Name="ProgramDt" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Venue">
           <Key>
@@ -81,10 +96,23 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Program_Conference">
+          <End Role="Conference" Type="Self.Conference" Multiplicity="1" />
+          <End Role="Program" Type="Self.Program" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Conference">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Program">
+              <PropertyRef Name="FK_ConferenceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="EventManagementModelStoreContainer">
           <EntitySet Name="Conference" EntityType="Self.Conference" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ConferenceImages" EntityType="Self.ConferenceImages" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ConferenceTeam" EntityType="Self.ConferenceTeam" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Program" EntityType="Self.Program" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Venue" EntityType="Self.Venue" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Conference_Venue" Association="Self.FK_Conference_Venue">
             <End Role="Venue" EntitySet="Venue" />
@@ -97,6 +125,10 @@
           <AssociationSet Name="FK_ConferenceTeam_Conference" Association="Self.FK_ConferenceTeam_Conference">
             <End Role="Conference" EntitySet="Conference" />
             <End Role="ConferenceTeam" EntitySet="ConferenceTeam" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Program_Conference" Association="Self.FK_Program_Conference">
+            <End Role="Conference" EntitySet="Conference" />
+            <End Role="Program" EntitySet="Program" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -120,6 +152,11 @@
             <End Role="Venue" EntitySet="Venues" />
             <End Role="Conference" EntitySet="Conferences" />
           </AssociationSet>
+          <EntitySet Name="Programs" EntityType="EventManagementModel.Program" />
+          <AssociationSet Name="FK_Program_Conference" Association="EventManagementModel.FK_Program_Conference">
+            <End Role="Conference" EntitySet="Conferences" />
+            <End Role="Program" EntitySet="Programs" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Conference">
           <Key>
@@ -134,6 +171,9 @@
           <NavigationProperty Name="ConferenceTeams" Relationship="EventManagementModel.FK_ConferenceTeam_Conference" FromRole="Conference" ToRole="ConferenceTeam" />
           <Property Name="FK_VenueId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Venue" Relationship="EventManagementModel.FK_Conference_Venue" FromRole="Conference" ToRole="Venue" />
+          <Property Name="startDt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="endDt" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Programs" Relationship="EventManagementModel.FK_Program_Conference" FromRole="Conference" ToRole="Program" />
         </EntityType>
         <EntityType Name="ConferenceImage">
           <Key>
@@ -203,6 +243,32 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Program">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Info" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Title" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ImageUrl" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Abstract" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FK_ConferenceId" Type="Int32" Nullable="false" />
+          <Property Name="ProgramDt" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Conference" Relationship="EventManagementModel.FK_Program_Conference" FromRole="Program" ToRole="Conference" />
+        </EntityType>
+        <Association Name="FK_Program_Conference">
+          <End Type="EventManagementModel.Conference" Role="Conference" Multiplicity="1" />
+          <End Type="EventManagementModel.Program" Role="Program" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Conference">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Program">
+              <PropertyRef Name="FK_ConferenceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -212,6 +278,8 @@
           <EntitySetMapping Name="Conferences">
             <EntityTypeMapping TypeName="EventManagementModel.Conference">
               <MappingFragment StoreEntitySet="Conference">
+                <ScalarProperty Name="endDt" ColumnName="endDt" />
+                <ScalarProperty Name="startDt" ColumnName="startDt" />
                 <ScalarProperty Name="FK_VenueId" ColumnName="FK_VenueId" />
                 <ScalarProperty Name="Active" ColumnName="Active" />
                 <ScalarProperty Name="ShortDescription" ColumnName="ShortDescription" />
@@ -248,6 +316,20 @@
             <EntityTypeMapping TypeName="EventManagementModel.Venue">
               <MappingFragment StoreEntitySet="Venue">
                 <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Programs">
+            <EntityTypeMapping TypeName="EventManagementModel.Program">
+              <MappingFragment StoreEntitySet="Program">
+                <ScalarProperty Name="ProgramDt" ColumnName="ProgramDt" />
+                <ScalarProperty Name="FK_ConferenceId" ColumnName="FK_ConferenceId" />
+                <ScalarProperty Name="Abstract" ColumnName="Abstract" />
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Info" ColumnName="Info" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>

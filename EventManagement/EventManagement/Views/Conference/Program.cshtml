@@ -1,0 +1,12 @@
+﻿@model EventManagement.DataModels.ConferenceDTO
+@{
+    ViewBag.Title = "Program";
+    Layout = "~/Views/Shared/_ConferenceLayout.cshtml";
+}
+
+
+@{foreach (var prg in Model.Programs)
+    {
+        <h2>@prg.name</h2>
+    }
+}

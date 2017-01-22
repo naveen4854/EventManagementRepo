@@ -43,8 +43,10 @@
   <ItemGroup>
     <Compile Include="ConferenceDTO.cs" />
     <Compile Include="ConferenceTeamDTO.cs" />
+    <Compile Include="ProgramDTO.cs" />
     <Compile Include="Purchase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VenueDTO.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

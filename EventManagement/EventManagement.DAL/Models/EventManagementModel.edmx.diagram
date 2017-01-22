@@ -7,6 +7,7 @@
       <Diagram DiagramId="1c0662e0c1214ba8905bfaf528591a87" Name="Diagram1">
         <EntityTypeShape EntityType="EventManagementModel.ConferenceTeam" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="EventManagementModel.Venue" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="EventManagementModel.Program" Width="1.5" PointX="3.375" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

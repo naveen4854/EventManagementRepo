@@ -146,6 +146,7 @@
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\images\about-bg.jpg" />
+    <Content Include="Content\images\confprog\c1_p1_1.jpg" />
     <Content Include="Content\images\confteam\c1_chair.jpg" />
     <Content Include="Content\images\confteam\c1_t1.jpg" />
     <Content Include="Content\images\confteam\c1_t2.jpg" />
@@ -306,6 +307,8 @@
     <Content Include="Views\Conference\ConferenceTeam.cshtml" />
     <Content Include="Views\Conference\Team.cshtml" />
     <Content Include="Views\Conference\Chair.cshtml" />
+    <Content Include="Views\Conference\PartialVenue.cshtml" />
+    <Content Include="Views\Conference\Program.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
