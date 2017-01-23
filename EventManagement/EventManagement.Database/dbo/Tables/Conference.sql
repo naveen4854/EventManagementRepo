@@ -5,9 +5,13 @@
     [ShortDescription] NVARCHAR (500) NULL,
     [Active]           BIT            NOT NULL,
     [FK_VenueId]       INT            NOT NULL,
+    [startDt]          DATETIME       NOT NULL,
+    [endDt]            DATETIME       NOT NULL,
     CONSTRAINT [PK_Conference] PRIMARY KEY CLUSTERED ([Id] ASC),
     CONSTRAINT [FK_Conference_Venue] FOREIGN KEY ([FK_VenueId]) REFERENCES [dbo].[Venue] ([Id])
 );
+
+
 
 
 
