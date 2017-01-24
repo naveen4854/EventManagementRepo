@@ -75,5 +75,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="EventManagement.Database.publish.xml" />
+    <None Include="azuredb.Database.publish.publish.xml" />
   </ItemGroup>
 </Project>
