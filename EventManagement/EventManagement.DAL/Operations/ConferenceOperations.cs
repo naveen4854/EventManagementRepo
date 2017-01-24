@@ -53,6 +53,16 @@ namespace EventManagement.DAL.Operations
             }).ToList();
         }
 
+        public List<TrackDTO> GetTracks(int id)
+        {
+            return managementConsoleEntities.Tracks.Where(q => q.FK_ConferenceId == id).Select(q => new TrackDTO
+            {
+                Id = q.Id,
+                Name = q.Name,
+                Desc = q.Description
+            }).ToList();
+        }
+
         public string GetAbstract(int id, int prgId)
         {
             return managementConsoleEntities.Programs.Where(q => q.FK_ConferenceId == id && q.Id == prgId).Select(q=>q.Abstract).FirstOrDefault();

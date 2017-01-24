@@ -53,5 +53,10 @@ namespace EventManagement.BLL
         {
             return confOperations.GetAbstract(id, prgId);
         }
+
+        public List<TrackDTO> GetConferenceTracks(int id)
+        {
+            return confOperations.GetTracks(id);
+        }
     }
 }

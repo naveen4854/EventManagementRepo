@@ -20,6 +20,7 @@ namespace EventManagement.DAL.Models
             this.ConferenceImages = new HashSet<ConferenceImage>();
             this.ConferenceTeams = new HashSet<ConferenceTeam>();
             this.Programs = new HashSet<Program>();
+            this.Tracks = new HashSet<Track>();
         }
     
         public int Id { get; set; }
@@ -40,5 +41,7 @@ namespace EventManagement.DAL.Models
         public virtual Venue Venue { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Program> Programs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Track> Tracks { get; set; }
     }
 }

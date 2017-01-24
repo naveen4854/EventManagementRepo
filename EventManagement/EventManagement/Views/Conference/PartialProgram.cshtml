@@ -29,7 +29,7 @@
         var options = { "backdrop": "static", keyboard: true };
         $.ajax({
             type: "GET",
-            url: '/Conference/CONFID/Abstract/PRGID'.replace("CONFID", confId).replace("PRGID", prgId),
+            url: '/Conference/' + confId + '/Abstract/' + prgId,
             contentType: "application/json; charset=utf-8",
             datatype: "json",
             success: function (data) {
@@ -46,7 +46,7 @@
     $('body').click(function () {
         $('.modal').modal('hide');
     });
-    $('.inner').click(function (e) {
+    $('.modal').click(function (e) {
         e.stopPropagation();
     });
 </script>

@@ -88,5 +88,12 @@ namespace EventManagement.Controllers
                 return RedirectToAction("Index","Error");
             }
         }
+
+        [Route("Conference/{id}/Tracks/")]
+        public ActionResult Track(int id)
+        {
+            ViewData["ConferenceId"] = id;
+            return View(_confManager.GetConferenceTracks(id));
+        }
     }
 }

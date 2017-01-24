@@ -317,6 +317,7 @@
     <Content Include="Views\Error\Index.cshtml" />
     <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Conference\PartialAbstract.cshtml" />
+    <Content Include="Views\Conference\Track.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

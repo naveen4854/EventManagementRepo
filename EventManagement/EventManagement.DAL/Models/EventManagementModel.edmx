@@ -54,6 +54,15 @@
           <Property Name="FK_ConferenceId" Type="int" Nullable="false" />
           <Property Name="ProgramDt" Type="datetime" Nullable="false" />
         </EntityType>
+        <EntityType Name="Track">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="FK_ConferenceId" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Venue">
           <Key>
             <PropertyRef Name="Id" />
@@ -110,11 +119,24 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Track_Conference">
+          <End Role="Conference" Type="Self.Conference" Multiplicity="1" />
+          <End Role="Track" Type="Self.Track" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Conference">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Track">
+              <PropertyRef Name="FK_ConferenceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="EventManagementModelStoreContainer">
           <EntitySet Name="Conference" EntityType="Self.Conference" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ConferenceImages" EntityType="Self.ConferenceImages" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ConferenceTeam" EntityType="Self.ConferenceTeam" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Program" EntityType="Self.Program" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Track" EntityType="Self.Track" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Venue" EntityType="Self.Venue" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Conference_Venue" Association="Self.FK_Conference_Venue">
             <End Role="Venue" EntitySet="Venue" />
@@ -131,6 +153,10 @@
           <AssociationSet Name="FK_Program_Conference" Association="Self.FK_Program_Conference">
             <End Role="Conference" EntitySet="Conference" />
             <End Role="Program" EntitySet="Program" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Track_Conference" Association="Self.FK_Track_Conference">
+            <End Role="Conference" EntitySet="Conference" />
+            <End Role="Track" EntitySet="Track" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -159,6 +185,11 @@
             <End Role="Conference" EntitySet="Conferences" />
             <End Role="Program" EntitySet="Programs" />
           </AssociationSet>
+          <EntitySet Name="Tracks" EntityType="EventManagementModel.Track" />
+          <AssociationSet Name="FK_Track_Conference" Association="EventManagementModel.FK_Track_Conference">
+            <End Role="Conference" EntitySet="Conferences" />
+            <End Role="Track" EntitySet="Tracks" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Conference">
           <Key>
@@ -178,6 +209,7 @@
           <NavigationProperty Name="Programs" Relationship="EventManagementModel.FK_Program_Conference" FromRole="Conference" ToRole="Program" />
           <Property Name="brochure" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="SpeakerList" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tracks" Relationship="EventManagementModel.FK_Track_Conference" FromRole="Conference" ToRole="Track" />
         </EntityType>
         <EntityType Name="ConferenceImage">
           <Key>
@@ -273,6 +305,28 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Track">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FK_ConferenceId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Conference" Relationship="EventManagementModel.FK_Track_Conference" FromRole="Track" ToRole="Conference" />
+        </EntityType>
+        <Association Name="FK_Track_Conference">
+          <End Type="EventManagementModel.Conference" Role="Conference" Multiplicity="1" />
+          <End Type="EventManagementModel.Track" Role="Track" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Conference">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Track">
+              <PropertyRef Name="FK_ConferenceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -336,6 +390,16 @@
                 <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Info" ColumnName="Info" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tracks">
+            <EntityTypeMapping TypeName="EventManagementModel.Track">
+              <MappingFragment StoreEntitySet="Track">
+                <ScalarProperty Name="FK_ConferenceId" ColumnName="FK_ConferenceId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>

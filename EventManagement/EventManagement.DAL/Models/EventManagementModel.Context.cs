@@ -30,5 +30,6 @@ namespace EventManagement.DAL.Models
         public virtual DbSet<ConferenceTeam> ConferenceTeams { get; set; }
         public virtual DbSet<Venue> Venues { get; set; }
         public virtual DbSet<Program> Programs { get; set; }
+        public virtual DbSet<Track> Tracks { get; set; }
     }
 }

@@ -8,6 +8,7 @@
         <EntityTypeShape EntityType="EventManagementModel.ConferenceTeam" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="EventManagementModel.Venue" Width="1.5" PointX="3.375" PointY="0.75" />
         <EntityTypeShape EntityType="EventManagementModel.Program" Width="1.5" PointX="3.375" PointY="3.75" />
+        <EntityTypeShape EntityType="EventManagementModel.Track" Width="1.5" PointX="0.75" PointY="4.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
