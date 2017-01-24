@@ -1,9 +1,9 @@
 ﻿using EventManagement.BLL;
 using EventManagement.DataModels;
-using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.IO;
 using System.Web;
+using System.Web.Hosting;
 using System.Web.Mvc;
 
 namespace EventManagement.Controllers
@@ -56,6 +56,22 @@ namespace EventManagement.Controllers
         {
             ViewData["ConferenceId"] = id;
             return PartialView(_confManager.GetConferencePrograms(id, day));
+        }
+
+        [Route("Conference/{id}/download/")]
+        public ActionResult getfile(int id)
+        {
+            ViewData["ConferenceId"] = id;
+            var fileName = _confManager.GetConferenceBrochure(id);
+            if (!string.IsNullOrEmpty(fileName))
+            {
+                DirectoryInfo dirInfo = new DirectoryInfo(HostingEnvironment.MapPath("~/Content/downloads/confbrouchers"));
+                return File(dirInfo.FullName + @"\" + fileName, "application / docx", "brochure.docx");
+            }
+            else
+            {
+                return RedirectToAction("Index","Error");
+            }
         }
     }
 }

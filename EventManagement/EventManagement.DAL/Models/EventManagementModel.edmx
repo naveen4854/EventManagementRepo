@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="EventManagementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="EventManagementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Conference">
           <Key>
             <PropertyRef Name="Id" />
@@ -17,6 +17,8 @@
           <Property Name="FK_VenueId" Type="int" Nullable="false" />
           <Property Name="startDt" Type="datetime" Nullable="false" />
           <Property Name="endDt" Type="datetime" Nullable="false" />
+          <Property Name="brochure" Type="varchar" MaxLength="100" />
+          <Property Name="SpeakerList" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="ConferenceImages">
           <Key>
@@ -174,6 +176,8 @@
           <Property Name="startDt" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="endDt" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Programs" Relationship="EventManagementModel.FK_Program_Conference" FromRole="Conference" ToRole="Program" />
+          <Property Name="brochure" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SpeakerList" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="ConferenceImage">
           <Key>
@@ -278,6 +282,8 @@
           <EntitySetMapping Name="Conferences">
             <EntityTypeMapping TypeName="EventManagementModel.Conference">
               <MappingFragment StoreEntitySet="Conference">
+                <ScalarProperty Name="SpeakerList" ColumnName="SpeakerList" />
+                <ScalarProperty Name="brochure" ColumnName="brochure" />
                 <ScalarProperty Name="endDt" ColumnName="endDt" />
                 <ScalarProperty Name="startDt" ColumnName="startDt" />
                 <ScalarProperty Name="FK_VenueId" ColumnName="FK_VenueId" />

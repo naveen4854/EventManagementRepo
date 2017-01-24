@@ -52,6 +52,11 @@ namespace EventManagement.DAL.Operations
             }).ToList();
         }
 
+        public string GetConferenceBrochure(int id)
+        {
+            return managementConsoleEntities.Conferences.FirstOrDefault(q => q.Id == id).brochure;
+        }
+
         public ConferenceDTO GetConferencePeriod(int id)
         {
             var conf = managementConsoleEntities.Conferences.FirstOrDefault(q => q.Id == id);

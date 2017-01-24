@@ -30,6 +30,8 @@ namespace EventManagement.DAL.Models
         public int FK_VenueId { get; set; }
         public System.DateTime startDt { get; set; }
         public System.DateTime endDt { get; set; }
+        public string brochure { get; set; }
+        public string SpeakerList { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ConferenceImage> ConferenceImages { get; set; }

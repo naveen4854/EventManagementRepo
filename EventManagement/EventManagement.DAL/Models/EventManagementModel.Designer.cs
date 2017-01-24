@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\Assassin\Source\Repos\EventManagementRepo\EventManagement\EventManagement.DAL\Models\EventManagementModel.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\projects\EventManagementRepo\EventManagement\EventManagement.DAL\Models\EventManagementModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

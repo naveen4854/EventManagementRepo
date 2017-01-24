@@ -10,38 +10,43 @@ namespace EventManagement.BLL
 {
     public class ConferenceManager
     {
-        private ConferenceOperations c;
+        private ConferenceOperations confOperations;
         public ConferenceManager() {
-            c = new ConferenceOperations();
+            confOperations = new ConferenceOperations();
         }
         public List<ConferenceDTO> GetConferences() {
-            return c.GetConferences();
+            return confOperations.GetConferences();
         }
 
         public ConferenceDTO GetConference(int id)
         {
-            return c.GetConference(id);
+            return confOperations.GetConference(id);
         }
 
         public ConferenceDTO GetConferenceTeam(int id)
         {
-            return c.GetConferenceTeam(id);
+            return confOperations.GetConferenceTeam(id);
         }
 
         public ConferenceDTO GetConferenceChair(int id)
         {
-            return c.GetConferenceChair(id);
+            return confOperations.GetConferenceChair(id);
         }
 
         public List<ProgramDTO> GetConferencePrograms(int id,int day)
         {
-            var conf = c.GetConferencePeriod(id);
-            return c.GetConferencePrograms(id).Where(q => q.ProgramDt.Date == conf.StartDt.AddDays(day).Date).ToList();
+            var conf = confOperations.GetConferencePeriod(id);
+            return confOperations.GetConferencePrograms(id).Where(q => q.ProgramDt.Date == conf.StartDt.AddDays(day).Date).ToList();
         }
 
         public ConferenceDTO GetConferencePeriod(int id)
         {
-            return c.GetConferencePeriod(id);
+            return confOperations.GetConferencePeriod(id);
+        }
+
+        public string GetConferenceBrochure(int id)
+        {
+            return confOperations.GetConferenceBrochure(id);
         }
     }
 }
