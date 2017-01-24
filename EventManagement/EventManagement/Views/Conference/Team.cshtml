@@ -10,11 +10,11 @@
                 <a class="even-control-left" href="#event-carousel" data-slide="prev"><i class="fa fa-angle-left"></i></a>
                 <a class="even-control-right" href="#event-carousel" data-slide="next"><i class="fa fa-angle-right"></i></a>
                 <div class="carousel-inner">
-                    @for (int i = 0; i <= Model.team.Count() / 4; i++)
+                    @for (int i = 0; i <= Model.Team.Count() / 4; i++)
                     {
                         <div class="item @if (i == 0) { <text>active</text>} ">
                             <div class="row">
-                                @{ var obj = Model.team.Skip(i * 4).Take(4);}
+                                @{ var obj = Model.Team.Skip(i * 4).Take(4);}
                                 @foreach (var mem in obj)
                                 {
                                     <div class="col-sm-3">
