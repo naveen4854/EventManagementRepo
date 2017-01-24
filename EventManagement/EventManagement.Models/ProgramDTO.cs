@@ -8,6 +8,11 @@ namespace EventManagement.DataModels
 {
     public class ProgramDTO
     {
-        public string name { get; set; }
+        public string Name { get; set; }
+        public string Info { get; set; }
+        public string Title { get; set; }
+        public string ImageUrl { get; set; }
+        public string Abstract { get; set; }
+        public DateTime ProgramDt { get; set; }
     }
 }

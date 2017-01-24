@@ -1,0 +1,18 @@
+﻿@model IEnumerable<EventManagement.DataModels.ProgramDTO>
+
+<div class="row">
+    <div class="col-12">
+        @foreach (var prg in Model)
+            {
+            <div class="col-md-3">
+                <div class="single-event pointer">
+                    <img class="img-responsive" src="@Url.Content("~/Content/images/confprog/" + @prg.ImageUrl)" alt="event-image">
+                    <h4>@prg.Name</h4>
+                    <h5>@prg.Info</h5>
+                    <h5>@prg.Title</h5>
+                    <button>Abstract</button>
+                </div>
+            </div>
+        }
+    </div>
+</div>

@@ -44,11 +44,18 @@ namespace EventManagement.Controllers
             return PartialView(venue);
         }
 
-        [Route("Conference/{id}/Program/{day}")]
-        public ActionResult Program(int id, int day)
+        [Route("Conference/{id}/Program/")]
+        public ActionResult Program(int id)
         {
             ViewData["ConferenceId"] = id;
-            return View(_confManager.GetConferenceProgram(id));
+            return View(_confManager.GetConferencePeriod(id));
+        }
+
+        [Route("Conference/{id}/Program/{day}")]
+        public ActionResult PartialProgram(int id, int day)
+        {
+            ViewData["ConferenceId"] = id;
+            return PartialView(_confManager.GetConferencePrograms(id, day));
         }
     }
 }

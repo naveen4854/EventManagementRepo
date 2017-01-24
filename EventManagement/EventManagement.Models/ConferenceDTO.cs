@@ -12,6 +12,8 @@ namespace EventManagement.DataModels
         public string Name { get; set; }
         public string Desc { get; set; }
         public string ShortDesc { get; set; }
+        public DateTime StartDt { get; set; }
+        public DateTime EndDt { get; set; }
         public List<string> ImageUrls { get; set; }
         public List<ConferenceTeamDTO> Team { get; set; }
         public VenueDTO Venue { get; set; }

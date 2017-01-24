@@ -309,6 +309,8 @@
     <Content Include="Views\Conference\Chair.cshtml" />
     <Content Include="Views\Conference\PartialVenue.cshtml" />
     <Content Include="Views\Conference\Program.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Conference\PartialProgram.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

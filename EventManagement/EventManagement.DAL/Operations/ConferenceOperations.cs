@@ -40,17 +40,26 @@ namespace EventManagement.DAL.Operations
             };
         }
 
-        public object GetConferenceProgram(int id)
+        public List<ProgramDTO> GetConferencePrograms(int id)
+        {
+            return managementConsoleEntities.Programs.Where(q => q.FK_ConferenceId == id).Select(q => new ProgramDTO
+            {
+                Name = q.Name,
+                ImageUrl = q.ImageUrl,
+                Info = q.Info,
+                ProgramDt = q.ProgramDt,
+                Title = q.Title
+            }).ToList();
+        }
+
+        public ConferenceDTO GetConferencePeriod(int id)
         {
             var conf = managementConsoleEntities.Conferences.FirstOrDefault(q => q.Id == id);
             return new ConferenceDTO
             {
                 Id = conf.Id,
-                Name = conf.Name,
-                Desc = conf.Description,
-                ShortDesc = conf.ShortDescription,
-                ImageUrls = conf.ConferenceImages.Select(q => q.ImageUrl).ToList(),
-                Programs = conf.Programs.Select(q => new ProgramDTO { name = q.Name }).ToList()
+                StartDt = conf.startDt,
+                EndDt = conf.endDt
             };
         }
 

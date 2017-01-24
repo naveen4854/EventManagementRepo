@@ -28,14 +28,20 @@ namespace EventManagement.BLL
             return c.GetConferenceTeam(id);
         }
 
-        public object GetConferenceChair(int id)
+        public ConferenceDTO GetConferenceChair(int id)
         {
             return c.GetConferenceChair(id);
         }
 
-        public object GetConferenceProgram(int id)
+        public List<ProgramDTO> GetConferencePrograms(int id,int day)
         {
-            return c.GetConferenceProgram(id);
+            var conf = c.GetConferencePeriod(id);
+            return c.GetConferencePrograms(id).Where(q => q.ProgramDt.Date == conf.StartDt.AddDays(day).Date).ToList();
+        }
+
+        public ConferenceDTO GetConferencePeriod(int id)
+        {
+            return c.GetConferencePeriod(id);
         }
     }
 }

@@ -4,9 +4,46 @@
     Layout = "~/Views/Shared/_ConferenceLayout.cshtml";
 }
 
+<div style="padding :300px">
+    <div id="event-carousel" class="carousel slide" data-interval="false">
+        <h2 class="heading">Conference Days</h2>
+        <a class="even-control-left" href="#event-carousel" data-slide="prev"><i class="fa fa-angle-left"></i></a>
+        <a class="even-control-right" href="#event-carousel" data-slide="next"><i class="fa fa-angle-right"></i></a>
+        <div class="carousel-inner">
+            @{
+                var days = (Model.EndDt - Model.StartDt).Days;
+                for (int i = 0; i <= days / 4; i++)
+                {
+                    <div class="item @if (i == 0) { <text>active</text>} ">
+                        <div class="row">
+                            @for (int j = 0; j < 4; j++)
+                            {
+                                var confday = i * 4 + j;
+                                if (confday <= days)
+                                {
+                                    <div class="col-sm-3">
+                                        <div class="single-event pointer">
+                                            <h2 onclick="loadPartial(@confday)">@Model.StartDt.AddDays(confday).ToString("dd.MM.yyy")</h2>
+                                        </div>
+                                    </div>
+                                }
+                            }
 
-@{foreach (var prg in Model.Programs)
-    {
-        <h2>@prg.name</h2>
-    }
-}
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+    <div class="partialprg">
+        @{ Html.RenderAction("PartialProgram", "Conference", new { id = @ViewData["ConferenceId"], day = 1 }); }
+    </div>
+</div>
+
+<script type="text/javascript">
+    function loadPartial(confday) {
+        $.post('@Url.Action("PartialProgram", "Conference", new { id = @ViewData["ConferenceId"], day = "CONFDAY" })'.replace("CONFDAY", parseInt(confday))).always(function (res) {
+            $('.partialprg').html(res);
+        })
+    };
+</script>
