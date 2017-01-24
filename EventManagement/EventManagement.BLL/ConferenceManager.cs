@@ -48,5 +48,10 @@ namespace EventManagement.BLL
         {
             return confOperations.GetConferenceBrochure(id);
         }
+
+        public string GetAbstract(int id, int prgId)
+        {
+            return confOperations.GetAbstract(id, prgId);
+        }
     }
 }

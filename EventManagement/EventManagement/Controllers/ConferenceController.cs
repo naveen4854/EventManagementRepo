@@ -1,8 +1,8 @@
 ﻿using EventManagement.BLL;
 using EventManagement.DataModels;
+using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Web;
 using System.Web.Hosting;
 using System.Web.Mvc;
 
@@ -56,6 +56,21 @@ namespace EventManagement.Controllers
         {
             ViewData["ConferenceId"] = id;
             return PartialView(_confManager.GetConferencePrograms(id, day));
+        }
+
+        [Route("Conference/{id}/Abstract/{prgId}")]
+        public ActionResult PartialAbstract(int id, int prgId)
+        {
+            try
+            {
+                ViewData["ConferenceId"] = id;
+                var a = _confManager.GetAbstract(id, prgId);
+                return PartialView("PartialAbstract", a);
+            }
+            catch (Exception e)
+            {
+                return RedirectToAction("Index", "Error");
+            }
         }
 
         [Route("Conference/{id}/download/")]

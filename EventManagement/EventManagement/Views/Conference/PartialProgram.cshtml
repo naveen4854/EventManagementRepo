@@ -1,5 +1,4 @@
 ﻿@model IEnumerable<EventManagement.DataModels.ProgramDTO>
-
 <div class="row">
     <div class="col-12">
         @foreach (var prg in Model)
@@ -10,9 +9,44 @@
                     <h4>@prg.Name</h4>
                     <h5>@prg.Info</h5>
                     <h5>@prg.Title</h5>
-                    <button>Abstract</button>
+                    <button onclick="abstractModal(@ViewData["ConferenceId"],@prg.Id)">Abstract</button>
                 </div>
             </div>
         }
     </div>
 </div>
+<div id='myModal' class='modal'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id='myModalContent'></div>
+        </div>
+    </div>
+
+</div>   
+<script>
+
+    function abstractModal(confId, prgId) {
+        var options = { "backdrop": "static", keyboard: true };
+        $.ajax({
+            type: "GET",
+            url: '/Conference/CONFID/Abstract/PRGID'.replace("CONFID", confId).replace("PRGID", prgId),
+            contentType: "application/json; charset=utf-8",
+            datatype: "json",
+            success: function (data) {
+                $('#myModalContent').html(data);
+                $('#myModal').modal(options);
+                $('#myModal').modal('show');
+
+            },
+            error: function () {
+                $('#myModalContent').html("Error fetching Abstract");
+            }
+        });
+    }
+    $('body').click(function () {
+        $('.modal').modal('hide');
+    });
+    $('.inner').click(function (e) {
+        e.stopPropagation();
+    });
+</script>

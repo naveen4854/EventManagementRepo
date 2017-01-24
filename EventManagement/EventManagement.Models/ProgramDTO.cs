@@ -8,6 +8,7 @@ namespace EventManagement.DataModels
 {
     public class ProgramDTO
     {
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Info { get; set; }
         public string Title { get; set; }

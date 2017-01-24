@@ -44,12 +44,18 @@ namespace EventManagement.DAL.Operations
         {
             return managementConsoleEntities.Programs.Where(q => q.FK_ConferenceId == id).Select(q => new ProgramDTO
             {
+                Id = q.Id,
                 Name = q.Name,
                 ImageUrl = q.ImageUrl,
                 Info = q.Info,
                 ProgramDt = q.ProgramDt,
                 Title = q.Title
             }).ToList();
+        }
+
+        public string GetAbstract(int id, int prgId)
+        {
+            return managementConsoleEntities.Programs.Where(q => q.FK_ConferenceId == id && q.Id == prgId).Select(q=>q.Abstract).FirstOrDefault();
         }
 
         public string GetConferenceBrochure(int id)
