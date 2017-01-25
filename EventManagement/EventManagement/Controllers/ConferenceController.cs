@@ -90,10 +90,17 @@ namespace EventManagement.Controllers
         }
 
         [Route("Conference/{id}/Tracks/")]
-        public ActionResult Track(int id)
+        public ActionResult Tracks(int id)
         {
             ViewData["ConferenceId"] = id;
             return View(_confManager.GetConferenceTracks(id));
+        }
+
+        [Route("Conference/PartialAbstractSubmit/")]
+        [HttpPost]
+        public ActionResult PartialAbstractSubmit(TrackDTO[] tracks)
+        {
+            return PartialView();
         }
     }
 }
