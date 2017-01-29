@@ -58,5 +58,25 @@ namespace EventManagement.BLL
         {
             return confOperations.GetTracks(id);
         }
+
+        public List<CategoryModel> GetCategories()
+        {
+            return confOperations.GetCategories();
+        }
+
+        public List<CountryModel> GetCountries()
+        {
+            return confOperations.GetCountries();
+        }
+
+        public List<TitleModel> GetTitles()
+        {
+            return confOperations.GetTitles();
+        }
+
+        public bool PostAbstractSubmit(AbstractSubmitDTO obj)
+        {
+            return confOperations.PostAbstractSubmit(obj);
+        }
     }
 }

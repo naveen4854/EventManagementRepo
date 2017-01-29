@@ -9,6 +9,14 @@
         <EntityTypeShape EntityType="EventManagementModel.Venue" Width="1.5" PointX="3.375" PointY="0.75" />
         <EntityTypeShape EntityType="EventManagementModel.Program" Width="1.5" PointX="3.375" PointY="3.75" />
         <EntityTypeShape EntityType="EventManagementModel.Track" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="EventManagementModel.AbstractsSubmitted" Width="1.5" PointX="8" PointY="2.75" />
+        <EntityTypeShape EntityType="EventManagementModel.Category" Width="1.5" PointX="5.75" PointY="1.875" />
+        <EntityTypeShape EntityType="EventManagementModel.Country" Width="1.5" PointX="0.75" PointY="7.75" />
+        <EntityTypeShape EntityType="EventManagementModel.Title" Width="1.5" PointX="5.75" PointY="7.625" />
+        <AssociationConnector Association="EventManagementModel.FK_AbstractsSubmitted_Category" />
+        <AssociationConnector Association="EventManagementModel.FK_AbstractsSubmitted_Title" />
+        <AssociationConnector Association="EventManagementModel.FK_AbstractsSubmitted_Track" />
+        <AssociationConnector Association="EventManagementModel.FK_AbstractsSubmitted_Country" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

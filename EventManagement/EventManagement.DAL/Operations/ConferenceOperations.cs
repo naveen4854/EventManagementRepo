@@ -68,6 +68,27 @@ namespace EventManagement.DAL.Operations
             return managementConsoleEntities.Programs.Where(q => q.FK_ConferenceId == id && q.Id == prgId).Select(q=>q.Abstract).FirstOrDefault();
         }
 
+        public bool PostAbstractSubmit(AbstractSubmitDTO obj)
+        {
+            var a = new AbstractsSubmitted
+            {
+                SubmittedBy = obj.SubmittedBy,
+                EmailId = obj.EmailId,
+                FK_CategoryId = obj.Category,
+                FK_ContryId = obj.Country,
+                DocName = "",
+                Organisation = obj.Organisation,
+                FK_TrackID = obj.Track,
+                FK_TitleId = obj.Title,
+                FK_ConferenceId = obj.ConferenceId,
+            };
+            using (var entities = new EventManagementEntities()) {
+                entities.AbstractsSubmitteds.Add(a);
+                entities.SaveChanges();
+            }
+            return true;
+        }
+
         public string GetConferenceBrochure(int id)
         {
             return managementConsoleEntities.Conferences.FirstOrDefault(q => q.Id == id).brochure;
@@ -117,5 +138,31 @@ namespace EventManagement.DAL.Operations
             };
         }
 
+        public List<CountryModel> GetCountries()
+        {
+            return managementConsoleEntities.Countries.Select(q => new CountryModel
+            {
+                Id = q.Id,
+                Name = q.Name,
+            }).ToList();
+        }
+
+        public List<CategoryModel> GetCategories()
+        {
+            return managementConsoleEntities.Categories.Select(q => new CategoryModel
+            {
+                Id = q.Id,
+                Name = q.Name,
+            }).ToList();
+        }
+
+        public List<TitleModel> GetTitles()
+        {
+            return managementConsoleEntities.Titles.Select(q => new TitleModel
+            {
+                Id = q.Id,
+                Name = q.Name,
+            }).ToList();
+        }
     }
 }

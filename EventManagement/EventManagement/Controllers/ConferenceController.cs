@@ -85,7 +85,7 @@ namespace EventManagement.Controllers
             }
             else
             {
-                return RedirectToAction("Index","Error");
+                return RedirectToAction("Index", "Error");
             }
         }
 
@@ -96,10 +96,33 @@ namespace EventManagement.Controllers
             return View(_confManager.GetConferenceTracks(id));
         }
 
-        [Route("Conference/PartialAbstractSubmit/")]
-        [HttpPost]
-        public ActionResult PartialAbstractSubmit(TrackDTO[] tracks)
+        [Route("Conference/AbstractSubmit/")]
+        public ActionResult AbstractSubmit(IEnumerable<TrackDTO> tracks, int id)
         {
+            ViewData["ConferenceId"] = id;
+            var c = new AbstractSubmitModel
+            {
+                Titles = _confManager.GetTitles(),
+                Categories = _confManager.GetCategories(),
+                Countries = _confManager.GetCountries(),
+                Tracks = tracks
+            };
+            return PartialView("PartialAbstractSubmit", c);
+        }
+
+
+        [Route("Conference/Submit/")]
+        [HttpPost]
+        public ActionResult AbstractSubmit(AbstractSubmitDTO obj)
+        {
+            if (obj.DocUpload != null && obj.DocUpload.ContentLength > 0)
+            {
+                var uploadDir = "~/content/uploads/";
+                var imagePath = Path.Combine(Server.MapPath(uploadDir), obj.DocUpload.FileName);
+                obj.DocUpload.SaveAs(imagePath);
+            }
+            obj.DocUrl = obj.DocUpload.FileName;
+            _confManager.PostAbstractSubmit(obj);
             return PartialView();
         }
     }

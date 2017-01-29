@@ -21,6 +21,7 @@ namespace EventManagement.DAL.Models
             this.ConferenceTeams = new HashSet<ConferenceTeam>();
             this.Programs = new HashSet<Program>();
             this.Tracks = new HashSet<Track>();
+            this.AbstractsSubmitteds = new HashSet<AbstractsSubmitted>();
         }
     
         public int Id { get; set; }
@@ -43,5 +44,7 @@ namespace EventManagement.DAL.Models
         public virtual ICollection<Program> Programs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Track> Tracks { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AbstractsSubmitted> AbstractsSubmitteds { get; set; }
     }
 }

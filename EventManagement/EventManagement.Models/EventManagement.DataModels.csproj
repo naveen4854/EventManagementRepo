@@ -33,6 +33,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,11 +42,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AbstractSubmitDTO.cs" />
+    <Compile Include="AbstractSubmitModel.cs" />
+    <Compile Include="CategoryModel.cs" />
     <Compile Include="ConferenceDTO.cs" />
     <Compile Include="ConferenceTeamDTO.cs" />
+    <Compile Include="CountryModel.cs" />
     <Compile Include="ProgramDTO.cs" />
     <Compile Include="Purchase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TitleModel.cs" />
     <Compile Include="TrackDTO.cs" />
     <Compile Include="VenueDTO.cs" />
   </ItemGroup>

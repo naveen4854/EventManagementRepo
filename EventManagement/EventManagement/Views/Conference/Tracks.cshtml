@@ -10,6 +10,10 @@
         }
     }
 </div>
+
+<div>
+    @{ Html.RenderAction("AbstractSubmit", "Conference", new { tracks = @Model, id = @ViewData["ConferenceId"] }); }
+</div>
 <div id='myModal' class='modal'>
     <div class="modal-dialog">
         <div class="modal-content">
@@ -18,9 +22,11 @@
     </div>
 </div>
 <script type="text/javascript">
-    function loadPartial(confday) {
-        debugger;
-        data = @Html.Raw(Json.Encode(Model));
+    function loadPartial(trackId) {
+
+        $("#Track").val(trackId);
+
+        @*data = @Html.Raw(Json.Encode(Model));
         //'data' is much more complicated in my real application
         var jsonOfLog = JSON.stringify(data);
 
@@ -35,6 +41,6 @@
             error: function (xhr, ajaxOptions, thrownError) {
                 console && console.log("request failed");
             },
-        });
+        });*@
     };
 </script>

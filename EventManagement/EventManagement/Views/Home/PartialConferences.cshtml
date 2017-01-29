@@ -35,6 +35,6 @@
 
     function redirectConference(id) {
         var url = '@Url.Action("Home", "Conference",new { id = "ID"})'.replace("ID", parseInt(id));
-        window.open(url, '_blank');
+        window.open(url );
     }
 </script>

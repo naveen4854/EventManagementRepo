@@ -51,6 +51,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\AbstractsSubmitted.cs">
+      <DependentUpon>EventManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Category.cs">
+      <DependentUpon>EventManagementModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Conference.cs">
       <DependentUpon>EventManagementModel.tt</DependentUpon>
     </Compile>
@@ -58,6 +64,9 @@
       <DependentUpon>EventManagementModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ConferenceTeam.cs">
+      <DependentUpon>EventManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Country.cs">
       <DependentUpon>EventManagementModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EventManagementModel.Context.cs">
@@ -78,6 +87,9 @@
     <Compile Include="Models\Program.cs">
       <DependentUpon>EventManagementModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Title.cs">
+      <DependentUpon>EventManagementModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Track.cs">
       <DependentUpon>EventManagementModel.tt</DependentUpon>
     </Compile>
@@ -94,7 +106,9 @@
     </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.Config" />
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Models\EventManagementModel.edmx.diagram">
       <DependentUpon>EventManagementModel.edmx</DependentUpon>
     </None>

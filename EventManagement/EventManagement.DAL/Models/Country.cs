@@ -12,20 +12,17 @@ namespace EventManagement.DAL.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Track
+    public partial class Country
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Track()
+        public Country()
         {
             this.AbstractsSubmitteds = new HashSet<AbstractsSubmitted>();
         }
     
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Description { get; set; }
-        public int FK_ConferenceId { get; set; }
     
-        public virtual Conference Conference { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AbstractsSubmitted> AbstractsSubmitteds { get; set; }
     }
