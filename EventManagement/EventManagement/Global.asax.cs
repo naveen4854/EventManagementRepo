@@ -23,7 +23,7 @@ namespace EventManagement
         {
             Exception exception = Server.GetLastError();
             Server.ClearError();
-            Response.Redirect("/Error/Index");
+            Response.Redirect("/Error/ErrMsg?err=" + string.Join("||", exception.Message.Split(new string[] { Environment.NewLine }, StringSplitOptions.None)));
         }
     }
 }

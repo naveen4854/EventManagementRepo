@@ -12,6 +12,10 @@ namespace EventManagement.Controllers
         {
             return View("Error");
         }
+        public ViewResult ErrMsg(string err)
+        {
+            return View(err);
+        }
         public ViewResult NotFound()
         {
             Response.StatusCode = 404;  //you may want to set this to 200

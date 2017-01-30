@@ -3,6 +3,8 @@ using EventManagement.DataModels;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Net;
+using System.Net.Mail;
 using System.Web.Hosting;
 using System.Web.Mvc;
 
@@ -124,6 +126,19 @@ namespace EventManagement.Controllers
             obj.DocUrl = obj.DocUpload.FileName;
             _confManager.PostAbstractSubmit(obj);
             return PartialView();
+        }
+
+        [Route("Conference/mail/")]
+        public void AbstractSubmit()
+        {
+
+            var client = new SmtpClient("smtp.gmail.com", 587)
+            {
+                Credentials = new NetworkCredential("naveen4854@gmail.com", "naveenkumar@1"),
+                EnableSsl = true
+            };
+
+            client.Send("naveen4854@gmail.com", "naveen4854@gmail.com", "Test", "test message");
         }
     }
 }
