@@ -1,10 +1,12 @@
 ﻿using EventManagement.BLL;
 using EventManagement.DataModels;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Net.Mail;
+using System.Net.Mime;
 using System.Web.Hosting;
 using System.Web.Mvc;
 
@@ -117,14 +119,14 @@ namespace EventManagement.Controllers
         [HttpPost]
         public ActionResult AbstractSubmit(AbstractSubmitDTO obj)
         {
-            if (obj.DocUpload != null && obj.DocUpload.ContentLength > 0)
-            {
-                var uploadDir = "~/content/uploads/";
-                var imagePath = Path.Combine(Server.MapPath(uploadDir), obj.DocUpload.FileName);
-                obj.DocUpload.SaveAs(imagePath);
-            }
-            obj.DocUrl = obj.DocUpload.FileName;
-            _confManager.PostAbstractSubmit(obj);
+            //if (obj.DocUpload != null && obj.DocUpload.ContentLength > 0)
+            //{
+            //    var uploadDir = "~/content/uploads/";
+            //    var filePath = Path.Combine(Server.MapPath(uploadDir), obj.DocUpload.FileName);
+            //    obj.DocUpload.SaveAs(filePath);
+            //}
+            //obj.DocUrl = obj.DocUpload.FileName;
+            _confManager.PostAbstract(obj);
             return PartialView();
         }
 
@@ -134,11 +136,15 @@ namespace EventManagement.Controllers
 
             var client = new SmtpClient("smtp.gmail.com", 587)
             {
-                Credentials = new NetworkCredential("naveen4854@gmail.com", "naveenkumar@1"),
-                EnableSsl = true
-            };
-
-            client.Send("naveen4854@gmail.com", "naveen4854@gmail.com", "Test", "test message");
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential("sc_admin@scientificcognizance.com", "SC_admin_2017"),
+                //Credentials = new NetworkCredential("naveen4854@gmail.com", "naveenkumar@1"),
+                EnableSsl = true,
+                
+        };
+            client.Send("sc_admin@scientificcognizance.com", "naveen4854@gmail.com", "Test", "test message");
         }
+
+
     }
 }

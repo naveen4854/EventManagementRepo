@@ -68,7 +68,7 @@ namespace EventManagement.DAL.Operations
             return managementConsoleEntities.Programs.Where(q => q.FK_ConferenceId == id && q.Id == prgId).Select(q=>q.Abstract).FirstOrDefault();
         }
 
-        public bool PostAbstractSubmit(AbstractSubmitDTO obj)
+        public int PostAbstract(AbstractSubmitDTO obj)
         {
             var a = new AbstractsSubmitted
             {
@@ -82,11 +82,13 @@ namespace EventManagement.DAL.Operations
                 FK_TitleId = obj.Title,
                 FK_ConferenceId = obj.ConferenceId,
             };
+            var id = -1;
             using (var entities = new EventManagementEntities()) {
                 entities.AbstractsSubmitteds.Add(a);
                 entities.SaveChanges();
+                id = a.Id; 
             }
-            return true;
+            return id;
         }
 
         public string GetConferenceBrochure(int id)
