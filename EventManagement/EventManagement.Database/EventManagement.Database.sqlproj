@@ -83,4 +83,7 @@
     <None Include="azuredb.Database.publish.publish.xml" />
     <None Include="localdb.Database.publish.publish.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="Script.PostDeployment.sql" />
+  </ItemGroup>
 </Project>
