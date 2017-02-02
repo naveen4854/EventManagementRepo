@@ -262,6 +262,8 @@
     <Content Include="scripts\jquery-1.10.2.js" />
     <Content Include="scripts\jquery-1.10.2.min.js" />
     <None Include="scripts\jquery.validate-vsdoc.js" />
+    <Content Include="scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="scripts\jquery.validate.js" />
     <Content Include="scripts\jquery.validate.min.js" />
     <Content Include="scripts\jquery.validate.unobtrusive.js" />
@@ -271,6 +273,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\CMSController.cs" />
     <Compile Include="Controllers\ConferenceController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -321,6 +324,16 @@
     <Content Include="Views\Conference\PartialAbstractSubmit.cshtml" />
     <Content Include="Views\Error\Index.cshtml" />
     <Content Include="Views\Error\ErrMsg.cshtml" />
+    <Content Include="Views\CMS\Create.cshtml" />
+    <Content Include="Views\CMS\AddVenue.cshtml" />
+    <Content Include="Views\Shared\_CMSLayout.cshtml" />
+    <Content Include="Views\CMS\AddConference.cshtml" />
+    <Content Include="Views\CMS\Tracks.cshtml" />
+    <Content Include="Views\CMS\AllTracks.cshtml" />
+    <Content Include="Views\CMS\ConferenceImages.cshtml" />
+    <Content Include="Views\CMS\AllConferenceImages.cshtml" />
+    <Content Include="Views\CMS\ConferenceTeams.cshtml" />
+    <Content Include="Views\CMS\ConferencePrograms.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -46,6 +46,7 @@
     <Compile Include="AbstractSubmitModel.cs" />
     <Compile Include="CategoryModel.cs" />
     <Compile Include="ConferenceDTO.cs" />
+    <Compile Include="ConferenceImageModel.cs" />
     <Compile Include="ConferenceTeamDTO.cs" />
     <Compile Include="CountryModel.cs" />
     <Compile Include="ProgramDTO.cs" />

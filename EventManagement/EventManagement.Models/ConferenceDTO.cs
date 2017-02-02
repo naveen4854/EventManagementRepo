@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace EventManagement.DataModels
 {
@@ -18,5 +19,6 @@ namespace EventManagement.DataModels
         public List<ConferenceTeamDTO> Team { get; set; }
         public VenueDTO Venue { get; set; }
         public List<ProgramDTO> Programs { get; set; }
+        public IEnumerable<HttpPostedFileBase> ImagesUpload { get; set; }
     }
 }

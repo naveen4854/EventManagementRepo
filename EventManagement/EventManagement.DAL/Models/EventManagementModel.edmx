@@ -47,7 +47,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FK_ConferenceId" Type="int" Nullable="false" />
           <Property Name="ImageUrl" Type="varchar(max)" Nullable="false" />
           <Property Name="Active" Type="bit" Nullable="false" />

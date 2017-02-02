@@ -12,5 +12,6 @@ namespace EventManagement.DataModels
         public string Name { get; set; }
         public string Desc { get; set; }
 
+        public int ConferenceId { get; set; }
     }
 }

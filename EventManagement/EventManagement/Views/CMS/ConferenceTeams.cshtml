@@ -1,0 +1,57 @@
+﻿@model EventManagement.DataModels.ConferenceTeamDTO
+@{
+    ViewBag.Title = "ConferenceTeams";
+    Layout = "~/Views/Shared/_CMSLayout.cshtml";
+}
+@using (Html.BeginForm("AddConferenceTeam", "CMS", FormMethod.Post, new { encType = "multipart/form-data" }))
+{
+    <div class="form-horizontal" style="padding:20px">
+        <div class="form-group">
+            @Html.LabelFor(model => model.ConferenceId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.ConferenceId, new SelectList(@ViewBag.Conferences, "Id", "Name"), new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Info, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Info, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Info, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Biography, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.Biography, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Biography, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.isChair, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.CheckBoxFor(model => model.isChair, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.isChair, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.TextBoxFor(model => model.ImageUpload, new { @type = "file" })
+            @*@Html.ValidationMessageFor(model => model.ImagesUpload, "", new { @class = "text-danger" })*@
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Upload" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+    @*<div id="AllConfImages">
+        @{ Html.RenderAction("AllConferenceImages", "CMS", new { id = @ViewBag.Conferences[0].Id }); }
+    </div>*@
+            }

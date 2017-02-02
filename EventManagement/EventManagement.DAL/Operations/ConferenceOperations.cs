@@ -21,6 +21,56 @@ namespace EventManagement.DAL.Operations
             }).ToList();
         }
 
+        public List<VenueDTO> GetVenues()
+        {
+            return managementConsoleEntities.Venues.Select(q => new VenueDTO
+            {
+                Id = q.Id,
+                Name = q.Name,
+                Desc = q.Description,
+            }).ToList();
+        }
+
+        public bool AddConference(ConferenceDTO obj)
+        {
+            var a = new Conference
+            {
+                Name = obj.Name,
+                Description = obj.Desc,
+                ShortDescription = obj.ShortDesc,
+                FK_VenueId = obj.Venue.Id,
+                startDt = DateTime.Now,
+                endDt = DateTime.Now.AddDays(5)
+            };
+            using (var entities = new EventManagementEntities())
+            {
+                entities.Conferences.Add(a);
+                entities.SaveChanges();
+            }
+            return true;
+        }
+
+        public bool AddTrack(TrackDTO obj)
+        {
+            var a = new Track
+            {
+                Name = obj.Name,
+                Description = obj.Desc,
+                FK_ConferenceId = obj.ConferenceId
+            };
+            using (var entities = new EventManagementEntities())
+            {
+                entities.Tracks.Add(a);
+                entities.SaveChanges();
+            }
+            return true;
+        }
+
+        public List<string> GetConferenceImages(int id)
+        {
+            return managementConsoleEntities.ConferenceImages.Where(q => q.FK_ConferenceId == id).Select(q => q.ImageUrl).ToList();
+        }
+
         public ConferenceDTO GetConference(int Id)
         {
             var conf = managementConsoleEntities.Conferences.FirstOrDefault(q => q.Id == Id);
@@ -38,6 +88,40 @@ namespace EventManagement.DAL.Operations
                     Desc = conf.Venue.Description
                 }
             };
+        }
+
+        public bool AddConferenceTeam(ConferenceTeamDTO obj)
+        {
+            var a = new ConferenceTeam
+            {
+                Name = obj.Name,
+                Biography = obj.Biography,
+                Chair = obj.isChair,
+                ImageUrl = obj.ImageUrl,
+                Info = obj.Info,
+                FK_ConferenceId = obj.ConferenceId
+            };
+            using (var entities = new EventManagementEntities())
+            {
+                entities.ConferenceTeams.Add(a);
+                entities.SaveChanges();
+            }
+            return true;
+        }
+
+        public bool PostConferenceImage(ConferenceImageModel conferenceImage)
+        {
+            var a = new ConferenceImage
+            {
+                ImageUrl = conferenceImage.Name,
+                FK_ConferenceId = conferenceImage.ConferenceId
+            };
+            using (var entities = new EventManagementEntities())
+            {
+                entities.ConferenceImages.Add(a);
+                entities.SaveChanges();
+            }
+            return true;
         }
 
         public List<ProgramDTO> GetConferencePrograms(int id)
@@ -59,7 +143,8 @@ namespace EventManagement.DAL.Operations
             {
                 Id = q.Id,
                 Name = q.Name,
-                Desc = q.Description
+                Desc = q.Description,
+                ConferenceId = q.FK_ConferenceId
             }).ToList();
         }
 
@@ -76,7 +161,7 @@ namespace EventManagement.DAL.Operations
                 EmailId = obj.EmailId,
                 FK_CategoryId = obj.Category,
                 FK_ContryId = obj.Country,
-                DocName = "",
+                DocName = obj.DocUrl,
                 Organisation = obj.Organisation,
                 FK_TrackID = obj.Track,
                 FK_TitleId = obj.Title,

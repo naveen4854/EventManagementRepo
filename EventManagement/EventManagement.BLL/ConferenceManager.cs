@@ -12,17 +12,31 @@ namespace EventManagement.BLL
     {
         private ConferenceOperations confOperations;
         private MailHelper _mailHelper;
-        public ConferenceManager() {
+        private UploadHelper _uploadHelper;
+        public ConferenceManager()
+        {
             confOperations = new ConferenceOperations();
             _mailHelper = new MailHelper();
+            _uploadHelper = new UploadHelper();
         }
-        public List<ConferenceDTO> GetConferences() {
+        public List<ConferenceDTO> GetConferences()
+        {
             return confOperations.GetConferences();
+        }
+
+        public List<VenueDTO> GetVenues()
+        {
+            return confOperations.GetVenues();
         }
 
         public ConferenceDTO GetConference(int id)
         {
             return confOperations.GetConference(id);
+        }
+
+        public bool AddConference(ConferenceDTO obj)
+        {
+            return confOperations.AddConference(obj);
         }
 
         public ConferenceDTO GetConferenceTeam(int id)
@@ -35,7 +49,12 @@ namespace EventManagement.BLL
             return confOperations.GetConferenceChair(id);
         }
 
-        public List<ProgramDTO> GetConferencePrograms(int id,int day)
+        public bool AddTrack(TrackDTO obj)
+        {
+            return confOperations.AddTrack(obj);
+        }
+
+        public List<ProgramDTO> GetConferencePrograms(int id, int day)
         {
             var conf = confOperations.GetConferencePeriod(id);
             return confOperations.GetConferencePrograms(id).Where(q => q.ProgramDt.Date == conf.StartDt.AddDays(day).Date).ToList();
@@ -46,9 +65,29 @@ namespace EventManagement.BLL
             return confOperations.GetConferencePeriod(id);
         }
 
+        public void AddConferenceImages(ConferenceDTO obj)
+        {
+            foreach (var image in obj.ImagesUpload)
+            {
+                var fileName = _uploadHelper.UploadFile(image, "~/content/images");
+                confOperations.PostConferenceImage(new ConferenceImageModel { Name = fileName, ConferenceId = obj.Id });
+            }
+        }
+
+        public void AddConferenceTeam(ConferenceTeamDTO obj)
+        {
+            obj.ImageUrl = _uploadHelper.UploadFile(obj.ImageUpload, "~/content/images/confteam");
+            confOperations.AddConferenceTeam(obj);
+        }
+
         public string GetConferenceBrochure(int id)
         {
             return confOperations.GetConferenceBrochure(id);
+        }
+
+        public ConferenceDTO GetConferenceImages(int id)
+        {
+            return new ConferenceDTO { Id = id, ImageUrls = confOperations.GetConferenceImages(id) };
         }
 
         public string GetAbstract(int id, int prgId)
@@ -78,7 +117,6 @@ namespace EventManagement.BLL
 
         public bool PostAbstract(AbstractSubmitDTO obj)
         {
-
             var fileName = Guid.NewGuid() + "_" + obj.DocUpload.FileName;
 
             if (obj.DocUpload != null && obj.DocUpload.ContentLength > 0)

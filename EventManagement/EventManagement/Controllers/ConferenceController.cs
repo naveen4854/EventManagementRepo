@@ -104,46 +104,47 @@ namespace EventManagement.Controllers
         public ActionResult AbstractSubmit(IEnumerable<TrackDTO> tracks, int id)
         {
             ViewData["ConferenceId"] = id;
-            var c = new AbstractSubmitModel
-            {
-                Titles = _confManager.GetTitles(),
-                Categories = _confManager.GetCategories(),
-                Countries = _confManager.GetCountries(),
-                Tracks = tracks
-            };
-            return PartialView("PartialAbstractSubmit", c);
-        }
-
-
-        [Route("Conference/Submit/")]
-        [HttpPost]
-        public ActionResult AbstractSubmit(AbstractSubmitDTO obj)
-        {
-            //if (obj.DocUpload != null && obj.DocUpload.ContentLength > 0)
+            ViewBag.Titles = _confManager.GetTitles();
+            ViewBag.Categories = _confManager.GetCategories();
+            ViewBag.Countries = _confManager.GetCountries();
+            ViewBag.Tracks = tracks;
+            //var c = new AbstractSubmitModel
             //{
-            //    var uploadDir = "~/content/uploads/";
-            //    var filePath = Path.Combine(Server.MapPath(uploadDir), obj.DocUpload.FileName);
-            //    obj.DocUpload.SaveAs(filePath);
-            //}
-            //obj.DocUrl = obj.DocUpload.FileName;
-            _confManager.PostAbstract(obj);
-            return PartialView();
+            //    Titles = _confManager.GetTitles(),
+            //    Categories = _confManager.GetCategories(),
+            //    Countries = _confManager.GetCountries(),
+            //    Tracks = tracks
+            //};
+            return PartialView("PartialAbstractSubmit");
         }
 
-        [Route("Conference/mail/")]
-        public void AbstractSubmit()
+        [HttpPost]
+        public ActionResult SubmitAbstract(AbstractSubmitDTO obj)
         {
-
-            var client = new SmtpClient("smtp.gmail.com", 587)
-            {
-                UseDefaultCredentials = false,
-                Credentials = new NetworkCredential("sc_admin@scientificcognizance.com", "SC_admin_2017"),
-                //Credentials = new NetworkCredential("naveen4854@gmail.com", "naveenkumar@1"),
-                EnableSsl = true,
-                
-        };
-            client.Send("sc_admin@scientificcognizance.com", "naveen4854@gmail.com", "Test", "test message");
+            _confManager.PostAbstract(obj);
+            return RedirectToAction("Tracks", "Conference", new { id = obj.ConferenceId});
         }
+
+        //[Route("Conference/Submit/")]
+        //[HttpPost]
+        //public ActionResult AbstractSubmit(AbstractSubmitDTO obj)
+        //{
+        //    _confManager.PostAbstract(obj);
+        //    return new HttpStatusCodeResult(HttpStatusCode.OK);
+        //}
+
+        //[Route("Conference/mail/")]
+        //public void AbstractSubmit()
+        //{
+        //    var client = new SmtpClient("smtp.gmail.com", 587)
+        //    {
+        //        UseDefaultCredentials = false,
+        //        Credentials = new NetworkCredential("sc_admin@scientificcognizance.com", "SC_admin_2017"),
+        //        //Credentials = new NetworkCredential("naveen4854@gmail.com", "naveenkumar@1"),
+        //        EnableSsl = true,
+        //    };
+        //    client.Send("sc_admin@scientificcognizance.com", "naveen4854@gmail.com", "Test", "test message");
+        //}
 
 
     }

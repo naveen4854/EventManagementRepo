@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace EventManagement.DataModels
 {
@@ -14,5 +15,6 @@ namespace EventManagement.DataModels
         public bool isChair { get; set; }
         public string Biography { get; set; }
         public string ImageUrl { get; set; }
+        public HttpPostedFileBase ImageUpload { get; set; }
     }
 }

@@ -1,16 +1,17 @@
-﻿@model EventManagement.DataModels.AbstractSubmitModel
+﻿@model EventManagement.DataModels.AbstractSubmitDTO
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("SubmitAbstract", "Conference", FormMethod.Post, new { encType = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal"style="padding:20px">
+
+    <div class="form-horizontal" style="padding:20px">
         <hr />
+        @Html.HiddenFor(model => model.ConferenceId, new { Value = @ViewData["ConferenceId"]})
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.Titles, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("Title", new SelectList(Model.Titles, "Id", "Name"), new { @class = "form-control" })
+                @Html.DropDownList("Title", new SelectList(@ViewBag.Titles, "Id", "Name"), new { @class = "form-control" })
             </div>
         </div>
         <div class="form-group">
@@ -46,35 +47,36 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Countries, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Country, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("Country", new SelectList(Model.Countries, "Id", "Name"), new { @class = "form-control" })
+                @Html.DropDownList("Country", new SelectList(@ViewBag.Countries, "Id", "Name"), new { @class = "form-control" })
             </div>
         </div>
         <div class="form-group">
-            @Html.LabelFor(model => model.Tracks, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Track, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("Track", new SelectList(Model.Tracks, "Id", "Name"), new { @class = "form-control" })
-            </div>
-        </div>
-       
-        <div class="form-group">
-            @Html.LabelFor(model => model.Categories, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("Category", new SelectList(Model.Categories, "Id", "Name"), new { @class = "form-control" })
+                @Html.DropDownList("Track", new SelectList(@ViewBag.Tracks, "Id", "Name"), new { @class = "form-control" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.DocumentName, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Category, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <input type="file" id="upFiles" class="btn btn-default" />
+                @Html.DropDownListFor(model => model.Category, new SelectList(@ViewBag.Categories, "Id", "Name"), new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DocUpload, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.DocUpload, new { type = "file" })
+                @*<input type="file" id="upFiles" class="btn btn-default" />*@
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="button" onclick="postAbstract()" value="Save" class="btn btn-default" />
+                <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </div>
     </div>
@@ -109,6 +111,13 @@
                 console && console.log("request failed");
             },
         });
+
+        //$("#submit").click(function() {
+        //    $.post($("#form").attr("action"), $("#form").serialize(), function(html) {
+        //        $("div.result").html(html);
+        //    });
+        //    return false; // prevent normal submit
+        //});
     }
 </script>
 
