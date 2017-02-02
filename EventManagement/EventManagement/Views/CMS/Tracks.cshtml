@@ -40,7 +40,12 @@
         </div>
 
         <div id="AllTracks">
-            @{ Html.RenderAction("AllTracks", "CMS", new { id = @ViewBag.Conferences[0].Id}); }
+            @{ 
+                if (ViewBag.Conferences.Count > 0)
+                {
+                    Html.RenderAction("AllTracks", "CMS", new { id = @ViewBag.Conferences[0].Id });
+                }
+            }
             @*@Html.Partial("_AllTracks", Model.ConferenceId)*@
         </div>
     }

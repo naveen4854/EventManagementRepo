@@ -31,6 +31,21 @@ namespace EventManagement.DAL.Operations
             }).ToList();
         }
 
+        public bool AddVenue(VenueDTO obj)
+        {
+            var a = new Venue
+            {
+                Name = obj.Name,
+                Description = obj.Desc,
+            };
+            using (var entities = new EventManagementEntities())
+            {
+                entities.Venues.Add(a);
+                entities.SaveChanges();
+            }
+            return true;
+        }
+
         public bool AddConference(ConferenceDTO obj)
         {
             var a = new Conference

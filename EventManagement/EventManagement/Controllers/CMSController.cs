@@ -15,12 +15,30 @@ namespace EventManagement.Controllers
         {
             _confManager = new ConferenceManager();
         }
-        public ActionResult AddVenue()
+
+        public ActionResult Index() {
+            return View();
+        }
+
+        public ActionResult Venues()
         {
             return View();
         }
 
-        public ActionResult AddConference()
+        [HttpPost]
+        public ActionResult AddVenue(VenueDTO obj)
+        {
+            _confManager.AddVenue(obj);
+            return RedirectToAction("AllVenues", "CMS");
+        }
+
+        public ActionResult AllVenues()
+        {
+            var venues = _confManager.GetVenues();
+            return PartialView("AllVenues", venues);
+        }
+
+        public ActionResult Conferences()
         {
             ViewBag.Venues = _confManager.GetVenues();
             return View(new ConferenceDTO());
@@ -30,7 +48,13 @@ namespace EventManagement.Controllers
         public ActionResult AddConference(ConferenceDTO obj)
         {
             _confManager.AddConference(obj);
-            return RedirectToAction("AddConference","CMS");
+            return RedirectToAction("AllConferences", "CMS");
+        }
+
+        public ActionResult AllConferences()
+        {
+            var confs = _confManager.GetConferences();
+            return PartialView("AllConferences", confs);
         }
 
         public ActionResult Tracks()

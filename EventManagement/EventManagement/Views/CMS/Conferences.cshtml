@@ -7,10 +7,10 @@
 
 <h2>AddConference</h2>
 
-@using (Html.BeginForm()) 
+@using (Ajax.BeginForm("AddConference","CMS", new AjaxOptions { UpdateTargetId = "AllConferences" }))
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>ConferenceDTO</h4>
         <hr />
@@ -69,8 +69,8 @@
             </div>
         </div>
     </div>
-}
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+    <div id="AllConferences">
+        @{ Html.RenderAction("AllConferences", "CMS"); }
+    </div>
+            }

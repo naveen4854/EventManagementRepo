@@ -24,6 +24,11 @@ namespace EventManagement.BLL
             return confOperations.GetConferences();
         }
 
+        public bool AddVenue(VenueDTO obj)
+        {
+            return confOperations.AddVenue(obj);
+        }
+
         public List<VenueDTO> GetVenues()
         {
             return confOperations.GetVenues();
