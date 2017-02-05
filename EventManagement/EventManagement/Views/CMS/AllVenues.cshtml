@@ -1,7 +1,14 @@
 ﻿@model IEnumerable<EventManagement.DataModels.VenueDTO>
 
+@{
+    ViewBag.Title = "AllVenues";
+    Layout = "~/Views/Shared/_CMSLayout.cshtml";
+}
+
+<h2>AllVenues</h2>
+
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create Venue", "Venues")
 </p>
 <table class="table">
     <tr>
@@ -23,9 +30,9 @@
             @Html.DisplayFor(modelItem => item.Desc)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Edit", "Venue", new { id=item.Id }) |
             @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Delete", "DeleteVenue", new { id=item.Id })
         </td>
     </tr>
 }

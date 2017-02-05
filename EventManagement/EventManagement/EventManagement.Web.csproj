@@ -301,6 +301,7 @@
     <Content Include="Views\CMS\Index.cshtml" />
     <Content Include="Views\CMS\AllConferenceTeams.cshtml" />
     <Content Include="Views\CMS\AllConferencePrograms.cshtml" />
+    <Content Include="Views\CMS\Venue.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

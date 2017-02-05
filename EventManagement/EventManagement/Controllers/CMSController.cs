@@ -25,6 +25,12 @@ namespace EventManagement.Controllers
             return View();
         }
 
+        public ActionResult Venue(int id)
+        {
+            var venue = _confManager.GetVenue(id);
+            return View(venue);
+        }
+
         [HttpPost]
         public ActionResult AddVenue(VenueDTO obj)
         {
@@ -32,10 +38,22 @@ namespace EventManagement.Controllers
             return RedirectToAction("AllVenues", "CMS");
         }
 
+        public ActionResult EditVenue(VenueDTO obj)
+        {
+            var venue = _confManager.UpdateVenue(obj);
+            return RedirectToAction("AllVenues", "CMS");
+        }
+
+        public ActionResult DeleteVenue(int id)
+        {
+            var venue = _confManager.DeleteVenue(id);
+            return RedirectToAction("AllVenues", "CMS");
+        }
+
         public ActionResult AllVenues()
         {
             var venues = _confManager.GetVenues();
-            return PartialView("AllVenues", venues);
+            return View("AllVenues", venues);
         }
 
         public ActionResult Conferences()

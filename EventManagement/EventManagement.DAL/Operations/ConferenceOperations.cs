@@ -2,6 +2,7 @@
 using EventManagement.DataModels;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +12,8 @@ namespace EventManagement.DAL.Operations
     public class ConferenceOperations
     {
         private EventManagementEntities managementConsoleEntities = new EventManagementEntities();
-        public List<ConferenceDTO> GetConferences() {
+        public List<ConferenceDTO> GetConferences()
+        {
             return managementConsoleEntities.Conferences.Select(q => new ConferenceDTO
             {
                 Id = q.Id,
@@ -29,6 +31,52 @@ namespace EventManagement.DAL.Operations
                 Name = q.Name,
                 Desc = q.Description,
             }).ToList();
+        }
+
+        public bool UpdateVenue(VenueDTO obj)
+        {
+            Venue venue;
+            using (var entities = new EventManagementEntities())
+            {
+                venue = entities.Venues.Where(q => q.Id == obj.Id).FirstOrDefault();
+            }
+            if (venue != null)
+            {
+                venue.Name = obj.Name;
+                venue.Description = obj.Desc;
+            }
+            using (var entitiesX = new EventManagementEntities())
+            {
+                entitiesX.Entry(venue).State = EntityState.Modified;
+                entitiesX.SaveChanges();
+            }
+            return true;
+        }
+
+        public bool DeleteVenue(int id)
+        {
+            Venue venue;
+            using (var entities = new EventManagementEntities())
+            {
+                venue = entities.Venues.Where(q => q.Id == id).FirstOrDefault();
+            }
+            using (var entitiesX = new EventManagementEntities())
+            {
+                entitiesX.Entry(venue).State = EntityState.Deleted;
+                entitiesX.SaveChanges();
+            }
+            return true;
+        }
+
+        public VenueDTO GetVenue(int id)
+        {
+            var venue = managementConsoleEntities.Venues.FirstOrDefault(q => q.Id == id);
+            return new VenueDTO
+            {
+                Id = venue.Id,
+                Name = venue.Name,
+                Desc = venue.Description,
+            };
         }
 
         public bool AddVenue(VenueDTO obj)
@@ -184,7 +232,7 @@ namespace EventManagement.DAL.Operations
 
         public string GetAbstract(int id, int prgId)
         {
-            return managementConsoleEntities.Programs.Where(q => q.FK_ConferenceId == id && q.Id == prgId).Select(q=>q.Abstract).FirstOrDefault();
+            return managementConsoleEntities.Programs.Where(q => q.FK_ConferenceId == id && q.Id == prgId).Select(q => q.Abstract).FirstOrDefault();
         }
 
         public int PostAbstract(AbstractSubmitDTO obj)
@@ -202,10 +250,11 @@ namespace EventManagement.DAL.Operations
                 FK_ConferenceId = obj.ConferenceId,
             };
             var id = -1;
-            using (var entities = new EventManagementEntities()) {
+            using (var entities = new EventManagementEntities())
+            {
                 entities.AbstractsSubmitteds.Add(a);
                 entities.SaveChanges();
-                id = a.Id; 
+                id = a.Id;
             }
             return id;
         }
@@ -228,7 +277,8 @@ namespace EventManagement.DAL.Operations
 
         public ConferenceDTO GetConferenceTeam(int id)
         {
-            var conf = managementConsoleEntities.ConferenceTeams.Where(q => q.FK_ConferenceId == id && !q.Chair).Select(q=>new ConferenceTeamDTO {
+            var conf = managementConsoleEntities.ConferenceTeams.Where(q => q.FK_ConferenceId == id && !q.Chair).Select(q => new ConferenceTeamDTO
+            {
                 ConferenceId = q.FK_ConferenceId,
                 Name = q.Name,
                 Info = q.Info,

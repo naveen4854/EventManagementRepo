@@ -24,6 +24,16 @@ namespace EventManagement.BLL
             return confOperations.GetConferences();
         }
 
+        public VenueDTO GetVenue(int id)
+        {
+            return confOperations.GetVenue(id);
+        }
+
+        public bool UpdateVenue(VenueDTO id)
+        {
+            return confOperations.UpdateVenue(id);
+        }
+
         public bool AddVenue(VenueDTO obj)
         {
             return confOperations.AddVenue(obj);
@@ -32,6 +42,11 @@ namespace EventManagement.BLL
         public List<VenueDTO> GetVenues()
         {
             return confOperations.GetVenues();
+        }
+
+        public bool DeleteVenue(int id)
+        {
+            return confOperations.DeleteVenue(id);
         }
 
         public ConferenceDTO GetConference(int id)
