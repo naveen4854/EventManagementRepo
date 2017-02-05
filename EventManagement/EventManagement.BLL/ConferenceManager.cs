@@ -137,5 +137,16 @@ namespace EventManagement.BLL
 
             return true;
         }
+
+        public List<ProgramDTO> GetAllConferencePrograms(int conferenceId)
+        {
+            var conf = confOperations.GetConferencePeriod(conferenceId);
+            return confOperations.GetConferencePrograms(conferenceId).ToList();
+        }
+
+        public bool AddConferenceProgram(ProgramDTO obj)
+        {
+            return confOperations.AddProgram(obj);
+        }
     }
 }

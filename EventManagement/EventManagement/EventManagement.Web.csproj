@@ -299,6 +299,8 @@
     <Content Include="Views\CMS\Conferences.cshtml" />
     <Content Include="Views\CMS\AllConferences.cshtml" />
     <Content Include="Views\CMS\Index.cshtml" />
+    <Content Include="Views\CMS\AllConferenceTeams.cshtml" />
+    <Content Include="Views\CMS\AllConferencePrograms.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

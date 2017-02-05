@@ -107,7 +107,14 @@ namespace EventManagement.Controllers
         public ActionResult AddConferenceTeam(ConferenceTeamDTO obj)
         {
             _confManager.AddConferenceTeam(obj);
-            return View();
+            var confDto = _confManager.GetConferenceTeam(obj.ConferenceId);
+            return PartialView("AllConferenceTeams", confDto.Team);
+        }
+
+        public ActionResult AllConferenceTeams(int id)
+        {
+            var confDto = _confManager.GetConferenceTeam(id);
+            return PartialView("AllConferenceTeams", confDto.Team);
         }
 
         public ActionResult ConferencePrograms()
@@ -119,78 +126,16 @@ namespace EventManagement.Controllers
         [HttpPost]
         public ActionResult AddConferenceProgram(ProgramDTO obj)
         {
-            return View();
+            _confManager.AddConferenceProgram(obj);
+            var confDto = _confManager.GetAllConferencePrograms(obj.ConferenceId);
+            return PartialView("AllConferencePrograms", confDto);
         }
-        // GET: CMS/Details/5
-        public ActionResult Details(int id)
+
+        public ActionResult AllConferencePrograms(int id)
         {
-            return View();
+            var confDto = _confManager.GetAllConferencePrograms(id);
+            return PartialView("AllConferencePrograms", confDto);
         }
 
-        // GET: CMS/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: CMS/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: CMS/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: CMS/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: CMS/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: CMS/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
     }
 }

@@ -139,6 +139,25 @@ namespace EventManagement.DAL.Operations
             return true;
         }
 
+        public bool AddProgram(ProgramDTO obj)
+        {
+            var a = new Program
+            {
+                Name = obj.Name,
+                Info = obj.Info,
+                Title = obj.Title,
+                ImageUrl = obj.ImageUrl,
+                FK_ConferenceId = obj.ConferenceId,
+                ProgramDt = DateTime.Now
+            };
+            using (var entities = new EventManagementEntities())
+            {
+                entities.Programs.Add(a);
+                entities.SaveChanges();
+            }
+            return true;
+        }
+
         public List<ProgramDTO> GetConferencePrograms(int id)
         {
             return managementConsoleEntities.Programs.Where(q => q.FK_ConferenceId == id).Select(q => new ProgramDTO

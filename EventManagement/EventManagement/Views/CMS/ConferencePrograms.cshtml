@@ -58,9 +58,12 @@
             </div>
         </div>
     </div>
-    @*<div id="AllConfImages">
-            @{ Html.RenderAction("AllConferenceImages", "CMS", new { id = @ViewBag.Conferences[0].Id }); }
-        </div>*@
+    <div id="AllConfPrograms">
+            @{ 
+                if (ViewBag.Conferences.Count > 0)
+                { Html.RenderAction("AllConferencePrograms", "CMS", new { id = @ViewBag.Conferences[0].Id }); }
+            }
+        </div>
     <script type="text/javascript">
     
        $('.datepicker').datepicker(); //Initialise any date pickers

@@ -51,7 +51,10 @@
             </div>
         </div>
     </div>
-    @*<div id="AllConfImages">
-        @{ Html.RenderAction("AllConferenceImages", "CMS", new { id = @ViewBag.Conferences[0].Id }); }
-    </div>*@
+    <div id="AllConfTeams">
+        @{
+            if (ViewBag.Conferences.Count > 0)
+            { Html.RenderAction("AllConferenceTeams", "CMS", new { id = @ViewBag.Conferences[0].Id }); }
+        }
+    </div>
             }
