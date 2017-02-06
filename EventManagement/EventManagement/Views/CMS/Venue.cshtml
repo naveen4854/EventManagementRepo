@@ -5,9 +5,13 @@
     Layout = "~/Views/Shared/_CMSLayout.cshtml";
 }
 
+<p>
+    @Html.ActionLink("All Venues", "AllVenues")
+</p>
+
 <h2>Edit Venue</h2>
 
-@using (Html.BeginForm("EditVenue", "CMS"))
+@using (Html.BeginForm("UpdateVenue", "CMS"))
 {
     @Html.AntiForgeryToken()
 

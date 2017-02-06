@@ -79,6 +79,41 @@ namespace EventManagement.DAL.Operations
             };
         }
 
+        public bool DeleteConference(int id)
+        {
+            Conference conf;
+            using (var entities = new EventManagementEntities())
+            {
+                conf = entities.Conferences.Where(q => q.Id == id).FirstOrDefault();
+            }
+            using (var entitiesX = new EventManagementEntities())
+            {
+                entitiesX.Entry(conf).State = EntityState.Deleted;
+                entitiesX.SaveChanges();
+            }
+            return true;
+        }
+
+        public bool UpdateConference(ConferenceDTO obj)
+        {
+            Conference conf;
+            using (var entities = new EventManagementEntities())
+            {
+                conf = entities.Conferences.Where(q => q.Id == obj.Id).FirstOrDefault();
+            }
+            if (conf != null)
+            {
+                conf.Name = obj.Name;
+                conf.Description = obj.Desc;
+            }
+            using (var entitiesX = new EventManagementEntities())
+            {
+                entitiesX.Entry(conf).State = EntityState.Modified;
+                entitiesX.SaveChanges();
+            }
+            return true;
+        }
+
         public bool AddVenue(VenueDTO obj)
         {
             var a = new Venue

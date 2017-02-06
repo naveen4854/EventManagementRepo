@@ -140,7 +140,6 @@
   <ItemGroup>
     <Content Include="Content\css\animate.css" />
     <Content Include="Content\css\bootstrap.min.css" />
-    <Content Include="Content\css\datepicker.css" />
     <Content Include="Content\css\font-awesome.min.css" />
     <Content Include="Content\css\main.css" />
     <Content Include="Content\css\responsive.css" />
@@ -194,7 +193,6 @@
     <Content Include="Content\images\twitter\twitter2.png" />
     <Content Include="Content\images\twitter\twitter3.png" />
     <Content Include="Content\images\watch.png" />
-    <Content Include="Content\js\bootstrap-datepicker.js" />
     <Content Include="Content\js\bootstrap.min.js" />
     <Content Include="Content\js\coundown-timer.js" />
     <Content Include="Content\js\gmaps.js" />
@@ -287,21 +285,22 @@
     <Content Include="Views\Conference\PartialAbstractSubmit.cshtml" />
     <Content Include="Views\Error\Index.cshtml" />
     <Content Include="Views\Error\ErrMsg.cshtml" />
-    <Content Include="Views\Shared\_CMSLayout.cshtml" />
-    <Content Include="Views\CMS\Tracks.cshtml" />
-    <Content Include="Views\CMS\AllTracks.cshtml" />
-    <Content Include="Views\CMS\ConferenceImages.cshtml" />
     <Content Include="Views\CMS\AllConferenceImages.cshtml" />
-    <Content Include="Views\CMS\ConferenceTeams.cshtml" />
-    <Content Include="Views\CMS\ConferencePrograms.cshtml" />
-    <Content Include="Views\CMS\AllVenues.cshtml" />
-    <Content Include="Views\CMS\Venues.cshtml" />
-    <Content Include="Views\CMS\Conferences.cshtml" />
-    <Content Include="Views\CMS\AllConferences.cshtml" />
-    <Content Include="Views\CMS\Index.cshtml" />
-    <Content Include="Views\CMS\AllConferenceTeams.cshtml" />
     <Content Include="Views\CMS\AllConferencePrograms.cshtml" />
+    <Content Include="Views\CMS\AllConferences.cshtml" />
+    <Content Include="Views\CMS\AllConferenceTeams.cshtml" />
+    <Content Include="Views\CMS\AllTracks.cshtml" />
+    <Content Include="Views\CMS\AllVenues.cshtml" />
+    <Content Include="Views\CMS\ConferenceImages.cshtml" />
+    <Content Include="Views\CMS\ConferencePrograms.cshtml" />
+    <Content Include="Views\CMS\Conferences.cshtml" />
+    <Content Include="Views\CMS\ConferenceTeams.cshtml" />
+    <Content Include="Views\CMS\Index.cshtml" />
+    <Content Include="Views\CMS\Tracks.cshtml" />
     <Content Include="Views\CMS\Venue.cshtml" />
+    <Content Include="Views\CMS\Venues.cshtml" />
+    <Content Include="Views\Shared\_CMSLayout.cshtml" />
+    <Content Include="Views\CMS\Conference.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

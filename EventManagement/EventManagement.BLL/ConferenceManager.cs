@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Web;
 using EventManagement.DAL.Operations;
 using EventManagement.DataModels;
 using System.Collections.Generic;
@@ -78,6 +79,16 @@ namespace EventManagement.BLL
         {
             var conf = confOperations.GetConferencePeriod(id);
             return confOperations.GetConferencePrograms(id).Where(q => q.ProgramDt.Date == conf.StartDt.AddDays(day).Date).ToList();
+        }
+
+        public bool UpdateConference(ConferenceDTO obj)
+        {
+            return confOperations.UpdateConference(obj);
+        }
+
+        public bool DeleteConference(int id)
+        {
+            return confOperations.DeleteConference(id);
         }
 
         public ConferenceDTO GetConferencePeriod(int id)
