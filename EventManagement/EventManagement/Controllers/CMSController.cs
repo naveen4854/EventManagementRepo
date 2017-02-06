@@ -16,11 +16,12 @@ namespace EventManagement.Controllers
             _confManager = new ConferenceManager();
         }
 
-        public ActionResult Index() {
+        public ActionResult Index()
+        {
             return View();
         }
 
-        public ActionResult Venues()
+        public ActionResult NewVenue()
         {
             return View();
         }
@@ -56,7 +57,7 @@ namespace EventManagement.Controllers
             return View("AllVenues", venues);
         }
 
-        public ActionResult Conferences()
+        public ActionResult NewConference()
         {
             ViewBag.Venues = _confManager.GetVenues();
             return View(new ConferenceDTO());

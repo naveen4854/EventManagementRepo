@@ -293,12 +293,12 @@
     <Content Include="Views\CMS\AllVenues.cshtml" />
     <Content Include="Views\CMS\ConferenceImages.cshtml" />
     <Content Include="Views\CMS\ConferencePrograms.cshtml" />
-    <Content Include="Views\CMS\Conferences.cshtml" />
+    <Content Include="Views\CMS\NewConference.cshtml" />
     <Content Include="Views\CMS\ConferenceTeams.cshtml" />
     <Content Include="Views\CMS\Index.cshtml" />
     <Content Include="Views\CMS\Tracks.cshtml" />
     <Content Include="Views\CMS\Venue.cshtml" />
-    <Content Include="Views\CMS\Venues.cshtml" />
+    <Content Include="Views\CMS\NewVenue.cshtml" />
     <Content Include="Views\Shared\_CMSLayout.cshtml" />
     <Content Include="Views\CMS\Conference.cshtml" />
     <None Include="Web.Debug.config">
