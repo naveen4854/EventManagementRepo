@@ -96,24 +96,52 @@ namespace EventManagement.Controllers
             return View("AllConferences", confs);
         }
 
-        public ActionResult Tracks()
+        public ActionResult NewTrack()
         {
             ViewBag.Conferences = _confManager.GetConferences();
             return View();
         }
 
+        public ActionResult Track(TrackDTO obj)
+        {
+            ViewBag.Conferences = _confManager.GetConferences();
+            var track = _confManager.GetTrack(obj.Id);
+            return View(track);
+        }
+
         [HttpPost]
         public ActionResult AddTrack(TrackDTO obj)
         {
-            _confManager.AddTrack(obj);
-            var tracks = _confManager.GetConferenceTracks(obj.ConferenceId);
-            return PartialView("AllTracks", tracks);
+            var confId = _confManager.AddTrack(obj);
+            //var tracks = _confManager.GetConferenceTracks(obj.ConferenceId);
+            return RedirectToAction("AllTracks", "CMS", new { id = confId });
         }
 
-        public ActionResult AllTracks(int id)
+        public ActionResult UpdateTrack(TrackDTO obj)
         {
-            var tracks = _confManager.GetConferenceTracks(id);
-            return PartialView("AllTracks", tracks);
+            var track = _confManager.UpdateTrack(obj);
+            return RedirectToAction("AllTracks", "CMS",new { id = obj.ConferenceId });
+        }
+
+        public ActionResult DeleteTrack(int id)
+        {
+            var track = _confManager.DeleteTrack(id);
+            return RedirectToAction("AllTracks", "CMS", new { id = track.ConferenceId});
+        }
+
+        public ActionResult AllTracks(int? id)
+        {
+            var conferences = _confManager.GetConferences();
+
+            if (conferences.Count > 0)
+            {
+                ViewBag.Conferences = conferences;
+                var confId = id ?? conferences[0].Id;
+                var tracks = _confManager.GetConferenceTracks(confId);
+                return View("AllTracks", tracks);
+            }
+            else
+                return RedirectToAction("NewConference", "CMS");
         }
 
         public ActionResult ConferenceImages()

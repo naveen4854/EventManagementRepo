@@ -70,7 +70,7 @@ namespace EventManagement.BLL
             return confOperations.GetConferenceChair(id);
         }
 
-        public bool AddTrack(TrackDTO obj)
+        public int AddTrack(TrackDTO obj)
         {
             return confOperations.AddTrack(obj);
         }
@@ -105,6 +105,11 @@ namespace EventManagement.BLL
             }
         }
 
+        public TrackDTO GetTrack(int id)
+        {
+            return confOperations.GetTrack(id);
+        }
+
         public void AddConferenceTeam(ConferenceTeamDTO obj)
         {
             obj.ImageUrl = _uploadHelper.UploadFile(obj.ImageUpload, "~/content/images/confteam");
@@ -114,6 +119,16 @@ namespace EventManagement.BLL
         public string GetConferenceBrochure(int id)
         {
             return confOperations.GetConferenceBrochure(id);
+        }
+
+        public bool UpdateTrack(TrackDTO obj)
+        {
+            return confOperations.UpdateTrack(obj);
+        }
+
+        public TrackDTO DeleteTrack(int id)
+        {
+            return confOperations.DeleteTrack(id);
         }
 
         public ConferenceDTO GetConferenceImages(int id)

@@ -114,6 +114,57 @@ namespace EventManagement.DAL.Operations
             return true;
         }
 
+        public TrackDTO GetTrack(int id)
+        {
+            Track track;
+            using (var entities = new EventManagementEntities())
+            {
+                track = entities.Tracks.Where(q => q.Id == id).FirstOrDefault();
+            }
+            return track == null ? new TrackDTO() : new TrackDTO
+            {
+                Id = track.Id,
+                Name = track.Name,
+                Desc = track.Description,
+                ConferenceId = track.FK_ConferenceId
+            };
+        }
+
+        public bool UpdateTrack(TrackDTO obj)
+        {
+            Track track;
+            using (var entities = new EventManagementEntities())
+            {
+                track = entities.Tracks.Where(q => q.Id == obj.Id).FirstOrDefault();
+            }
+            if (track != null)
+            {
+                track.Name = obj.Name;
+                track.Description = obj.Desc;
+            }
+            using (var entitiesX = new EventManagementEntities())
+            {
+                entitiesX.Entry(track).State = EntityState.Modified;
+                entitiesX.SaveChanges();
+            }
+            return true;
+        }
+
+        public TrackDTO DeleteTrack(int id)
+        {
+            Track track;
+            using (var entities = new EventManagementEntities())
+            {
+                track = entities.Tracks.Where(q => q.Id == id).FirstOrDefault();
+            }
+            using (var entitiesX = new EventManagementEntities())
+            {
+                entitiesX.Entry(track).State = EntityState.Deleted;
+                entitiesX.SaveChanges();
+            }
+            return new TrackDTO { ConferenceId = track.FK_ConferenceId };
+        }
+
         public bool AddVenue(VenueDTO obj)
         {
             var a = new Venue
@@ -148,7 +199,7 @@ namespace EventManagement.DAL.Operations
             return true;
         }
 
-        public bool AddTrack(TrackDTO obj)
+        public int AddTrack(TrackDTO obj)
         {
             var a = new Track
             {
@@ -161,7 +212,7 @@ namespace EventManagement.DAL.Operations
                 entities.Tracks.Add(a);
                 entities.SaveChanges();
             }
-            return true;
+            return a.FK_ConferenceId;
         }
 
         public List<string> GetConferenceImages(int id)
