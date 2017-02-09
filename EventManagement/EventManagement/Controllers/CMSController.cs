@@ -21,6 +21,7 @@ namespace EventManagement.Controllers
             return View();
         }
 
+        #region Venue
         public ActionResult NewVenue()
         {
             return View();
@@ -57,6 +58,10 @@ namespace EventManagement.Controllers
             return View("AllVenues", venues);
         }
 
+        #endregion Venue
+
+        #region Conference
+
         public ActionResult NewConference()
         {
             ViewBag.Venues = _confManager.GetVenues();
@@ -89,17 +94,27 @@ namespace EventManagement.Controllers
             return RedirectToAction("AllConferences", "CMS");
         }
 
-
         public ActionResult AllConferences()
         {
             var confs = _confManager.GetConferences();
             return View("AllConferences", confs);
         }
 
-        public ActionResult Tracks()
+        #endregion Conference
+
+        #region Track
+
+        public ActionResult NewTrack()
         {
             ViewBag.Conferences = _confManager.GetConferences();
             return View();
+        }
+
+        public ActionResult Track(int id)
+        {
+            ViewBag.Conferences = _confManager.GetConferences();
+            var track = _confManager.GetTrack(id);
+            return View(track);
         }
 
         [HttpPost]
@@ -110,12 +125,50 @@ namespace EventManagement.Controllers
             return PartialView("AllTracks", tracks);
         }
 
-        public ActionResult AllTracks(int id)
+        [HttpPost]
+        public ActionResult UpdateTrack(TrackDTO obj)
         {
-            var tracks = _confManager.GetConferenceTracks(id);
+            _confManager.UpdateTrack(obj);
+            var tracks = _confManager.GetConferenceTracks(obj.ConferenceId);
             return PartialView("AllTracks", tracks);
         }
 
+        public ActionResult DeleteTrack(int id)
+        {
+            _confManager.DeleteTrack(id);
+            return RedirectToAction("AllTracks", "CMS");
+        }
+
+        public ActionResult AllTracks(int? confid)
+        {
+            var confs = _confManager.GetConferences();
+            ViewBag.Conferences = _confManager.GetConferences();
+            if (confs.Count > 0)
+            {
+                if (confid == null)
+                {
+                    ViewBag.ConfId = confs.FirstOrDefault().Id;
+                    var tracks = _confManager.GetConferenceTracks(confs.FirstOrDefault().Id);
+                    return View("AllTracks", tracks);
+                }
+                else
+                {
+                    ViewBag.ConfId = confid.Value;
+                    var tracks = _confManager.GetConferenceTracks(confid.Value);
+                    if (tracks.Count > 0)
+                        return View("AllTracks", tracks);
+                    else
+                        return RedirectToAction("AddTrack", "CMS", new { id = confid.Value });
+                }
+                
+            }
+            else
+                return RedirectToAction("AddConference", "CMS");
+        }
+
+        #endregion Track
+
+        #region images
         public ActionResult ConferenceImages()
         {
             ViewBag.Conferences = _confManager.GetConferences();
@@ -135,6 +188,9 @@ namespace EventManagement.Controllers
             var confDto = _confManager.GetConferenceImages(id);
             return PartialView("AllConferenceImages", confDto);
         }
+        #endregion images
+
+        #region team
 
         public ActionResult ConferenceTeams()
         {
@@ -155,6 +211,9 @@ namespace EventManagement.Controllers
             var confDto = _confManager.GetConferenceTeam(id);
             return PartialView("AllConferenceTeams", confDto.Team);
         }
+        #endregion team
+
+        #region program
 
         public ActionResult ConferencePrograms()
         {
@@ -175,6 +234,7 @@ namespace EventManagement.Controllers
             var confDto = _confManager.GetAllConferencePrograms(id);
             return PartialView("AllConferencePrograms", confDto);
         }
+        #endregion images
 
     }
 }

@@ -4,18 +4,25 @@
     Layout = "~/Views/Shared/_CMSLayout.cshtml";
 }
 
-
+<p>
+    @Html.ActionLink("Create New", "NewTrack")
+</p>
+<br/>
+<p>
+    @Html.ActionLink("All Tracks", "AllTracks",new { confid = Model.ConferenceId })
+</p>
 <div style="width: 600px; border: 1px solid silver">
-    @using (Ajax.BeginForm("AddTrack", "CMS", new AjaxOptions { UpdateTargetId = "AllTracks" }))
+    @using (Html.BeginForm("UpdateTrack", "CMS"))
     {
         <div class="form-horizontal" style="padding:20px">
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.Id)
 
             <div class="form-group">
                 @Html.LabelFor(model => model.ConferenceId, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.DropDownListFor(model => model.ConferenceId, new SelectList(@ViewBag.Conferences, "Id", "Name"), new { @class = "form-control" })
+                    @Html.DropDownListFor(model => model.ConferenceId, new SelectList(@ViewBag.Conferences, "Id", "Name"), new { @class = "form-control", disabled = "disabled" })
                 </div>
             </div>
             <div class="form-group">
@@ -39,14 +46,5 @@
             </div>
         </div>
 
-        <div id="AllTracks">
-            @{ 
-                if (ViewBag.Conferences.Count > 0)
-                {
-                    Html.RenderAction("AllTracks", "CMS", new { id = @ViewBag.Conferences[0].Id });
-                }
-            }
-            @*@Html.Partial("_AllTracks", Model.ConferenceId)*@
-        </div>
     }
 </div>

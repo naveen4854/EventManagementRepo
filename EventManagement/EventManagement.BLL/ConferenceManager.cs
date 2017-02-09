@@ -111,14 +111,34 @@ namespace EventManagement.BLL
             confOperations.AddConferenceTeam(obj);
         }
 
+        public object GetTrack(int id)
+        {
+            return confOperations.GetTrack(id);
+        }
+
         public string GetConferenceBrochure(int id)
         {
             return confOperations.GetConferenceBrochure(id);
         }
 
+        public bool UpdateTrack(TrackDTO obj)
+        {
+            return confOperations.UpdateTrack(obj);
+        }
+
         public ConferenceDTO GetConferenceImages(int id)
         {
             return new ConferenceDTO { Id = id, ImageUrls = confOperations.GetConferenceImages(id) };
+        }
+
+        public bool DeleteTrack(int id)
+        {
+            return confOperations.DeleteTrack(id);
+        }
+
+        public object UpdateTrack(int conferenceId)
+        {
+            throw new NotImplementedException();
         }
 
         public string GetAbstract(int id, int prgId)
@@ -128,7 +148,7 @@ namespace EventManagement.BLL
 
         public List<TrackDTO> GetConferenceTracks(int id)
         {
-            return confOperations.GetTracks(id);
+            return confOperations.GetConferenceTracks(id);
         }
 
         public List<CategoryModel> GetCategories()

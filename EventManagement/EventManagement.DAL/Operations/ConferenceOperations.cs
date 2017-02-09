@@ -114,6 +114,53 @@ namespace EventManagement.DAL.Operations
             return true;
         }
 
+        public bool UpdateTrack(TrackDTO obj)
+        {
+            Track track;
+            using (var entities = new EventManagementEntities())
+            {
+                track = entities.Tracks.Where(q => q.Id == obj.Id).FirstOrDefault();
+            }
+            if (track != null)
+            {
+                track.Name = obj.Name;
+                track.Description = obj.Desc;
+            }
+            using (var entitiesX = new EventManagementEntities())
+            {
+                entitiesX.Entry(track).State = EntityState.Modified;
+                entitiesX.SaveChanges();
+            }
+            return true;
+        }
+
+        public bool DeleteTrack(int id)
+        {
+            Track track;
+            using (var entities = new EventManagementEntities())
+            {
+                track = entities.Tracks.Where(q => q.Id == id).FirstOrDefault();
+            }
+            using (var entitiesX = new EventManagementEntities())
+            {
+                entitiesX.Entry(track).State = EntityState.Deleted;
+                entitiesX.SaveChanges();
+            }
+            return true;
+        }
+
+        public TrackDTO GetTrack(int id)
+        {
+            var track = managementConsoleEntities.Tracks.Where(q => q.Id == id).FirstOrDefault();
+            return new TrackDTO
+            {
+                Id = track.Id,
+                Name = track.Name,
+                Desc = track.Description,
+                ConferenceId = track.FK_ConferenceId
+            };
+        }
+
         public bool AddVenue(VenueDTO obj)
         {
             var a = new Venue
@@ -254,7 +301,7 @@ namespace EventManagement.DAL.Operations
             }).ToList();
         }
 
-        public List<TrackDTO> GetTracks(int id)
+        public List<TrackDTO> GetConferenceTracks(int id)
         {
             return managementConsoleEntities.Tracks.Where(q => q.FK_ConferenceId == id).Select(q => new TrackDTO
             {

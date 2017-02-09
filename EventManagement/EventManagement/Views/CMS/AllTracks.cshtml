@@ -1,8 +1,22 @@
 ﻿@model IEnumerable<EventManagement.DataModels.TrackDTO>
 
+@{
+    ViewBag.Title = "AllTracks";
+    Layout = "~/Views/Shared/_CMSLayout.cshtml";
+}
+
+<h2>AllTracks</h2>
+
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "NewTrack")
 </p>
+
+<div class="form-group">
+    <div class="col-md-10">
+        @Html.DropDownList("Conference", new SelectList(@ViewBag.Conferences, "Id", "Name", @ViewBag.ConfId), new { @class = "form-control" , onchange = "redirect('"+Url.Action("AllTracks", "CMS", new { confid = "val" }) +"')" })
+    </div>
+</div>
+<br/>
 <table class="table">
     <tr>
         <th>
@@ -26,11 +40,20 @@
             @Html.DisplayFor(modelItem => item.Desc)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.DisplayFor(modelItem => item.ConferenceId)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Track", new { id=item.Id }) |
             @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Delete", "DeleteTrack", new { id=item.Id })
         </td>
     </tr>
 }
 
 </table>
+<script>
+    function redirect(url) {
+        var val = $('#Conference').val();
+        window.location = url.replace('val',val);
+    }
+</script>

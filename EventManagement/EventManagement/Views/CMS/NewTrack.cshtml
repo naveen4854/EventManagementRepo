@@ -1,0 +1,46 @@
+﻿@model EventManagement.DataModels.TrackDTO
+@{
+    ViewBag.Title = "AddTracks";
+    Layout = "~/Views/Shared/_CMSLayout.cshtml";
+}
+
+<p>
+    @Html.ActionLink("All Tracks", "AllTracks")
+</p>
+
+<div style="width: 600px; border: 1px solid silver">
+    @using (Html.BeginForm("AddTrack", "CMS"))
+    {
+        <div class="form-horizontal" style="padding:20px">
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ConferenceId, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.ConferenceId, new SelectList(@ViewBag.Conferences, "Id", "Name"), new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Desc, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Desc, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Desc, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+
+    }
+</div>

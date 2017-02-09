@@ -82,6 +82,7 @@
     <None Include="EventManagement.Database.publish.xml" />
     <None Include="azuredb.Database.publish.publish.xml" />
     <None Include="localdb.Database.publish.publish.xml" />
+    <None Include="EventManagement_1.Database.publish.xml" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />
