@@ -50,8 +50,11 @@
     <Compile Include="ConferenceTeamDTO.cs" />
     <Compile Include="CountryModel.cs" />
     <Compile Include="ProgramDTO.cs" />
-    <Compile Include="Purchase.cs" />
+    <Compile Include="PurchaseDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegistrationClass.cs" />
+    <Compile Include="RegistrationDTO.cs" />
+    <Compile Include="RegistrationPeriodDTO.cs" />
     <Compile Include="TitleModel.cs" />
     <Compile Include="TrackDTO.cs" />
     <Compile Include="VenueDTO.cs" />

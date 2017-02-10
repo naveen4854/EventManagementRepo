@@ -125,6 +125,42 @@ namespace EventManagement.Controllers
             return RedirectToAction("Tracks", "Conference", new { id = obj.ConferenceId});
         }
 
+        [Route("Conference/{id}/Registration/")]
+        public ActionResult Registration(int id)
+        {
+            ViewData["ConferenceId"] = id;
+            var regclasslst = new List<RegistrationClass>();
+            regclasslst.Add(new RegistrationClass {Id=1, Name = "Academia", IsActive = false, Amount = 150 });
+            regclasslst.Add(new RegistrationClass {Id=2, Name = "Business", IsActive = false, Amount = 350 });
+
+            var regPerLst = new List<RegistrationPeriodDTO>();
+            regPerLst.Add(new RegistrationPeriodDTO { Name = "Early", IsActive = true, regclass = regclasslst });
+            regPerLst.Add(new RegistrationPeriodDTO { Name = "near", IsActive = true, regclass = regclasslst });
+            regPerLst.Add(new RegistrationPeriodDTO { Name = "On Time", IsActive = true, regclass = regclasslst });
+
+            var reglst = new List<RegistrationDTO>();
+            reglst.Add(new RegistrationDTO { Id = 1, Name = "Poster Registration", IsActive = true, regperiods = regclasslst });
+            reglst.Add(new RegistrationDTO { Id = 2, Name = "Speaker Registration", IsActive = true, regperiods = regclasslst });
+            reglst.Add(new RegistrationDTO { Id = 3, Name = "Delegate Registration", IsActive = true, regperiods = regclasslst });
+            reglst.Add(new RegistrationDTO { Id = 4, Name = "Student Delegate", IsActive = true, regperiods = regclasslst });
+                
+            var purchase = new PurchaseDTO
+            {
+                Name = "Name",
+                Reg = reglst
+            };
+
+            ViewBag.Countries = _confManager.GetCountries();
+            return View(purchase);
+        }
+
+
+        [HttpPost]
+        public ActionResult test(PurchaseDTO obj)
+        {
+            return RedirectToAction("Registration", "Conference", new { id = 8 });
+        }
+
         //[Route("Conference/Submit/")]
         //[HttpPost]
         //public ActionResult AbstractSubmit(AbstractSubmitDTO obj)
