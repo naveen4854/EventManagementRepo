@@ -5,8 +5,8 @@
 <head>
     <script type="text/javascript" src="@Url.Content("~/Content/js/jquery.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/Content/js/bootstrap.min.js")"></script>
-    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
-    <script type="text/javascript" src="@Url.Content("~/Content/js/gmaps.js")"></script>
+    @*<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>*@
+    @*<script type="text/javascript" src="@Url.Content("~/Content/js/gmaps.js")"></script>*@
     <script type="text/javascript" src="@Url.Content("~/Content/js/smoothscroll.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/Content/js/jquery.parallax.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/Content/js/coundown-timer.js")"></script>
@@ -58,8 +58,8 @@
                             <li class="scroll dropdown">
                                 <a href="">Conference Team</a>
                                 <div class="dropdown-content">
-                                    <a href="/Conference/@ViewData["ConferenceId"]/Team/">Team</a>
                                     <a href="/Conference/@ViewData["ConferenceId"]/Chair">Chair</a>
+                                    <a href="/Conference/@ViewData["ConferenceId"]/Team/">Organising Committe</a>
                                 </div>
                             </li>
                             <li class="scroll"><a href="/Conference/@ViewData["ConferenceId"]/Tracks/">Abstract Submission</a></li>
@@ -90,7 +90,7 @@
         </div>
     </header>
     <!--/#header-->
-    <div style="padding:190px 20px 20px 20px">
+    <div style="padding:190px 20px 20px 20px;background-color:#33888F">
         @RenderBody()
     </div>
     <footer id="footer">
@@ -102,4 +102,5 @@
     </footer>
     <!--/#footer-->
 </body>
+
 </html>

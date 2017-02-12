@@ -54,6 +54,12 @@
     <Compile Include="Models\AbstractsSubmitted.cs">
       <DependentUpon>EventManagementModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\AccommodationPricing.cs">
+      <DependentUpon>EventManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AccompanyPricing.cs">
+      <DependentUpon>EventManagementModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Category.cs">
       <DependentUpon>EventManagementModel.tt</DependentUpon>
     </Compile>
@@ -83,6 +89,24 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>EventManagementModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MST_AccomodationType.cs">
+      <DependentUpon>EventManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MST_Accompany.cs">
+      <DependentUpon>EventManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MST_Occupancy.cs">
+      <DependentUpon>EventManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MST_RegistrationClass.cs">
+      <DependentUpon>EventManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MST_RegistrationType.cs">
+      <DependentUpon>EventManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Pricing.cs">
+      <DependentUpon>EventManagementModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Program.cs">
       <DependentUpon>EventManagementModel.tt</DependentUpon>

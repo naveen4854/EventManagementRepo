@@ -1,7 +1,7 @@
 ﻿@model EventManagement.DataModels.RegistrationClass
-<div class="col-md-6">
+<div class="col-md-6" style="padding:20px">
     @Html.HiddenFor(m => m.Id)
     @Html.HiddenFor(m => m.Name)
-    @Html.RadioButtonFor(model => model.IsActive, new { @class = "form-control lol", data_price = Model.Amount, @onclick = "updatechecks()" }, new { @class = "form-control lol", data_price = Model.Amount , @onclick = "updatechecks()" } )
+    @Html.CheckBoxFor(model => model.IsActive, new { @class = "form-control lol", data_price = Model.Amount , @onclick = "updatechecks()" } )
     @Html.DisplayFor(m => m.Name) ($ @Html.DisplayFor(m => m.Amount) )
 </div>

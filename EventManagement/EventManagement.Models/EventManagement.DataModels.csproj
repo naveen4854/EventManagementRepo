@@ -44,11 +44,14 @@
   <ItemGroup>
     <Compile Include="AbstractSubmitDTO.cs" />
     <Compile Include="AbstractSubmitModel.cs" />
+    <Compile Include="AccommodationDTO.cs" />
+    <Compile Include="AccompanyPriceDTO.cs" />
     <Compile Include="CategoryModel.cs" />
     <Compile Include="ConferenceDTO.cs" />
     <Compile Include="ConferenceImageModel.cs" />
     <Compile Include="ConferenceTeamDTO.cs" />
     <Compile Include="CountryModel.cs" />
+    <Compile Include="OccupancyDTO.cs" />
     <Compile Include="ProgramDTO.cs" />
     <Compile Include="PurchaseDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_ConferenceLayout.cshtml";
 }
 
-<div style="padding :300px">
+<div id="conferenceProgram" style="padding:0px 20px 20px 120px">
     <div id="event-carousel" class="carousel slide" data-interval="false">
         <h2 class="heading">Conference Days</h2>
         <a class="even-control-left" href="#event-carousel" data-slide="prev"><i class="fa fa-angle-left"></i></a>
@@ -22,8 +22,8 @@
                                 if (confday <= days)
                                 {
                                     <div class="col-sm-3">
-                                        <div class="single-event pointer">
-                                            <h2 onclick="loadPartial(@confday)">@Model.StartDt.AddDays(confday).ToString("dd.MM.yyy")</h2>
+                                        <div class="programdt single-event pointer">
+                                            <h2 id="prgdt_@confday" class="@if (confday == 0) { <text>highlight</text>} " onclick="loadPartial(@confday)">@Model.StartDt.AddDays(confday).ToString("dd.MM.yyy")</h2>
                                         </div>
                                     </div>
                                 }
@@ -41,7 +41,12 @@
 </div>
 
 <script type="text/javascript">
+    $(document).ready(function(){
+        loadPartial(0);
+    })
     function loadPartial(confday) {
+        $('.programdt h2').removeClass('highlight');
+        $('#prgdt_'+confday).addClass('highlight');
         $.post('@Url.Action("PartialProgram", "Conference", new { id = @ViewData["ConferenceId"], day = "CONFDAY" })'.replace("CONFDAY", parseInt(confday))).always(function (res) {
             $('.partialprg').html(res);
         })

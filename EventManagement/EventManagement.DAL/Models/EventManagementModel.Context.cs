@@ -35,5 +35,13 @@ namespace EventManagement.DAL.Models
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Country> Countries { get; set; }
         public virtual DbSet<Title> Titles { get; set; }
+        public virtual DbSet<MST_RegistrationClass> MST_RegistrationClass { get; set; }
+        public virtual DbSet<MST_RegistrationType> MST_RegistrationType { get; set; }
+        public virtual DbSet<Pricing> Pricings { get; set; }
+        public virtual DbSet<AccommodationPricing> AccommodationPricings { get; set; }
+        public virtual DbSet<MST_AccomodationType> MST_AccomodationType { get; set; }
+        public virtual DbSet<MST_Occupancy> MST_Occupancy { get; set; }
+        public virtual DbSet<AccompanyPricing> AccompanyPricings { get; set; }
+        public virtual DbSet<MST_Accompany> MST_Accompany { get; set; }
     }
 }

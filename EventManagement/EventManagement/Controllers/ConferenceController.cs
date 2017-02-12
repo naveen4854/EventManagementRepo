@@ -139,21 +139,53 @@ namespace EventManagement.Controllers
             regPerLst.Add(new RegistrationPeriodDTO { Name = "On Time", IsActive = true, regclass = regclasslst });
 
             var reglst = new List<RegistrationDTO>();
-            reglst.Add(new RegistrationDTO { Id = 1, Name = "Poster Registration", IsActive = true, regperiods = regclasslst });
-            reglst.Add(new RegistrationDTO { Id = 2, Name = "Speaker Registration", IsActive = true, regperiods = regclasslst });
-            reglst.Add(new RegistrationDTO { Id = 3, Name = "Delegate Registration", IsActive = true, regperiods = regclasslst });
-            reglst.Add(new RegistrationDTO { Id = 4, Name = "Student Delegate", IsActive = true, regperiods = regclasslst });
-                
-            var purchase = new PurchaseDTO
-            {
-                Name = "Name",
-                Reg = reglst
-            };
+            reglst.Add(new RegistrationDTO { Id = 1, Name = "Poster Registration", IsActive = true});
+            reglst.Add(new RegistrationDTO { Id = 2, Name = "Speaker Registration", IsActive = true });
+            reglst.Add(new RegistrationDTO { Id = 3, Name = "Delegate Registration", IsActive = true });
+            reglst.Add(new RegistrationDTO { Id = 4, Name = "Student Delegate", IsActive = true });
 
+            var occ = new List<OccupancyDTO>();
+            occ.Add(new OccupancyDTO { Id = 1, Name = "Single", NoOfPeople = 1, isSelected = false, Amount = 200 });
+            occ.Add(new OccupancyDTO { Id = 2, Name = "Double", NoOfPeople = 2, isSelected = false, Amount = 300});
+            occ.Add(new OccupancyDTO { Id = 3, Name = "Triple", NoOfPeople = 3, isSelected = false, Amount = 400 });
+
+            var acc = new List<AccommodationDTO>();
+            acc.Add(new AccommodationDTO { Id = 1, Name = "For 2 Nights"});
+            acc.Add(new AccommodationDTO { Id = 3, Name = "For 3 Nights"});
+            acc.Add(new AccommodationDTO { Id = 4, Name = "For 4 Nights"});
+
+            ViewBag.Reglst = reglst;
+            ViewBag.regclasslst = regclasslst;
+
+            ViewBag.acclst = acc;
+            ViewBag.occlst = occ;
+
+            var purchase = new PurchaseDTO();
+            ViewBag.AccompanyPrices = _confManager.GetAllAccompanyPrice(id);
             ViewBag.Countries = _confManager.GetCountries();
             return View(purchase);
         }
 
+        public ActionResult GetRegPrice(int regTypeId, int regClassId)
+        {
+            var confId = 8;
+            var amount = _confManager.GetRegPrice(regTypeId, regClassId, confId);
+            return Json(new { txt = "$" + amount, val = amount }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult GetAccPrice(int AccTypeId, int OccId)
+        {
+            var confId = 8;
+            var amount = _confManager.GetAccPrice(AccTypeId, OccId, confId);
+            return Json(new { txt = "$" + amount, val = amount }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult GetAccompanyPrice(int accompanyId)
+        {
+            var confId = 8;
+            var amount = _confManager.GetAccompanyPrice(accompanyId, confId);
+            return Json(new { txt = "$" + amount, val = amount }, JsonRequestBehavior.AllowGet);
+        }
 
         [HttpPost]
         public ActionResult test(PurchaseDTO obj)

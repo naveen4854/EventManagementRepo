@@ -21,6 +21,25 @@
           <Property Name="FK_ContryId" Type="int" Nullable="false" />
           <Property Name="FK_ConferenceId" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="AccommodationPricing">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FK_ConferenceId" Type="int" Nullable="false" />
+          <Property Name="FK_AccomodationTypeId" Type="int" Nullable="false" />
+          <Property Name="FK_OccupancyId" Type="int" Nullable="false" />
+          <Property Name="Amout" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AccompanyPricing">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FK_conferenceId" Type="int" Nullable="false" />
+          <Property Name="FK_AccompanyId" Type="int" Nullable="false" />
+          <Property Name="Amount" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="Id" />
@@ -70,6 +89,58 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MST_AccomodationType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MST_Accompany">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Value" Type="int" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MST_Occupancy">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="OccValue" Type="int" />
+        </EntityType>
+        <EntityType Name="MST_RegistrationClass">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MST_RegistrationType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pricing">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FK_ConferenceId" Type="int" Nullable="false" />
+          <Property Name="FK_RegType" Type="int" Nullable="false" />
+          <Property Name="FK_RegClass" Type="int" Nullable="false" />
+          <Property Name="Amout" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Program">
           <Key>
@@ -168,6 +239,66 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_AccommodationPricing_Conference">
+          <End Role="Conference" Type="Self.Conference" Multiplicity="1" />
+          <End Role="AccommodationPricing" Type="Self.AccommodationPricing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Conference">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AccommodationPricing">
+              <PropertyRef Name="FK_ConferenceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccommodationPricing_MST_AccomodationType">
+          <End Role="MST_AccomodationType" Type="Self.MST_AccomodationType" Multiplicity="1" />
+          <End Role="AccommodationPricing" Type="Self.AccommodationPricing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MST_AccomodationType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AccommodationPricing">
+              <PropertyRef Name="FK_AccomodationTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccommodationPricing_MST_Occupancy">
+          <End Role="MST_Occupancy" Type="Self.MST_Occupancy" Multiplicity="1" />
+          <End Role="AccommodationPricing" Type="Self.AccommodationPricing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MST_Occupancy">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AccommodationPricing">
+              <PropertyRef Name="FK_OccupancyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccompanyPricing_Conference">
+          <End Role="Conference" Type="Self.Conference" Multiplicity="1" />
+          <End Role="AccompanyPricing" Type="Self.AccompanyPricing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Conference">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AccompanyPricing">
+              <PropertyRef Name="FK_conferenceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccompanyPricing_MST_Accompany">
+          <End Role="MST_Accompany" Type="Self.MST_Accompany" Multiplicity="1" />
+          <End Role="AccompanyPricing" Type="Self.AccompanyPricing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MST_Accompany">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AccompanyPricing">
+              <PropertyRef Name="FK_AccompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Conference_Venue">
           <End Role="Venue" Type="Self.Venue" Multiplicity="1" />
           <End Role="Conference" Type="Self.Conference" Multiplicity="*" />
@@ -204,6 +335,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Pricing_Conference">
+          <End Role="Conference" Type="Self.Conference" Multiplicity="1" />
+          <End Role="Pricing" Type="Self.Pricing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Conference">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Pricing">
+              <PropertyRef Name="FK_ConferenceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pricing_MST_RegistrationClass">
+          <End Role="MST_RegistrationClass" Type="Self.MST_RegistrationClass" Multiplicity="1" />
+          <End Role="Pricing" Type="Self.Pricing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MST_RegistrationClass">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Pricing">
+              <PropertyRef Name="FK_RegClass" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pricing_MST_RegistrationType">
+          <End Role="MST_RegistrationType" Type="Self.MST_RegistrationType" Multiplicity="1" />
+          <End Role="Pricing" Type="Self.Pricing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MST_RegistrationType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Pricing">
+              <PropertyRef Name="FK_RegType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Program_Conference">
           <End Role="Conference" Type="Self.Conference" Multiplicity="1" />
           <End Role="Program" Type="Self.Program" Multiplicity="*" />
@@ -230,11 +397,19 @@
         </Association>
         <EntityContainer Name="EventManagementModelStoreContainer">
           <EntitySet Name="AbstractsSubmitted" EntityType="Self.AbstractsSubmitted" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AccommodationPricing" EntityType="Self.AccommodationPricing" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AccompanyPricing" EntityType="Self.AccompanyPricing" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Conference" EntityType="Self.Conference" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ConferenceImages" EntityType="Self.ConferenceImages" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ConferenceTeam" EntityType="Self.ConferenceTeam" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MST_AccomodationType" EntityType="Self.MST_AccomodationType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MST_Accompany" EntityType="Self.MST_Accompany" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MST_Occupancy" EntityType="Self.MST_Occupancy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MST_RegistrationClass" EntityType="Self.MST_RegistrationClass" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MST_RegistrationType" EntityType="Self.MST_RegistrationType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pricing" EntityType="Self.Pricing" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Program" EntityType="Self.Program" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Title" EntityType="Self.Title" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Track" EntityType="Self.Track" Schema="dbo" store:Type="Tables" />
@@ -259,6 +434,26 @@
             <End Role="Track" EntitySet="Track" />
             <End Role="AbstractsSubmitted" EntitySet="AbstractsSubmitted" />
           </AssociationSet>
+          <AssociationSet Name="FK_AccommodationPricing_Conference" Association="Self.FK_AccommodationPricing_Conference">
+            <End Role="Conference" EntitySet="Conference" />
+            <End Role="AccommodationPricing" EntitySet="AccommodationPricing" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccommodationPricing_MST_AccomodationType" Association="Self.FK_AccommodationPricing_MST_AccomodationType">
+            <End Role="MST_AccomodationType" EntitySet="MST_AccomodationType" />
+            <End Role="AccommodationPricing" EntitySet="AccommodationPricing" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccommodationPricing_MST_Occupancy" Association="Self.FK_AccommodationPricing_MST_Occupancy">
+            <End Role="MST_Occupancy" EntitySet="MST_Occupancy" />
+            <End Role="AccommodationPricing" EntitySet="AccommodationPricing" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccompanyPricing_Conference" Association="Self.FK_AccompanyPricing_Conference">
+            <End Role="Conference" EntitySet="Conference" />
+            <End Role="AccompanyPricing" EntitySet="AccompanyPricing" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccompanyPricing_MST_Accompany" Association="Self.FK_AccompanyPricing_MST_Accompany">
+            <End Role="MST_Accompany" EntitySet="MST_Accompany" />
+            <End Role="AccompanyPricing" EntitySet="AccompanyPricing" />
+          </AssociationSet>
           <AssociationSet Name="FK_Conference_Venue" Association="Self.FK_Conference_Venue">
             <End Role="Venue" EntitySet="Venue" />
             <End Role="Conference" EntitySet="Conference" />
@@ -270,6 +465,18 @@
           <AssociationSet Name="FK_ConferenceTeam_Conference" Association="Self.FK_ConferenceTeam_Conference">
             <End Role="Conference" EntitySet="Conference" />
             <End Role="ConferenceTeam" EntitySet="ConferenceTeam" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pricing_Conference" Association="Self.FK_Pricing_Conference">
+            <End Role="Conference" EntitySet="Conference" />
+            <End Role="Pricing" EntitySet="Pricing" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pricing_MST_RegistrationClass" Association="Self.FK_Pricing_MST_RegistrationClass">
+            <End Role="MST_RegistrationClass" EntitySet="MST_RegistrationClass" />
+            <End Role="Pricing" EntitySet="Pricing" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pricing_MST_RegistrationType" Association="Self.FK_Pricing_MST_RegistrationType">
+            <End Role="MST_RegistrationType" EntitySet="MST_RegistrationType" />
+            <End Role="Pricing" EntitySet="Pricing" />
           </AssociationSet>
           <AssociationSet Name="FK_Program_Conference" Association="Self.FK_Program_Conference">
             <End Role="Conference" EntitySet="Conference" />
@@ -335,6 +542,46 @@
             <End Role="Conference" EntitySet="Conferences" />
             <End Role="AbstractsSubmitted" EntitySet="AbstractsSubmitteds" />
           </AssociationSet>
+          <EntitySet Name="MST_RegistrationClass" EntityType="EventManagementModel.MST_RegistrationClass" />
+          <EntitySet Name="MST_RegistrationType" EntityType="EventManagementModel.MST_RegistrationType" />
+          <EntitySet Name="Pricings" EntityType="EventManagementModel.Pricing" />
+          <AssociationSet Name="FK_Pricing_Conference" Association="EventManagementModel.FK_Pricing_Conference">
+            <End Role="Conference" EntitySet="Conferences" />
+            <End Role="Pricing" EntitySet="Pricings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pricing_MST_RegistrationClass" Association="EventManagementModel.FK_Pricing_MST_RegistrationClass">
+            <End Role="MST_RegistrationClass" EntitySet="MST_RegistrationClass" />
+            <End Role="Pricing" EntitySet="Pricings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pricing_MST_RegistrationType" Association="EventManagementModel.FK_Pricing_MST_RegistrationType">
+            <End Role="MST_RegistrationType" EntitySet="MST_RegistrationType" />
+            <End Role="Pricing" EntitySet="Pricings" />
+          </AssociationSet>
+          <EntitySet Name="AccommodationPricings" EntityType="EventManagementModel.AccommodationPricing" />
+          <EntitySet Name="MST_AccomodationType" EntityType="EventManagementModel.MST_AccomodationType" />
+          <EntitySet Name="MST_Occupancy" EntityType="EventManagementModel.MST_Occupancy" />
+          <AssociationSet Name="FK_AccommodationPricing_Conference" Association="EventManagementModel.FK_AccommodationPricing_Conference">
+            <End Role="Conference" EntitySet="Conferences" />
+            <End Role="AccommodationPricing" EntitySet="AccommodationPricings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccommodationPricing_MST_AccomodationType" Association="EventManagementModel.FK_AccommodationPricing_MST_AccomodationType">
+            <End Role="MST_AccomodationType" EntitySet="MST_AccomodationType" />
+            <End Role="AccommodationPricing" EntitySet="AccommodationPricings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccommodationPricing_MST_Occupancy" Association="EventManagementModel.FK_AccommodationPricing_MST_Occupancy">
+            <End Role="MST_Occupancy" EntitySet="MST_Occupancy" />
+            <End Role="AccommodationPricing" EntitySet="AccommodationPricings" />
+          </AssociationSet>
+          <EntitySet Name="AccompanyPricings" EntityType="EventManagementModel.AccompanyPricing" />
+          <EntitySet Name="MST_Accompany" EntityType="EventManagementModel.MST_Accompany" />
+          <AssociationSet Name="FK_AccompanyPricing_Conference" Association="EventManagementModel.FK_AccompanyPricing_Conference">
+            <End Role="Conference" EntitySet="Conferences" />
+            <End Role="AccompanyPricing" EntitySet="AccompanyPricings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccompanyPricing_MST_Accompany" Association="EventManagementModel.FK_AccompanyPricing_MST_Accompany">
+            <End Role="MST_Accompany" EntitySet="MST_Accompany" />
+            <End Role="AccompanyPricing" EntitySet="AccompanyPricings" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Conference">
           <Key>
@@ -356,6 +603,9 @@
           <Property Name="SpeakerList" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Tracks" Relationship="EventManagementModel.FK_Track_Conference" FromRole="Conference" ToRole="Track" />
           <NavigationProperty Name="AbstractsSubmitteds" Relationship="EventManagementModel.FK_AbstractsSubmitted_Conference" FromRole="Conference" ToRole="AbstractsSubmitted" />
+          <NavigationProperty Name="Pricings" Relationship="EventManagementModel.FK_Pricing_Conference" FromRole="Conference" ToRole="Pricing" />
+          <NavigationProperty Name="AccommodationPricings" Relationship="EventManagementModel.FK_AccommodationPricing_Conference" FromRole="Conference" ToRole="AccommodationPricing" />
+          <NavigationProperty Name="AccompanyPricings" Relationship="EventManagementModel.FK_AccompanyPricing_Conference" FromRole="Conference" ToRole="AccompanyPricing" />
         </EntityType>
         <EntityType Name="ConferenceImage">
           <Key>
@@ -579,6 +829,186 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="MST_RegistrationClass">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Pricings" Relationship="EventManagementModel.FK_Pricing_MST_RegistrationClass" FromRole="MST_RegistrationClass" ToRole="Pricing" />
+        </EntityType>
+        <EntityType Name="MST_RegistrationType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Pricings" Relationship="EventManagementModel.FK_Pricing_MST_RegistrationType" FromRole="MST_RegistrationType" ToRole="Pricing" />
+        </EntityType>
+        <EntityType Name="Pricing">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FK_ConferenceId" Type="Int32" Nullable="false" />
+          <Property Name="FK_RegType" Type="Int32" Nullable="false" />
+          <Property Name="FK_RegClass" Type="Int32" Nullable="false" />
+          <Property Name="Amout" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Conference" Relationship="EventManagementModel.FK_Pricing_Conference" FromRole="Pricing" ToRole="Conference" />
+          <NavigationProperty Name="MST_RegistrationClass" Relationship="EventManagementModel.FK_Pricing_MST_RegistrationClass" FromRole="Pricing" ToRole="MST_RegistrationClass" />
+          <NavigationProperty Name="MST_RegistrationType" Relationship="EventManagementModel.FK_Pricing_MST_RegistrationType" FromRole="Pricing" ToRole="MST_RegistrationType" />
+        </EntityType>
+        <Association Name="FK_Pricing_Conference">
+          <End Type="EventManagementModel.Conference" Role="Conference" Multiplicity="1" />
+          <End Type="EventManagementModel.Pricing" Role="Pricing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Conference">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Pricing">
+              <PropertyRef Name="FK_ConferenceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pricing_MST_RegistrationClass">
+          <End Type="EventManagementModel.MST_RegistrationClass" Role="MST_RegistrationClass" Multiplicity="1" />
+          <End Type="EventManagementModel.Pricing" Role="Pricing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MST_RegistrationClass">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Pricing">
+              <PropertyRef Name="FK_RegClass" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pricing_MST_RegistrationType">
+          <End Type="EventManagementModel.MST_RegistrationType" Role="MST_RegistrationType" Multiplicity="1" />
+          <End Type="EventManagementModel.Pricing" Role="Pricing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MST_RegistrationType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Pricing">
+              <PropertyRef Name="FK_RegType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="AccommodationPricing">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FK_ConferenceId" Type="Int32" Nullable="false" />
+          <Property Name="FK_AccomodationTypeId" Type="Int32" Nullable="false" />
+          <Property Name="FK_OccupancyId" Type="Int32" Nullable="false" />
+          <Property Name="Amout" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Conference" Relationship="EventManagementModel.FK_AccommodationPricing_Conference" FromRole="AccommodationPricing" ToRole="Conference" />
+          <NavigationProperty Name="MST_AccomodationType" Relationship="EventManagementModel.FK_AccommodationPricing_MST_AccomodationType" FromRole="AccommodationPricing" ToRole="MST_AccomodationType" />
+          <NavigationProperty Name="MST_Occupancy" Relationship="EventManagementModel.FK_AccommodationPricing_MST_Occupancy" FromRole="AccommodationPricing" ToRole="MST_Occupancy" />
+        </EntityType>
+        <EntityType Name="MST_AccomodationType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="AccommodationPricings" Relationship="EventManagementModel.FK_AccommodationPricing_MST_AccomodationType" FromRole="MST_AccomodationType" ToRole="AccommodationPricing" />
+        </EntityType>
+        <EntityType Name="MST_Occupancy">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="OccValue" Type="Int32" />
+          <NavigationProperty Name="AccommodationPricings" Relationship="EventManagementModel.FK_AccommodationPricing_MST_Occupancy" FromRole="MST_Occupancy" ToRole="AccommodationPricing" />
+        </EntityType>
+        <Association Name="FK_AccommodationPricing_Conference">
+          <End Type="EventManagementModel.Conference" Role="Conference" Multiplicity="1" />
+          <End Type="EventManagementModel.AccommodationPricing" Role="AccommodationPricing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Conference">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AccommodationPricing">
+              <PropertyRef Name="FK_ConferenceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccommodationPricing_MST_AccomodationType">
+          <End Type="EventManagementModel.MST_AccomodationType" Role="MST_AccomodationType" Multiplicity="1" />
+          <End Type="EventManagementModel.AccommodationPricing" Role="AccommodationPricing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MST_AccomodationType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AccommodationPricing">
+              <PropertyRef Name="FK_AccomodationTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccommodationPricing_MST_Occupancy">
+          <End Type="EventManagementModel.MST_Occupancy" Role="MST_Occupancy" Multiplicity="1" />
+          <End Type="EventManagementModel.AccommodationPricing" Role="AccommodationPricing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MST_Occupancy">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AccommodationPricing">
+              <PropertyRef Name="FK_OccupancyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="AccompanyPricing">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FK_conferenceId" Type="Int32" Nullable="false" />
+          <Property Name="FK_AccompanyId" Type="Int32" Nullable="false" />
+          <Property Name="Amount" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Conference" Relationship="EventManagementModel.FK_AccompanyPricing_Conference" FromRole="AccompanyPricing" ToRole="Conference" />
+          <NavigationProperty Name="MST_Accompany" Relationship="EventManagementModel.FK_AccompanyPricing_MST_Accompany" FromRole="AccompanyPricing" ToRole="MST_Accompany" />
+        </EntityType>
+        <EntityType Name="MST_Accompany">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Value" Type="Int32" Nullable="false" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="AccompanyPricings" Relationship="EventManagementModel.FK_AccompanyPricing_MST_Accompany" FromRole="MST_Accompany" ToRole="AccompanyPricing" />
+        </EntityType>
+        <Association Name="FK_AccompanyPricing_Conference">
+          <End Type="EventManagementModel.Conference" Role="Conference" Multiplicity="1" />
+          <End Type="EventManagementModel.AccompanyPricing" Role="AccompanyPricing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Conference">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AccompanyPricing">
+              <PropertyRef Name="FK_conferenceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccompanyPricing_MST_Accompany">
+          <End Type="EventManagementModel.MST_Accompany" Role="MST_Accompany" Multiplicity="1" />
+          <End Type="EventManagementModel.AccompanyPricing" Role="AccompanyPricing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MST_Accompany">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AccompanyPricing">
+              <PropertyRef Name="FK_AccompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -693,6 +1123,85 @@
           <EntitySetMapping Name="Titles">
             <EntityTypeMapping TypeName="EventManagementModel.Title">
               <MappingFragment StoreEntitySet="Title">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MST_RegistrationClass">
+            <EntityTypeMapping TypeName="EventManagementModel.MST_RegistrationClass">
+              <MappingFragment StoreEntitySet="MST_RegistrationClass">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MST_RegistrationType">
+            <EntityTypeMapping TypeName="EventManagementModel.MST_RegistrationType">
+              <MappingFragment StoreEntitySet="MST_RegistrationType">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pricings">
+            <EntityTypeMapping TypeName="EventManagementModel.Pricing">
+              <MappingFragment StoreEntitySet="Pricing">
+                <ScalarProperty Name="Amout" ColumnName="Amout" />
+                <ScalarProperty Name="FK_RegClass" ColumnName="FK_RegClass" />
+                <ScalarProperty Name="FK_RegType" ColumnName="FK_RegType" />
+                <ScalarProperty Name="FK_ConferenceId" ColumnName="FK_ConferenceId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AccommodationPricings">
+            <EntityTypeMapping TypeName="EventManagementModel.AccommodationPricing">
+              <MappingFragment StoreEntitySet="AccommodationPricing">
+                <ScalarProperty Name="Amout" ColumnName="Amout" />
+                <ScalarProperty Name="FK_OccupancyId" ColumnName="FK_OccupancyId" />
+                <ScalarProperty Name="FK_AccomodationTypeId" ColumnName="FK_AccomodationTypeId" />
+                <ScalarProperty Name="FK_ConferenceId" ColumnName="FK_ConferenceId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MST_AccomodationType">
+            <EntityTypeMapping TypeName="EventManagementModel.MST_AccomodationType">
+              <MappingFragment StoreEntitySet="MST_AccomodationType">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MST_Occupancy">
+            <EntityTypeMapping TypeName="EventManagementModel.MST_Occupancy">
+              <MappingFragment StoreEntitySet="MST_Occupancy">
+                <ScalarProperty Name="OccValue" ColumnName="OccValue" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AccompanyPricings">
+            <EntityTypeMapping TypeName="EventManagementModel.AccompanyPricing">
+              <MappingFragment StoreEntitySet="AccompanyPricing">
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="FK_AccompanyId" ColumnName="FK_AccompanyId" />
+                <ScalarProperty Name="FK_conferenceId" ColumnName="FK_conferenceId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MST_Accompany">
+            <EntityTypeMapping TypeName="EventManagementModel.MST_Accompany">
+              <MappingFragment StoreEntitySet="MST_Accompany">
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>

@@ -802,3 +802,21 @@ h2 {
 .dropdown:hover .dropbtn {
     background-color: rgba(0,0,0,0.2);
 }
+#regpricingdiv label {
+    text-align: left;
+}
+#registration {
+    /*background-image: url("../images/about-bg.jpg");*/
+}
+
+#conferenceTeam {
+    background-color: #33888F;
+    background-position: 50% 0;
+    background-size: contain;
+    position: relative;
+    background-repeat: no-repeat;
+}
+.highlight {
+    color: orange;
+    font-weight: bold;
+}

@@ -194,6 +194,7 @@
     <Content Include="Content\images\twitter\twitter2.png" />
     <Content Include="Content\images\twitter\twitter3.png" />
     <Content Include="Content\images\watch.png" />
+    <Content Include="Content\js\bootstrap-datepicker.js" />
     <Content Include="Content\js\bootstrap.min.js" />
     <Content Include="Content\js\coundown-timer.js" />
     <Content Include="Content\js\gmaps.js" />
@@ -309,6 +310,8 @@
     <Content Include="Views\Conference\registration.cshtml" />
     <Content Include="Views\Conference\EditorTemplates\RegistrationClass.cshtml" />
     <Content Include="Views\Conference\EditorTemplates\RegistrationDTO.cshtml" />
+    <Content Include="Views\Conference\EditorTemplates\AccommodationDTO.cshtml" />
+    <Content Include="Views\Conference\EditorTemplates\OccupancyDTO.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

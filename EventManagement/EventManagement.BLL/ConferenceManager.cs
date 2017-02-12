@@ -194,5 +194,25 @@ namespace EventManagement.BLL
         {
             return confOperations.AddProgram(obj);
         }
+
+        public int GetRegPrice(int regTypeId, int regClassId, int confId)
+        {
+            return confOperations.GetRegPrice(regTypeId,regClassId, confId);
+        }
+
+        public int GetAccPrice(int accTypeId, int occId, int confId)
+        {
+            return confOperations.GetAccPrice(accTypeId, occId, confId);
+        }
+
+        public IEnumerable<AccompanyPriceDTO> GetAllAccompanyPrice(int id)
+        {
+            return confOperations.GetAllAccompanyPrice(id);
+        }
+
+        public int GetAccompanyPrice(int accompanyId, int confId)
+        {
+            return confOperations.GetAccompanyPrice(accompanyId, confId);
+        }
     }
 }

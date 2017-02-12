@@ -17,6 +17,19 @@
         <AssociationConnector Association="EventManagementModel.FK_AbstractsSubmitted_Title" />
         <AssociationConnector Association="EventManagementModel.FK_AbstractsSubmitted_Track" />
         <AssociationConnector Association="EventManagementModel.FK_AbstractsSubmitted_Country" />
+        <EntityTypeShape EntityType="EventManagementModel.MST_RegistrationClass" Width="1.5" PointX="8.375" PointY="8.375" />
+        <EntityTypeShape EntityType="EventManagementModel.MST_RegistrationType" Width="1.5" PointX="8.375" PointY="11.375" />
+        <EntityTypeShape EntityType="EventManagementModel.Pricing" Width="1.5" PointX="10.625" PointY="8" />
+        <AssociationConnector Association="EventManagementModel.FK_Pricing_MST_RegistrationClass" />
+        <AssociationConnector Association="EventManagementModel.FK_Pricing_MST_RegistrationType" />
+        <EntityTypeShape EntityType="EventManagementModel.AccommodationPricing" Width="1.5" PointX="10.75" PointY="0.75" />
+        <EntityTypeShape EntityType="EventManagementModel.MST_AccomodationType" Width="1.5" PointX="0.75" PointY="10.75" />
+        <EntityTypeShape EntityType="EventManagementModel.MST_Occupancy" Width="1.5" PointX="2.75" PointY="10.75" />
+        <AssociationConnector Association="EventManagementModel.FK_AccommodationPricing_MST_AccomodationType" />
+        <AssociationConnector Association="EventManagementModel.FK_AccommodationPricing_MST_Occupancy" />
+        <EntityTypeShape EntityType="EventManagementModel.AccompanyPricing" Width="1.5" PointX="12.625" PointY="11.875" />
+        <EntityTypeShape EntityType="EventManagementModel.MST_Accompany" Width="1.5" PointX="10.375" PointY="12" />
+        <AssociationConnector Association="EventManagementModel.FK_AccompanyPricing_MST_Accompany" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

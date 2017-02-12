@@ -195,6 +195,32 @@ namespace EventManagement.DAL.Operations
             return true;
         }
 
+        public int GetAccPrice(int accTypeId, int occId, int confId)
+        {
+            return managementConsoleEntities.AccommodationPricings.Where(q => q.FK_AccomodationTypeId == accTypeId && q.FK_OccupancyId == occId && q.FK_ConferenceId == confId).FirstOrDefault().Amout;
+        }
+
+        public int GetAccompanyPrice(int accompanyId, int confId)
+        {
+            return managementConsoleEntities.AccompanyPricings.Where(q => q.FK_conferenceId == confId && q.FK_AccompanyId == accompanyId).FirstOrDefault().Amount;
+        }
+
+        public IEnumerable<AccompanyPriceDTO> GetAllAccompanyPrice(int id)
+        {
+            var acc = managementConsoleEntities.AccompanyPricings.Where(q => q.FK_conferenceId == id).Select(q => new AccompanyPriceDTO {
+                Id = q.MST_Accompany.Id,
+                Name = q.MST_Accompany.Name,
+                Value = q.MST_Accompany.Value,
+                Amount = q.Amount,
+            });
+            return acc;
+        }
+
+        public int GetRegPrice(int regTypeId, int regClassId, int confId)
+        {
+            return managementConsoleEntities.Pricings.Where(q => q.FK_RegClass == regClassId && q.FK_RegType == regTypeId && q.FK_ConferenceId == confId).FirstOrDefault().Amout;
+        }
+
         public bool AddTrack(TrackDTO obj)
         {
             var a = new Track
