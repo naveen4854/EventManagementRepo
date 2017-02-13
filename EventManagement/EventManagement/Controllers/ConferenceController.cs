@@ -122,7 +122,7 @@ namespace EventManagement.Controllers
         public ActionResult SubmitAbstract(AbstractSubmitDTO obj)
         {
             _confManager.PostAbstract(obj);
-            return RedirectToAction("Tracks", "Conference", new { id = obj.ConferenceId});
+            return RedirectToAction("Tracks", "Conference", new { id = obj.ConferenceId });
         }
 
         [Route("Conference/{id}/Registration/")]
@@ -130,8 +130,8 @@ namespace EventManagement.Controllers
         {
             ViewData["ConferenceId"] = id;
             var regclasslst = new List<RegistrationClass>();
-            regclasslst.Add(new RegistrationClass {Id=1, Name = "Academia", IsActive = false, Amount = 150 });
-            regclasslst.Add(new RegistrationClass {Id=2, Name = "Business", IsActive = false, Amount = 350 });
+            regclasslst.Add(new RegistrationClass { Id = 1, Name = "Academia", IsActive = false, Amount = 150 });
+            regclasslst.Add(new RegistrationClass { Id = 2, Name = "Business", IsActive = false, Amount = 350 });
 
             var regPerLst = new List<RegistrationPeriodDTO>();
             regPerLst.Add(new RegistrationPeriodDTO { Name = "Early", IsActive = true, regclass = regclasslst });
@@ -139,20 +139,20 @@ namespace EventManagement.Controllers
             regPerLst.Add(new RegistrationPeriodDTO { Name = "On Time", IsActive = true, regclass = regclasslst });
 
             var reglst = new List<RegistrationDTO>();
-            reglst.Add(new RegistrationDTO { Id = 1, Name = "Poster Registration", IsActive = true});
+            reglst.Add(new RegistrationDTO { Id = 1, Name = "Poster Registration", IsActive = true });
             reglst.Add(new RegistrationDTO { Id = 2, Name = "Speaker Registration", IsActive = true });
             reglst.Add(new RegistrationDTO { Id = 3, Name = "Delegate Registration", IsActive = true });
             reglst.Add(new RegistrationDTO { Id = 4, Name = "Student Delegate", IsActive = true });
 
             var occ = new List<OccupancyDTO>();
             occ.Add(new OccupancyDTO { Id = 1, Name = "Single", NoOfPeople = 1, isSelected = false, Amount = 200 });
-            occ.Add(new OccupancyDTO { Id = 2, Name = "Double", NoOfPeople = 2, isSelected = false, Amount = 300});
+            occ.Add(new OccupancyDTO { Id = 2, Name = "Double", NoOfPeople = 2, isSelected = false, Amount = 300 });
             occ.Add(new OccupancyDTO { Id = 3, Name = "Triple", NoOfPeople = 3, isSelected = false, Amount = 400 });
 
             var acc = new List<AccommodationDTO>();
-            acc.Add(new AccommodationDTO { Id = 1, Name = "For 2 Nights"});
-            acc.Add(new AccommodationDTO { Id = 3, Name = "For 3 Nights"});
-            acc.Add(new AccommodationDTO { Id = 4, Name = "For 4 Nights"});
+            acc.Add(new AccommodationDTO { Id = 1, Name = "For 2 Nights" });
+            acc.Add(new AccommodationDTO { Id = 3, Name = "For 3 Nights" });
+            acc.Add(new AccommodationDTO { Id = 4, Name = "For 4 Nights" });
 
             ViewBag.Reglst = reglst;
             ViewBag.regclasslst = regclasslst;
@@ -190,6 +190,8 @@ namespace EventManagement.Controllers
         [HttpPost]
         public ActionResult test(PurchaseDTO obj)
         {
+            if (ModelState.IsValid)
+                return RedirectToAction("Registration", "Conference", new { id = 8 });
             return RedirectToAction("Registration", "Conference", new { id = 8 });
         }
 
