@@ -65,7 +65,7 @@ namespace EventManagement.Controllers
         public ActionResult NewConference()
         {
             ViewBag.Venues = _confManager.GetVenues();
-            return View(new ConferenceDTO());
+            return View(new ConferenceDTO { StartDt = DateTime.Now.Date,EndDt = DateTime.Now.Date.AddDays(3)});
         }
 
         public ActionResult Conference(int id)
