@@ -3,43 +3,43 @@
     ViewBag.Title = "Program";
     Layout = "~/Views/Shared/_ConferenceLayout.cshtml";
 }
-
-<div id="conferenceProgram" style="padding:0px 20px 20px 120px">
-    <div id="event-carousel" class="carousel slide" data-interval="false">
-        <h2 class="heading">Conference Days</h2>
-        <a class="even-control-left" href="#event-carousel" data-slide="prev"><i class="fa fa-angle-left"></i></a>
-        <a class="even-control-right" href="#event-carousel" data-slide="next"><i class="fa fa-angle-right"></i></a>
-        <div class="carousel-inner">
-            @{
+<div class="NotHome">
+    <div id="conferenceProgram" class="program">
+        <div id="event-carousel" class="carousel slide" data-interval="false">
+            <h2 class="heading">Conference Days</h2>
+            <a class="even-control-left" href="#event-carousel" data-slide="prev"><i class="fa fa-angle-left"></i></a>
+            <a class="even-control-right" href="#event-carousel" data-slide="next"><i class="fa fa-angle-right"></i></a>
+            <div class="carousel-inner">
+                @{
                 var days = (Model.EndDt - Model.StartDt).Days;
                 for (int i = 0; i <= days / 4; i++)
                 {
-                    <div class="item @if (i == 0) { <text>active</text>} ">
-                        <div class="row">
-                            @for (int j = 0; j < 4; j++)
+                        <div class="item @if (i == 0) { <text>active</text>} ">
+                            <div class="row">
+                                @for (int j = 0; j < 4; j++)
                             {
                                 var confday = i * 4 + j;
                                 if (confday <= days)
                                 {
-                                    <div class="col-sm-3">
-                                        <div class="programdt single-event pointer">
-                                            <h2 id="prgdt_@confday" class="@if (confday == 0) { <text>highlight</text>} " onclick="loadPartial(@confday)">@Model.StartDt.AddDays(confday).ToString("dd.MM.yyy")</h2>
+                                        <div class="col-sm-3">
+                                            <div class="programdt single-event pointer">
+                                                <h2 id="prgdt_@confday" class="@if (confday == 0) { <text>highlight</text>} " onclick="loadPartial(@confday)">@Model.StartDt.AddDays(confday).ToString("dd.MM.yyy")</h2>
+                                            </div>
                                         </div>
-                                    </div>
                                 }
                             }
 
+                            </div>
                         </div>
-                    </div>
                 }
-            }
+                }
+            </div>
+        </div>
+        <div class="partialprg">
+            @{ Html.RenderAction("PartialProgram", "Conference", new { id = @ViewData["ConferenceId"], day = 1 }); }
         </div>
     </div>
-    <div class="partialprg">
-        @{ Html.RenderAction("PartialProgram", "Conference", new { id = @ViewData["ConferenceId"], day = 1 }); }
-    </div>
 </div>
-
 <script type="text/javascript">
     $(document).ready(function(){
         loadPartial(0);

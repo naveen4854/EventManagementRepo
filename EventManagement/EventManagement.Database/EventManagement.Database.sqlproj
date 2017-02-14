@@ -77,6 +77,14 @@
     <Build Include="dbo\Tables\Country.sql" />
     <Build Include="dbo\Tables\Category.sql" />
     <Build Include="dbo\Tables\AbstractsSubmitted.sql" />
+    <Build Include="dbo\Tables\Pricing.sql" />
+    <Build Include="dbo\Tables\MST_RegistrationType.sql" />
+    <Build Include="dbo\Tables\MST_RegistrationClass.sql" />
+    <Build Include="dbo\Tables\MST_Occupancy.sql" />
+    <Build Include="dbo\Tables\MST_Accompany.sql" />
+    <Build Include="dbo\Tables\MST_AccomodationType.sql" />
+    <Build Include="dbo\Tables\AccompanyPricing.sql" />
+    <Build Include="dbo\Tables\AccommodationPricing.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="EventManagement.Database.publish.xml" />
