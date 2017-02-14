@@ -820,3 +820,11 @@ h2 {
     color: orange;
     font-weight: bold;
 }
+
+.NotHome {
+    padding: 190px 20px 20px 20px;
+    background-color: #33888F;
+}
+.program {
+    padding:0px 20px 20px 120px;
+}

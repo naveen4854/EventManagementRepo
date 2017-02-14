@@ -277,7 +277,6 @@
     <Content Include="Views\Shared\_ConferenceLayout.cshtml" />
     <Content Include="Views\Conference\Home.cshtml" />
     <Content Include="Views\Conference\PartialHome.cshtml" />
-    <Content Include="Views\Conference\ConferenceTeam.cshtml" />
     <Content Include="Views\Conference\Team.cshtml" />
     <Content Include="Views\Conference\Chair.cshtml" />
     <Content Include="Views\Conference\PartialVenue.cshtml" />
@@ -286,7 +285,6 @@
     <Content Include="Views\Conference\PartialProgram.cshtml" />
     <Content Include="Views\Error\Error.cshtml" />
     <Content Include="Views\Error\NotFound.cshtml" />
-    <Content Include="Views\Conference\PartialAbstract.cshtml" />
     <Content Include="Views\Conference\Tracks.cshtml" />
     <Content Include="Views\Conference\PartialAbstractSubmit.cshtml" />
     <Content Include="Views\Error\Index.cshtml" />
