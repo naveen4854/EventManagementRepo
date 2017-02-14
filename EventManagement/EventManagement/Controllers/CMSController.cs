@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace EventManagement.Controllers
 {
+    [Authorize]
     public class CMSController : Controller
     {
         private ConferenceManager _confManager;
@@ -170,19 +171,11 @@ namespace EventManagement.Controllers
 
         #region images
 
-
         public ActionResult NewImage()
         {
             ViewBag.Conferences = _confManager.GetConferences();
             return View();
         }
-
-        //public ActionResult Image(int id)
-        //{
-        //    ViewBag.Conferences = _confManager.GetConferences();
-        //    var Image = _confManager.GetImage(id);
-        //    return View(Image);
-        //}
 
         [HttpPost]
         public ActionResult AddConferenceImages(ConferenceDTO obj)
@@ -191,14 +184,6 @@ namespace EventManagement.Controllers
             var confDto = _confManager.GetConferenceImages(obj.Id);
             return PartialView("AllConferenceImages", confDto);
         }
-
-        //[HttpPost]
-        //public ActionResult UpdateImage(ImageDTO obj)
-        //{
-        //    _confManager.UpdateImage(obj);
-        //    var Images = _confManager.GetConferenceImages(obj.ConferenceId);
-        //    return PartialView("AllImages", Images);
-        //}
 
         public ActionResult DeleteConferenceImage(int id)
         {
@@ -256,6 +241,7 @@ namespace EventManagement.Controllers
             var confDto = _confManager.GetConferenceTeam(id);
             return PartialView("AllConferenceTeams", confDto.Team);
         }
+
         #endregion team
 
         #region program

@@ -238,6 +238,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CMSController.cs" />
     <Compile Include="Controllers\ConferenceController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
@@ -311,6 +312,7 @@
     <Content Include="Views\Conference\EditorTemplates\OccupancyDTO.cshtml" />
     <Content Include="Views\CMS\NewImage.cshtml" />
     <Content Include="Views\CMS\AllImages.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

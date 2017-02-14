@@ -60,6 +60,7 @@
     <Compile Include="RegistrationPeriodDTO.cs" />
     <Compile Include="TitleModel.cs" />
     <Compile Include="TrackDTO.cs" />
+    <Compile Include="User.cs" />
     <Compile Include="VenueDTO.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
