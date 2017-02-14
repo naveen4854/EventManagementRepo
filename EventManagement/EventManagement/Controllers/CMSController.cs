@@ -169,11 +169,20 @@ namespace EventManagement.Controllers
         #endregion Track
 
         #region images
-        public ActionResult ConferenceImages()
+
+
+        public ActionResult NewImage()
         {
             ViewBag.Conferences = _confManager.GetConferences();
             return View();
         }
+
+        //public ActionResult Image(int id)
+        //{
+        //    ViewBag.Conferences = _confManager.GetConferences();
+        //    var Image = _confManager.GetImage(id);
+        //    return View(Image);
+        //}
 
         [HttpPost]
         public ActionResult AddConferenceImages(ConferenceDTO obj)
@@ -183,11 +192,47 @@ namespace EventManagement.Controllers
             return PartialView("AllConferenceImages", confDto);
         }
 
-        public ActionResult AllConferenceImages(int id)
+        //[HttpPost]
+        //public ActionResult UpdateImage(ImageDTO obj)
+        //{
+        //    _confManager.UpdateImage(obj);
+        //    var Images = _confManager.GetConferenceImages(obj.ConferenceId);
+        //    return PartialView("AllImages", Images);
+        //}
+
+        public ActionResult DeleteConferenceImage(int id)
         {
-            var confDto = _confManager.GetConferenceImages(id);
-            return PartialView("AllConferenceImages", confDto);
+            _confManager.DeleteConferenceImage(id);
+            return RedirectToAction("AllImages", "CMS");
         }
+
+        public ActionResult AllImages(int? confid)
+        {
+            var confs = _confManager.GetConferences();
+            ViewBag.Conferences = _confManager.GetConferences();
+            if (confs.Count > 0)
+            {
+                if (confid == null)
+                {
+                    ViewBag.ConfId = confs.FirstOrDefault().Id;
+                    var Images = _confManager.GetConferenceImagesDTO(confs.FirstOrDefault().Id);
+                    return View("AllImages", Images);
+                }
+                else
+                {
+                    ViewBag.ConfId = confid.Value;
+                    var conf = _confManager.GetConferenceImagesDTO(confid.Value);
+                    if (conf.Count() > 0)
+                        return View("AllImages", conf);
+                    else
+                        return RedirectToAction("AddImage", "CMS", new { id = confid.Value });
+                }
+
+            }
+            else
+                return RedirectToAction("AddConference", "CMS");
+        }
+
         #endregion images
 
         #region team

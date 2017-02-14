@@ -11,7 +11,6 @@ namespace EventManagement.DataModels
         public string Address { get; set; }
         [Required(ErrorMessage = "Your must provide a Organization")]
         public string Organization { get; set; }
-
         [Required(ErrorMessage = "Your must provide a PhoneNumber")]
         [DataType(DataType.PhoneNumber)]
         [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Not a valid Phone number")]
