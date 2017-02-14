@@ -16,7 +16,7 @@
     <RootNamespace>EventManagement</RootNamespace>
     <AssemblyName>EventManagement</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
-    <UseIISExpress>false</UseIISExpress>
+    <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -294,7 +294,6 @@
     <Content Include="Views\CMS\AllConferenceTeams.cshtml" />
     <Content Include="Views\CMS\AllTracks.cshtml" />
     <Content Include="Views\CMS\AllVenues.cshtml" />
-    <Content Include="Views\CMS\ConferenceImages.cshtml" />
     <Content Include="Views\CMS\ConferencePrograms.cshtml" />
     <Content Include="Views\CMS\NewConference.cshtml" />
     <Content Include="Views\CMS\ConferenceTeams.cshtml" />
@@ -310,6 +309,8 @@
     <Content Include="Views\Conference\EditorTemplates\RegistrationDTO.cshtml" />
     <Content Include="Views\Conference\EditorTemplates\AccommodationDTO.cshtml" />
     <Content Include="Views\Conference\EditorTemplates\OccupancyDTO.cshtml" />
+    <Content Include="Views\CMS\NewImage.cshtml" />
+    <Content Include="Views\CMS\AllImages.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -347,7 +348,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>2207</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost/</IISUrl>
+          <IISUrl>http://localhost:2207/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

@@ -19,7 +19,9 @@ namespace EventManagement.DAL.Operations
                 Id = q.Id,
                 Name = q.Name,
                 Desc = q.Description,
-                ShortDesc = q.ShortDescription
+                ShortDesc = q.ShortDescription,
+                StartDt = q.startDt,
+                EndDt = q.endDt
             }).ToList();
         }
 
@@ -105,6 +107,10 @@ namespace EventManagement.DAL.Operations
             {
                 conf.Name = obj.Name;
                 conf.Description = obj.Desc;
+                conf.startDt = obj.StartDt;
+                conf.endDt = obj.EndDt;
+                conf.ShortDescription = obj.ShortDesc;
+                conf.FK_VenueId = obj.Venue.Id;
             }
             using (var entitiesX = new EventManagementEntities())
             {
@@ -184,13 +190,28 @@ namespace EventManagement.DAL.Operations
                 Description = obj.Desc,
                 ShortDescription = obj.ShortDesc,
                 FK_VenueId = obj.Venue.Id,
-                startDt = DateTime.Now,
-                endDt = DateTime.Now.AddDays(5)
+                startDt = obj.StartDt,
+                endDt = obj.EndDt
             };
             using (var entities = new EventManagementEntities())
             {
                 entities.Conferences.Add(a);
                 entities.SaveChanges();
+            }
+            return true;
+        }
+
+        public bool DeleteConferenceImage(int id)
+        {
+            ConferenceImage img;
+            using (var entities = new EventManagementEntities())
+            {
+                img = entities.ConferenceImages.Where(q => q.Id == id).FirstOrDefault();
+            }
+            using (var entitiesX = new EventManagementEntities())
+            {
+                entitiesX.Entry(img).State = EntityState.Deleted;
+                entitiesX.SaveChanges();
             }
             return true;
         }
@@ -242,6 +263,16 @@ namespace EventManagement.DAL.Operations
             return managementConsoleEntities.ConferenceImages.Where(q => q.FK_ConferenceId == id).Select(q => q.ImageUrl).ToList();
         }
 
+        public List<ConferenceImageDTO> GetConferenceImagesDTO(int id)
+        {
+            return managementConsoleEntities.ConferenceImages.Where(q => q.FK_ConferenceId == id).Select(q => new ConferenceImageDTO
+            {
+                Id = q.Id,
+                ImageUrl = q.ImageUrl,
+                ConferenceId = q.FK_ConferenceId
+            }).ToList();
+        }
+
         public ConferenceDTO GetConference(int Id)
         {
             var conf = managementConsoleEntities.Conferences.FirstOrDefault(q => q.Id == Id);
@@ -252,6 +283,8 @@ namespace EventManagement.DAL.Operations
                 Desc = conf.Description,
                 ShortDesc = conf.ShortDescription,
                 ImageUrls = conf.ConferenceImages.Select(q => q.ImageUrl).ToList(),
+                StartDt = conf.startDt,
+                EndDt = conf.endDt,
                 Venue = new VenueDTO
                 {
                     Id = conf.Venue.Id,
@@ -270,7 +303,7 @@ namespace EventManagement.DAL.Operations
                 Chair = obj.isChair,
                 ImageUrl = obj.ImageUrl,
                 Info = obj.Info,
-                FK_ConferenceId = obj.ConferenceId
+                FK_ConferenceId = obj.ConferenceId,
             };
             using (var entities = new EventManagementEntities())
             {
@@ -280,7 +313,7 @@ namespace EventManagement.DAL.Operations
             return true;
         }
 
-        public bool PostConferenceImage(ConferenceImageModel conferenceImage)
+        public bool PostConferenceImage(ConferenceImageDTO conferenceImage)
         {
             var a = new ConferenceImage
             {

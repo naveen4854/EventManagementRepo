@@ -101,7 +101,7 @@ namespace EventManagement.BLL
             foreach (var image in obj.ImagesUpload)
             {
                 var fileName = _uploadHelper.UploadFile(image, "~/content/images");
-                confOperations.PostConferenceImage(new ConferenceImageModel { Name = fileName, ConferenceId = obj.Id });
+                confOperations.PostConferenceImage(new ConferenceImageDTO { Name = fileName, ConferenceId = obj.Id });
             }
         }
 
@@ -129,6 +129,11 @@ namespace EventManagement.BLL
         public ConferenceDTO GetConferenceImages(int id)
         {
             return new ConferenceDTO { Id = id, ImageUrls = confOperations.GetConferenceImages(id) };
+        }
+
+        public IEnumerable<ConferenceImageDTO> GetConferenceImagesDTO(int id)
+        {
+            return  confOperations.GetConferenceImagesDTO(id);
         }
 
         public bool DeleteTrack(int id)
@@ -198,6 +203,11 @@ namespace EventManagement.BLL
         public int GetRegPrice(int regTypeId, int regClassId, int confId)
         {
             return confOperations.GetRegPrice(regTypeId,regClassId, confId);
+        }
+
+        public bool DeleteConferenceImage(int id)
+        {
+            return confOperations.DeleteConferenceImage(id);
         }
 
         public int GetAccPrice(int accTypeId, int occId, int confId)

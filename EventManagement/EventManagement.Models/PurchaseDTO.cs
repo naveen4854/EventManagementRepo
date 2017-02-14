@@ -5,10 +5,18 @@ namespace EventManagement.DataModels
 {
     public class PurchaseDTO
     {
+        [Required(ErrorMessage = "Your must provide Name")]
         public string Name { get; set; }
+        [Required(ErrorMessage = "Your must provide Address")]
         public string Address { get; set; }
+        [Required(ErrorMessage = "Your must provide a Organization")]
         public string Organization { get; set; }
-        public int PhoneNumber { get; set; }
+        [Required(ErrorMessage = "Your must provide a PhoneNumber")]
+        [DataType(DataType.PhoneNumber)]
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Not a valid Phone number")]
+        public string PhoneNumber { get; set; }
+        [Required(ErrorMessage = "Your must provide a EmailId")]
+        [DataType(DataType.EmailAddress)]
         public string EmailId { get; set; }
         [Display(Name="Country")]
         public int CountryId { get; set; }
