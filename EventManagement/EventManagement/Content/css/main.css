@@ -824,6 +824,8 @@ h2 {
 .NotHome {
     padding: 190px 20px 20px 20px;
     background-color: #33888F;
+    overflow: auto;
+    /*position:absolute;*/
 }
 .program {
     padding:0px 20px 20px 120px;
