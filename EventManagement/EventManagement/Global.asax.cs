@@ -9,6 +9,7 @@ using System.Web.SessionState;
 using System.Web.Http;
 using System.Globalization;
 using System.Threading;
+using EventManagement.DataModels;
 
 namespace EventManagement
 {
@@ -19,7 +20,7 @@ namespace EventManagement
             // Code that runs on application startup
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
-            RouteConfig.RegisterRoutes(RouteTable.Routes);            
+            RouteConfig.RegisterRoutes(RouteTable.Routes);
         }
 
         protected void Application_Error(object sender, EventArgs e)
@@ -38,16 +39,35 @@ namespace EventManagement
             Thread.CurrentThread.CurrentUICulture = cInfo;
         }
 
-        protected void Application_PostAuthenticateRequest(Object sender, EventArgs e)
+        protected void FormsAuthentication_OnAuthenticate(Object sender, FormsAuthenticationEventArgs e)
         {
-            var authCookie = HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName];
-            if (authCookie != null)
+            if (FormsAuthentication.CookiesSupported == true)
             {
-                FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie.Value);
-                if (authTicket != null && !authTicket.Expired)
+                if (Request.Cookies[FormsAuthentication.FormsCookieName] != null)
                 {
-                    var roles = authTicket.UserData.Split(',');
-                    HttpContext.Current.User = new System.Security.Principal.GenericPrincipal(new FormsIdentity(authTicket), roles);
+                    try
+                    {
+                        //let us take out the username now                
+                        string username = FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).Name;
+                        string roles = string.Empty;
+
+                        //using (userDbEntities entities = new userDbEntities())
+                        //{
+                            User user = new User { Email = "aa", Password = "aa", Roles = "Admin" };
+
+                            roles = user.Roles;
+                        //}
+                        //let us extract the roles from our own custom cookie
+
+
+                        //Let us set the Pricipal with our user specific details
+                        e.User = new System.Security.Principal.GenericPrincipal(
+                          new System.Security.Principal.GenericIdentity(username, "Forms"), roles.Split(';'));
+                    }
+                    catch (Exception)
+                    {
+                        //somehting went wrong
+                    }
                 }
             }
         }

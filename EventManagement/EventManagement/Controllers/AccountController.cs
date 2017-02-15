@@ -10,41 +10,59 @@ namespace EventManagement.Controllers
 {
     public class AccountController : Controller
     {
-        public ActionResult Login(User model, string returnUrl)
+        // GET: /Account/LogOn
+        public ActionResult Login()
         {
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
-
-            User user = new User() { Email = model.Email, Password = model.Password, Roles = "Admin,Idiot" };
-
-            //user = Repository.GetUserDetails(user);
-
-            if (user != null)
-            {
-                FormsAuthentication.SetAuthCookie(model.Email, false);
-
-                var authTicket = new FormsAuthenticationTicket(1, user.Email, DateTime.Now, DateTime.Now.AddMinutes(20), false, user.Roles);
-                string encryptedTicket = FormsAuthentication.Encrypt(authTicket);
-                var authCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
-                HttpContext.Response.Cookies.Add(authCookie);
-                return RedirectToAction("Index", "Home");
-            }
-
-            else
-            {
-                ModelState.AddModelError("", "Invalid login attempt.");
-                return View(model);
-            }
+            return View();
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult LogOff()
+        public ActionResult Login(User model, string returnUrl)
         {
-            //AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            // Lets first check if the Model is valid or not
+            if (ModelState.IsValid)
+            {
+                //using (userDbEntities entities = new userDbEntities())
+                //{
+                    string username = model.Email;
+                    string password = model.Password;
+
+                    // Now if our password was enctypted or hashed we would have done the
+                    // same operation on the user entered password here, But for now
+                    // since the password is in plain text lets just authenticate directly
+
+                    bool userValid = true;
+
+                    // User found in the database
+                    if (userValid)
+                    {
+
+                        FormsAuthentication.SetAuthCookie(username, false);
+                        if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/")
+                            && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
+                        {
+                            return Redirect(returnUrl);
+                        }
+                        else
+                        {
+                            return RedirectToAction("Index", "Home");
+                        }
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "The user name or password provided is incorrect.");
+                    }
+                //}
+            }
+
+            // If we got this far, something failed, redisplay form
+            return View(model);
+        }
+
+        public ActionResult Logout()
+        {
             FormsAuthentication.SignOut();
+
             return RedirectToAction("Index", "Home");
         }
     }
