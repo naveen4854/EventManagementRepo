@@ -53,7 +53,7 @@ namespace EventManagement
 
                         //using (userDbEntities entities = new userDbEntities())
                         //{
-                            User user = new User { Email = "aa", Password = "aa", Roles = "Admin" };
+                            User user = new User { UserName = "aa", Password = "aa", Roles = "Admin" };
 
                             roles = user.Roles;
                         //}

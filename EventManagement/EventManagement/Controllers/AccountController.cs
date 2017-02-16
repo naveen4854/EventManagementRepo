@@ -24,7 +24,7 @@ namespace EventManagement.Controllers
             {
                 //using (userDbEntities entities = new userDbEntities())
                 //{
-                    string username = model.Email;
+                    string username = model.UserName;
                     string password = model.Password;
 
                     // Now if our password was enctypted or hashed we would have done the
