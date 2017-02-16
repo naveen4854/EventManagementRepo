@@ -290,7 +290,6 @@
     <Content Include="Views\Conference\PartialAbstractSubmit.cshtml" />
     <Content Include="Views\Error\Index.cshtml" />
     <Content Include="Views\Error\ErrMsg.cshtml" />
-    <Content Include="Views\CMS\AllConferenceImages.cshtml" />
     <Content Include="Views\CMS\AllConferencePrograms.cshtml" />
     <Content Include="Views\CMS\AllConferences.cshtml" />
     <Content Include="Views\CMS\AllConferenceTeams.cshtml" />
@@ -351,7 +350,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>2207</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost/</IISUrl>
+          <IISUrl>http://localhost/eve</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
