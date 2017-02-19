@@ -13,6 +13,7 @@ namespace EventManagement.DataModels
         public string Name { get; set; }
         public string Desc { get; set; }
         public string ShortDesc { get; set; }
+        public string ShortImgUrl { get; set; }
         public DateTime StartDt { get; set; }
         public DateTime EndDt { get; set; }
         public List<string> ImageUrls { get; set; }

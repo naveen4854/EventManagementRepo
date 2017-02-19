@@ -156,7 +156,7 @@
     <Content Include="Content\images\ear-piece.png" />
     <Content Include="Content\images\event-bg.jpg" />
     <Content Include="Content\images\event\event1.jpg" />
-    <Content Include="Content\images\event\event2.jpg" />
+    <Content Include="Content\images\event\confShortImage\event2.jpg" />
     <Content Include="Content\images\event\event3.jpg" />
     <Content Include="Content\images\footer-bg.jpg" />
     <Content Include="Content\images\guitar.png" />

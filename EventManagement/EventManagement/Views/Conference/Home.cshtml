@@ -6,7 +6,7 @@
 }
 
 <section id="home">
-    @{ Html.RenderAction("PartialHome", "Conference", new { images = Model.ImageUrls }); }
+    @{ Html.RenderAction("PartialHome", "Conference", new { obj = Model }); }
 </section>
 
 <section id="venue">

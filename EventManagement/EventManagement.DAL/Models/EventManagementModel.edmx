@@ -61,6 +61,7 @@
           <Property Name="endDt" Type="datetime" Nullable="false" />
           <Property Name="brochure" Type="varchar" MaxLength="100" />
           <Property Name="SpeakerList" Type="varchar" MaxLength="100" />
+          <Property Name="shortImageUrl" Type="varchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="ConferenceImages">
           <Key>
@@ -606,6 +607,7 @@
           <NavigationProperty Name="Pricings" Relationship="EventManagementModel.FK_Pricing_Conference" FromRole="Conference" ToRole="Pricing" />
           <NavigationProperty Name="AccommodationPricings" Relationship="EventManagementModel.FK_AccommodationPricing_Conference" FromRole="Conference" ToRole="AccommodationPricing" />
           <NavigationProperty Name="AccompanyPricings" Relationship="EventManagementModel.FK_AccompanyPricing_Conference" FromRole="Conference" ToRole="AccompanyPricing" />
+          <Property Name="shortImageUrl" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="ConferenceImage">
           <Key>
@@ -1018,6 +1020,7 @@
           <EntitySetMapping Name="Conferences">
             <EntityTypeMapping TypeName="EventManagementModel.Conference">
               <MappingFragment StoreEntitySet="Conference">
+                <ScalarProperty Name="shortImageUrl" ColumnName="shortImageUrl" />
                 <ScalarProperty Name="SpeakerList" ColumnName="SpeakerList" />
                 <ScalarProperty Name="brochure" ColumnName="brochure" />
                 <ScalarProperty Name="endDt" ColumnName="endDt" />

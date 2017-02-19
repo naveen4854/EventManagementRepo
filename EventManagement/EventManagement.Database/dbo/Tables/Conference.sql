@@ -9,9 +9,12 @@
     [endDt]            DATETIME       NOT NULL,
     [brochure]         VARCHAR (100)  NULL,
     [SpeakerList]      VARCHAR (100)  NULL,
+    [shortImageUrl]    VARCHAR (MAX)  NOT NULL,
     CONSTRAINT [PK_Conference] PRIMARY KEY CLUSTERED ([Id] ASC),
     CONSTRAINT [FK_Conference_Venue] FOREIGN KEY ([FK_VenueId]) REFERENCES [dbo].[Venue] ([Id])
 );
+
+
 
 
 

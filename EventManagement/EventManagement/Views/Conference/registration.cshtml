@@ -162,12 +162,13 @@
     function retriveRegPrice() {
         var regtypeId = $('#RegTypeId').val();
         var regClassId = $('#RegClassId').val();
+        var url = "@Url.Content("~/Conference/GetRegPrice")";
         $.ajax({
             type: "GET",
             traditional: true,
             async: false,
             cache: false,
-            url: '/Conference/GetRegPrice',
+            url: url,
             data: { regTypeId: regtypeId, regClassId: regClassId },
             context: document.body,
             success: function (result) {
@@ -176,9 +177,6 @@
                 calculateTotal();
             },
             error: function (xhr) {
-                //debugger;
-                console.log(xhr.responseText);
-                alert("Error has occurred..");
             }
         });
     }
@@ -186,12 +184,13 @@
     function retriveAccPrice() {
         var accId = $('#AccId').val();
         var occId = $('#OccId').val();
+        var url = "@Url.Content("~/Conference/GetAccPrice")";
         $.ajax({
             type: "GET",
             traditional: true,
             async: false,
             cache: false,
-            url: '/Conference/GetAccPrice',
+            url: url,
             data: { AccTypeId: accId, OccId: occId },
             context: document.body,
             success: function (result) {
@@ -200,20 +199,18 @@
                 calculateTotal();
             },
             error: function (xhr) {
-                //debugger;
-                console.log(xhr.responseText);
-                alert("Error has occurred..");
             }
         });
     }
     function getAccompanyPrice() {
         var accompanyId = $('#accompanyPrices').val();
+        var url = "@Url.Content("~/Conference/getAccompanyPrice")";
         $.ajax({
             type: "GET",
             traditional: true,
             async: false,
             cache: false,
-            url: '/Conference/getAccompanyPrice',
+            url: url,
             data: { accompanyId: accompanyId },
             context: document.body,
             success: function (result) {
@@ -222,9 +219,6 @@
                 calculateTotal();
             },
             error: function (xhr) {
-                //debugger;
-                console.log(xhr.responseText);
-                alert("Error has occurred..");
             }
         });
     }
@@ -234,7 +228,6 @@
         var regprice = parseInt($('#lblRegPrice').prop('data-val'));
         var res = accPrice + accompanyprice + regprice
         var total = { val: res, txt: "$" + res };
-        console.log(total);
         $('#lblTotalPrice').text(total.txt);
         $('#lblTotalPrice').prop('data-val', total.amt);
     }

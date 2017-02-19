@@ -24,9 +24,9 @@ namespace EventManagement.Controllers
             ViewData["ConferenceId"] = id;
             return View(_confManager.GetConference(id));
         }
-        public ActionResult PartialHome(List<string> images)
+        public ActionResult PartialHome(ConferenceDTO obj)
         {
-            return PartialView(images);
+            return PartialView(obj);
         }
 
         [Route("Conference/{id}/Team")]

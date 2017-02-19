@@ -182,7 +182,7 @@ namespace EventManagement.Controllers
         {
             _confManager.AddConferenceImages(obj);
             var confDto = _confManager.GetConferenceImages(obj.Id);
-            return PartialView("AllConferenceImages", confDto);
+            return RedirectToAction("AllImages", confDto.Id);
         }
 
         public ActionResult DeleteConferenceImage(int id)

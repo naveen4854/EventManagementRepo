@@ -21,7 +21,8 @@ namespace EventManagement.DAL.Operations
                 Desc = q.Description,
                 ShortDesc = q.ShortDescription,
                 StartDt = q.startDt,
-                EndDt = q.endDt
+                EndDt = q.endDt,
+                ShortImgUrl = q.shortImageUrl
             }).ToList();
         }
 
