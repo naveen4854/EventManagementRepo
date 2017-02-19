@@ -869,3 +869,17 @@ h2 {
         font-size: 40px;
         text-transform: uppercase;
     }
+
+#home .img {
+    border-radius: 30px;
+}
+#home #main-slider .item{
+    max-height:100vh;
+}
+
+#homeabout .border {
+    height: 300px;
+    border: 1px solid black;
+    border-radius:20px;
+    padding:10px;
+}

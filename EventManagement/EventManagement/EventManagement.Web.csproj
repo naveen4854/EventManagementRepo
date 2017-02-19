@@ -155,6 +155,11 @@
     <Content Include="Content\images\contact-bg.jpg" />
     <Content Include="Content\images\ear-piece.png" />
     <Content Include="Content\images\event-bg.jpg" />
+    <Content Include="Content\images\event\confShortImage\c1.000.jpg" />
+    <Content Include="Content\images\event\confShortImage\c2.000.jpg" />
+    <Content Include="Content\images\event\confShortImage\c3.000.jpg" />
+    <Content Include="Content\images\event\confShortImage\c4.000.jpg" />
+    <Content Include="Content\images\event\confShortImage\c5.000.jpg" />
     <Content Include="Content\images\event\event1.jpg" />
     <Content Include="Content\images\event\confShortImage\event2.jpg" />
     <Content Include="Content\images\event\event3.jpg" />
