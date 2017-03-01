@@ -1,71 +1,76 @@
-//jQuery(function($) {'use strict',
-	
-//	//Countdown js
-//	 //$("#countdown").countdown({
-//	 //   	date: "10 july 2014 12:00:00",
-//	 //   	format: "on"
-//	 //   },
-		
-//	 //   function() {
-//	 //   	// callback function
-//	 //   });
-	
+$(function ($) {
+    //'use strict',
 
-	
-//	//Scroll Menu
+    //	//Countdown js
+    //	 //$("#countdown").countdown({
+    //	 //   	date: "10 july 2014 12:00:00",
+    //	 //   	format: "on"
+    //	 //   },
 
-	function menuToggle()
-	{
-		var windowWidth = $(window).width();
-
-		if(windowWidth > 767 ){
-			$(window).on('scroll', function(){
-				if( $(window).scrollTop()>405 ){
-					$('.main-nav').addClass('fixed-menu animated slideInDown');
-				} else {
-					$('.main-nav').removeClass('fixed-menu animated slideInDown');
-				}
-			});
-		}else{
-			
-			$('.main-nav').addClass('fixed-menu animated slideInDown');
-				
-		}
-	}
-
-	menuToggle();
-	
-	
-	// Carousel Auto Slide Off
-	$('#event-carousel, #twitter-feed, #sponsor-carousel ').carousel({
-		interval: false
-	});
+    //	 //   function() {
+    //	 //   	// callback function
+    //	 //   });
 
 
-//	// Contact form validation
-//	var form = $('.contact-form');
-//	form.submit(function () {'use strict',
-//		$this = $(this);
-//		$.post($(this).attr('action'), function(data) {
-//			$this.prev().text(data.message).fadeIn().delay(3000).fadeOut();
-//		},'json');
-//		return false;
-//	});
 
-//	$( window ).resize(function() {
-//		menuToggle();
-//	});
+    //	//Scroll Menu
 
-//	$('.main-nav ul').onePageNav({
-//		currentClass: 'active',
-//	    changeHash: false,
-//	    scrollSpeed: 900,
-//	    scrollOffset: 0,
-//	    scrollThreshold: 0.3,
-//	    filter: ':not(.no-scroll)'
-//	});
+    function menuToggle() {
+        var windowWidth = $(window).width();
 
-//});
+        if (windowWidth > 767) {
+            $(window).on('scroll', function () {
+                if ($(window).scrollTop() > 405) {
+                    $('.main-nav').addClass('fixed-menu animated slideInDown');
+                } else {
+                    $('.main-nav').removeClass('fixed-menu animated slideInDown');
+                }
+            });
+        } else {
+
+            $('.main-nav').addClass('fixed-menu animated slideInDown');
+
+        }
+    }
+
+    menuToggle();
+
+
+    // Carousel Auto Slide Off
+    $('#event-carousel, #twitter-feed, #sponsor-carousel ').carousel({
+        interval: false
+    });
+
+    $('.post').addClass("hidden").viewportChecker({
+        classToAdd: 'visible animated bounceInLeft', // Class to add to the elements when they are visible
+        offset: 100
+    });
+
+
+    //	// Contact form validation
+    //	var form = $('.contact-form');
+    //	form.submit(function () {'use strict',
+    //		$this = $(this);
+    //		$.post($(this).attr('action'), function(data) {
+    //			$this.prev().text(data.message).fadeIn().delay(3000).fadeOut();
+    //		},'json');
+    //		return false;
+    //	});
+
+    //	$( window ).resize(function() {
+    //		menuToggle();
+    //	});
+
+    //	$('.main-nav ul').onePageNav({
+    //		currentClass: 'active',
+    //	    changeHash: false,
+    //	    scrollSpeed: 900,
+    //	    scrollOffset: 0,
+    //	    scrollThreshold: 0.3,
+    //	    filter: ':not(.no-scroll)'
+    //	});
+
+});
 
 
 //// Google Map Customization

@@ -185,7 +185,7 @@ h2 {
     width: 100%;
 }
 
-#main-slider .carousel-caption {
+#home .carousel-caption {
     background: none repeat scroll 0 0 #000000;
     bottom: 14%;
     float: left;
@@ -199,28 +199,28 @@ h2 {
 }
 
 
-    #main-slider .carousel-caption h2 {
+    #home .carousel-caption h2 {
         font-size: 38px;
     }
 
-    #main-slider .carousel-caption h4 {
+    #home .carousel-caption h4 {
         font-size: 24px;
     }
 
-    #main-slider .carousel-caption a {
+    #home .carousel-caption a {
         font-size: 22px;
         color: #2da1c5;
     }
 
-        #main-slider .carousel-caption a:hover {
+        #home .carousel-caption a:hover {
             color: #2588a6;
         }
 
-            #main-slider .carousel-caption a:hover i {
+            #home .carousel-caption a:hover i {
                 margin-left: 35px;
             }
 
-        #main-slider .carousel-caption a i {
+        #home .carousel-caption a i {
             margin-left: 15px;
             -webkit-transition: all 0.3s ease-in-out;
             -moz-transition: all 0.3s ease-in-out;
@@ -903,4 +903,8 @@ h2 {
     border: 1px solid black;
     border-radius: 20px;
     padding: 10px;
+}
+.header {
+text-align:center;
+font-weight:bold;
 }
