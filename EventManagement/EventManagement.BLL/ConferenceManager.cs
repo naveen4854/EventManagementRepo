@@ -105,7 +105,7 @@ namespace EventManagement.BLL
             }
         }
 
-        public void AddConferenceTeam(ConferenceTeamDTO obj)
+        public void AddConferenceTeam(TeamMemberDTO obj)
         {
             obj.ImageUrl = _uploadHelper.UploadFile(obj.ImageUpload, "~/content/images/confteam");
             confOperations.AddConferenceTeam(obj);
@@ -223,6 +223,22 @@ namespace EventManagement.BLL
         public int GetAccompanyPrice(int accompanyId, int confId)
         {
             return confOperations.GetAccompanyPrice(accompanyId, confId);
+        }
+
+        public TeamMemberDTO GetTeamMember(int id)
+        {
+            return confOperations.GetTeamMember(id);
+        }
+
+        public bool UpdateTeamMember(TeamMemberDTO obj)
+        {
+            //obj.ImageUrl = _uploadHelper.UploadFile(obj.ImageUpload, "~/content/images/confteam");
+            return confOperations.UpdateTeamMember(obj);
+        }
+
+        public TeamMemberDTO DeleteTeamMember(int id)
+        {
+            return confOperations.DeleteTeamMember(id);
         }
     }
 }

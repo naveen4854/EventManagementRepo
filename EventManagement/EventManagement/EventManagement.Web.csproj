@@ -297,12 +297,10 @@
     <Content Include="Views\Error\ErrMsg.cshtml" />
     <Content Include="Views\CMS\AllConferencePrograms.cshtml" />
     <Content Include="Views\CMS\AllConferences.cshtml" />
-    <Content Include="Views\CMS\AllConferenceTeams.cshtml" />
     <Content Include="Views\CMS\AllTracks.cshtml" />
     <Content Include="Views\CMS\AllVenues.cshtml" />
     <Content Include="Views\CMS\ConferencePrograms.cshtml" />
     <Content Include="Views\CMS\NewConference.cshtml" />
-    <Content Include="Views\CMS\ConferenceTeams.cshtml" />
     <Content Include="Views\CMS\Index.cshtml" />
     <Content Include="Views\CMS\NewTrack.cshtml" />
     <Content Include="Views\CMS\Venue.cshtml" />
@@ -318,6 +316,10 @@
     <Content Include="Views\CMS\NewImage.cshtml" />
     <Content Include="Views\CMS\AllImages.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Conference\PartialTeam.cshtml" />
+    <Content Include="Views\CMS\AllTeamMembers.cshtml" />
+    <Content Include="Views\CMS\NewTeamMember.cshtml" />
+    <Content Include="Views\CMS\TeamMember.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

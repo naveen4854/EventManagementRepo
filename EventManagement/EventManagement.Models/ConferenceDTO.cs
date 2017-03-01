@@ -17,7 +17,7 @@ namespace EventManagement.DataModels
         public DateTime StartDt { get; set; }
         public DateTime EndDt { get; set; }
         public List<string> ImageUrls { get; set; }
-        public List<ConferenceTeamDTO> Team { get; set; }
+        public List<TeamMemberDTO> Team { get; set; }
         public VenueDTO Venue { get; set; }
         public List<ProgramDTO> Programs { get; set; }
         public IEnumerable<HttpPostedFileBase> ImagesUpload { get; set; }

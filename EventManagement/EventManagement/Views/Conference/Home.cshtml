@@ -5,10 +5,83 @@
     Layout = "~/Views/Shared/_ConferenceLayout.cshtml";
 }
 
-<section id="home">
-    @{ Html.RenderAction("PartialHome", "Conference", new { obj = Model }); }
-</section>
+<div id="confHome">
+    <section id="home">
+        @{ Html.RenderAction("PartialHome", "Conference", new { obj = Model }); }
+    </section>
 
-<section id="venue">
-    @{ Html.RenderAction("PartialVenue", "Conference", new { venue = Model.Venue }); }
-</section>
+    <section id="team">
+        @{ Html.RenderAction("PartialTeam", "Conference", new { id = Model.Id }); }
+    </section>
+
+    <section id="about">
+        <div class="about-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="contact-text">
+                            <h2 style="text-align: center;font-weight: bold;">About @Model.Name</h2>
+                            <p>@Model.Desc</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="about-content">
+            <div class="container">
+                <h3 style="text-align: center;font-weight: bold;">Program Schedule</h3>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="col-md-4">
+                            <div class="border">
+                                <p>Day 1</p>
+                                <p>8:00 &ndash; 9:00 Registrations</p>
+                                <p>9:00 &ndash; 9:30 Opening Ceremony</p>
+                                <p>09:30 &ndash; 11:00 Keynote Sessions</p>
+                                <p>11:00- 11:15 Coffee break</p>
+                                <p>11:15-13:00- Keynote sessions</p>
+                                <p>13:00 &ndash; 14:00 Lunch with round table</p>
+                                <p>discussions</p>
+                                <p>14:00-15:00 Plenary sessions</p>
+                                <p>15:00-15:15- Coffee Break</p>
+                                <p>15:15-17:00- Plenary sessions</p>
+                                <p>18:00-19:00- cocktail party with music</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="border">
+                                <p>Day 2</p>
+                                <p>9:00-11:00 plenary sessions</p>
+                                <p>11:00-11:15 Coffee Break</p>
+                                <p>11:15-13:00 plenary sessions</p>
+                                <p>13:00-14:00 Lunch with round</p>
+                                <p>table discussion</p>
+                                <p>14:00-15:00 Plenary sessions</p>
+                                <p>15:00- 17:00 Poster sessions</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="border">
+                                <p>Day 3</p>
+                                <p>9:00-11:00 Plenary sessions</p>
+                                <p>11:00-11:15 Coffee Break</p>
+                                <p>11:15-13:00 plenary sessions</p>
+                                <p>13:00-14:00 Lunch with round table</p>
+                                <p>discussion</p>
+                                <p>14:00-16:00 Plenary sessions</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="venue">
+        @{ Html.RenderAction("PartialVenue", "Conference", new { venue = Model.Venue }); }
+    </section>
+</div>
+

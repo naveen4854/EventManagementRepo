@@ -421,8 +421,11 @@ h2 {
 
     .single-event h5 {
         font-size: 18px;
-        font-weight: 100;
+        /*font-weight: 100;*/
         display: block;
+        color: black;
+        font-family: 'Dosis',sans-serif;
+        font-weight: normal;
     }
 
 #event-carousel {
@@ -841,7 +844,8 @@ h2 {
 
 #confHome .btn {
     background: rgba(255,255,255,.3);
-    color: white;
+    color: black;
+    font-weight: bold;
     border-radius: 7px;
     text-align: center;
     font-size: 1.7rem;
@@ -870,16 +874,33 @@ h2 {
         text-transform: uppercase;
     }
 
+#confHome .about-content {
+    width: 100%;
+    background-image: none !important;
+    background-position: left bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 5px 70px 23px;
+}
+
+#confHome #about {
+    background-color: inherit !important;
+    position: relative;
+    width: 100%;
+    display: flex;
+}
+
 #home .img {
     border-radius: 30px;
 }
-#home #main-slider .item{
-    max-height:100vh;
+
+#home #main-slider .item {
+    max-height: 100vh;
 }
 
-#homeabout .border {
-    height: 300px;
+.border {
+    height: 100%;
     border: 1px solid black;
-    border-radius:20px;
-    padding:10px;
+    border-radius: 20px;
+    padding: 10px;
 }

@@ -217,6 +217,60 @@ namespace EventManagement.DAL.Operations
             return true;
         }
 
+        public bool UpdateTeamMember(TeamMemberDTO obj)
+        {
+            ConferenceTeam teamMem;
+            using (var entities = new EventManagementEntities())
+            {
+                teamMem = entities.ConferenceTeams.Where(q => q.Id == obj.Id).FirstOrDefault();
+            }
+            if (teamMem != null)
+            {
+                teamMem.Name = obj.Name;
+                teamMem.Biography = obj.Biography;
+                teamMem.Chair = obj.isChair;
+                //teamMem.ImageUrl = obj.ImageUrl;
+                teamMem.Info = obj.Info;
+                //teamMem.FK_ConferenceId = obj.ConferenceId;
+            }
+            using (var entitiesX = new EventManagementEntities())
+            {
+                entitiesX.Entry(teamMem).State = EntityState.Modified;
+                entitiesX.SaveChanges();
+            }
+            return true;
+        }
+
+        public TeamMemberDTO DeleteTeamMember(int id)
+        {
+            ConferenceTeam teamMem;
+            using (var entities = new EventManagementEntities())
+            {
+                teamMem = entities.ConferenceTeams.Where(q => q.Id == id).FirstOrDefault();
+            }
+            using (var entitiesX = new EventManagementEntities())
+            {
+                entitiesX.Entry(teamMem).State = EntityState.Deleted;
+                entitiesX.SaveChanges();
+            }
+            return new TeamMemberDTO { Id = teamMem.Id, ConferenceId = teamMem.FK_ConferenceId };
+        }
+
+        public TeamMemberDTO GetTeamMember(int id)
+        {
+            var teamMem = managementConsoleEntities.ConferenceTeams.Where(q => q.Id == id).FirstOrDefault();
+            return new TeamMemberDTO
+            {
+                Id = teamMem.Id,
+                ConferenceId = teamMem.FK_ConferenceId,
+                Name = teamMem.Name,
+                Info = teamMem.Info,
+                isChair = teamMem.Chair,
+                Biography = teamMem.Biography,
+                ImageUrl = teamMem.ImageUrl
+            };
+        }
+
         public int GetAccPrice(int accTypeId, int occId, int confId)
         {
             return managementConsoleEntities.AccommodationPricings.Where(q => q.FK_AccomodationTypeId == accTypeId && q.FK_OccupancyId == occId && q.FK_ConferenceId == confId).FirstOrDefault().Amout;
@@ -295,7 +349,7 @@ namespace EventManagement.DAL.Operations
             };
         }
 
-        public bool AddConferenceTeam(ConferenceTeamDTO obj)
+        public bool AddConferenceTeam(TeamMemberDTO obj)
         {
             var a = new ConferenceTeam
             {
@@ -419,8 +473,9 @@ namespace EventManagement.DAL.Operations
 
         public ConferenceDTO GetConferenceTeam(int id)
         {
-            var conf = managementConsoleEntities.ConferenceTeams.Where(q => q.FK_ConferenceId == id && !q.Chair).Select(q => new ConferenceTeamDTO
+            var conf = managementConsoleEntities.ConferenceTeams.Where(q => q.FK_ConferenceId == id && !q.Chair).Select(q => new TeamMemberDTO
             {
+                Id= q.Id,
                 ConferenceId = q.FK_ConferenceId,
                 Name = q.Name,
                 Info = q.Info,
@@ -436,7 +491,7 @@ namespace EventManagement.DAL.Operations
 
         public ConferenceDTO GetConferenceChair(int id)
         {
-            var conf = managementConsoleEntities.ConferenceTeams.Where(q => q.FK_ConferenceId == id && q.Chair).Select(q => new ConferenceTeamDTO
+            var conf = managementConsoleEntities.ConferenceTeams.Where(q => q.FK_ConferenceId == id && q.Chair).Select(q => new TeamMemberDTO
             {
                 ConferenceId = q.FK_ConferenceId,
                 Name = q.Name,

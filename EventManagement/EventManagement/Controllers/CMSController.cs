@@ -159,7 +159,7 @@ namespace EventManagement.Controllers
                     if (tracks.Count > 0)
                         return View("AllTracks", tracks);
                     else
-                        return RedirectToAction("AddTrack", "CMS", new { id = confid.Value });
+                        return RedirectToAction("NewTrack", "CMS");
                 }
                 
             }
@@ -222,25 +222,66 @@ namespace EventManagement.Controllers
 
         #region team
 
-        public ActionResult ConferenceTeams()
+        public ActionResult NewTeamMember()
         {
             ViewBag.Conferences = _confManager.GetConferences();
             return View();
         }
 
-        [HttpPost]
-        public ActionResult AddConferenceTeam(ConferenceTeamDTO obj)
+        public ActionResult TeamMember(int id)
         {
-            _confManager.AddConferenceTeam(obj);
-            var confDto = _confManager.GetConferenceTeam(obj.ConferenceId);
-            return PartialView("AllConferenceTeams", confDto.Team);
+            ViewBag.Conferences = _confManager.GetConferences();
+            var teamMem = _confManager.GetTeamMember(id);
+            return View(teamMem);
         }
 
-        public ActionResult AllConferenceTeams(int id)
+        [HttpPost]
+        public ActionResult AddTeamMember(TeamMemberDTO obj)
         {
-            var confDto = _confManager.GetConferenceTeam(id);
-            return PartialView("AllConferenceTeams", confDto.Team);
+            _confManager.AddConferenceTeam(obj);
+            return RedirectToAction("AllTeamMembers", obj.ConferenceId);
         }
+
+        [HttpPost]
+        public ActionResult UpdateTeamMember(TeamMemberDTO obj)
+        {
+            _confManager.UpdateTeamMember(obj);
+            return RedirectToAction("AllTeamMembers", obj.ConferenceId);
+        }
+
+        public ActionResult DeleteTeamMember(int id)
+        {
+            var obj = _confManager.DeleteTeamMember(id);
+            return RedirectToAction("AllTeamMembers", obj.ConferenceId);
+        }
+
+        public ActionResult AllTeamMembers(int? confid)
+        {
+            var confs = _confManager.GetConferences();
+            ViewBag.Conferences = _confManager.GetConferences();
+            if (confs.Count > 0)
+            {
+                if (confid == null)
+                {
+                    ViewBag.ConfId = confs.FirstOrDefault().Id;
+                    var conf = _confManager.GetConferenceTeam(confs.FirstOrDefault().Id);
+                    return View("AllTeamMembers", conf.Team);
+                }
+                else
+                {
+                    ViewBag.ConfId = confid.Value;
+                    var conf = _confManager.GetConferenceTeam(confid.Value);
+                    if (conf.Team.Count > 0)
+                        return View("AllTeamMembers", conf.Team);
+                    else
+                        return RedirectToAction("NewTeamMember", "CMS");
+                }
+
+            }
+            else
+                return RedirectToAction("AddConference", "CMS");
+        }
+
 
         #endregion team
 

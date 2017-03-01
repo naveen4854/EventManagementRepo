@@ -36,6 +36,13 @@ namespace EventManagement.Controllers
             return View(_confManager.GetConferenceTeam(id));
         }
 
+        [Route("Conference/{id}/PartialTeam")]
+        public ActionResult PartialTeam(int id)
+        {
+            ViewData["ConferenceId"] = id;
+            return PartialView(_confManager.GetConferenceTeam(id));
+        }
+
         [Route("Conference/{id}/Chair")]
         public ActionResult Chair(int id)
         {
