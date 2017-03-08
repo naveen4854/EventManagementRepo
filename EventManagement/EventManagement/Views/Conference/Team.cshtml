@@ -3,37 +3,41 @@
     ViewBag.Title = "Team";
     Layout = "~/Views/Shared/_ConferenceLayout.cshtml";
 }
-<div id="conferenceTeam" class="NotHome">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div id="event-carousel" class="carousel slide" data-interval="false">
-                    <h2 class="heading">Our Organising Committe</h2>
-                    <a class="even-control-left" href="#event-carousel" data-slide="prev"><i class="fa fa-angle-left"></i></a>
-                    <a class="even-control-right" href="#event-carousel" data-slide="next"><i class="fa fa-angle-right"></i></a>
-                    <div class="carousel-inner">
-                        @for (int i = 0; i <= Model.Team.Count() / 4; i++)
-                        {
-                            <div class="item @if (i == 0) { <text>active</text>} ">
-                                <div class="row">
-                                    @{ var obj = Model.Team.Skip(i * 4).Take(4);}
-                                    @foreach (var mem in obj)
-                                    {
-                                        <div class="col-sm-3">
-                                            <div class="single-event pointer">
-                                                <img class="img-responsive" src="@Url.Content("~/Content/images/confteam/" + mem.ImageUrl)" alt="event-image">
-                                                <h4>@mem.Name</h4>
-                                                <h5>@mem.Info</h5>
-                                            </div>
+@{ 
+    if (Model.Team.Count() > 0)
+    {
+        <div id="conferenceTeam" class="NotHome">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div id="event-carousel" class="carousel slide" data-interval="false">
+                            <h2 class="heading">Our Organising Committe</h2>
+                            <a class="even-control-left" href="#event-carousel" data-slide="prev"><i class="fa fa-angle-left"></i></a>
+                            <a class="even-control-right" href="#event-carousel" data-slide="next"><i class="fa fa-angle-right"></i></a>
+                            <div class="carousel-inner">
+                                @for (int i = 0; i <= Model.Team.Count() / 4; i++)
+                                {
+                                    <div class="item @if (i == 0) { <text>active</text>} ">
+                                        <div class="row">
+                                            @{ var obj = Model.Team.Skip(i * 4).Take(4);}
+                                            @foreach (var mem in obj)
+                                            {
+                                                <div class="col-sm-3">
+                                                    <div class="single-event pointer">
+                                                        <img class="img-responsive" src="@Url.Content("~/Content/images/confteam/" + mem.ImageUrl)" alt="event-image">
+                                                        <h4>@mem.Name</h4>
+                                                        <h5>@mem.Info</h5>
+                                                    </div>
+                                                </div>
+                                            }
                                         </div>
-                                    }
-                                </div>
+                                    </div>
+                                                }
                             </div>
-                                        }
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-
+                                                }
+}

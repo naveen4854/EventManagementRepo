@@ -41,10 +41,10 @@ $(function ($) {
         interval: false
     });
 
-    $('.post').addClass("hidden").viewportChecker({
-        classToAdd: 'visible animated bounceInLeft', // Class to add to the elements when they are visible
-        offset: 100
-    });
+    //$('.post').addClass("hidden").viewportChecker({
+    //    classToAdd: 'visible animated bounceInLeft', // Class to add to the elements when they are visible
+    //    offset: 100
+    //});
 
 
     //	// Contact form validation
