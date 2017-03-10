@@ -917,9 +917,44 @@ h2 {
     text-align: center;
     font-weight: bold;
 }
+
 .txtArea {
     width: 100%;
     resize: none;
     border-radius: 5px;
     height: 100px;
+}
+
+.grey {
+    background-color: rgba(128,128,128,.25);
+}
+
+.blue {
+    background-color: #1aa3ff;
+}
+
+.pink {
+    background-color: rgba(255,0,0,.25);
+}
+
+.red {
+    background-color: #ff3333;
+}
+
+.NoBg {
+    background: none;
+    background-color: none;
+}
+
+
+#regTab th {
+    text-align: center;
+}
+
+#regTab tr {
+    text-align: center;
+}
+
+.txtctr {
+    text-align: center;
 }

@@ -4,7 +4,7 @@
     ViewBag.Title = "registration";
     Layout = "~/Views/Shared/_ConferenceLayout.cshtml";
 }
-<div class="NotHome">
+<div class="NotHome NoBg">
     <h2>Registration</h2>
 
     @using (Html.BeginForm("test", "conference", new { name = "form1" }))
@@ -129,7 +129,7 @@
                     </div>
                     <div class="col-md-2">
                         <div class="form-group">
-                            <label id="lblTotalPrice"></label>
+                            <label id="lblTotalPrice1"></label>
                         </div>
                     </div>
                 </div>
@@ -143,19 +143,19 @@
                     @Html.EditorFor(m => m.acc)
                 </div>*@
 
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Register" class="btn btn-default" />
-                </div>
-            </div>
 
-            <div class="table-responsive">
-                <table class="table table-bordered">
+            <div class="table-responsive" id="regTab">
+                <table class="table">
+                    <colgroup>
+                        <col class="grey" style="text-align:left" />
+                        <col class="blue" span="2" />
+                        <col class="pink" span="2" />
+                        <col class="red" span="2" />
+                    </colgroup>
                     <thead>
                         <tr>
                             <th style="border:none">
                                 &nbsp;
-
                             </th>
                             <th style="width:200px" colspan="2">
                                 Earlybird Registration on/before<br>March 10, 2017
@@ -338,7 +338,6 @@
                             </td>
                             <td colspan="2">
                                 <input type="radio" name="r5" value="660" onclick="return update_price1()" />  $660(Triple Occupancy)
-                                <
                         </tr>
                         <tr>
                             <td>
@@ -357,17 +356,37 @@
                         </tr>
                     </tbody>
                 </table>
-                <div>Price in $: <input name="price" type="text" id="price" value="" size="20" autocomplete="off" readonly="on" style="color:#FFFFFF; background-color:#EF7247; font-weight:600;" /></div>
+
+                <div class="col-12 txtctr" style="padding:20px">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Total Price($)</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6 txtctr">
+                        <div class="form-group">
+                            <label name="price" id="lblTotalPrice"></label>
+                        </div>
+                    </div>
+                </div>
             </div>
 
+
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Register" class="btn btn-default" />
+                </div>
+            </div>
         </div>
     }
 </div>
 <script type="text/JavaScript">
     $(document).ready(function () {
-        retriveRegPrice();
-        retriveAccPrice();
-        getAccompanyPrice();
+        disable_radio();
+        //retriveRegPrice();
+        //retriveAccPrice();
+        //getAccompanyPrice();
     });
 
     function retriveRegPrice() {
@@ -459,12 +478,15 @@
                 document.forms[0].r2[j].checked = false;
                 document.forms[0].r3[j].checked = false;
                 document.forms[0].r4[j].checked = false;
-                document.forms[0].price.value = "";
+                $('#lblTotalPrice').text("");
+
+                //document.forms[0].price.value = "";
                 document.forms[0].r1[0].disabled = true;
                 document.forms[0].r1[1].disabled = true;
                 document.forms[0].r1[2].checked = true;
 
-                document.forms[0].price.value = document.forms[0].r1[2].value;
+                $('#lblTotalPrice').text(document.forms[0].r1[2].value);
+                //document.forms[0].price.value = document.forms[0].r1[2].value;
                 document.forms[0].accompnyingperson.disabled = false;
                 document.forms[0].accompnyingperson.checked = false;
 
@@ -473,7 +495,8 @@
         else {
             for (var j = 0; j < document.forms[0].r2.length; j++) {
                 document.forms[0].r1[j].checked = false;
-                document.forms[0].price.value = "";
+                $('#lblTotalPrice').text("");
+                //document.forms[0].price.value = "";
                 document.forms[0].r1[j].disabled = true;
                 document.forms[0].r5[j].checked = false;
             }
@@ -495,12 +518,14 @@
                 document.forms[0].r1[j].checked = false;
                 document.forms[0].r3[j].checked = false;
                 document.forms[0].r4[j].checked = false;
-                document.forms[0].price.value = "";
+                $('#lblTotalPrice').text("");
+                //document.forms[0].price.value = "";
                 document.forms[0].r2[0].disabled = true;
                 document.forms[0].r2[1].disabled = true;
                 document.forms[0].r2[2].checked = true;
 
-                document.forms[0].price.value = document.forms[0].r2[2].value;
+                $('#lblTotalPrice').text(document.forms[0].r2[2].value);
+                //document.forms[0].price.value = document.forms[0].r2[2].value;
                 document.forms[0].accompnyingperson.disabled = false;
                 document.forms[0].accompnyingperson.checked = false;
             }
@@ -508,7 +533,8 @@
         else {
             for (var j = 0; j < document.forms[0].r2.length; j++) {
                 document.forms[0].r2[j].checked = false;
-                document.forms[0].price.value = "";
+                $('#lblTotalPrice').text("");
+                //document.forms[0].price.value = "";
                 document.forms[0].r2[j].disabled = true;
                 document.forms[0].r5[j].checked = false;
             }
@@ -529,12 +555,14 @@
                 document.forms[0].r1[j].checked = false;
                 document.forms[0].r2[j].checked = false;
                 document.forms[0].r4[j].checked = false;
-                document.forms[0].price.value = "";
+                $('#lblTotalPrice').text("");
+                //document.forms[0].price.value = "";
                 document.forms[0].r3[0].disabled = true;
                 document.forms[0].r3[1].disabled = true;
                 document.forms[0].r3[2].checked = true;
 
-                document.forms[0].price.value = document.forms[0].r3[3].value;
+                $('#lblTotalPrice').text(document.forms[0].r3[3].value);
+                //document.forms[0].price.value = document.forms[0].r3[3].value;
                 document.forms[0].accompnyingperson.disabled = false;
                 document.forms[0].accompnyingperson.checked = false;
             }
@@ -542,7 +570,8 @@
         else {
             for (var j = 0; j < document.forms[0].r2.length; j++) {
                 document.forms[0].r3[j].checked = false;
-                document.forms[0].price.value = "";
+                $('#lblTotalPrice').text("");
+                //document.forms[0].price.value = "";
                 document.forms[0].r3[j].disabled = true;
                 document.forms[0].r5[j].checked = false;
             }
@@ -563,12 +592,14 @@
                 document.forms[0].r1[j].checked = false;
                 document.forms[0].r2[j].checked = false;
                 document.forms[0].r3[j].checked = false;
-                document.forms[0].price.value = "";
+                $('#lblTotalPrice').text("");
+                //document.forms[0].price.value = "";
                 document.forms[0].r4[0].disabled = true;
                 document.forms[0].r4[1].disabled = true;
                 document.forms[0].r4[2].checked = true;
 
-                document.forms[0].price.value = document.forms[0].r4[2].value;
+                $('#lblTotalPrice').text(document.forms[0].r4[2].value);
+                //document.forms[0].price.value = document.forms[0].r4[2].value;
                 document.forms[0].accompnyingperson.disabled = false;
                 document.forms[0].accompnyingperson.checked = false;
             }
@@ -576,7 +607,8 @@
         else {
             for (var j = 0; j < document.forms[0].r2.length; j++) {
                 document.forms[0].r4[j].checked = false;
-                document.forms[0].price.value = "";
+                $('#lblTotalPrice').text("");
+                //document.forms[0].price.value = "";
                 document.forms[0].r4[j].disabled = true;
                 document.forms[0].r5[j].checked = false;
             }
@@ -586,20 +618,27 @@
     }
 
     function accompnyingperson_reg() {
-        var amount = parseInt(document.forms[0].price.value);
+        var amount = parseInt($('#lblTotalPrice').text());
+        //var amount = parseInt(document.forms[0].price.value);
         if (document.forms[0].accompnyingperson.checked == true) {
             if (amount > 0) {
-                var total_amount = parseInt(document.forms[0].price.value) + 200;
-                document.forms[0].price.value = total_amount;
+                var total_amount = parseInt($('#lblTotalPrice').text()) + 200;
+                //var total_amount = parseInt(document.forms[0].price.value) + 200;
+                $('#lblTotalPrice').text(total_amount);
+                //document.forms[0].price.value = total_amount;
             }
             else {
-                document.forms[0].price.value = 100;
+                $('#lblTotalPrice').text(100);
+                //document.forms[0].price.value = 100;
             }
         }
         else {
-            if (parseInt(document.forms[0].price.value) > 300) {
-                var total_amount = parseInt(document.forms[0].price.value) - 200;
-                document.forms[0].price.value = total_amount;
+            if (parseInt($('#lblTotalPrice').text()) > 300) {
+                //if (parseInt(document.forms[0].price.value) > 300) {
+                var total_amount = parseInt($('#lblTotalPrice').text()) - 200;
+                //var total_amount = parseInt(document.forms[0].price.value) - 200;
+                $('#lblTotalPrice').text(total_amount);
+                //document.forms[0].price.value = total_amount;
             }
         }
     }
@@ -607,34 +646,42 @@
         for (var i = 0; i < document.forms[0].r1.length; i++) {
             if (document.forms[0].r1[i].checked == true) {
                 if (document.forms[0].accompnyingperson.checked == true) {
-                    document.forms[0].price.value = parseInt(document.forms[0].r1[i].value) + 200;
+                    $('#lblTotalPrice').text( parseInt(document.forms[0].r1[i].value) + 200);
+                    //document.forms[0].price.value = parseInt(document.forms[0].r1[i].value) + 200;
                 }
                 else {
-                    document.forms[0].price.value = document.forms[0].r1[i].value;
+                    $('#lblTotalPrice').text(document.forms[0].r1[i].value);
+                    //document.forms[0].price.value = document.forms[0].r1[i].value;
                 }
             }
             if (document.forms[0].r2[i].checked == true) {
                 if (document.forms[0].accompnyingperson.checked == true) {
-                    document.forms[0].price.value = parseInt(document.forms[0].r2[i].value) + 200;
+                    $('#lblTotalPrice').text(parseInt(document.forms[0].r2[i].value) + 200);
+                    //document.forms[0].price.value = parseInt(document.forms[0].r2[i].value) + 200;
                 }
                 else {
-                    document.forms[0].price.value = document.forms[0].r2[i].value;
+                    $('#lblTotalPrice').text(document.forms[0].r2[i].value);
+                    //document.forms[0].price.value = document.forms[0].r2[i].value;
                 }
             }
             if (document.forms[0].r3[i].checked == true) {
                 if (document.forms[0].accompnyingperson.checked == true) {
-                    document.forms[0].price.value = parseInt(document.forms[0].r3[i].value) + 200;
+                    $('#lblTotalPrice').text(parseInt(document.forms[0].r3[i].value) + 200);
+                    //document.forms[0].price.value = parseInt(document.forms[0].r3[i].value) + 200;
                 }
                 else {
-                    document.forms[0].price.value = document.forms[0].r3[i].value;
+                    $('#lblTotalPrice').text(document.forms[0].r3[i].value);
+                    //document.forms[0].price.value = document.forms[0].r3[i].value;
                 }
             }
             if (document.forms[0].r4[i].checked == true) {
                 if (document.forms[0].accompnyingperson.checked == true) {
-                    document.forms[0].price.value = parseInt(document.forms[0].r4[i].value) + 200;
+                    $('#lblTotalPrice').text(parseInt(document.forms[0].r4[i].value) + 200);
+                    //document.forms[0].price.value = parseInt(document.forms[0].r4[i].value) + 200;
                 }
                 else {
-                    document.forms[0].price.value = document.forms[0].r4[i].value;
+                    $('#lblTotalPrice').text(document.forms[0].r4[i].value);
+                    //document.forms[0].price.value = document.forms[0].r4[i].value;
                 }
             }
         }
@@ -670,10 +717,12 @@
         for (var i = 0; i < document.forms[0].r5.length; i++) {
             if (document.forms[0].r5[i].checked == true) {
                 if (amount_ori != "") {
-                    document.forms[0].price.value = parseInt(amount_ori) + parseInt(document.forms[0].r5[i].value);
+                    $('#lblTotalPrice').text(parseInt(amount_ori) + parseInt(document.forms[0].r5[i].value));
+                    //document.forms[0].price.value = parseInt(amount_ori) + parseInt(document.forms[0].r5[i].value);
                 }
                 else {
-                    document.forms[0].price.value = parseInt(document.forms[0].r5[i].value);
+                    $('#lblTotalPrice').text(parseInt(document.forms[0].r5[i].value));
+                    //document.forms[0].price.value = parseInt(document.forms[0].r5[i].value);
                 }
 
             }
