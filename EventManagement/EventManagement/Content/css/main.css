@@ -917,3 +917,9 @@ h2 {
     text-align: center;
     font-weight: bold;
 }
+.txtArea {
+    width: 100%;
+    resize: none;
+    border-radius: 5px;
+    height: 100px;
+}

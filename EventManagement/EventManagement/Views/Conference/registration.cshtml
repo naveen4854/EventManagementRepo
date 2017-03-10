@@ -7,7 +7,7 @@
 <div class="NotHome">
     <h2>Registration</h2>
 
-    @using (Html.BeginForm("test", "conference"))
+    @using (Html.BeginForm("test", "conference", new { name = "form1" }))
     {
         @Html.AntiForgeryToken()
 
@@ -47,8 +47,8 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="col-md-6">
-                            @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control", @placeholder = "Billing Address" } })
+                        <div class="col-md-12">
+                            @Html.TextAreaFor(model => model.Address, new { @class = "form-control txtArea", @placeholder = "Billing Address" })
                             @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -148,8 +148,219 @@
                     <input type="submit" value="Register" class="btn btn-default" />
                 </div>
             </div>
-        </div>
 
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th style="border:none">
+                                &nbsp;
+
+                            </th>
+                            <th style="width:200px" colspan="2">
+                                Earlybird Registration on/before<br>March 10, 2017
+                            </th>
+                            <th style="width:200px" colspan="2">
+                                Standard Registration on/before<br>March 13, 2017
+                            </th>
+                            <th style="width:200px" colspan="2">
+                                On Spot Registration on<br>March 27, 2017
+                            </th>
+                    </thead>
+                    <thead>
+                        <tr>
+                            <th style="border:none">
+                                &nbsp;
+
+                            </th>
+                            <th>
+                                Academia
+                            </th>
+                            <th>
+                                Business
+                            </th>
+                            <th>
+                                Academia
+                            </th>
+                            <th>
+                                Business
+                            </th>
+                            <th>
+                                Academia
+                            </th>
+                            <th>
+                                Business
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="speaker" id="speaker" onclick="return speaker_reg()" />  Speaker Registration
+                            </td>
+                            <td>
+                                <input type="radio" name="r1" value="699" onclick="return update_price()" />  $699
+                            </td>
+                            <td>
+                                <input type="radio" name="r1" value="799" onclick="return update_price()" />  $799
+                            </td>
+                            <td>
+                                <input type="radio" name="r1" value="799" onclick="return update_price()" />  $799
+                            </td>
+                            <td>
+                                <input type="radio" name="r1" value="899" onclick="return update_price()" />  $899
+                            </td>
+                            <td>
+                                <input type="radio" name="r1" value="899" onclick="return update_price()" />  $899
+                            </td>
+                            <td>
+                                <input type="radio" name="r1" value="999" onclick="return update_price()" />  $999
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="poster" id="poster" onclick="return poster_reg()" />  Poster Registration
+                            </td>
+                            <td>
+                                <input type="radio" name="r2" value="399" onclick="return update_price()" />  $399
+                            </td>
+                            <td>
+                                <input type="radio" name="r2" value="499" onclick="return update_price()" />  $499
+                            </td>
+                            <td>
+                                <input type="radio" name="r2" value="499" onclick="return update_price()" />  $499
+                            </td>
+                            <td>
+                                <input type="radio" name="r2" value="599" onclick="return update_price()" />  $599
+                            </td>
+                            <td>
+                                <input type="radio" name="r2" value="599" onclick="return update_price()" />  $599
+                            </td>
+                            <td>
+                                <input type="radio" name="r2" value="699" onclick="return update_price()" />  $699
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="delegate" id="delegate" onclick="return delegate_reg()" />  Delegate Registration
+                            </td>
+                            <td>
+                                <input type="radio" name="r3" value="599" onclick="return update_price()" />  $599
+                            </td>
+                            <td>
+                                <input type="radio" name="r3" value="699" onclick="return update_price()" />  $699
+                            </td>
+                            <td>
+                                <input type="radio" name="r3" value="699" onclick="return update_price()" />  $699
+                            </td>
+                            <td>
+                                <input type="radio" name="r3" value="799" onclick="return update_price()" />  $799
+                            </td>
+                            <td>
+                                <input type="radio" name="r3" value="799" onclick="return update_price()" />  $799
+                            </td>
+                            <td>
+                                <input type="radio" name="r3" value="899" onclick="return update_price()" />  $899
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="student" id="student" value="180" onclick="return student_reg()" />  Student Delegate
+                            </td>
+                            <td>
+                                <input type="radio" name="r4" value="299" onclick="return update_price()" />  $299
+                            </td>
+                            <td>
+                                <input type="radio" name="r4" value="299" onclick="return update_price()" />  $299
+                            </td>
+                            <td>
+                                <input type="radio" name="r4" value="299" onclick="return update_price()" />  $299
+                            </td>
+                            <td>
+                                <input type="radio" name="r4" value="299" onclick="return update_price()" />  $299
+                            </td>
+                            <td>
+                                <input type="radio" name="r4" value="299" onclick="return update_price()" />  $299
+                            </td>
+                            <td>
+                                <input type="radio" name="r4" value="299" onclick="return update_price()" />  $299
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="accompnyingperson" onclick="return accompnyingperson_reg()" />  Accompanying Person
+                            </td>
+                            <td>
+                                $200
+                            </td>
+                            <td>
+                                $200
+                            </td>
+                            <td>
+                                $200
+                            </td>
+                            <td>
+                                $200
+                            </td>
+                            <td>
+                                $200
+                            </td>
+                            <td>
+                                $200
+                            </td>
+                        </tr>
+                        <tr><td colspan="7"><div align="center"><strong>Accommodation</strong></div></td></tr>
+                        <tr>
+                            <td>
+                                <strong>For 2 Nights (March 26-28, 2017)</strong>
+
+                            </td>
+                            <td colspan="2">
+                                <input type="radio" name="r5" value="360" onclick="return update_price1()" />  $360(Single Occupancy)
+                            </td>
+                            <td colspan="2">
+                                <input type="radio" name="r5" value="400" onclick="return update_price1()" />  $400(Double Occupancy)
+                            </td>
+                            <td colspan="2">
+                                <input type="radio" name="r5" value="440" onclick="return update_price1()" />  $440(Triple Occupancy)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>For 3 Nights (March 26-29, 2017)</strong>
+
+                            </td>
+                            <td colspan="2">
+                                <input type="radio" name="r5" value="540" onclick="return update_price1()" />  $540(Single Occupancy)
+                            </td>
+                            <td colspan="2">
+                                <input type="radio" name="r5" value="600" onclick="return update_price1()" />  $600(Double Occupancy)
+                            </td>
+                            <td colspan="2">
+                                <input type="radio" name="r5" value="660" onclick="return update_price1()" />  $660(Triple Occupancy)
+                                <
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>For 4 Nights (March 26-30, 2017)</strong>
+
+                            </td>
+                            <td colspan="2">
+                                <input type="radio" name="r5" value="720" onclick="return update_price1()" />  $720(Single Occupancy)
+                            </td>
+                            <td colspan="2">
+                                <input type="radio" name="r5" value="800" onclick="return update_price1()" />  $800(Double Occupancy)
+                            </td>
+                            <td colspan="2">
+                                <input type="radio" name="r5" value="880" onclick="return update_price1()" />  $880(Triple Occupancy)
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div>Price in $: <input name="price" type="text" id="price" value="" size="20" autocomplete="off" readonly="on" style="color:#FFFFFF; background-color:#EF7247; font-weight:600;" /></div>
+            </div>
+
+        </div>
     }
 </div>
 <script type="text/JavaScript">
@@ -231,4 +442,252 @@
         $('#lblTotalPrice').text(total.txt);
         $('#lblTotalPrice').prop('data-val', total.amt);
     }
+
+
+
+    function speaker_reg() {
+        if (document.forms[0].speaker.checked == true) {
+
+            for (var j = 0; j < document.forms[0].r2.length; j++) {
+                document.forms[0].r1[j].disabled = false;
+                document.forms[0].r2[j].disabled = true;
+                document.forms[0].r3[j].disabled = true;
+                document.forms[0].r4[j].disabled = true;
+                document.forms[0].poster.checked = false;
+                document.forms[0].delegate.checked = false;
+                document.forms[0].student.checked = false;
+                document.forms[0].r2[j].checked = false;
+                document.forms[0].r3[j].checked = false;
+                document.forms[0].r4[j].checked = false;
+                document.forms[0].price.value = "";
+                document.forms[0].r1[0].disabled = true;
+                document.forms[0].r1[1].disabled = true;
+                document.forms[0].r1[2].checked = true;
+
+                document.forms[0].price.value = document.forms[0].r1[2].value;
+                document.forms[0].accompnyingperson.disabled = false;
+                document.forms[0].accompnyingperson.checked = false;
+
+            }
+        }
+        else {
+            for (var j = 0; j < document.forms[0].r2.length; j++) {
+                document.forms[0].r1[j].checked = false;
+                document.forms[0].price.value = "";
+                document.forms[0].r1[j].disabled = true;
+                document.forms[0].r5[j].checked = false;
+            }
+            document.forms[0].accompnyingperson.disabled = true;
+            document.forms[0].accompnyingperson.checked = false;
+        }
+    }
+    function poster_reg() {
+        if (document.forms[0].poster.checked == true) {
+
+            for (var j = 0; j < document.forms[0].r2.length; j++) {
+                document.forms[0].r2[j].disabled = false;
+                document.forms[0].r1[j].disabled = true;
+                document.forms[0].r3[j].disabled = true;
+                document.forms[0].r4[j].disabled = true;
+                document.forms[0].speaker.checked = false;
+                document.forms[0].delegate.checked = false;
+                document.forms[0].student.checked = false;
+                document.forms[0].r1[j].checked = false;
+                document.forms[0].r3[j].checked = false;
+                document.forms[0].r4[j].checked = false;
+                document.forms[0].price.value = "";
+                document.forms[0].r2[0].disabled = true;
+                document.forms[0].r2[1].disabled = true;
+                document.forms[0].r2[2].checked = true;
+
+                document.forms[0].price.value = document.forms[0].r2[2].value;
+                document.forms[0].accompnyingperson.disabled = false;
+                document.forms[0].accompnyingperson.checked = false;
+            }
+        }
+        else {
+            for (var j = 0; j < document.forms[0].r2.length; j++) {
+                document.forms[0].r2[j].checked = false;
+                document.forms[0].price.value = "";
+                document.forms[0].r2[j].disabled = true;
+                document.forms[0].r5[j].checked = false;
+            }
+            document.forms[0].accompnyingperson.disabled = true;
+            document.forms[0].accompnyingperson.checked = false;
+        }
+    }
+    function delegate_reg() {
+        if (document.forms[0].delegate.checked == true) {
+            for (var j = 0; j < document.forms[0].r2.length; j++) {
+                document.forms[0].r1[j].disabled = true;
+                document.forms[0].r2[j].disabled = true;
+                document.forms[0].r3[j].disabled = false;
+                document.forms[0].r4[j].disabled = true;
+                document.forms[0].speaker.checked = false;
+                document.forms[0].poster.checked = false;
+                document.forms[0].student.checked = false;
+                document.forms[0].r1[j].checked = false;
+                document.forms[0].r2[j].checked = false;
+                document.forms[0].r4[j].checked = false;
+                document.forms[0].price.value = "";
+                document.forms[0].r3[0].disabled = true;
+                document.forms[0].r3[1].disabled = true;
+                document.forms[0].r3[2].checked = true;
+
+                document.forms[0].price.value = document.forms[0].r3[3].value;
+                document.forms[0].accompnyingperson.disabled = false;
+                document.forms[0].accompnyingperson.checked = false;
+            }
+        }
+        else {
+            for (var j = 0; j < document.forms[0].r2.length; j++) {
+                document.forms[0].r3[j].checked = false;
+                document.forms[0].price.value = "";
+                document.forms[0].r3[j].disabled = true;
+                document.forms[0].r5[j].checked = false;
+            }
+            document.forms[0].accompnyingperson.disabled = true;
+            document.forms[0].accompnyingperson.checked = false;
+        }
+    }
+    function student_reg() {
+        if (document.forms[0].student.checked == true) {
+            for (var j = 0; j < document.forms[0].r2.length; j++) {
+                document.forms[0].r1[j].disabled = true;
+                document.forms[0].r2[j].disabled = true;
+                document.forms[0].r3[j].disabled = true;
+                document.forms[0].r4[j].disabled = false;
+                document.forms[0].speaker.checked = false;
+                document.forms[0].poster.checked = false;
+                document.forms[0].delegate.checked = false;
+                document.forms[0].r1[j].checked = false;
+                document.forms[0].r2[j].checked = false;
+                document.forms[0].r3[j].checked = false;
+                document.forms[0].price.value = "";
+                document.forms[0].r4[0].disabled = true;
+                document.forms[0].r4[1].disabled = true;
+                document.forms[0].r4[2].checked = true;
+
+                document.forms[0].price.value = document.forms[0].r4[2].value;
+                document.forms[0].accompnyingperson.disabled = false;
+                document.forms[0].accompnyingperson.checked = false;
+            }
+        }
+        else {
+            for (var j = 0; j < document.forms[0].r2.length; j++) {
+                document.forms[0].r4[j].checked = false;
+                document.forms[0].price.value = "";
+                document.forms[0].r4[j].disabled = true;
+                document.forms[0].r5[j].checked = false;
+            }
+            document.forms[0].accompnyingperson.disabled = true;
+            document.forms[0].accompnyingperson.checked = false;
+        }
+    }
+
+    function accompnyingperson_reg() {
+        var amount = parseInt(document.forms[0].price.value);
+        if (document.forms[0].accompnyingperson.checked == true) {
+            if (amount > 0) {
+                var total_amount = parseInt(document.forms[0].price.value) + 200;
+                document.forms[0].price.value = total_amount;
+            }
+            else {
+                document.forms[0].price.value = 100;
+            }
+        }
+        else {
+            if (parseInt(document.forms[0].price.value) > 300) {
+                var total_amount = parseInt(document.forms[0].price.value) - 200;
+                document.forms[0].price.value = total_amount;
+            }
+        }
+    }
+    function update_price() {
+        for (var i = 0; i < document.forms[0].r1.length; i++) {
+            if (document.forms[0].r1[i].checked == true) {
+                if (document.forms[0].accompnyingperson.checked == true) {
+                    document.forms[0].price.value = parseInt(document.forms[0].r1[i].value) + 200;
+                }
+                else {
+                    document.forms[0].price.value = document.forms[0].r1[i].value;
+                }
+            }
+            if (document.forms[0].r2[i].checked == true) {
+                if (document.forms[0].accompnyingperson.checked == true) {
+                    document.forms[0].price.value = parseInt(document.forms[0].r2[i].value) + 200;
+                }
+                else {
+                    document.forms[0].price.value = document.forms[0].r2[i].value;
+                }
+            }
+            if (document.forms[0].r3[i].checked == true) {
+                if (document.forms[0].accompnyingperson.checked == true) {
+                    document.forms[0].price.value = parseInt(document.forms[0].r3[i].value) + 200;
+                }
+                else {
+                    document.forms[0].price.value = document.forms[0].r3[i].value;
+                }
+            }
+            if (document.forms[0].r4[i].checked == true) {
+                if (document.forms[0].accompnyingperson.checked == true) {
+                    document.forms[0].price.value = parseInt(document.forms[0].r4[i].value) + 200;
+                }
+                else {
+                    document.forms[0].price.value = document.forms[0].r4[i].value;
+                }
+            }
+        }
+    }
+    function update_price1() {
+        var amount_ori = "";
+
+        if (document.forms[0].accompnyingperson.checked == true)
+            var acc_price = 200;
+        else
+            var acc_price = 0;
+
+        for (var i = 0; i < document.forms[0].r1.length; i++) {
+            if (document.forms[0].r1[i].checked == true) {
+                var amount_ori = parseInt(document.forms[0].r1[i].value) + acc_price;
+            }
+        }
+        for (var i = 0; i < document.forms[0].r1.length; i++) {
+            if (document.forms[0].r2[i].checked == true) {
+                var amount_ori = parseInt(document.forms[0].r2[i].value) + acc_price;
+            }
+        }
+        for (var i = 0; i < document.forms[0].r1.length; i++) {
+            if (document.forms[0].r3[i].checked == true) {
+                var amount_ori = parseInt(document.forms[0].r3[i].value) + acc_price;
+            }
+        }
+        for (var i = 0; i < document.forms[0].r1.length; i++) {
+            if (document.forms[0].r4[i].checked == true) {
+                var amount_ori = parseInt(document.forms[0].r4[i].value) + acc_price;
+            }
+        }
+        for (var i = 0; i < document.forms[0].r5.length; i++) {
+            if (document.forms[0].r5[i].checked == true) {
+                if (amount_ori != "") {
+                    document.forms[0].price.value = parseInt(amount_ori) + parseInt(document.forms[0].r5[i].value);
+                }
+                else {
+                    document.forms[0].price.value = parseInt(document.forms[0].r5[i].value);
+                }
+
+            }
+        }
+
+    }
+    function disable_radio() {
+        for (var j = 0; j < document.forms[0].r2.length; j++) {
+            document.forms[0].r1[j].disabled = true;
+            document.forms[0].r2[j].disabled = true;
+            document.forms[0].r3[j].disabled = true;
+            document.forms[0].r4[j].disabled = true;
+            document.forms[0].accompnyingperson.disabled = true;
+        }
+    }
+
 </script>
