@@ -55,7 +55,7 @@
                 </div>
             </div>
 
-            <div id="regpricingdiv" class="col-md-12">
+            @*<div id="regpricingdiv" class="col-md-12">
                 <div class="col-12" style="padding:20px">
                     <div class="col-md-5">
                         <div class="form-group">
@@ -133,7 +133,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>*@
 
             @*<div class="col-12 col-md-12 col-sm-12 prices">
                     @Html.EditorFor(m => m.Reg)
@@ -478,7 +478,7 @@
                 document.forms[0].r2[j].checked = false;
                 document.forms[0].r3[j].checked = false;
                 document.forms[0].r4[j].checked = false;
-                $('#lblTotalPrice').text("");
+                $('#lblTotalPrice').text(0);
 
                 //document.forms[0].price.value = "";
                 document.forms[0].r1[0].disabled = true;
@@ -495,7 +495,7 @@
         else {
             for (var j = 0; j < document.forms[0].r2.length; j++) {
                 document.forms[0].r1[j].checked = false;
-                $('#lblTotalPrice').text("");
+                $('#lblTotalPrice').text(0);
                 //document.forms[0].price.value = "";
                 document.forms[0].r1[j].disabled = true;
                 document.forms[0].r5[j].checked = false;
@@ -518,7 +518,7 @@
                 document.forms[0].r1[j].checked = false;
                 document.forms[0].r3[j].checked = false;
                 document.forms[0].r4[j].checked = false;
-                $('#lblTotalPrice').text("");
+                $('#lblTotalPrice').text(0);
                 //document.forms[0].price.value = "";
                 document.forms[0].r2[0].disabled = true;
                 document.forms[0].r2[1].disabled = true;
@@ -533,7 +533,7 @@
         else {
             for (var j = 0; j < document.forms[0].r2.length; j++) {
                 document.forms[0].r2[j].checked = false;
-                $('#lblTotalPrice').text("");
+                $('#lblTotalPrice').text(0);
                 //document.forms[0].price.value = "";
                 document.forms[0].r2[j].disabled = true;
                 document.forms[0].r5[j].checked = false;
@@ -555,7 +555,7 @@
                 document.forms[0].r1[j].checked = false;
                 document.forms[0].r2[j].checked = false;
                 document.forms[0].r4[j].checked = false;
-                $('#lblTotalPrice').text("");
+                $('#lblTotalPrice').text(0);
                 //document.forms[0].price.value = "";
                 document.forms[0].r3[0].disabled = true;
                 document.forms[0].r3[1].disabled = true;
@@ -570,7 +570,7 @@
         else {
             for (var j = 0; j < document.forms[0].r2.length; j++) {
                 document.forms[0].r3[j].checked = false;
-                $('#lblTotalPrice').text("");
+                $('#lblTotalPrice').text(0);
                 //document.forms[0].price.value = "";
                 document.forms[0].r3[j].disabled = true;
                 document.forms[0].r5[j].checked = false;
@@ -592,7 +592,7 @@
                 document.forms[0].r1[j].checked = false;
                 document.forms[0].r2[j].checked = false;
                 document.forms[0].r3[j].checked = false;
-                $('#lblTotalPrice').text("");
+                $('#lblTotalPrice').text(0);
                 //document.forms[0].price.value = "";
                 document.forms[0].r4[0].disabled = true;
                 document.forms[0].r4[1].disabled = true;
@@ -607,7 +607,7 @@
         else {
             for (var j = 0; j < document.forms[0].r2.length; j++) {
                 document.forms[0].r4[j].checked = false;
-                $('#lblTotalPrice').text("");
+                $('#lblTotalPrice').text(0);
                 //document.forms[0].price.value = "";
                 document.forms[0].r4[j].disabled = true;
                 document.forms[0].r5[j].checked = false;
@@ -736,6 +736,7 @@
             document.forms[0].r3[j].disabled = true;
             document.forms[0].r4[j].disabled = true;
             document.forms[0].accompnyingperson.disabled = true;
+            $('#lblTotalPrice').text(0);
         }
     }
 

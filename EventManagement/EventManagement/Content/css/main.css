@@ -946,14 +946,19 @@ h2 {
     background-color: none;
 }
 
-
-#regTab th {
-    text-align: center;
+#regTab {
+    padding: 6rem;
+    font-family: 'Open Sans', sans-serif;
+        font-size: 1.5rem;
 }
 
-#regTab tr {
-    text-align: center;
-}
+    #regTab th {
+        text-align: center;
+    }
+
+    #regTab tr {
+        text-align: center;
+    }
 
 .txtctr {
     text-align: center;
