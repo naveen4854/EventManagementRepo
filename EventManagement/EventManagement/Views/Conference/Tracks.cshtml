@@ -16,11 +16,11 @@
                         @foreach (var mem in obj)
                 {
                             <div class="col-md-4">
-                                <label onclick="loadPartial(@mem.Id)">@mem.Name</label><br />
+                                <label class="track" onclick="loadPartial(@mem.Id)">@mem.Name</label><br />
                             </div>
-                    }
-                    </div>
                         }
+                    </div>
+                            }
             </div>
         </div>
         <div style="padding-top:150px">

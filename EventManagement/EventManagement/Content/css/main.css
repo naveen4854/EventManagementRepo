@@ -830,7 +830,7 @@ h2 {
 
 .NotHome {
     padding: 190px 20px 20px 20px;
-    background-color: #33888F;
+    /*background-color: #33888F;*/
     overflow: auto;
     /*position:absolute;*/
 }
@@ -950,7 +950,7 @@ h2 {
 #regTab {
     padding: 6rem;
     font-family: 'Open Sans', sans-serif;
-        font-size: 1.5rem;
+    font-size: 1.5rem;
 }
 
     #regTab th {
@@ -965,13 +965,13 @@ h2 {
     text-align: center;
 }
 
-#googlemaps { 
-  height: 100%; 
-  width: 100%; 
-  /*position:absolute; 
+#googlemaps {
+    height: 100%;
+    width: 100%;
+    /*position:absolute; 
   top: 0%; 
-  left: 0;*/ 
-  z-index: 0; /* Set z-index to 0 as it will be on a layer below the contact form */
+  left: 0;*/
+    z-index: 0; /* Set z-index to 0 as it will be on a layer below the contact form */
 }
 
 #contactform {
@@ -989,22 +989,33 @@ h2 {
     text-align: left;
     float: right;
 }
+
 .mapsPartTitle {
     font-size: 24px;
     font-weight: bold;
 }
+
 .contactMail {
     padding: 3px 0 5px 25px;
 }
+
 .contactPhone {
     padding: 3px 0 5px 25px;
 }
+
 .contactPhone1 {
     padding: 3px 0 5px 25px;
 }
+
 .contactFax {
     padding: 3px 0 5px 25px;
 }
+
 .contactHome {
     padding: 3px 0 5px 25px;
+}
+
+.track:hover {
+    cursor: pointer;
+    color: red;
 }
