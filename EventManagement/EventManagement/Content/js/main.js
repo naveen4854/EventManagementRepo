@@ -7,12 +7,6 @@ $(function ($) {
     //	 //   	format: "on"
     //	 //   },
 
-    //	 //   function() {
-    //	 //   	// callback function
-    //	 //   });
-
-
-
     //	//Scroll Menu
 
     function menuToggle() {
@@ -46,34 +40,7 @@ $(function ($) {
     //    offset: 100
     //});
 
-    // The latitude and longitude of your business / place
-    var position = [37.369619, -121.961291];
 
-    function showGoogleMaps() {
-
-        var latLng = new google.maps.LatLng(position[0], position[1]);
-
-        var mapOptions = {
-            zoom: 16, // initialize zoom level - the max value is 21
-            streetViewControl: false, // hide the yellow Street View pegman
-            scaleControl: true, // allow users to zoom the Google Map
-            mapTypeId: google.maps.MapTypeId.ROADMAP,
-            center: latLng
-        };
-
-        map = new google.maps.Map(document.getElementById('googlemaps'),
-            mapOptions);
-
-        // Show the default red marker at the location
-        marker = new google.maps.Marker({
-            position: latLng,
-            map: map,
-            draggable: false,
-            animation: google.maps.Animation.DROP
-        });
-    }
-
-    google.maps.event.addDomListener(window, 'load', showGoogleMaps);
     //	$( window ).resize(function() {
     //		menuToggle();
     //	});
@@ -88,7 +55,32 @@ $(function ($) {
     //	});
 
 });
+function showGoogleMaps() {
+    // The latitude and longitude of your business / place
 
+    var position = [37.369619, -121.961291];
+
+    var latLng = new google.maps.LatLng(position[0], position[1]);
+
+    var mapOptions = {
+        zoom: 16, // initialize zoom level - the max value is 21
+        streetViewControl: false, // hide the yellow Street View pegman
+        scaleControl: true, // allow users to zoom the Google Map
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        center: latLng
+    };
+
+    map = new google.maps.Map(document.getElementById('googlemaps'),
+        mapOptions);
+
+    // Show the default red marker at the location
+    marker = new google.maps.Marker({
+        position: latLng,
+        map: map,
+        draggable: false,
+        animation: google.maps.Animation.DROP
+    });
+}
 
 //// Google Map Customization
 ////(function(){

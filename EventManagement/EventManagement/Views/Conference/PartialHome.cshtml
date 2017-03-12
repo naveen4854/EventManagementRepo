@@ -24,16 +24,19 @@
         </div>
         <div class="col-12 carousel-caption">
             <div class="col-md-4">
-                <button class="btn"><text>REGISTER</text></button>
+                <button class="btn" onclick="redirect('@Url.Content("~/Conference/"+Model.Id+ "/Program/")')"><text>PROGRAM</text></button>
             </div>
             <div class="col-md-4">
-                <button class="btn"><text>REGISTER</text></button>
+                <button class="btn" onclick="redirect('@Url.Content("~/Conference/"+Model.Id+ "/Registration/")')"><text>REGISTER</text></button>
             </div>
             <div class="col-md-4">
-                <button class="btn"><text>REGISTER</text></button>
+                <button class="btn" onclick="redirect('@Url.Content("~/Conference/"+Model.Id+ "/Tracks/")')"><text>SUBMIT ABSTRACT</text></button>
             </div>
         </div>
     </div>
 </div>
-
-
+<script>
+    function redirect(url) {
+        location.href = url;
+    }
+</script>
