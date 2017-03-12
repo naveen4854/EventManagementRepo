@@ -654,8 +654,9 @@ h2 {
 **************************/
 
 .contact-section {
-    background-color: #f7ab24;
-    background-image: url("../images/contact-bg.jpg");
+    height: 500px;
+    /*background-color: #f7ab24;
+    background-image: url("../images/contact-bg.jpg");*/
     background-position: 60% 0;
     background-size: contain;
     background-repeat: no-repeat;
@@ -962,4 +963,48 @@ h2 {
 
 .txtctr {
     text-align: center;
+}
+
+#googlemaps { 
+  height: 100%; 
+  width: 100%; 
+  /*position:absolute; 
+  top: 0%; 
+  left: 0;*/ 
+  z-index: 0; /* Set z-index to 0 as it will be on a layer below the contact form */
+}
+
+#contactform {
+    position: absolute;
+    z-index: 1;
+    width: 43%;
+    top: 50px;
+    right: 30px;
+    margin: 0% 0% 3% auto;
+    padding: 10px;
+    background: black;
+    height: auto;
+    opacity: .65;
+    color: white;
+    text-align: left;
+    float: right;
+}
+.mapsPartTitle {
+    font-size: 24px;
+    font-weight: bold;
+}
+.contactMail {
+    padding: 3px 0 5px 25px;
+}
+.contactPhone {
+    padding: 3px 0 5px 25px;
+}
+.contactPhone1 {
+    padding: 3px 0 5px 25px;
+}
+.contactFax {
+    padding: 3px 0 5px 25px;
+}
+.contactHome {
+    padding: 3px 0 5px 25px;
 }
