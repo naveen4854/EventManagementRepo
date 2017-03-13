@@ -7,7 +7,7 @@
 **************************/
 
 body {
-    font-family: 'Dosis', sans-serif;
+    font-family: 'Open Sans',Arial,sans-serif;
     font-size: 17px;
     /*color: #fff;*/
 }
@@ -738,7 +738,7 @@ h2 {
 
 #footer {
     background-color: #212121;
-    background-image: url("../images/footer-bg.jpg");
+    /*background-image: url("../images/footer-bg.jpg");*/
     background-position: center bottom;
     background-repeat: no-repeat;
     background-size: cover;
@@ -913,8 +913,8 @@ h2 {
     border-radius: 20px;
     padding: 10px;
     background-image: url("../images/info-bg-2.jpg");
-    color:black;
-    font-weight:bold;
+    color: black;
+    font-weight: bold;
 }
 
 .header {
@@ -1021,4 +1021,16 @@ h2 {
 .track:hover {
     cursor: pointer;
     color: red;
+}
+
+#confContact {
+    font-size: 14px;
+}
+
+.contactTitle {
+    text-decoration: underline;
+    font-size: 18px !important;
+}
+.color1 {
+    color: #1B7B98;
 }
