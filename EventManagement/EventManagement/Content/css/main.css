@@ -912,6 +912,9 @@ h2 {
     border: 1px solid black;
     border-radius: 20px;
     padding: 10px;
+    background-image: url("../images/info-bg-2.jpg");
+    color:black;
+    font-weight:bold;
 }
 
 .header {
