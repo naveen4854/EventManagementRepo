@@ -55,12 +55,9 @@ $(function ($) {
     //	});
 
 });
-function showGoogleMaps() {
-    // The latitude and longitude of your business / place
+function showGoogleMaps(loc) {
 
-    var position = [37.369619, -121.961291];
-
-    var latLng = new google.maps.LatLng(position[0], position[1]);
+    var latLng = new google.maps.LatLng(loc.lat, loc.long);
 
     var mapOptions = {
         zoom: 16, // initialize zoom level - the max value is 21

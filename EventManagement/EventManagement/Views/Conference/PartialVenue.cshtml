@@ -1,19 +1,19 @@
 ﻿@model EventManagement.DataModels.VenueDTO
-@*<div id="map">
-        <div id="gmap-wrap">
-            <div id="gmap">
-            </div>
-        </div>
-    </div>*@
+
 <div class="contact-section">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="contact-text">
-                    <h3>About @Model.Name</h3>
-                    <p>@Model.Desc</p>
-                </div>
-            </div>
+    <div id="googlemaps" style="overflow: hidden;"></div>
+    <div id="contactform">
+        <p class="mapsPartBox">
+        </p><div class="mapsPartTitle">Address</div>
+        <div style="padding-left: 46px;">
+            @Model.Address<br />
         </div>
+        <div class="contactPhone"><i class="fa fa-phone" aria-hidden="true"> &nbsp;@Model.Telephone</i></div>
+        <div class="contactMail"><i class="fa fa-envelope" aria-hidden="true"> &nbsp;@Model.Email</i></div>
+        <p></p>
     </div>
+    <script>
+        var loc = {lat: @Model.Map.Latitude,long: @Model.Map.Longitude}
+        google.maps.event.addDomListener(window, 'load', showGoogleMaps(loc));
+    </script>
 </div>  

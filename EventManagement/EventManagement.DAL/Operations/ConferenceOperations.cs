@@ -33,6 +33,10 @@ namespace EventManagement.DAL.Operations
                 Id = q.Id,
                 Name = q.Name,
                 Desc = q.Description,
+                Address = q.Address,
+                Email = q.Email,
+                Telephone = q.Telephone,
+                Map = new MapDTO { Latitude = q.latitude, Longitude = q.longitude }
             }).ToList();
         }
 
@@ -47,6 +51,11 @@ namespace EventManagement.DAL.Operations
             {
                 venue.Name = obj.Name;
                 venue.Description = obj.Desc;
+                venue.Address = obj.Address;
+                venue.Telephone = obj.Telephone;
+                venue.Email = obj.Email;
+                venue.latitude = obj.Map.Latitude;
+                venue.longitude = obj.Map.Longitude;
             }
             using (var entitiesX = new EventManagementEntities())
             {
@@ -79,6 +88,10 @@ namespace EventManagement.DAL.Operations
                 Id = venue.Id,
                 Name = venue.Name,
                 Desc = venue.Description,
+                Address = venue.Address,
+                Email = venue.Email,
+                Telephone = venue.Telephone,
+                Map = new MapDTO { Latitude = venue.latitude, Longitude = venue.longitude }
             };
         }
 
@@ -174,6 +187,11 @@ namespace EventManagement.DAL.Operations
             {
                 Name = obj.Name,
                 Description = obj.Desc,
+                Address = obj.Address,
+                Telephone = obj.Telephone,
+                Email = obj.Email,
+                latitude = obj.Map.Latitude,
+                longitude = obj.Map.Longitude,
             };
             using (var entities = new EventManagementEntities())
             {
@@ -283,7 +301,8 @@ namespace EventManagement.DAL.Operations
 
         public IEnumerable<AccompanyPriceDTO> GetAllAccompanyPrice(int id)
         {
-            var acc = managementConsoleEntities.AccompanyPricings.Where(q => q.FK_conferenceId == id).Select(q => new AccompanyPriceDTO {
+            var acc = managementConsoleEntities.AccompanyPricings.Where(q => q.FK_conferenceId == id).Select(q => new AccompanyPriceDTO
+            {
                 Id = q.MST_Accompany.Id,
                 Name = q.MST_Accompany.Name,
                 Value = q.MST_Accompany.Value,
@@ -344,7 +363,11 @@ namespace EventManagement.DAL.Operations
                 {
                     Id = conf.Venue.Id,
                     Name = conf.Venue.Name,
-                    Desc = conf.Venue.Description
+                    Desc = conf.Venue.Description,
+                    Address = conf.Venue.Address,
+                    Email = conf.Venue.Email,
+                    Telephone = conf.Venue.Telephone,
+                    Map = new MapDTO { Latitude = conf.Venue.latitude, Longitude = conf.Venue.longitude }
                 }
             };
         }
@@ -475,7 +498,7 @@ namespace EventManagement.DAL.Operations
         {
             var conf = managementConsoleEntities.ConferenceTeams.Where(q => q.FK_ConferenceId == id && !q.Chair).Select(q => new TeamMemberDTO
             {
-                Id= q.Id,
+                Id = q.Id,
                 ConferenceId = q.FK_ConferenceId,
                 Name = q.Name,
                 Info = q.Info,

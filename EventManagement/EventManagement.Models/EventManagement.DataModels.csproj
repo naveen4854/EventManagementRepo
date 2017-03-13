@@ -52,6 +52,7 @@
     <Compile Include="ConferenceTeamDTO.cs" />
     <Compile Include="CountryModel.cs" />
     <Compile Include="LogOnViewModel.cs" />
+    <Compile Include="MapDTO.cs" />
     <Compile Include="OccupancyDTO.cs" />
     <Compile Include="ProgramDTO.cs" />
     <Compile Include="PurchaseDTO.cs" />

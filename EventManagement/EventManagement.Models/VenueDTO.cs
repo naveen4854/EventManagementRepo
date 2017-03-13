@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace EventManagement.DataModels
 {
@@ -11,5 +7,14 @@ namespace EventManagement.DataModels
         public int Id { get; set; }
         public string Name { get; set; }
         public string Desc { get; set; }
+        [Required(ErrorMessage = "Your must provide a PhoneNumber")]
+        [DataType(DataType.PhoneNumber)]
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Not a valid Phone number")]
+        public string Telephone { get; set; }
+        [Required(ErrorMessage = "Your must provide a EmailId")]
+        [DataType(DataType.EmailAddress)]
+        public string Email { get; set; }
+        public string Address { get; set; }
+        public MapDTO Map { get; set; }
     }
 }

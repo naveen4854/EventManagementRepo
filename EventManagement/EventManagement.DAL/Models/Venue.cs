@@ -23,6 +23,11 @@ namespace EventManagement.DAL.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+        public string Telephone { get; set; }
+        public string Email { get; set; }
+        public string Address { get; set; }
+        public double latitude { get; set; }
+        public double longitude { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Conference> Conferences { get; set; }
