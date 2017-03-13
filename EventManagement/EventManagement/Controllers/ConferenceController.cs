@@ -107,21 +107,15 @@ namespace EventManagement.Controllers
             return View(_confManager.GetConferenceTracks(id));
         }
 
-        [Route("Conference/AbstractSubmit/")]
-        public ActionResult AbstractSubmit(IEnumerable<TrackDTO> tracks, int id)
+        [Route("Conference/AbstractSubmit/{id}")]
+        public ActionResult AbstractSubmit(int id)
         {
             ViewData["ConferenceId"] = id;
             ViewBag.Titles = _confManager.GetTitles();
             ViewBag.Categories = _confManager.GetCategories();
             ViewBag.Countries = _confManager.GetCountries();
-            ViewBag.Tracks = tracks;
-            //var c = new AbstractSubmitModel
-            //{
-            //    Titles = _confManager.GetTitles(),
-            //    Categories = _confManager.GetCategories(),
-            //    Countries = _confManager.GetCountries(),
-            //    Tracks = tracks
-            //};
+            ViewBag.Tracks = _confManager.GetConferenceTracks(id);
+            
             return PartialView("PartialAbstractSubmit");
         }
 

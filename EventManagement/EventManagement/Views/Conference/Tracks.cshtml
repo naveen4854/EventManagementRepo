@@ -16,38 +16,51 @@
                         @foreach (var mem in obj)
                 {
                             <div class="col-md-4">
-                                <label class="track" onclick="loadPartial(@mem.Id)">@mem.Name</label><br />
+                                <label class="track" onclick="loadPartial(@ViewData["ConferenceId"],@mem.Id)">@mem.Name</label><br />
                             </div>
                         }
                     </div>
                             }
             </div>
         </div>
+
+        <div id='myModal' class='modal'>
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div id='myModalContent'></div>
+                </div>
+            </div>
+        </div>  
+
         <div style="padding-top:150px">
-            @{ Html.RenderAction("AbstractSubmit", "Conference", new { tracks = @Model, id = @ViewData["ConferenceId"] }); }
+          @*  @{ Html.RenderAction("AbstractSubmit", "Conference", new { tracks = @Model, id = @ViewData["ConferenceId"] }); }*@
         </div>
     </div>
 </div>
 <script type="text/javascript">
-    function loadPartial(trackId) {
 
-        $("#Track").val(trackId);
-
-        @*data = @Html.Raw(Json.Encode(Model));
-        //'data' is much more complicated in my real application
-        var jsonOfLog = JSON.stringify(data);
-
+    function loadPartial(confId, trackId) {
+        var options = { "backdrop": "static", keyboard: true };
         $.ajax({
-            type: 'POST',
-            contentType: "application/json",
-            url: "/Conference/PartialAbstractSubmit",
-            data: jsonOfLog,
-            success: function (returnPayload) {
-                console && console.log("request succeeded");
+            type: "GET",
+            url: '/eve/Conference/AbstractSubmit/' + confId,
+            contentType: "application/json; charset=utf-8",
+            //datatype: "json",
+            success: function (data) {
+                $('#myModalContent').html(data);
+                $('#myModal').modal(options);
+                $('#myModal').modal('show');
+
             },
-            error: function (xhr, ajaxOptions, thrownError) {
-                console && console.log("request failed");
-            },
-        });*@
-    };
+            error: function () {
+                $('#myModalContent').html("Error fetching Abstract");
+            }
+        });
+    }
+    
+    $('.modal').click(function (e) {
+        e.stopPropagation();
+    });
+
+
 </script>
