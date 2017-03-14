@@ -40,13 +40,16 @@
 <script type="text/javascript">
 
     function loadPartial(confId, trackId) {
+        spinner(true);
         var options = { "backdrop": "static", keyboard: true };
+        var url = "@Url.Content("~/Conference/AbstractSubmit/")";
         $.ajax({
             type: "GET",
-            url: '/eve/Conference/AbstractSubmit/' + confId,
+            url: url + confId,
             contentType: "application/json; charset=utf-8",
             //datatype: "json",
             success: function (data) {
+                spinner(false);
                 $('#myModalContent').html(data);
                 $('#myModal').modal(options);
                 $('#myModal').modal('show');
@@ -57,7 +60,7 @@
             }
         });
     }
-    
+
     $('.modal').click(function (e) {
         e.stopPropagation();
     });

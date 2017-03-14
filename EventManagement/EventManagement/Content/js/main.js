@@ -92,6 +92,24 @@ function showGoogleMaps(loc) {
     });
 }
 
+function spinner(flag) {
+    if(flag){
+        $(".overlay").show();
+    }
+    else{
+        $(".overlay").hide();
+    }
+}
+
+//function spinner() {
+//    this.prototype.show = function(){
+//        $(".overlay").show();
+//    }
+//    this.prototype.hide = function () {
+//        $(".overlay").hide();
+//    }
+//}
+
 //// Google Map Customization
 ////(function(){
 
