@@ -135,6 +135,15 @@ h2 {
             color: #16728f;
         }
 
+.homeicon {
+    padding: 30px 20px !important;
+    font-size: 30px !important;
+}
+
+.homeicon-fixed {
+    font-size:30px !important;
+    padding: 15px !important;
+}
 
 .fixed-menu {
     background-color: #1B7B98;
@@ -832,7 +841,7 @@ h2 {
 }
 
 .NotHome {
-    position:relative;
+    position: relative;
     min-height: 100%;
     /*min-height: 100vh - 188px;*/
     padding: 190px 20px 20px 20px;
