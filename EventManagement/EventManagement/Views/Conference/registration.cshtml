@@ -56,84 +56,84 @@
             </div>
 
             @*<div id="regpricingdiv" class="col-md-12">
-                <div class="col-12" style="padding:20px">
-                    <div class="col-md-5">
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.RegTypeId, htmlAttributes: new { @class = "control-label col-md-5" })
-                            <div class="col-md-6">
-                                @Html.DropDownList("RegTypeId", new SelectList(@ViewBag.Reglst, "Id", "Name"), new { @class = "form-control", @onchange = "retriveRegPrice()" })
+                    <div class="col-12" style="padding:20px">
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.RegTypeId, htmlAttributes: new { @class = "control-label col-md-5" })
+                                <div class="col-md-6">
+                                    @Html.DropDownList("RegTypeId", new SelectList(@ViewBag.Reglst, "Id", "Name"), new { @class = "form-control", @onchange = "retriveRegPrice()" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.RegClassId, htmlAttributes: new { @class = "control-label col-md-5" })
+                                <div class="col-md-6">
+                                    @Html.DropDownList("RegClassId", new SelectList(@ViewBag.regclasslst, "Id", "Name"), new { @class = "form-control", @onchange = "retriveRegPrice()" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label id="lblRegPrice"></label>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-5">
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.RegClassId, htmlAttributes: new { @class = "control-label col-md-5" })
-                            <div class="col-md-6">
-                                @Html.DropDownList("RegClassId", new SelectList(@ViewBag.regclasslst, "Id", "Name"), new { @class = "form-control", @onchange = "retriveRegPrice()" })
+                    <div class="col-12" style="padding:20px">
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.AccId, htmlAttributes: new { @class = "control-label col-md-5" })
+                                <div class="col-md-6">
+                                    @Html.DropDownList("AccId", new SelectList(@ViewBag.acclst, "Id", "Name"), new { @class = "form-control", @onchange = "retriveAccPrice()" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.OccId, htmlAttributes: new { @class = "control-label col-md-5" })
+                                <div class="col-md-6">
+                                    @Html.DropDownList("OccId", new SelectList(@ViewBag.occlst, "Id", "Name"), new { @class = "form-control", @onchange = "retriveAccPrice()" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label id="lblAccPrice"></label>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label id="lblRegPrice"></label>
+                    <div class="col-12" style="padding:20px">
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.AccompanyId, htmlAttributes: new { @class = "control-label col-md-5" })
+                                <div class="col-md-6">
+                                    @Html.DropDownList("accompanyPrices", new SelectList(@ViewBag.AccompanyPrices, "Id", "Name"), new { data_val = Model.Amount, @class = "form-control", @onchange = "getAccompanyPrice()" })
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-12" style="padding:20px">
-                    <div class="col-md-5">
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.AccId, htmlAttributes: new { @class = "control-label col-md-5" })
-                            <div class="col-md-6">
-                                @Html.DropDownList("AccId", new SelectList(@ViewBag.acclst, "Id", "Name"), new { @class = "form-control", @onchange = "retriveAccPrice()" })
+                        <div class="col-md-5">
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label id="lblAccompanyPrice"></label>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-5">
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.OccId, htmlAttributes: new { @class = "control-label col-md-5" })
-                            <div class="col-md-6">
-                                @Html.DropDownList("OccId", new SelectList(@ViewBag.occlst, "Id", "Name"), new { @class = "form-control", @onchange = "retriveAccPrice()" })
+                    <div class="col-12" style="padding:20px">
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label>Total Price</label>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label id="lblTotalPrice1"></label>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label id="lblAccPrice"></label>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12" style="padding:20px">
-                    <div class="col-md-5">
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.AccompanyId, htmlAttributes: new { @class = "control-label col-md-5" })
-                            <div class="col-md-6">
-                                @Html.DropDownList("accompanyPrices", new SelectList(@ViewBag.AccompanyPrices, "Id", "Name"), new { data_val = Model.Amount, @class = "form-control", @onchange = "getAccompanyPrice()" })
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-5">
-                    </div>
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label id="lblAccompanyPrice"></label>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12" style="padding:20px">
-                    <div class="col-md-5">
-                        <div class="form-group">
-                            <label>Total Price</label>
-                        </div>
-                    </div>
-                    <div class="col-md-5">
-                    </div>
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label id="lblTotalPrice1"></label>
-                        </div>
-                    </div>
-                </div>
-            </div>*@
+                </div>*@
 
             @*<div class="col-12 col-md-12 col-sm-12 prices">
                     @Html.EditorFor(m => m.Reg)
@@ -148,51 +148,22 @@
                 <table class="table">
                     <colgroup>
                         <col class="grey" style="text-align:left" />
-                        <col class="blue" span="2" />
-                        <col class="pink" span="2" />
-                        <col class="red" span="2" />
+                        <col class="blue" span="1" />
+                        <col class="pink" span="1" />
                     </colgroup>
                     <thead>
                         <tr>
                             <th style="border:none">
                                 &nbsp;
                             </th>
-                            <th style="width:200px" colspan="2">
+                            <th colspan="1">
                                 Earlybird Registration on/before<br>March 10, 2017
                             </th>
-                            <th style="width:200px" colspan="2">
+                            <th colspan="1">
                                 Standard Registration on/before<br>March 13, 2017
                             </th>
-                            <th style="width:200px" colspan="2">
-                                On Spot Registration on<br>March 27, 2017
-                            </th>
                     </thead>
-                    <thead>
-                        <tr>
-                            <th style="border:none">
-                                &nbsp;
 
-                            </th>
-                            <th>
-                                Academia
-                            </th>
-                            <th>
-                                Business
-                            </th>
-                            <th>
-                                Academia
-                            </th>
-                            <th>
-                                Business
-                            </th>
-                            <th>
-                                Academia
-                            </th>
-                            <th>
-                                Business
-                            </th>
-                        </tr>
-                    </thead>
                     <tbody>
                         <tr>
                             <td>
@@ -201,20 +172,9 @@
                             <td>
                                 <input type="radio" name="r1" value="699" onclick="return update_price()" />  $699
                             </td>
+
                             <td>
                                 <input type="radio" name="r1" value="799" onclick="return update_price()" />  $799
-                            </td>
-                            <td>
-                                <input type="radio" name="r1" value="799" onclick="return update_price()" />  $799
-                            </td>
-                            <td>
-                                <input type="radio" name="r1" value="899" onclick="return update_price()" />  $899
-                            </td>
-                            <td>
-                                <input type="radio" name="r1" value="899" onclick="return update_price()" />  $899
-                            </td>
-                            <td>
-                                <input type="radio" name="r1" value="999" onclick="return update_price()" />  $999
                             </td>
                         </tr>
                         <tr>
@@ -224,20 +184,9 @@
                             <td>
                                 <input type="radio" name="r2" value="399" onclick="return update_price()" />  $399
                             </td>
+
                             <td>
                                 <input type="radio" name="r2" value="499" onclick="return update_price()" />  $499
-                            </td>
-                            <td>
-                                <input type="radio" name="r2" value="499" onclick="return update_price()" />  $499
-                            </td>
-                            <td>
-                                <input type="radio" name="r2" value="599" onclick="return update_price()" />  $599
-                            </td>
-                            <td>
-                                <input type="radio" name="r2" value="599" onclick="return update_price()" />  $599
-                            </td>
-                            <td>
-                                <input type="radio" name="r2" value="699" onclick="return update_price()" />  $699
                             </td>
                         </tr>
                         <tr>
@@ -247,20 +196,9 @@
                             <td>
                                 <input type="radio" name="r3" value="599" onclick="return update_price()" />  $599
                             </td>
+
                             <td>
                                 <input type="radio" name="r3" value="699" onclick="return update_price()" />  $699
-                            </td>
-                            <td>
-                                <input type="radio" name="r3" value="699" onclick="return update_price()" />  $699
-                            </td>
-                            <td>
-                                <input type="radio" name="r3" value="799" onclick="return update_price()" />  $799
-                            </td>
-                            <td>
-                                <input type="radio" name="r3" value="799" onclick="return update_price()" />  $799
-                            </td>
-                            <td>
-                                <input type="radio" name="r3" value="899" onclick="return update_price()" />  $899
                             </td>
                         </tr>
                         <tr>
@@ -270,18 +208,7 @@
                             <td>
                                 <input type="radio" name="r4" value="299" onclick="return update_price()" />  $299
                             </td>
-                            <td>
-                                <input type="radio" name="r4" value="299" onclick="return update_price()" />  $299
-                            </td>
-                            <td>
-                                <input type="radio" name="r4" value="299" onclick="return update_price()" />  $299
-                            </td>
-                            <td>
-                                <input type="radio" name="r4" value="299" onclick="return update_price()" />  $299
-                            </td>
-                            <td>
-                                <input type="radio" name="r4" value="299" onclick="return update_price()" />  $299
-                            </td>
+
                             <td>
                                 <input type="radio" name="r4" value="299" onclick="return update_price()" />  $299
                             </td>
@@ -296,19 +223,13 @@
                             <td>
                                 $200
                             </td>
-                            <td>
-                                $200
-                            </td>
-                            <td>
-                                $200
-                            </td>
-                            <td>
-                                $200
-                            </td>
-                            <td>
-                                $200
-                            </td>
+
                         </tr>
+                        
+                    </tbody>
+                </table>
+                <table  class="table">
+                    <tbody>
                         <tr><td colspan="7"><div align="center"><strong>Accommodation</strong></div></td></tr>
                         <tr>
                             <td>
@@ -356,7 +277,6 @@
                         </tr>
                     </tbody>
                 </table>
-
                 <div class="col-12 txtctr" style="padding:20px">
                     <div class="col-md-6">
                         <div class="form-group">
@@ -480,10 +400,9 @@
 
                 //document.forms[0].price.value = "";
                 document.forms[0].r1[0].disabled = true;
-                document.forms[0].r1[1].disabled = true;
-                document.forms[0].r1[2].checked = true;
+                document.forms[0].r1[1].checked = true;
 
-                $('#lblTotalPrice').text(document.forms[0].r1[2].value);
+                $('#lblTotalPrice').text(document.forms[0].r1[1].value);
                 //document.forms[0].price.value = document.forms[0].r1[2].value;
                 document.forms[0].accompnyingperson.disabled = false;
                 document.forms[0].accompnyingperson.checked = false;
@@ -519,10 +438,9 @@
                 $('#lblTotalPrice').text(0);
                 //document.forms[0].price.value = "";
                 document.forms[0].r2[0].disabled = true;
-                document.forms[0].r2[1].disabled = true;
-                document.forms[0].r2[2].checked = true;
+                document.forms[0].r2[1].checked = true;
 
-                $('#lblTotalPrice').text(document.forms[0].r2[2].value);
+                $('#lblTotalPrice').text(document.forms[0].r2[1].value);
                 //document.forms[0].price.value = document.forms[0].r2[2].value;
                 document.forms[0].accompnyingperson.disabled = false;
                 document.forms[0].accompnyingperson.checked = false;
@@ -556,10 +474,9 @@
                 $('#lblTotalPrice').text(0);
                 //document.forms[0].price.value = "";
                 document.forms[0].r3[0].disabled = true;
-                document.forms[0].r3[1].disabled = true;
-                document.forms[0].r3[2].checked = true;
+                document.forms[0].r3[1].checked = true;
 
-                $('#lblTotalPrice').text(document.forms[0].r3[3].value);
+                $('#lblTotalPrice').text(document.forms[0].r3[1].value);
                 //document.forms[0].price.value = document.forms[0].r3[3].value;
                 document.forms[0].accompnyingperson.disabled = false;
                 document.forms[0].accompnyingperson.checked = false;
@@ -593,10 +510,9 @@
                 $('#lblTotalPrice').text(0);
                 //document.forms[0].price.value = "";
                 document.forms[0].r4[0].disabled = true;
-                document.forms[0].r4[1].disabled = true;
-                document.forms[0].r4[2].checked = true;
+                document.forms[0].r4[1].checked = true;
 
-                $('#lblTotalPrice').text(document.forms[0].r4[2].value);
+                $('#lblTotalPrice').text(document.forms[0].r4[1].value);
                 //document.forms[0].price.value = document.forms[0].r4[2].value;
                 document.forms[0].accompnyingperson.disabled = false;
                 document.forms[0].accompnyingperson.checked = false;
@@ -644,7 +560,7 @@
         for (var i = 0; i < document.forms[0].r1.length; i++) {
             if (document.forms[0].r1[i].checked == true) {
                 if (document.forms[0].accompnyingperson.checked == true) {
-                    $('#lblTotalPrice').text( parseInt(document.forms[0].r1[i].value) + 200);
+                    $('#lblTotalPrice').text(parseInt(document.forms[0].r1[i].value) + 200);
                     //document.forms[0].price.value = parseInt(document.forms[0].r1[i].value) + 200;
                 }
                 else {
