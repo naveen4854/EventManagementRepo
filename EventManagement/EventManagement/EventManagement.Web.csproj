@@ -290,7 +290,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\Layouts\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Content\fonts\fontawesome-webfont.eot" />
     <Content Include="Content\fonts\fontawesome-webfont.ttf" />
@@ -306,7 +306,7 @@
     <Content Include="Views\Home\PartialRegistrationPolicy.cshtml" />
     <Content Include="Views\Home\PartialContactUs.cshtml" />
     <Content Include="Views\Home\PartialHome.cshtml" />
-    <Content Include="Views\Shared\_ConferenceLayout.cshtml" />
+    <Content Include="Views\Shared\Layouts\_ConferenceLayout.cshtml" />
     <Content Include="Views\Conference\Home.cshtml" />
     <Content Include="Views\Conference\PartialHome.cshtml" />
     <Content Include="Views\Conference\Team.cshtml" />
@@ -331,7 +331,7 @@
     <Content Include="Views\CMS\NewTrack.cshtml" />
     <Content Include="Views\CMS\Venue.cshtml" />
     <Content Include="Views\CMS\NewVenue.cshtml" />
-    <Content Include="Views\Shared\_CMSLayout.cshtml" />
+    <Content Include="Views\Shared\Layouts\_CMSLayout.cshtml" />
     <Content Include="Views\CMS\Conference.cshtml" />
     <Content Include="Views\CMS\Track.cshtml" />
     <Content Include="Views\Conference\registration.cshtml" />
@@ -346,6 +346,7 @@
     <Content Include="Views\CMS\AllTeamMembers.cshtml" />
     <Content Include="Views\CMS\NewTeamMember.cshtml" />
     <Content Include="Views\CMS\TeamMember.cshtml" />
+    <Content Include="Views\Home\SponsorExhibitor.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

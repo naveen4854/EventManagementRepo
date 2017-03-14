@@ -1068,3 +1068,23 @@ h2 {
     opacity: 0.5;
     z-index:10001
 }
+
+.dropdown-content a {
+    background: black;
+}
+
+.shout {
+    max-width: 80%;
+    margin: 0 auto 30px;
+    text-align: center;
+}
+.clear {
+    display: block;
+    clear: both;
+}
+
+.txtpage {
+    padding-left: 80px;
+    padding-right: 80px;
+    padding-bottom: 50px;
+}
