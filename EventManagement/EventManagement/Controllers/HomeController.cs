@@ -38,5 +38,10 @@ namespace EventManagement.Controllers
         {
             return PartialView();
         }
+
+        public ActionResult SponsorExhibitor()
+        {
+            return View();
+        }
     }
 }

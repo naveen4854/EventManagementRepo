@@ -1,7 +1,7 @@
 ﻿@model EventManagement.DataModels.ProgramDTO
 @{
     ViewBag.Title = "ConferencePrograms";
-    Layout = "~/Views/Shared/_CMSLayout.cshtml";
+    Layout = "~/Views/Shared/Layouts/_CMSLayout.cshtml";
 }
 @using (Html.BeginForm("AddConferenceProgram", "CMS", FormMethod.Post, new { encType = "multipart/form-data" }))
 {

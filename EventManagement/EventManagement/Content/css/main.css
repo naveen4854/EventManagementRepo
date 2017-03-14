@@ -135,6 +135,15 @@ h2 {
             color: #16728f;
         }
 
+.homeicon {
+    padding: 30px 20px !important;
+    font-size: 30px !important;
+}
+
+.homeicon-fixed {
+    font-size:30px !important;
+    padding: 15px !important;
+}
 
 .fixed-menu {
     background-color: #1B7B98;
@@ -832,8 +841,8 @@ h2 {
 }
 
 .NotHome {
-    position:relative;
-    min-height: 100%;
+    position: relative;
+    min-height: calc(100vh - 150px);
     /*min-height: 100vh - 188px;*/
     padding: 190px 20px 20px 20px;
     /*background-color: #33888F;*/
@@ -1038,6 +1047,44 @@ h2 {
     font-size: 18px !important;
 }
 
-.color1 {
+.defaultcolor {
     color: #1B7B98;
+}
+
+#loading-img {
+    background: url(http://www.aveva.com/Images/ajax-loader.gif) center center no-repeat;
+    height: 100%;
+    z-index: 20;
+}
+
+.overlay {
+    background: #e9e9e9;
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    opacity: 0.5;
+    z-index:10001
+}
+
+.dropdown-content a {
+    background: black;
+}
+
+.shout {
+    max-width: 80%;
+    margin: 0 auto 30px;
+    text-align: center;
+}
+.clear {
+    display: block;
+    clear: both;
+}
+
+.txtpage {
+    padding-left: 80px;
+    padding-right: 80px;
+    padding-bottom: 50px;
 }
