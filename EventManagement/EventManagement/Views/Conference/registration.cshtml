@@ -14,7 +14,7 @@
         <div class="form-horizontal" id="registration">
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="col-12">
+            <div class="row">
                 <div class="col-md-5">
                     <div class="form-group">
                         <div class="col-md-12">
@@ -142,9 +142,11 @@
                 <div class="col-12 col-md-12 col-sm-12 prices">
                     @Html.EditorFor(m => m.acc)
                 </div>*@
-
-
             <div class="table-responsive" id="regTab">
+
+                <div class="row">
+                    <h2>Register For</h2>
+                </div>
                 <table class="table">
                     <colgroup>
                         <col class="grey" style="text-align:left" />
@@ -157,126 +159,98 @@
                                 &nbsp;
                             </th>
                             <th colspan="1">
-                                Earlybird Registration on/before<br>March 10, 2017
+                                Earlybird Registration on/before<br>June 20, 2017
                             </th>
                             <th colspan="1">
-                                Standard Registration on/before<br>March 13, 2017
+                                Standard Registration After<br>June 20, 2017
                             </th>
                     </thead>
-
                     <tbody>
-                        <tr>
-                            <td>
-                                <input type="checkbox" name="speaker" id="speaker" onclick="return speaker_reg()" />  Speaker Registration
-                            </td>
-                            <td>
-                                <input type="radio" name="r1" value="699" onclick="return update_price()" />  $699
-                            </td>
-
-                            <td>
-                                <input type="radio" name="r1" value="799" onclick="return update_price()" />  $799
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="checkbox" name="poster" id="poster" onclick="return poster_reg()" />  Poster Registration
-                            </td>
-                            <td>
-                                <input type="radio" name="r2" value="399" onclick="return update_price()" />  $399
-                            </td>
-
-                            <td>
-                                <input type="radio" name="r2" value="499" onclick="return update_price()" />  $499
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="checkbox" name="delegate" id="delegate" onclick="return delegate_reg()" />  Delegate Registration
-                            </td>
-                            <td>
-                                <input type="radio" name="r3" value="599" onclick="return update_price()" />  $599
-                            </td>
-
-                            <td>
-                                <input type="radio" name="r3" value="699" onclick="return update_price()" />  $699
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="checkbox" name="student" id="student" value="180" onclick="return student_reg()" />  Student Delegate
-                            </td>
-                            <td>
-                                <input type="radio" name="r4" value="299" onclick="return update_price()" />  $299
-                            </td>
-
-                            <td>
-                                <input type="radio" name="r4" value="299" onclick="return update_price()" />  $299
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="checkbox" name="accompnyingperson" onclick="return accompnyingperson_reg()" />  Accompanying Person
-                            </td>
-                            <td>
-                                $200
-                            </td>
-                            <td>
-                                $200
-                            </td>
-
-                        </tr>
-                        
+                        @{
+                            foreach (var regtype in Model.Reg)
+                            {
+                                <tr>
+                                    <td>
+                                        @regtype.Name
+                                    </td>
+                                    @{
+                                        foreach (var pricetype in regtype.PricingTypes)
+                                        {
+                                            var htmlAttr = new Dictionary<string, object>();
+                                            htmlAttr.Add("class", "regpricec");
+                                            htmlAttr.Add("data-val", pricetype.Price);
+                                            htmlAttr.Add("onClick", "calculateTotal()");
+                                            if (!pricetype.IsActive)
+                                            {
+                                                htmlAttr.Add("disabled", "disabled");
+                                            }
+                                            <td>
+                                                @Html.RadioButton("regprice", false, htmlAttr) @pricetype.Price
+                                            </td>
+                                        }
+                                    }
+                                </tr>
+                                        }
+                        }
                     </tbody>
                 </table>
-                <table  class="table">
+
+                <div class="row">
+                    <div class="col-12">
+                        @Html.CheckBox("accompany", new{ data_val = 200 , @class = "", @onClick = "calculateTotal()" })
+                        <label>Accompany A Person to Conference ($200) ?</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <h2>Accomodation Prices</h2>
+                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="border:none">
+                                &nbsp;
+                            </th>
+                            <th colspan="1">
+                                Single Occupancy
+                            </th>
+                            <th colspan="1">
+                                Double Occupancy
+                            </th>
+                            <th colspan="1">
+                                Triple Occupancy
+                            </th>
+                    </thead>
                     <tbody>
-                        <tr><td colspan="7"><div align="center"><strong>Accommodation</strong></div></td></tr>
-                        <tr>
-                            <td>
-                                <strong>For 2 Nights (March 26-28, 2017)</strong>
-
-                            </td>
-                            <td colspan="2">
-                                <input type="radio" name="r5" value="360" onclick="return update_price1()" />  $360(Single Occupancy)
-                            </td>
-                            <td colspan="2">
-                                <input type="radio" name="r5" value="400" onclick="return update_price1()" />  $400(Double Occupancy)
-                            </td>
-                            <td colspan="2">
-                                <input type="radio" name="r5" value="440" onclick="return update_price1()" />  $440(Triple Occupancy)
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <strong>For 3 Nights (March 26-29, 2017)</strong>
-
-                            </td>
-                            <td colspan="2">
-                                <input type="radio" name="r5" value="540" onclick="return update_price1()" />  $540(Single Occupancy)
-                            </td>
-                            <td colspan="2">
-                                <input type="radio" name="r5" value="600" onclick="return update_price1()" />  $600(Double Occupancy)
-                            </td>
-                            <td colspan="2">
-                                <input type="radio" name="r5" value="660" onclick="return update_price1()" />  $660(Triple Occupancy)
-                        </tr>
-                        <tr>
-                            <td>
-                                <strong>For 4 Nights (March 26-30, 2017)</strong>
-
-                            </td>
-                            <td colspan="2">
-                                <input type="radio" name="r5" value="720" onclick="return update_price1()" />  $720(Single Occupancy)
-                            </td>
-                            <td colspan="2">
-                                <input type="radio" name="r5" value="800" onclick="return update_price1()" />  $800(Double Occupancy)
-                            </td>
-                            <td colspan="2">
-                                <input type="radio" name="r5" value="880" onclick="return update_price1()" />  $880(Triple Occupancy)
-                            </td>
-                        </tr>
+                        @{
+                            foreach (var regtype in Model.acc)
+                            {
+                                <tr>
+                                    <td>
+                                        @regtype.Name
+                                    </td>
+                                    @{
+                                        foreach (var occtype in regtype.occ)
+                                        {
+                                            var htmlAttr = new Dictionary<string, object>();
+                                            htmlAttr.Add("class", "accpricec");
+                                            htmlAttr.Add("data-val", occtype.Price);
+                                            htmlAttr.Add("onClick", "calculateTotal()");
+                                            if (!occtype.IsActive)
+                                            {
+                                                htmlAttr.Add("disabled", "disabled");
+                                            }
+                                            <td>
+                                                @Html.RadioButton("accprice", false, htmlAttr) @occtype.Price
+                                            </td>
+                                        }
+                                    }
+                                </tr>
+                                        }
+                        }
                     </tbody>
                 </table>
+
                 <div class="col-12 txtctr" style="padding:20px">
                     <div class="col-md-6">
                         <div class="form-group">
@@ -289,6 +263,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
 
             <div class="form-group">
@@ -297,15 +272,42 @@
                 </div>
             </div>
         </div>
-    }
+                                        }
 </div>
 <script type="text/JavaScript">
     $(document).ready(function () {
-        disable_radio();
+        calculateTotal();
+        //disable_radio();
         //retriveRegPrice();
         //retriveAccPrice();
         //getAccompanyPrice();
     });
+
+    function calculateTotal() {
+        var regprice = 0;
+        var accompanyprice = 0;
+        var accomodationPrice = 0;
+
+        $.each($('.regpricec'), function () {
+            if ($(this).prop('checked'))
+                regprice = parseInt($(this).attr('data-val'));
+        });
+        $.each($('.accpricec'), function () {
+            if ($(this).prop('checked'))
+                accomodationPrice = parseInt($(this).attr('data-val'));
+        });
+
+        if ($('#accompany').prop("checked"))
+            accomodationPrice = parseInt($('#accompany').attr("data-val"));
+
+        //var accomodationPrice = parseInt($('#lblAccPrice').prop('data-val'));
+        //var accompanyprice = parseInt($('#lblAccompanyPrice').prop('data-val'));
+        //var regprice = parseInt($('#lblRegPrice').prop('data-val'));
+        var res = accomodationPrice + accompanyprice + regprice
+        var total = { val: res, txt: "$" + res };
+        $('#lblTotalPrice').text(total.txt);
+        $('#lblTotalPrice').prop('data-val', total.amt);
+    }
 
     function retriveRegPrice() {
         var regtypeId = $('#RegTypeId').val();
@@ -370,288 +372,6 @@
             }
         });
     }
-    function calculateTotal() {
-        var accPrice = parseInt($('#lblAccPrice').prop('data-val'));
-        var accompanyprice = parseInt($('#lblAccompanyPrice').prop('data-val'));
-        var regprice = parseInt($('#lblRegPrice').prop('data-val'));
-        var res = accPrice + accompanyprice + regprice
-        var total = { val: res, txt: "$" + res };
-        $('#lblTotalPrice').text(total.txt);
-        $('#lblTotalPrice').prop('data-val', total.amt);
-    }
-
-
-
-    function speaker_reg() {
-        if (document.forms[0].speaker.checked == true) {
-
-            for (var j = 0; j < document.forms[0].r2.length; j++) {
-                document.forms[0].r1[j].disabled = false;
-                document.forms[0].r2[j].disabled = true;
-                document.forms[0].r3[j].disabled = true;
-                document.forms[0].r4[j].disabled = true;
-                document.forms[0].poster.checked = false;
-                document.forms[0].delegate.checked = false;
-                document.forms[0].student.checked = false;
-                document.forms[0].r2[j].checked = false;
-                document.forms[0].r3[j].checked = false;
-                document.forms[0].r4[j].checked = false;
-                $('#lblTotalPrice').text(0);
-
-                //document.forms[0].price.value = "";
-                document.forms[0].r1[0].disabled = true;
-                document.forms[0].r1[1].checked = true;
-
-                $('#lblTotalPrice').text(document.forms[0].r1[1].value);
-                //document.forms[0].price.value = document.forms[0].r1[2].value;
-                document.forms[0].accompnyingperson.disabled = false;
-                document.forms[0].accompnyingperson.checked = false;
-
-            }
-        }
-        else {
-            for (var j = 0; j < document.forms[0].r2.length; j++) {
-                document.forms[0].r1[j].checked = false;
-                $('#lblTotalPrice').text(0);
-                //document.forms[0].price.value = "";
-                document.forms[0].r1[j].disabled = true;
-                document.forms[0].r5[j].checked = false;
-            }
-            document.forms[0].accompnyingperson.disabled = true;
-            document.forms[0].accompnyingperson.checked = false;
-        }
-    }
-    function poster_reg() {
-        if (document.forms[0].poster.checked == true) {
-
-            for (var j = 0; j < document.forms[0].r2.length; j++) {
-                document.forms[0].r2[j].disabled = false;
-                document.forms[0].r1[j].disabled = true;
-                document.forms[0].r3[j].disabled = true;
-                document.forms[0].r4[j].disabled = true;
-                document.forms[0].speaker.checked = false;
-                document.forms[0].delegate.checked = false;
-                document.forms[0].student.checked = false;
-                document.forms[0].r1[j].checked = false;
-                document.forms[0].r3[j].checked = false;
-                document.forms[0].r4[j].checked = false;
-                $('#lblTotalPrice').text(0);
-                //document.forms[0].price.value = "";
-                document.forms[0].r2[0].disabled = true;
-                document.forms[0].r2[1].checked = true;
-
-                $('#lblTotalPrice').text(document.forms[0].r2[1].value);
-                //document.forms[0].price.value = document.forms[0].r2[2].value;
-                document.forms[0].accompnyingperson.disabled = false;
-                document.forms[0].accompnyingperson.checked = false;
-            }
-        }
-        else {
-            for (var j = 0; j < document.forms[0].r2.length; j++) {
-                document.forms[0].r2[j].checked = false;
-                $('#lblTotalPrice').text(0);
-                //document.forms[0].price.value = "";
-                document.forms[0].r2[j].disabled = true;
-                document.forms[0].r5[j].checked = false;
-            }
-            document.forms[0].accompnyingperson.disabled = true;
-            document.forms[0].accompnyingperson.checked = false;
-        }
-    }
-    function delegate_reg() {
-        if (document.forms[0].delegate.checked == true) {
-            for (var j = 0; j < document.forms[0].r2.length; j++) {
-                document.forms[0].r1[j].disabled = true;
-                document.forms[0].r2[j].disabled = true;
-                document.forms[0].r3[j].disabled = false;
-                document.forms[0].r4[j].disabled = true;
-                document.forms[0].speaker.checked = false;
-                document.forms[0].poster.checked = false;
-                document.forms[0].student.checked = false;
-                document.forms[0].r1[j].checked = false;
-                document.forms[0].r2[j].checked = false;
-                document.forms[0].r4[j].checked = false;
-                $('#lblTotalPrice').text(0);
-                //document.forms[0].price.value = "";
-                document.forms[0].r3[0].disabled = true;
-                document.forms[0].r3[1].checked = true;
-
-                $('#lblTotalPrice').text(document.forms[0].r3[1].value);
-                //document.forms[0].price.value = document.forms[0].r3[3].value;
-                document.forms[0].accompnyingperson.disabled = false;
-                document.forms[0].accompnyingperson.checked = false;
-            }
-        }
-        else {
-            for (var j = 0; j < document.forms[0].r2.length; j++) {
-                document.forms[0].r3[j].checked = false;
-                $('#lblTotalPrice').text(0);
-                //document.forms[0].price.value = "";
-                document.forms[0].r3[j].disabled = true;
-                document.forms[0].r5[j].checked = false;
-            }
-            document.forms[0].accompnyingperson.disabled = true;
-            document.forms[0].accompnyingperson.checked = false;
-        }
-    }
-    function student_reg() {
-        if (document.forms[0].student.checked == true) {
-            for (var j = 0; j < document.forms[0].r2.length; j++) {
-                document.forms[0].r1[j].disabled = true;
-                document.forms[0].r2[j].disabled = true;
-                document.forms[0].r3[j].disabled = true;
-                document.forms[0].r4[j].disabled = false;
-                document.forms[0].speaker.checked = false;
-                document.forms[0].poster.checked = false;
-                document.forms[0].delegate.checked = false;
-                document.forms[0].r1[j].checked = false;
-                document.forms[0].r2[j].checked = false;
-                document.forms[0].r3[j].checked = false;
-                $('#lblTotalPrice').text(0);
-                //document.forms[0].price.value = "";
-                document.forms[0].r4[0].disabled = true;
-                document.forms[0].r4[1].checked = true;
-
-                $('#lblTotalPrice').text(document.forms[0].r4[1].value);
-                //document.forms[0].price.value = document.forms[0].r4[2].value;
-                document.forms[0].accompnyingperson.disabled = false;
-                document.forms[0].accompnyingperson.checked = false;
-            }
-        }
-        else {
-            for (var j = 0; j < document.forms[0].r2.length; j++) {
-                document.forms[0].r4[j].checked = false;
-                $('#lblTotalPrice').text(0);
-                //document.forms[0].price.value = "";
-                document.forms[0].r4[j].disabled = true;
-                document.forms[0].r5[j].checked = false;
-            }
-            document.forms[0].accompnyingperson.disabled = true;
-            document.forms[0].accompnyingperson.checked = false;
-        }
-    }
-
-    function accompnyingperson_reg() {
-        var amount = parseInt($('#lblTotalPrice').text());
-        //var amount = parseInt(document.forms[0].price.value);
-        if (document.forms[0].accompnyingperson.checked == true) {
-            if (amount > 0) {
-                var total_amount = parseInt($('#lblTotalPrice').text()) + 200;
-                //var total_amount = parseInt(document.forms[0].price.value) + 200;
-                $('#lblTotalPrice').text(total_amount);
-                //document.forms[0].price.value = total_amount;
-            }
-            else {
-                $('#lblTotalPrice').text(100);
-                //document.forms[0].price.value = 100;
-            }
-        }
-        else {
-            if (parseInt($('#lblTotalPrice').text()) > 300) {
-                //if (parseInt(document.forms[0].price.value) > 300) {
-                var total_amount = parseInt($('#lblTotalPrice').text()) - 200;
-                //var total_amount = parseInt(document.forms[0].price.value) - 200;
-                $('#lblTotalPrice').text(total_amount);
-                //document.forms[0].price.value = total_amount;
-            }
-        }
-    }
-    function update_price() {
-        for (var i = 0; i < document.forms[0].r1.length; i++) {
-            if (document.forms[0].r1[i].checked == true) {
-                if (document.forms[0].accompnyingperson.checked == true) {
-                    $('#lblTotalPrice').text(parseInt(document.forms[0].r1[i].value) + 200);
-                    //document.forms[0].price.value = parseInt(document.forms[0].r1[i].value) + 200;
-                }
-                else {
-                    $('#lblTotalPrice').text(document.forms[0].r1[i].value);
-                    //document.forms[0].price.value = document.forms[0].r1[i].value;
-                }
-            }
-            if (document.forms[0].r2[i].checked == true) {
-                if (document.forms[0].accompnyingperson.checked == true) {
-                    $('#lblTotalPrice').text(parseInt(document.forms[0].r2[i].value) + 200);
-                    //document.forms[0].price.value = parseInt(document.forms[0].r2[i].value) + 200;
-                }
-                else {
-                    $('#lblTotalPrice').text(document.forms[0].r2[i].value);
-                    //document.forms[0].price.value = document.forms[0].r2[i].value;
-                }
-            }
-            if (document.forms[0].r3[i].checked == true) {
-                if (document.forms[0].accompnyingperson.checked == true) {
-                    $('#lblTotalPrice').text(parseInt(document.forms[0].r3[i].value) + 200);
-                    //document.forms[0].price.value = parseInt(document.forms[0].r3[i].value) + 200;
-                }
-                else {
-                    $('#lblTotalPrice').text(document.forms[0].r3[i].value);
-                    //document.forms[0].price.value = document.forms[0].r3[i].value;
-                }
-            }
-            if (document.forms[0].r4[i].checked == true) {
-                if (document.forms[0].accompnyingperson.checked == true) {
-                    $('#lblTotalPrice').text(parseInt(document.forms[0].r4[i].value) + 200);
-                    //document.forms[0].price.value = parseInt(document.forms[0].r4[i].value) + 200;
-                }
-                else {
-                    $('#lblTotalPrice').text(document.forms[0].r4[i].value);
-                    //document.forms[0].price.value = document.forms[0].r4[i].value;
-                }
-            }
-        }
-    }
-    function update_price1() {
-        var amount_ori = "";
-
-        if (document.forms[0].accompnyingperson.checked == true)
-            var acc_price = 200;
-        else
-            var acc_price = 0;
-
-        for (var i = 0; i < document.forms[0].r1.length; i++) {
-            if (document.forms[0].r1[i].checked == true) {
-                var amount_ori = parseInt(document.forms[0].r1[i].value) + acc_price;
-            }
-        }
-        for (var i = 0; i < document.forms[0].r1.length; i++) {
-            if (document.forms[0].r2[i].checked == true) {
-                var amount_ori = parseInt(document.forms[0].r2[i].value) + acc_price;
-            }
-        }
-        for (var i = 0; i < document.forms[0].r1.length; i++) {
-            if (document.forms[0].r3[i].checked == true) {
-                var amount_ori = parseInt(document.forms[0].r3[i].value) + acc_price;
-            }
-        }
-        for (var i = 0; i < document.forms[0].r1.length; i++) {
-            if (document.forms[0].r4[i].checked == true) {
-                var amount_ori = parseInt(document.forms[0].r4[i].value) + acc_price;
-            }
-        }
-        for (var i = 0; i < document.forms[0].r5.length; i++) {
-            if (document.forms[0].r5[i].checked == true) {
-                if (amount_ori != "") {
-                    $('#lblTotalPrice').text(parseInt(amount_ori) + parseInt(document.forms[0].r5[i].value));
-                    //document.forms[0].price.value = parseInt(amount_ori) + parseInt(document.forms[0].r5[i].value);
-                }
-                else {
-                    $('#lblTotalPrice').text(parseInt(document.forms[0].r5[i].value));
-                    //document.forms[0].price.value = parseInt(document.forms[0].r5[i].value);
-                }
-
-            }
-        }
-
-    }
-    function disable_radio() {
-        for (var j = 0; j < document.forms[0].r2.length; j++) {
-            document.forms[0].r1[j].disabled = true;
-            document.forms[0].r2[j].disabled = true;
-            document.forms[0].r3[j].disabled = true;
-            document.forms[0].r4[j].disabled = true;
-            document.forms[0].accompnyingperson.disabled = true;
-            $('#lblTotalPrice').text(0);
-        }
-    }
+    
 
 </script>

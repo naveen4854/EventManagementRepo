@@ -14,8 +14,9 @@ namespace EventManagement.DataModels
 
         public int NoOfPeople { get; set; }
 
-        public int Amount { get; set; }
+        public int Price { get; set; }
 
         public bool isSelected { get; set; }
+        public bool IsActive { get; set; }
     }
 }

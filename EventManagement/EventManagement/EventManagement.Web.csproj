@@ -347,6 +347,7 @@
     <Content Include="Views\CMS\NewTeamMember.cshtml" />
     <Content Include="Views\CMS\TeamMember.cshtml" />
     <Content Include="Views\Home\SponsorExhibitor.cshtml" />
+    <Content Include="Views\Conference\Guidelines.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

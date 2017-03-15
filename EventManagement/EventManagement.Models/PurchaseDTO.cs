@@ -31,7 +31,7 @@ namespace EventManagement.DataModels
         [Display(Name="Accompaning Persons")]
         public int AccompanyId { get; set; }
         public int Amount { get; set; }
-        public IEnumerable<RegistrationDTO> Reg { get; set; }
+        public IEnumerable<RegistrationTypeDTO> Reg { get; set; }
         public IEnumerable<AccommodationDTO> acc { get; set; }
     }
 }

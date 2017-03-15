@@ -54,11 +54,12 @@
     <Compile Include="LogOnViewModel.cs" />
     <Compile Include="MapDTO.cs" />
     <Compile Include="OccupancyDTO.cs" />
+    <Compile Include="PricingType.cs" />
     <Compile Include="ProgramDTO.cs" />
     <Compile Include="PurchaseDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegistrationClass.cs" />
-    <Compile Include="RegistrationDTO.cs" />
+    <Compile Include="RegistrationTypeDTO.cs" />
     <Compile Include="RegistrationPeriodDTO.cs" />
     <Compile Include="TitleModel.cs" />
     <Compile Include="TrackDTO.cs" />

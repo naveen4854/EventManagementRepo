@@ -115,7 +115,7 @@ namespace EventManagement.Controllers
             ViewBag.Categories = _confManager.GetCategories();
             ViewBag.Countries = _confManager.GetCountries();
             ViewBag.Tracks = _confManager.GetConferenceTracks(id);
-            
+
             return PartialView("PartialAbstractSubmit");
         }
 
@@ -130,40 +130,66 @@ namespace EventManagement.Controllers
         public ActionResult Registration(int id)
         {
             ViewData["ConferenceId"] = id;
-            var regclasslst = new List<RegistrationClass>();
-            regclasslst.Add(new RegistrationClass { Id = 1, Name = "Academia", IsActive = false, Amount = 150 });
-            regclasslst.Add(new RegistrationClass { Id = 2, Name = "Business", IsActive = false, Amount = 350 });
+            var dt = new DateTime(2017, 06, 20);
+            ViewBag.Countries = _confManager.GetCountries();
+            var pricingTypeLst1 = new List<PricingType>
+            {
+                new PricingType { Name = "Early", IsActive = DateTime.Compare(dt,DateTime.Now.Date)>=0, Price = 699},
+                new PricingType { Name = "Standard", IsActive = DateTime.Compare(dt,DateTime.Now.Date)<0, Price = 799},
+            };
 
-            var regPerLst = new List<RegistrationPeriodDTO>();
-            regPerLst.Add(new RegistrationPeriodDTO { Name = "Early", IsActive = true, regclass = regclasslst });
-            regPerLst.Add(new RegistrationPeriodDTO { Name = "near", IsActive = true, regclass = regclasslst });
-            regPerLst.Add(new RegistrationPeriodDTO { Name = "On Time", IsActive = true, regclass = regclasslst });
+            var pricingTypeLst2 = new List<PricingType>
+            {
+                new PricingType { Name = "Early", IsActive = DateTime.Compare(dt,DateTime.Now.Date)>=0, Price = 599},
+                new PricingType { Name = "Standard", IsActive = DateTime.Compare(dt,DateTime.Now.Date)<0, Price = 699},
+            };
 
-            var reglst = new List<RegistrationDTO>();
-            reglst.Add(new RegistrationDTO { Id = 1, Name = "Poster Registration", IsActive = true });
-            reglst.Add(new RegistrationDTO { Id = 2, Name = "Speaker Registration", IsActive = true });
-            reglst.Add(new RegistrationDTO { Id = 3, Name = "Delegate Registration", IsActive = true });
-            reglst.Add(new RegistrationDTO { Id = 4, Name = "Student Delegate", IsActive = true });
+            var pricingTypeLst3 = new List<PricingType>
+            {
+                new PricingType { Name = "Early", IsActive = DateTime.Compare(dt,DateTime.Now.Date)>=0, Price = 399},
+                new PricingType { Name = "Standard", IsActive = DateTime.Compare(dt,DateTime.Now.Date)<0, Price = 499},
+            };
 
-            var occ = new List<OccupancyDTO>();
-            occ.Add(new OccupancyDTO { Id = 1, Name = "Single", NoOfPeople = 1, isSelected = false, Amount = 200 });
-            occ.Add(new OccupancyDTO { Id = 2, Name = "Double", NoOfPeople = 2, isSelected = false, Amount = 300 });
-            occ.Add(new OccupancyDTO { Id = 3, Name = "Triple", NoOfPeople = 3, isSelected = false, Amount = 400 });
+            var pricingTypeLst4 = new List<PricingType>
+            {
+                new PricingType { Name = "Early", IsActive = DateTime.Compare(dt,DateTime.Now.Date)>=0, Price = 299},
+                new PricingType { Name = "Standard", IsActive = DateTime.Compare(dt,DateTime.Now.Date)<0, Price = 299},
+            };
 
-            var acc = new List<AccommodationDTO>();
-            acc.Add(new AccommodationDTO { Id = 1, Name = "For 2 Nights" });
-            acc.Add(new AccommodationDTO { Id = 3, Name = "For 3 Nights" });
-            acc.Add(new AccommodationDTO { Id = 4, Name = "For 4 Nights" });
+            var regTypelst = new List<RegistrationTypeDTO>();
+            regTypelst.Add(new RegistrationTypeDTO { Id = 1, Name = "Speaker Registration", IsActive = true, PricingTypes = pricingTypeLst1 });
+            regTypelst.Add(new RegistrationTypeDTO { Id = 2, Name = "Delegate Registration", IsActive = true, PricingTypes = pricingTypeLst2 });
+            regTypelst.Add(new RegistrationTypeDTO { Id = 3, Name = "Poster Registration", IsActive = true, PricingTypes = pricingTypeLst3 });
+            regTypelst.Add(new RegistrationTypeDTO { Id = 4, Name = "Student Delegate", IsActive = true, PricingTypes = pricingTypeLst4 });
 
-            ViewBag.Reglst = reglst;
-            ViewBag.regclasslst = regclasslst;
 
-            ViewBag.acclst = acc;
-            ViewBag.occlst = occ;
+            var occlst1 = new List<OccupancyDTO> {
+                new OccupancyDTO { Name="single",IsActive = true, Price = 360},
+                new OccupancyDTO { Name="double",IsActive = true, Price = 400},
+                new OccupancyDTO { Name="triple",IsActive = true, Price = 440}
+            };
+            var occlst2 = new List<OccupancyDTO> {
+                new OccupancyDTO { Name="single",IsActive = true, Price = 540},
+                new OccupancyDTO { Name="double",IsActive = true, Price = 600},
+                new OccupancyDTO { Name="triple",IsActive = true, Price = 640}
+            };
+            var occlst3 = new List<OccupancyDTO> {
+                new OccupancyDTO { Name="single",IsActive = true, Price = 720},
+                new OccupancyDTO { Name="double",IsActive = true, Price = 800},
+                new OccupancyDTO { Name="triple",IsActive = true, Price = 880}
+            };
+
+            var acclst = new List<AccommodationDTO> {
+                new AccommodationDTO { Name = "For 2 Nights", occ = occlst1},
+                new AccommodationDTO { Name = "For 3 Nights", occ = occlst2},
+                new AccommodationDTO { Name = "For 4 Nights", occ = occlst3},
+            };
+
+            ViewBag.Reglst = regTypelst;
 
             var purchase = new PurchaseDTO();
-            ViewBag.AccompanyPrices = _confManager.GetAllAccompanyPrice(id);
-            ViewBag.Countries = _confManager.GetCountries();
+            purchase.Reg = regTypelst;
+            purchase.acc = acclst;
             return View(purchase);
         }
 
@@ -217,6 +243,12 @@ namespace EventManagement.Controllers
         //    client.Send("sc_admin@scientificcognizance.com", "naveen4854@gmail.com", "Test", "test message");
         //}
 
+        [Route("Conference/{id}/Guidelines/")]
+        public ActionResult Guidelines(int id)
+        {
+            ViewData["ConferenceId"] = id;
+            return View();
+        }
 
     }
 }

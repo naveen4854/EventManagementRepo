@@ -90,13 +90,13 @@
                                 </div>
                             </li>
                             <li class="scroll"><a href="#venue">Venue</a></li>
-                            <li class="dropdown">
-                                <a href="">Guidelines</a>
-                                <div class="dropdown-content">
+                            <li class="scroll">
+                                <a class="no-scroll" href="@Url.Content("~/Conference/"+@ViewData["ConferenceId"]+ "/Guidelines/")">Guidelines</a>
+                                @*<div class="dropdown-content">
                                     <a href="">Sponsors</a>
                                     <a class="no-scroll" href="@Url.Content("~/Conference/"+@ViewData["ConferenceId"]+ "/Download")">Speaker Guidelines</a>
                                     <a href="">Become A Sponsor</a>
-                                </div>
+                                </div>*@
                             </li>
                             <li class="scroll"><a href="#">Contact</a></li>
                         </ul>
