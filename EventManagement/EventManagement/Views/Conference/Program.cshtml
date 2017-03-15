@@ -45,10 +45,12 @@
         loadPartial(0);
     })
     function loadPartial(confday) {
+        spinner(true);
         $('.programdt h2').removeClass('highlight');
         $('#prgdt_'+confday).addClass('highlight');
         $.post('@Url.Action("PartialProgram", "Conference", new { id = @ViewData["ConferenceId"], day = "CONFDAY" })'.replace("CONFDAY", parseInt(confday))).always(function (res) {
             $('.partialprg').html(res);
+            spinner(false);
         })
     };
 </script>

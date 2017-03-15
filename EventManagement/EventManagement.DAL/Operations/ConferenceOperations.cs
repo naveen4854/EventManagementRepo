@@ -415,7 +415,7 @@ namespace EventManagement.DAL.Operations
                 Title = obj.Title,
                 ImageUrl = obj.ImageUrl,
                 FK_ConferenceId = obj.ConferenceId,
-                ProgramDt = DateTime.Now
+                ProgramDt = obj.ProgramDt.Date
             };
             using (var entities = new EventManagementEntities())
             {

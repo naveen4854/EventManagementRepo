@@ -292,18 +292,19 @@
             if ($(this).prop('checked'))
                 regprice = parseInt($(this).attr('data-val'));
         });
+
+        if ($('#accompany').prop("checked"))
+            accompanyprice = parseInt($('#accompany').attr("data-val"));
+
         $.each($('.accpricec'), function () {
             if ($(this).prop('checked'))
                 accomodationPrice = parseInt($(this).attr('data-val'));
         });
-
-        if ($('#accompany').prop("checked"))
-            accomodationPrice = parseInt($('#accompany').attr("data-val"));
-
+        
         //var accomodationPrice = parseInt($('#lblAccPrice').prop('data-val'));
         //var accompanyprice = parseInt($('#lblAccompanyPrice').prop('data-val'));
         //var regprice = parseInt($('#lblRegPrice').prop('data-val'));
-        var res = accomodationPrice + accompanyprice + regprice
+        var res = regprice + accompanyprice + accomodationPrice;
         var total = { val: res, txt: "$" + res };
         $('#lblTotalPrice').text(total.txt);
         $('#lblTotalPrice').prop('data-val', total.amt);

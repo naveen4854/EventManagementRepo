@@ -197,6 +197,16 @@ namespace EventManagement.BLL
 
         public bool AddConferenceProgram(ProgramDTO obj)
         {
+            var fileName = Guid.NewGuid() + "_" + obj.ImageUpload.FileName;
+
+            if (obj.ImageUpload != null && obj.ImageUpload.ContentLength > 0)
+            {
+                var uploadDir = "~/Content/images/confprog/";
+                var filePath = Path.Combine(System.Web.HttpContext.Current.Server.MapPath(uploadDir), fileName);
+                obj.ImageUpload.SaveAs(filePath);
+            }
+            obj.ImageUrl = fileName;
+
             return confOperations.AddProgram(obj);
         }
 
