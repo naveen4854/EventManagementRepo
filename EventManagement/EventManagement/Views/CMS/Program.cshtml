@@ -60,6 +60,15 @@
                 @Html.ValidationMessageFor(model => model.Abstract, "", new { @class = "text-danger" })
             </div>
         </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.isPoster, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.CheckBoxFor(model => model.isPoster, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.isPoster, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
         <div class="form-group">
             @Html.TextBoxFor(model => model.ImageUpload, new { @type = "file" })
             @*@Html.ValidationMessageFor(model => model.ImagesUpload, "", new { @class = "text-danger" })*@

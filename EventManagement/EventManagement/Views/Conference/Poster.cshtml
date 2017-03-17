@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewBag.Title = "Poster";
+    Layout = "~/Views/Shared/Layouts/_ConferenceLayout.cshtml";
+}
+<div class="NotHome">
+    @{ if (Model.Count > 0)
+        {
+            <div class="row">
+                <div class="col-12">
+                    @foreach (var prg in Model)
+                {
+                        <div class="col-md-3">
+                            <div class="single-event pointer">
+                                <img class="img-responsive" onerror="this.src = '@Url.Content("~/Content/images/confprog/c1_p1_1.jpg")'" src="@Url.Content("~/Content/images/confprog/" + @prg.ImageUrl)" alt="event-image">
+                                <h4>@prg.Name</h4>
+                                <h5>@prg.Info</h5>
+                                <h5>@prg.Title</h5>
+                                <button onclick="abstractModal(@ViewData["ConferenceId"],@prg.Id)">Abstract</button>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+        else
+        {
+            <h3 style="text-align:center">Sorry, No Posters Registered</h3>
+        }
+    }
+    <div id='myModal' class='modal'>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div id='myModalContent'></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+
+    function abstractModal(confId, prgId) {
+        var options = { "backdrop": "static", keyboard: true };
+        $.ajax({
+            type: "GET",
+            url: '/Conference/' + confId + '/Abstract/' + prgId,
+            contentType: "application/json; charset=utf-8",
+            datatype: "json",
+            success: function (data) {
+                $('#myModalContent').html(data);
+                $('#myModal').modal(options);
+                $('#myModal').modal('show');
+
+            },
+            error: function () {
+                $('#myModalContent').html("Error fetching Abstract");
+            }
+        });
+    }
+    $('body').click(function () {
+        $('.modal').modal('hide');
+    });
+    $('.modal').click(function (e) {
+        e.stopPropagation();
+    });
+</script>

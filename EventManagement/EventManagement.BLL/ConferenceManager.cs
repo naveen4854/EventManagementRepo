@@ -86,6 +86,11 @@ namespace EventManagement.BLL
             return confOperations.GetProgramsByConf(id).Where(q => q.ProgramDt.Date == conf.StartDt.AddDays(day).Date).ToList();
         }
 
+        public IEnumerable<ProgramDTO> GetConferencePosters(int id)
+        {
+            return confOperations.GetPostersByConf(id);
+        }
+
         public bool UpdateConference(ConferenceDTO obj)
         {
             return confOperations.UpdateConference(obj);

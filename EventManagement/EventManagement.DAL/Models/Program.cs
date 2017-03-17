@@ -22,6 +22,7 @@ namespace EventManagement.DAL.Models
         public string Abstract { get; set; }
         public int FK_ConferenceId { get; set; }
         public System.DateTime ProgramDt { get; set; }
+        public bool isPoster { get; set; }
     
         public virtual Conference Conference { get; set; }
     }

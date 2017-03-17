@@ -164,6 +164,7 @@
           <Property Name="Abstract" Type="varchar(max)" />
           <Property Name="FK_ConferenceId" Type="int" Nullable="false" />
           <Property Name="ProgramDt" Type="datetime" Nullable="false" />
+          <Property Name="isPoster" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Title">
           <Key>
@@ -706,6 +707,7 @@
           <Property Name="FK_ConferenceId" Type="Int32" Nullable="false" />
           <Property Name="ProgramDt" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Conference" Relationship="EventManagementModel.FK_Program_Conference" FromRole="Program" ToRole="Conference" />
+          <Property Name="isPoster" Type="Boolean" Nullable="false" />
         </EntityType>
         <Association Name="FK_Program_Conference">
           <End Type="EventManagementModel.Conference" Role="Conference" Multiplicity="1" />
@@ -1125,6 +1127,7 @@
           <EntitySetMapping Name="Programs">
             <EntityTypeMapping TypeName="EventManagementModel.Program">
               <MappingFragment StoreEntitySet="Program">
+                <ScalarProperty Name="isPoster" ColumnName="isPoster" />
                 <ScalarProperty Name="ProgramDt" ColumnName="ProgramDt" />
                 <ScalarProperty Name="FK_ConferenceId" ColumnName="FK_ConferenceId" />
                 <ScalarProperty Name="Abstract" ColumnName="Abstract" />

@@ -69,6 +69,14 @@ namespace EventManagement.Controllers
             return PartialView(_confManager.GetConferencePrograms(id, day));
         }
 
+        [Route("Conference/{id}/Poster/")]
+        public ActionResult Poster(int id)
+        {
+            ViewData["ConferenceId"] = id;
+            return View(_confManager.GetConferencePosters(id));
+        }
+
+
         [Route("Conference/{id}/Abstract/{prgId}")]
         public ActionResult PartialAbstract(int id, int prgId)
         {

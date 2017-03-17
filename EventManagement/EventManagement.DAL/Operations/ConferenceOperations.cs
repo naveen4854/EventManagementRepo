@@ -81,6 +81,21 @@ namespace EventManagement.DAL.Operations
             return true;
         }
 
+        public IEnumerable<ProgramDTO> GetPostersByConf(int id)
+        {
+            return managementConsoleEntities.Programs.Where(q => q.FK_ConferenceId == id && q.isPoster).Select(q => new ProgramDTO
+            {
+                Id = q.Id,
+                Name = q.Name,
+                ImageUrl = q.ImageUrl,
+                Info = q.Info,
+                ProgramDt = q.ProgramDt,
+                Title = q.Title,
+                ConferenceId = q.FK_ConferenceId,
+                Abstract = q.Abstract
+            }).ToList();
+        }
+
         public VenueDTO GetVenue(int id)
         {
             var venue = managementConsoleEntities.Venues.FirstOrDefault(q => q.Id == id);
@@ -295,6 +310,7 @@ namespace EventManagement.DAL.Operations
                 prg.ProgramDt = obj.ProgramDt;
                 prg.Title = obj.Title;
                 prg.Abstract = obj.Abstract;
+                prg.isPoster = obj.isPoster;
             }
             using (var entitiesX = new EventManagementEntities())
             {
@@ -316,7 +332,8 @@ namespace EventManagement.DAL.Operations
                 Info = prg.Info,
                 ProgramDt = prg.ProgramDt,
                 Title = prg.Title,
-                Abstract = prg.Abstract
+                Abstract = prg.Abstract,
+                isPoster = prg.isPoster
             };
         }
 
@@ -479,7 +496,8 @@ namespace EventManagement.DAL.Operations
                 ImageUrl = obj.ImageUrl,
                 FK_ConferenceId = obj.ConferenceId,
                 ProgramDt = obj.ProgramDt.Date,
-                Abstract = obj.Abstract
+                Abstract = obj.Abstract,
+                isPoster = obj.isPoster
             };
             using (var entities = new EventManagementEntities())
             {
@@ -491,7 +509,7 @@ namespace EventManagement.DAL.Operations
 
         public List<ProgramDTO> GetProgramsByConf(int id)
         {
-            return managementConsoleEntities.Programs.Where(q => q.FK_ConferenceId == id).Select(q => new ProgramDTO
+            return managementConsoleEntities.Programs.Where(q => q.FK_ConferenceId == id && !q.isPoster).Select(q => new ProgramDTO
             {
                 Id = q.Id,
                 Name = q.Name,

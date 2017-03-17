@@ -39,6 +39,9 @@
         <th>
             @Html.DisplayNameFor(model => model.ProgramDt)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.isPoster)
+        </th>
         <th></th>
     </tr>
 
@@ -64,6 +67,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.ProgramDt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.isPoster)
         </td>
         <td>
             @Html.ActionLink("Edit", "Program", new { id=item.Id }) |

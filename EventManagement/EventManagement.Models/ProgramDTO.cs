@@ -18,5 +18,6 @@ namespace EventManagement.DataModels
         public string Abstract { get; set; }
         public DateTime ProgramDt { get; set; }
         public HttpPostedFileBase ImageUpload { get; set; }
+        public bool isPoster { get; set; }
     }
 }
