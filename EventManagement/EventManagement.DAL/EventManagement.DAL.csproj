@@ -90,6 +90,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EventManagementModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\MemberType.cs">
+      <DependentUpon>EventManagementModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\MST_AccomodationType.cs">
       <DependentUpon>EventManagementModel.tt</DependentUpon>
     </Compile>

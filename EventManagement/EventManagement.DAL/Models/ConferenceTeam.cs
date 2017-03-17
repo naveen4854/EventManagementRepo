@@ -21,7 +21,9 @@ namespace EventManagement.DAL.Models
         public bool Chair { get; set; }
         public string Biography { get; set; }
         public string ImageUrl { get; set; }
+        public int FK_MemberType { get; set; }
     
         public virtual Conference Conference { get; set; }
+        public virtual MemberType MemberType { get; set; }
     }
 }

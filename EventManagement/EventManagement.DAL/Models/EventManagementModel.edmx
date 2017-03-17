@@ -83,6 +83,7 @@
           <Property Name="Chair" Type="bit" Nullable="false" />
           <Property Name="Biography" Type="varchar(max)" />
           <Property Name="ImageUrl" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="FK_MemberType" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Country">
           <Key>
@@ -90,6 +91,14 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MemberType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Description" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="MST_AccomodationType">
           <Key>
@@ -341,6 +350,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ConferenceTeam_MemberType">
+          <End Role="MemberType" Type="Self.MemberType" Multiplicity="1" />
+          <End Role="ConferenceTeam" Type="Self.ConferenceTeam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MemberType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ConferenceTeam">
+              <PropertyRef Name="FK_MemberType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Pricing_Conference">
           <End Role="Conference" Type="Self.Conference" Multiplicity="1" />
           <End Role="Pricing" Type="Self.Pricing" Multiplicity="*" />
@@ -410,6 +431,7 @@
           <EntitySet Name="ConferenceImages" EntityType="Self.ConferenceImages" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ConferenceTeam" EntityType="Self.ConferenceTeam" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MemberType" EntityType="Self.MemberType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MST_AccomodationType" EntityType="Self.MST_AccomodationType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MST_Accompany" EntityType="Self.MST_Accompany" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MST_Occupancy" EntityType="Self.MST_Occupancy" Schema="dbo" store:Type="Tables" />
@@ -470,6 +492,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_ConferenceTeam_Conference" Association="Self.FK_ConferenceTeam_Conference">
             <End Role="Conference" EntitySet="Conference" />
+            <End Role="ConferenceTeam" EntitySet="ConferenceTeam" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ConferenceTeam_MemberType" Association="Self.FK_ConferenceTeam_MemberType">
+            <End Role="MemberType" EntitySet="MemberType" />
             <End Role="ConferenceTeam" EntitySet="ConferenceTeam" />
           </AssociationSet>
           <AssociationSet Name="FK_Pricing_Conference" Association="Self.FK_Pricing_Conference">
@@ -588,6 +614,11 @@
             <End Role="MST_Accompany" EntitySet="MST_Accompany" />
             <End Role="AccompanyPricing" EntitySet="AccompanyPricings" />
           </AssociationSet>
+          <EntitySet Name="MemberTypes" EntityType="EventManagementModel.MemberType" />
+          <AssociationSet Name="FK_ConferenceTeam_MemberType" Association="EventManagementModel.FK_ConferenceTeam_MemberType">
+            <End Role="MemberType" EntitySet="MemberTypes" />
+            <End Role="ConferenceTeam" EntitySet="ConferenceTeams" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Conference">
           <Key>
@@ -648,6 +679,8 @@
           <Property Name="Biography" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="ImageUrl" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Conference" Relationship="EventManagementModel.FK_ConferenceTeam_Conference" FromRole="ConferenceTeam" ToRole="Conference" />
+          <Property Name="FK_MemberType" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="MemberType" Relationship="EventManagementModel.FK_ConferenceTeam_MemberType" FromRole="ConferenceTeam" ToRole="MemberType" />
         </EntityType>
         <Association Name="FK_ConferenceTeam_Conference">
           <End Type="EventManagementModel.Conference" Role="Conference" Multiplicity="1" />
@@ -1021,6 +1054,27 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="MemberType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ConferenceTeams" Relationship="EventManagementModel.FK_ConferenceTeam_MemberType" FromRole="MemberType" ToRole="ConferenceTeam" />
+        </EntityType>
+        <Association Name="FK_ConferenceTeam_MemberType">
+          <End Type="EventManagementModel.MemberType" Role="MemberType" Multiplicity="1" />
+          <End Type="EventManagementModel.ConferenceTeam" Role="ConferenceTeam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MemberType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ConferenceTeam">
+              <PropertyRef Name="FK_MemberType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1057,6 +1111,7 @@
           <EntitySetMapping Name="ConferenceTeams">
             <EntityTypeMapping TypeName="EventManagementModel.ConferenceTeam">
               <MappingFragment StoreEntitySet="ConferenceTeam">
+                <ScalarProperty Name="FK_MemberType" ColumnName="FK_MemberType" />
                 <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
                 <ScalarProperty Name="Biography" ColumnName="Biography" />
                 <ScalarProperty Name="Chair" ColumnName="Chair" />
@@ -1221,6 +1276,15 @@
                 <ScalarProperty Name="isActive" ColumnName="isActive" />
                 <ScalarProperty Name="Value" ColumnName="Value" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MemberTypes">
+            <EntityTypeMapping TypeName="EventManagementModel.MemberType">
+              <MappingFragment StoreEntitySet="MemberType">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

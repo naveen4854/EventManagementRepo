@@ -43,5 +43,6 @@ namespace EventManagement.DAL.Models
         public virtual DbSet<MST_Occupancy> MST_Occupancy { get; set; }
         public virtual DbSet<AccompanyPricing> AccompanyPricings { get; set; }
         public virtual DbSet<MST_Accompany> MST_Accompany { get; set; }
+        public virtual DbSet<MemberType> MemberTypes { get; set; }
     }
 }

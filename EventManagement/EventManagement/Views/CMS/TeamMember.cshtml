@@ -57,12 +57,9 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.isChair, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.MemberTypeId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.isChair)
-                    @Html.ValidationMessageFor(model => model.isChair, "", new { @class = "text-danger" })
-                </div>
+                @Html.DropDownListFor(model => model.MemberTypeId, new SelectList(@ViewBag.MemberTypes, "Id", "Name"), new { @class = "form-control" })
             </div>
         </div>
 

@@ -86,6 +86,7 @@
     <Build Include="dbo\Tables\MST_AccomodationType.sql" />
     <Build Include="dbo\Tables\AccompanyPricing.sql" />
     <Build Include="dbo\Tables\AccommodationPricing.sql" />
+    <Build Include="dbo\Tables\MemberType.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="EventManagement.Database.publish.xml" />

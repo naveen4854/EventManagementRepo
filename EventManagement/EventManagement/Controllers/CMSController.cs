@@ -1,5 +1,6 @@
 ﻿using EventManagement.BLL;
 using EventManagement.DataModels;
+using EventManagement.DataModels.Enum;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -225,12 +226,14 @@ namespace EventManagement.Controllers
         public ActionResult NewTeamMember()
         {
             ViewBag.Conferences = _confManager.GetConferences();
+            ViewBag.MemberTypes = _confManager.GetMemberTypes().Where(q => !(q.Name == MemberTypeEnum.SA));
             return View();
         }
 
         public ActionResult TeamMember(int id)
         {
             ViewBag.Conferences = _confManager.GetConferences();
+            ViewBag.MemberTypes = _confManager.GetMemberTypes().Where(q => !(q.Name == MemberTypeEnum.SA));
             var teamMem = _confManager.GetTeamMember(id);
             return View(teamMem);
         }
@@ -261,32 +264,45 @@ namespace EventManagement.Controllers
             ViewBag.Conferences = _confManager.GetConferences();
             if (confs.Count > 0)
             {
-                if (confid == null)
-                {
-                    ViewBag.ConfId = confs.FirstOrDefault().Id;
-                    var conf = _confManager.GetConferenceTeam(confs.FirstOrDefault().Id);
+                var conferenceId = confid ?? confs.FirstOrDefault().Id;
+                ViewBag.ConfId = conferenceId;
+                var conf = _confManager.GetAllConferenceTeam(conferenceId);
+                if (conf.Team.Count() > 0)
                     return View("AllTeamMembers", conf.Team);
-                }
                 else
-                {
-                    ViewBag.ConfId = confid.Value;
-                    var conf = _confManager.GetConferenceTeam(confid.Value);
-                    if (conf.Team.Count > 0)
-                        return View("AllTeamMembers", conf.Team);
-                    else
-                        return RedirectToAction("NewTeamMember", "CMS");
-                }
-
+                    return RedirectToAction("NewTeamMember", "CMS");
             }
             else
                 return RedirectToAction("AddConference", "CMS");
         }
 
+        public ActionResult NewSientificAdvisor()
+        {
+            ViewBag.MemberTypes = _confManager.GetMemberTypes();
+            var memtype = _confManager.GetMemberTypes();
+            var teamDTO = new TeamMemberDTO { MemberTypeId = memtype.FirstOrDefault(q => q.Name == MemberTypeEnum.SA).Id };
+            return View(teamDTO);
+        }
+
+        public ActionResult SientificAdvisor(int id)
+        {
+            ViewBag.MemberTypes = _confManager.GetMemberTypes();
+            var teamMem = _confManager.GetTeamMember(id);
+            return View(teamMem);
+        }
+
+        public ActionResult AllSientificAdvisors()
+        {
+            var conf = _confManager.GetAllSientificAdvisors();
+            if (conf.Team.Count() > 0)
+                return View("AllSientificAdvisors", conf.Team);
+            else
+                return RedirectToAction("NewSientificAdvisor", "CMS");
+        }
 
         #endregion team
 
         #region program
-
 
         public ActionResult NewProgram()
         {

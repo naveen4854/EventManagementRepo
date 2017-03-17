@@ -51,8 +51,10 @@
     <Compile Include="ConferenceImageModel.cs" />
     <Compile Include="ConferenceTeamDTO.cs" />
     <Compile Include="CountryModel.cs" />
+    <Compile Include="Enum\MemberTypeEnum.cs" />
     <Compile Include="LogOnViewModel.cs" />
     <Compile Include="MapDTO.cs" />
+    <Compile Include="MemberTypeDTO.cs" />
     <Compile Include="OccupancyDTO.cs" />
     <Compile Include="PricingType.cs" />
     <Compile Include="ProgramDTO.cs" />

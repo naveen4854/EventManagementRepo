@@ -65,6 +65,11 @@ namespace EventManagement.BLL
             return confOperations.GetConferenceTeam(id);
         }
 
+        public ConferenceDTO GetAllConferenceTeam(int id)
+        {
+            return confOperations.GetAllConferenceTeam(id);
+        }
+
         public ConferenceDTO GetConferenceChair(int id)
         {
             return confOperations.GetConferenceChair(id);
@@ -245,6 +250,11 @@ namespace EventManagement.BLL
             return confOperations.UpdateTeamMember(obj);
         }
 
+        public IEnumerable<MemberTypeDTO> GetMemberTypes()
+        {
+            return confOperations.GetMemberTypes();
+        }
+
         public TeamMemberDTO DeleteTeamMember(int id)
         {
             return confOperations.DeleteTeamMember(id);
@@ -273,6 +283,11 @@ namespace EventManagement.BLL
         public object GetProgram(int id)
         {
             return confOperations.GetProgram(id);
+        }
+
+        public ConferenceDTO GetAllSientificAdvisors()
+        {
+            return confOperations.GetScientificAdvisors();
         }
 
         public bool UpdateProgram(ProgramDTO obj)

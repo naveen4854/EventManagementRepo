@@ -349,6 +349,9 @@
     <Content Include="Views\CMS\AllPrograms.cshtml" />
     <Content Include="Views\CMS\NewProgram.cshtml" />
     <Content Include="Views\CMS\Program.cshtml" />
+    <Content Include="Views\CMS\AllSientificAdvisors.cshtml" />
+    <Content Include="Views\CMS\NewSientificAdvisor.cshtml" />
+    <Content Include="Views\CMS\SientificAdvisor.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
