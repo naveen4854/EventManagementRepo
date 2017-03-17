@@ -1,0 +1,81 @@
+﻿@model IEnumerable<EventManagement.DataModels.ProgramDTO>
+
+@{
+    ViewBag.Title = "AllPrograms";
+    Layout = "~/Views/Shared/Layouts/_CMSLayout.cshtml";
+}
+
+<h2>AllPrograms</h2>
+
+<p>
+    @Html.ActionLink("Create New", "NewProgram")
+</p>
+
+<div class="form-group">
+    <div class="col-md-10">
+        @Html.DropDownList("Conference", new SelectList(@ViewBag.Conferences, "Id", "Name", @ViewBag.ConfId), new { @class = "form-control", onchange = "redirect('" + Url.Action("AllPrograms", "CMS", new { confid = "val" }) + "')" })
+    </div>
+</div>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ConferenceId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Info)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImageUrl)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Abstract)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProgramDt)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ConferenceId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Info)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ImageUrl)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Abstract)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProgramDt)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Program", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "DeleteProgram", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
+<script>
+    function redirect(url) {
+        var val = $('#Conference').val();
+        window.location = url.replace('val', val);
+    }
+</script>

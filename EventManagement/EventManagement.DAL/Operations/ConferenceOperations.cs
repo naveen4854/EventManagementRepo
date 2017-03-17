@@ -259,6 +259,61 @@ namespace EventManagement.DAL.Operations
             return true;
         }
 
+        public ProgramDTO DeleteProgram(int id)
+        {
+            Program prg;
+            using (var entities = new EventManagementEntities())
+            {
+                prg = entities.Programs.Where(q => q.Id == id).FirstOrDefault();
+            }
+            using (var entitiesX = new EventManagementEntities())
+            {
+                entitiesX.Entry(prg).State = EntityState.Deleted;
+                entitiesX.SaveChanges();
+            }
+            return new ProgramDTO { Id = prg.Id, ConferenceId = prg.FK_ConferenceId };
+        }
+
+        public bool UpdateProgram(ProgramDTO obj)
+        {
+            Program prg;
+            using (var entities = new EventManagementEntities())
+            {
+                prg = entities.Programs.Where(q => q.Id == obj.Id).FirstOrDefault();
+            }
+            if (prg != null)
+            {
+                prg.Name = obj.Name;
+                prg.ImageUrl = obj.ImageUrl;
+                prg.Info = obj.Info;
+                prg.ProgramDt = obj.ProgramDt;
+                prg.Title = obj.Title;
+                prg.Abstract = obj.Abstract;
+            }
+            using (var entitiesX = new EventManagementEntities())
+            {
+                entitiesX.Entry(prg).State = EntityState.Modified;
+                entitiesX.SaveChanges();
+            }
+            return true;
+        }
+
+        public ProgramDTO GetProgram(int id)
+        {
+            var prg = managementConsoleEntities.Programs.FirstOrDefault(q => q.Id == id);
+
+            return new ProgramDTO
+            {
+                Id = prg.Id,
+                Name = prg.Name,
+                ImageUrl = prg.ImageUrl,
+                Info = prg.Info,
+                ProgramDt = prg.ProgramDt,
+                Title = prg.Title,
+                Abstract = prg.Abstract
+            };
+        }
+
         public TeamMemberDTO DeleteTeamMember(int id)
         {
             ConferenceTeam teamMem;
@@ -415,7 +470,8 @@ namespace EventManagement.DAL.Operations
                 Title = obj.Title,
                 ImageUrl = obj.ImageUrl,
                 FK_ConferenceId = obj.ConferenceId,
-                ProgramDt = obj.ProgramDt.Date
+                ProgramDt = obj.ProgramDt.Date,
+                Abstract = obj.Abstract
             };
             using (var entities = new EventManagementEntities())
             {
@@ -425,7 +481,7 @@ namespace EventManagement.DAL.Operations
             return true;
         }
 
-        public List<ProgramDTO> GetConferencePrograms(int id)
+        public List<ProgramDTO> GetProgramsByConf(int id)
         {
             return managementConsoleEntities.Programs.Where(q => q.FK_ConferenceId == id).Select(q => new ProgramDTO
             {
@@ -434,7 +490,9 @@ namespace EventManagement.DAL.Operations
                 ImageUrl = q.ImageUrl,
                 Info = q.Info,
                 ProgramDt = q.ProgramDt,
-                Title = q.Title
+                Title = q.Title,
+                ConferenceId = q.FK_ConferenceId,
+                Abstract = q.Abstract
             }).ToList();
         }
 

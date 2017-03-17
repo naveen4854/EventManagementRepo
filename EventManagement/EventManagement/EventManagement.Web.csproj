@@ -321,11 +321,9 @@
     <Content Include="Views\Conference\PartialAbstractSubmit.cshtml" />
     <Content Include="Views\Error\Index.cshtml" />
     <Content Include="Views\Error\ErrMsg.cshtml" />
-    <Content Include="Views\CMS\AllConferencePrograms.cshtml" />
     <Content Include="Views\CMS\AllConferences.cshtml" />
     <Content Include="Views\CMS\AllTracks.cshtml" />
     <Content Include="Views\CMS\AllVenues.cshtml" />
-    <Content Include="Views\CMS\ConferencePrograms.cshtml" />
     <Content Include="Views\CMS\NewConference.cshtml" />
     <Content Include="Views\CMS\Index.cshtml" />
     <Content Include="Views\CMS\NewTrack.cshtml" />
@@ -348,6 +346,9 @@
     <Content Include="Views\CMS\TeamMember.cshtml" />
     <Content Include="Views\Home\SponsorExhibitor.cshtml" />
     <Content Include="Views\Conference\Guidelines.cshtml" />
+    <Content Include="Views\CMS\AllPrograms.cshtml" />
+    <Content Include="Views\CMS\NewProgram.cshtml" />
+    <Content Include="Views\CMS\Program.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

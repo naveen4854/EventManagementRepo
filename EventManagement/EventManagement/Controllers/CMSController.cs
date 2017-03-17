@@ -66,7 +66,7 @@ namespace EventManagement.Controllers
         public ActionResult NewConference()
         {
             ViewBag.Venues = _confManager.GetVenues();
-            return View(new ConferenceDTO { StartDt = DateTime.Now.Date,EndDt = DateTime.Now.Date.AddDays(3)});
+            return View(new ConferenceDTO { StartDt = DateTime.Now.Date, EndDt = DateTime.Now.Date.AddDays(3) });
         }
 
         public ActionResult Conference(int id)
@@ -161,7 +161,7 @@ namespace EventManagement.Controllers
                     else
                         return RedirectToAction("NewTrack", "CMS");
                 }
-                
+
             }
             else
                 return RedirectToAction("AddConference", "CMS");
@@ -286,6 +286,60 @@ namespace EventManagement.Controllers
         #endregion team
 
         #region program
+
+
+        public ActionResult NewProgram()
+        {
+            ViewBag.Conferences = _confManager.GetConferences();
+            return View();
+        }
+
+        public ActionResult Program(int id)
+        {
+            ViewBag.Conferences = _confManager.GetConferences();
+            var teamMem = _confManager.GetProgram(id);
+            return View(teamMem);
+        }
+
+        [HttpPost]
+        public ActionResult AddProgram(ProgramDTO obj)
+        {
+            _confManager.AddProgram(obj);
+            return RedirectToAction("AllPrograms", obj.ConferenceId);
+        }
+
+        [HttpPost]
+        public ActionResult UpdateProgram(ProgramDTO obj)
+        {
+            _confManager.UpdateProgram(obj);
+            return RedirectToAction("AllPrograms", obj.ConferenceId);
+        }
+
+        public ActionResult DeleteProgram(int id)
+        {
+            var obj = _confManager.DeleteProgram(id);
+            return RedirectToAction("AllPrograms", obj.ConferenceId);
+        }
+
+        public ActionResult AllPrograms(int? confid)
+        {
+            var confs = _confManager.GetConferences();
+            ViewBag.Conferences = _confManager.GetConferences();
+            if (confs.Count > 0)
+            {
+                var conferenceId = confid ?? confs.FirstOrDefault().Id;
+                ViewBag.ConfId = conferenceId;
+                var prgs = _confManager.GetAllProgramsByConf(conferenceId);
+                if (prgs.Count() > 0)
+                    return View("AllPrograms", prgs);
+                else
+                    return RedirectToAction("NewProgram", "CMS");
+            }
+            else
+                return RedirectToAction("AddConference", "CMS");
+        }
+
+
 
         public ActionResult ConferencePrograms()
         {

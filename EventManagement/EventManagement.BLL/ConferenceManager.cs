@@ -78,7 +78,7 @@ namespace EventManagement.BLL
         public List<ProgramDTO> GetConferencePrograms(int id, int day)
         {
             var conf = confOperations.GetConferencePeriod(id);
-            return confOperations.GetConferencePrograms(id).Where(q => q.ProgramDt.Date == conf.StartDt.AddDays(day).Date).ToList();
+            return confOperations.GetProgramsByConf(id).Where(q => q.ProgramDt.Date == conf.StartDt.AddDays(day).Date).ToList();
         }
 
         public bool UpdateConference(ConferenceDTO obj)
@@ -191,8 +191,7 @@ namespace EventManagement.BLL
 
         public List<ProgramDTO> GetAllConferencePrograms(int conferenceId)
         {
-            var conf = confOperations.GetConferencePeriod(conferenceId);
-            return confOperations.GetConferencePrograms(conferenceId).ToList();
+            return confOperations.GetProgramsByConf(conferenceId).ToList();
         }
 
         public bool AddConferenceProgram(ProgramDTO obj)
@@ -249,6 +248,41 @@ namespace EventManagement.BLL
         public TeamMemberDTO DeleteTeamMember(int id)
         {
             return confOperations.DeleteTeamMember(id);
+        }
+
+        public IEnumerable<ProgramDTO> GetAllProgramsByConf(int conferenceId)
+        {
+            return confOperations.GetProgramsByConf(conferenceId).ToList();
+        }
+
+        public bool AddProgram(ProgramDTO obj)
+        {
+            var fileName = Guid.NewGuid() + "_" + obj.ImageUpload.FileName;
+
+            if (obj.ImageUpload != null && obj.ImageUpload.ContentLength > 0)
+            {
+                var uploadDir = "~/Content/images/confprog/";
+                var filePath = Path.Combine(System.Web.HttpContext.Current.Server.MapPath(uploadDir), fileName);
+                obj.ImageUpload.SaveAs(filePath);
+            }
+            obj.ImageUrl = fileName;
+
+            return confOperations.AddProgram(obj);
+        }
+
+        public object GetProgram(int id)
+        {
+            return confOperations.GetProgram(id);
+        }
+
+        public bool UpdateProgram(ProgramDTO obj)
+        {
+            return confOperations.UpdateProgram(obj);
+        }
+
+        public ProgramDTO DeleteProgram(int id)
+        {
+            return confOperations.DeleteProgram(id);
         }
     }
 }
