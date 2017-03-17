@@ -275,7 +275,9 @@ namespace EventManagement.Controllers
             else
                 return RedirectToAction("AddConference", "CMS");
         }
+        #endregion team
 
+        #region SA
         public ActionResult NewSientificAdvisor()
         {
             ViewBag.MemberTypes = _confManager.GetMemberTypes();
@@ -304,6 +306,11 @@ namespace EventManagement.Controllers
             _confManager.UpdateTeamMember(obj);
             return RedirectToAction("AllSientificAdvisors");
         }
+        public ActionResult DeleteSientificAdvisor(int id)
+        {
+            var obj = _confManager.DeleteTeamMember(id);
+            return RedirectToAction("AllSientificAdvisors");
+        }
 
         public ActionResult AllSientificAdvisors()
         {
@@ -314,7 +321,7 @@ namespace EventManagement.Controllers
                 return RedirectToAction("NewSientificAdvisor", "CMS");
         }
 
-        #endregion team
+        #endregion SA
 
         #region program
 
