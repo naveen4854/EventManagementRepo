@@ -15,7 +15,7 @@ namespace EventManagement.DAL.Models
     public partial class ConferenceTeam
     {
         public int Id { get; set; }
-        public int FK_ConferenceId { get; set; }
+        public Nullable<int> FK_ConferenceId { get; set; }
         public string Name { get; set; }
         public string Info { get; set; }
         public bool Chair { get; set; }

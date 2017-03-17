@@ -9,6 +9,13 @@ namespace EventManagement.Controllers
 {
     public class HomeController : Controller
     {
+        private ConferenceManager _confManager;
+
+        public HomeController()
+        {
+            _confManager = new ConferenceManager();
+        }
+
         public ActionResult Index()
         {
             return View();
@@ -42,6 +49,12 @@ namespace EventManagement.Controllers
         public ActionResult SponsorExhibitor()
         {
             return View();
+        }
+
+        public ActionResult ScientificAdvisors()
+        {
+            var SAlst = _confManager.GetSientificAdvisors();
+            return View(SAlst);
         }
     }
 }

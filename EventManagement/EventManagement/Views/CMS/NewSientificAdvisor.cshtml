@@ -11,13 +11,15 @@
 
 <h2>New Sientific Advisor</h2>
 
-@using (Html.BeginForm("AddTeamMember", "CMS", FormMethod.Post, new { encType = "multipart/form-data" }))
+@using (Html.BeginForm("AddSientificAdvisor", "CMS", FormMethod.Post, new { encType = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.MemberTypeId)
+
 
         <div class="form-group">
             @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })

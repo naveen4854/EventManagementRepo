@@ -1119,3 +1119,7 @@ th.next i:before {
     content: "\f061";
     font-style: normal;
 }
+
+#home{
+    min-height: calc(100vh - 38px);
+}

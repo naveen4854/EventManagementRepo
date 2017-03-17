@@ -291,11 +291,25 @@ namespace EventManagement.Controllers
             return View(teamMem);
         }
 
+        [HttpPost]
+        public ActionResult AddSientificAdvisor(TeamMemberDTO obj)
+        {
+            _confManager.AddConferenceTeam(obj);
+            return RedirectToAction("AllSientificAdvisors");
+        }
+
+        [HttpPost]
+        public ActionResult UpdateSientificAdvisor(TeamMemberDTO obj)
+        {
+            _confManager.UpdateTeamMember(obj);
+            return RedirectToAction("AllSientificAdvisors");
+        }
+
         public ActionResult AllSientificAdvisors()
         {
-            var conf = _confManager.GetAllSientificAdvisors();
-            if (conf.Team.Count() > 0)
-                return View("AllSientificAdvisors", conf.Team);
+            var team = _confManager.GetSientificAdvisors();
+            if (team.Count() > 0)
+                return View("AllSientificAdvisors", team);
             else
                 return RedirectToAction("NewSientificAdvisor", "CMS");
         }

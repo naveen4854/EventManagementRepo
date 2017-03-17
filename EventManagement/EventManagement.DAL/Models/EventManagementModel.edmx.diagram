@@ -5,7 +5,6 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="1c0662e0c1214ba8905bfaf528591a87" Name="Diagram1">
-        <EntityTypeShape EntityType="EventManagementModel.ConferenceTeam" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="EventManagementModel.Venue" Width="1.5" PointX="3.375" PointY="0.75" />
         <EntityTypeShape EntityType="EventManagementModel.Program" Width="1.5" PointX="3.375" PointY="3.75" />
         <EntityTypeShape EntityType="EventManagementModel.Track" Width="1.5" PointX="0.75" PointY="4.75" />
@@ -31,6 +30,7 @@
         <EntityTypeShape EntityType="EventManagementModel.MST_Accompany" Width="1.5" PointX="10.375" PointY="12" />
         <AssociationConnector Association="EventManagementModel.FK_AccompanyPricing_MST_Accompany" />
         <EntityTypeShape EntityType="EventManagementModel.MemberType" Width="1.5" PointX="0.75" PointY="14.375" />
+        <EntityTypeShape EntityType="EventManagementModel.ConferenceTeam" Width="1.5" PointX="3" PointY="13.75" />
         <AssociationConnector Association="EventManagementModel.FK_ConferenceTeam_MemberType" />
       </Diagram>
     </edmx:Diagrams>

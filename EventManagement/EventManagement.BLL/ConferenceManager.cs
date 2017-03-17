@@ -285,7 +285,7 @@ namespace EventManagement.BLL
             return confOperations.GetProgram(id);
         }
 
-        public ConferenceDTO GetAllSientificAdvisors()
+        public IEnumerable<TeamMemberDTO> GetSientificAdvisors()
         {
             return confOperations.GetScientificAdvisors();
         }

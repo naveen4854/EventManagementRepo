@@ -12,7 +12,7 @@ namespace EventManagement.DataModels
     {
         public int Id { get; set; }
         [Display(Name="Conference")]
-        public int ConferenceId { get; set; }
+        public int? ConferenceId { get; set; }
         [Display(Name="Member Type")]
         public int MemberTypeId { get; set; }
         public string Name { get; set; }

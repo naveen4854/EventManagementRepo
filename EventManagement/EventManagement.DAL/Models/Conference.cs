@@ -18,13 +18,13 @@ namespace EventManagement.DAL.Models
         public Conference()
         {
             this.ConferenceImages = new HashSet<ConferenceImage>();
-            this.ConferenceTeams = new HashSet<ConferenceTeam>();
             this.Programs = new HashSet<Program>();
             this.Tracks = new HashSet<Track>();
             this.AbstractsSubmitteds = new HashSet<AbstractsSubmitted>();
             this.Pricings = new HashSet<Pricing>();
             this.AccommodationPricings = new HashSet<AccommodationPricing>();
             this.AccompanyPricings = new HashSet<AccompanyPricing>();
+            this.ConferenceTeams = new HashSet<ConferenceTeam>();
         }
     
         public int Id { get; set; }
@@ -41,8 +41,6 @@ namespace EventManagement.DAL.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ConferenceImage> ConferenceImages { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ConferenceTeam> ConferenceTeams { get; set; }
         public virtual Venue Venue { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Program> Programs { get; set; }
@@ -56,5 +54,7 @@ namespace EventManagement.DAL.Models
         public virtual ICollection<AccommodationPricing> AccommodationPricings { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AccompanyPricing> AccompanyPricings { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ConferenceTeam> ConferenceTeams { get; set; }
     }
 }

@@ -352,6 +352,7 @@
     <Content Include="Views\CMS\AllSientificAdvisors.cshtml" />
     <Content Include="Views\CMS\NewSientificAdvisor.cshtml" />
     <Content Include="Views\CMS\SientificAdvisor.cshtml" />
+    <Content Include="Views\Home\ScientificAdvisors.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

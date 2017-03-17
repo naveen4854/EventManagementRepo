@@ -615,9 +615,9 @@ namespace EventManagement.DAL.Operations
             };
         }
 
-        public ConferenceDTO GetScientificAdvisors()
+        public IEnumerable<TeamMemberDTO> GetScientificAdvisors()
         {
-            var conf = managementConsoleEntities.ConferenceTeams.Where(q => q.MemberType.Type == MemberTypeEnum.SA).Select(q => new TeamMemberDTO
+            var team = managementConsoleEntities.ConferenceTeams.Where(q => q.MemberType.Type == MemberTypeEnum.SA).Select(q => new TeamMemberDTO
             {
                 Id = q.Id,
                 Name = q.Name,
@@ -627,10 +627,8 @@ namespace EventManagement.DAL.Operations
                 ImageUrl = q.ImageUrl,
                 MemberTypeId = q.FK_MemberType
             }).ToList();
-            return new ConferenceDTO
-            {
-                Team = conf
-            };
+
+            return team;
         }
 
         public List<CountryModel> GetCountries()

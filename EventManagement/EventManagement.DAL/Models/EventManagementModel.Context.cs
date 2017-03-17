@@ -27,7 +27,6 @@ namespace EventManagement.DAL.Models
     
         public virtual DbSet<Conference> Conferences { get; set; }
         public virtual DbSet<ConferenceImage> ConferenceImages { get; set; }
-        public virtual DbSet<ConferenceTeam> ConferenceTeams { get; set; }
         public virtual DbSet<Venue> Venues { get; set; }
         public virtual DbSet<Program> Programs { get; set; }
         public virtual DbSet<Track> Tracks { get; set; }
@@ -44,5 +43,6 @@ namespace EventManagement.DAL.Models
         public virtual DbSet<AccompanyPricing> AccompanyPricings { get; set; }
         public virtual DbSet<MST_Accompany> MST_Accompany { get; set; }
         public virtual DbSet<MemberType> MemberTypes { get; set; }
+        public virtual DbSet<ConferenceTeam> ConferenceTeams { get; set; }
     }
 }

@@ -77,7 +77,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="FK_ConferenceId" Type="int" Nullable="false" />
+          <Property Name="FK_ConferenceId" Type="int" />
           <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Info" Type="varchar(max)" />
           <Property Name="Chair" Type="bit" Nullable="false" />
@@ -339,7 +339,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ConferenceTeam_Conference">
-          <End Role="Conference" Type="Self.Conference" Multiplicity="1" />
+          <End Role="Conference" Type="Self.Conference" Multiplicity="0..1" />
           <End Role="ConferenceTeam" Type="Self.ConferenceTeam" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Conference">
@@ -530,11 +530,6 @@
             <End Role="Conference" EntitySet="Conferences" />
             <End Role="ConferenceImage" EntitySet="ConferenceImages" />
           </AssociationSet>
-          <EntitySet Name="ConferenceTeams" EntityType="EventManagementModel.ConferenceTeam" />
-          <AssociationSet Name="FK_ConferenceTeam_Conference" Association="EventManagementModel.FK_ConferenceTeam_Conference">
-            <End Role="Conference" EntitySet="Conferences" />
-            <End Role="ConferenceTeam" EntitySet="ConferenceTeams" />
-          </AssociationSet>
           <EntitySet Name="Venues" EntityType="EventManagementModel.Venue" />
           <AssociationSet Name="FK_Conference_Venue" Association="EventManagementModel.FK_Conference_Venue">
             <End Role="Venue" EntitySet="Venues" />
@@ -615,6 +610,11 @@
             <End Role="AccompanyPricing" EntitySet="AccompanyPricings" />
           </AssociationSet>
           <EntitySet Name="MemberTypes" EntityType="EventManagementModel.MemberType" />
+          <EntitySet Name="ConferenceTeams" EntityType="EventManagementModel.ConferenceTeam" />
+          <AssociationSet Name="FK_ConferenceTeam_Conference" Association="EventManagementModel.FK_ConferenceTeam_Conference">
+            <End Role="Conference" EntitySet="Conferences" />
+            <End Role="ConferenceTeam" EntitySet="ConferenceTeams" />
+          </AssociationSet>
           <AssociationSet Name="FK_ConferenceTeam_MemberType" Association="EventManagementModel.FK_ConferenceTeam_MemberType">
             <End Role="MemberType" EntitySet="MemberTypes" />
             <End Role="ConferenceTeam" EntitySet="ConferenceTeams" />
@@ -630,7 +630,6 @@
           <Property Name="ShortDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="Active" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="ConferenceImages" Relationship="EventManagementModel.FK_ConferenceImages_Conference" FromRole="Conference" ToRole="ConferenceImage" />
-          <NavigationProperty Name="ConferenceTeams" Relationship="EventManagementModel.FK_ConferenceTeam_Conference" FromRole="Conference" ToRole="ConferenceTeam" />
           <Property Name="FK_VenueId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Venue" Relationship="EventManagementModel.FK_Conference_Venue" FromRole="Conference" ToRole="Venue" />
           <Property Name="startDt" Type="DateTime" Nullable="false" Precision="3" />
@@ -644,6 +643,7 @@
           <NavigationProperty Name="AccommodationPricings" Relationship="EventManagementModel.FK_AccommodationPricing_Conference" FromRole="Conference" ToRole="AccommodationPricing" />
           <NavigationProperty Name="AccompanyPricings" Relationship="EventManagementModel.FK_AccompanyPricing_Conference" FromRole="Conference" ToRole="AccompanyPricing" />
           <Property Name="shortImageUrl" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ConferenceTeams" Relationship="EventManagementModel.FK_ConferenceTeam_Conference" FromRole="Conference" ToRole="ConferenceTeam" />
         </EntityType>
         <EntityType Name="ConferenceImage">
           <Key>
@@ -663,33 +663,6 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="ConferenceImage">
-              <PropertyRef Name="FK_ConferenceId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="ConferenceTeam">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FK_ConferenceId" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Info" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Chair" Type="Boolean" Nullable="false" />
-          <Property Name="Biography" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="ImageUrl" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Conference" Relationship="EventManagementModel.FK_ConferenceTeam_Conference" FromRole="ConferenceTeam" ToRole="Conference" />
-          <Property Name="FK_MemberType" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="MemberType" Relationship="EventManagementModel.FK_ConferenceTeam_MemberType" FromRole="ConferenceTeam" ToRole="MemberType" />
-        </EntityType>
-        <Association Name="FK_ConferenceTeam_Conference">
-          <End Type="EventManagementModel.Conference" Role="Conference" Multiplicity="1" />
-          <End Type="EventManagementModel.ConferenceTeam" Role="ConferenceTeam" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Conference">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ConferenceTeam">
               <PropertyRef Name="FK_ConferenceId" />
             </Dependent>
           </ReferentialConstraint>
@@ -1063,6 +1036,33 @@
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ConferenceTeams" Relationship="EventManagementModel.FK_ConferenceTeam_MemberType" FromRole="MemberType" ToRole="ConferenceTeam" />
         </EntityType>
+        <EntityType Name="ConferenceTeam">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FK_ConferenceId" Type="Int32" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Info" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Chair" Type="Boolean" Nullable="false" />
+          <Property Name="Biography" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ImageUrl" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FK_MemberType" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Conference" Relationship="EventManagementModel.FK_ConferenceTeam_Conference" FromRole="ConferenceTeam" ToRole="Conference" />
+          <NavigationProperty Name="MemberType" Relationship="EventManagementModel.FK_ConferenceTeam_MemberType" FromRole="ConferenceTeam" ToRole="MemberType" />
+        </EntityType>
+        <Association Name="FK_ConferenceTeam_Conference">
+          <End Type="EventManagementModel.Conference" Role="Conference" Multiplicity="0..1" />
+          <End Type="EventManagementModel.ConferenceTeam" Role="ConferenceTeam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Conference">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ConferenceTeam">
+              <PropertyRef Name="FK_ConferenceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ConferenceTeam_MemberType">
           <End Type="EventManagementModel.MemberType" Role="MemberType" Multiplicity="1" />
           <End Type="EventManagementModel.ConferenceTeam" Role="ConferenceTeam" Multiplicity="*" />
@@ -1103,20 +1103,6 @@
               <MappingFragment StoreEntitySet="ConferenceImages">
                 <ScalarProperty Name="Active" ColumnName="Active" />
                 <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
-                <ScalarProperty Name="FK_ConferenceId" ColumnName="FK_ConferenceId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ConferenceTeams">
-            <EntityTypeMapping TypeName="EventManagementModel.ConferenceTeam">
-              <MappingFragment StoreEntitySet="ConferenceTeam">
-                <ScalarProperty Name="FK_MemberType" ColumnName="FK_MemberType" />
-                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
-                <ScalarProperty Name="Biography" ColumnName="Biography" />
-                <ScalarProperty Name="Chair" ColumnName="Chair" />
-                <ScalarProperty Name="Info" ColumnName="Info" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="FK_ConferenceId" ColumnName="FK_ConferenceId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
@@ -1285,6 +1271,20 @@
               <MappingFragment StoreEntitySet="MemberType">
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ConferenceTeams">
+            <EntityTypeMapping TypeName="EventManagementModel.ConferenceTeam">
+              <MappingFragment StoreEntitySet="ConferenceTeam">
+                <ScalarProperty Name="FK_MemberType" ColumnName="FK_MemberType" />
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+                <ScalarProperty Name="Biography" ColumnName="Biography" />
+                <ScalarProperty Name="Chair" ColumnName="Chair" />
+                <ScalarProperty Name="Info" ColumnName="Info" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="FK_ConferenceId" ColumnName="FK_ConferenceId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
