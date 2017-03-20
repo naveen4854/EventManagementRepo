@@ -2,33 +2,37 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/Layouts/_Layout.cshtml";
 }
+<div>
+    <section id="home">
+        @{ Html.RenderAction("PartialHome", "Home"); }
+    </section>
 
-<section id="home">
-    @{ Html.RenderAction("PartialHome", "Home"); }
-</section>
+    <section id="about">
+        @{ Html.RenderAction("PartialAboutUs", "Home"); }
+    </section>
 
-<section id="about">
-    @{ Html.RenderAction("PartialAboutUs", "Home"); }
-</section>
+    <section id="conferences">
+        @{ Html.RenderAction("PartialConferences", "Home"); }
+    </section>
 
-<section id="conferences">
-    @{ Html.RenderAction("PartialConferences", "Home"); }
-</section>
+    <section id="SA">
+        @{ Html.RenderAction("PartialScientificAdvisors", "Home"); }
+    </section>
 
-<section id="SA">
-    @{ Html.RenderAction("PartialScientificAdvisors", "Home"); }
-</section>
+    <section id="regPolicy">
+        @{ Html.RenderAction("PartialRegistrationPolicy", "Home"); }
+    </section>
+    
+    <section id="contact">
+        @{ Html.RenderAction("PartialContactUs", "Home"); }
+    </section>
 
-<section id="regPolicy">
-    @{ Html.RenderAction("PartialRegistrationPolicy", "Home"); }
-</section>
-
-
-
-<section id="contact">
-    @{ Html.RenderAction("PartialContactUs", "Home"); }
-</section>
-
+    <script>
+        $(document).ready(function () {
+            processScroll();
+        });
+    </script>
+</div>
     @*<section id="explore">
             <div class="container">
                 <div class="row">

@@ -6,7 +6,7 @@
 }
 
 <div id="confHome">
-    <section id="confHome">
+    <section id="Home">
         @{ Html.RenderAction("PartialHome", "Conference", new { obj = Model }); }
     </section>
 
@@ -29,7 +29,7 @@
         </div>
     </section>
 
-    <section id="about">
+    <section id="programSchedule">
         <div class="about-content">
             <div class="container">
                 <h3 style="text-align: center;font-weight: bold;">Program Schedule</h3>
@@ -85,3 +85,6 @@
     </section>
 </div>
 
+<script>
+    processScroll();
+</script>

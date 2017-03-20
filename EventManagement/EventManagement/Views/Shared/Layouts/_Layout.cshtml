@@ -56,18 +56,18 @@
                     </div>
                     <div class="collapse navbar-collapse">
                         <ul class="nav navbar-nav navbar-right">
-                            <li class="scroll active"><a class="homeicon" href="#home"><i style="" class="fa fa-home" aria-hidden="true"></i></a></li>
-                            <li class="scroll"><a href="#about">About Us</a></li>
-                            <li class="scroll">
-                                <a href="#conferences" class="dropbtn">Conferences</a>
+                            <li class="active"><a class="scroll homeicon" data-scroll="#home" data-noscroll="@Url.Content("~")" href="#home"><i style="" class="fa fa-home" aria-hidden="true"></i></a></li>
+                            <li><a class="scroll" data-scroll="#about" data-noscroll="@Url.Content("~/#about")" href="#about">About Us</a></li>
+                            <li>
+                                <a class="scroll dropbtn" data-scroll="#conferences" data-noscroll="@Url.Content("~/#conferences")"  href="#conferences">Conferences</a>
                             </li>
-                            <li class="scroll"><a href="#SA">Scientific Advisors</a></li>
-                            @*<li class="scroll"><a href="#">GSC Policies</a></li>*@
-                            <li class="scroll"><a href="#regPolicy">Registration Policies</a></li>
-                            <li><a class="no-scroll" href="@Url.Content("~/Home/SponsorExhibitor")">SPONSORS/EXHIBITORS</a></li>
+                            <li><a class="scroll" data-scroll="#SA" data-noscroll="@Url.Content("~/#SA")"  href="#SA">Scientific Advisors</a></li>
+                            <li><a class="scroll" data-scroll="#regPolicy" data-noscroll="@Url.Content("~/#regPolicy")"  href="#regPolicy">Registration Policies</a></li>
+                            <li><a class="no-scroll" data-scroll="@Url.Content("~/Home/SponsorExhibitor")" data-noscroll="@Url.Content("~/Home/SponsorExhibitor")"  href="@Url.Content("~/Home/SponsorExhibitor")">SPONSORS/EXHIBITORS</a></li>
+                            <li><a  class="scroll" data-scroll="#contact" data-noscroll="@Url.Content("~/#contact")"  href="#contact">Contact</a></li>
                             @*<li class="no-scroll"><a href="#twitter">Twitter</a></li>*@
                             @*<li class="no-scroll">@Html.ActionLink("Purchase Tickets", "Index", "Purchase")</li>*@
-                            <li class="scroll"><a href="#contact">Contact</a></li>
+                            @*<li class="scroll"><a href="#">GSC Policies</a></li>*@
                         </ul>
                     </div>
                 </div>

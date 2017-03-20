@@ -54,6 +54,11 @@
     </div>
 </div>
 <script>
+
+    $(document).ready(function () {
+        processNoScroll();
+    });
+
     function abstractModal(data) {
 
         var options = { "backdrop": "static", keyboard: true };
@@ -70,4 +75,6 @@
     $('#modalClose').click(function () {
         $('.modal').modal('hide');
     });
+
+   
 </script>

@@ -58,14 +58,14 @@ $(function ($) {
     //		menuToggle();
     //	});
 
-    $('.main-nav ul').onePageNav({
-        currentClass: 'active',
-        changeHash: false,
-        scrollSpeed: 900,
-        scrollOffset: 0,
-        scrollThreshold: 0.3,
-        filter: ':not(.no-scroll)'
-    });
+    //$('.main-nav ul').onePageNav({
+    //    currentClass: 'active',
+    //    changeHash: false,
+    //    scrollSpeed: 900,
+    //    scrollOffset: 0,
+    //    scrollThreshold: 0.3,
+    //    filter: ':not(.no-scroll)'
+    //});
 
 });
 function showGoogleMaps(loc) {
@@ -101,6 +101,25 @@ function spinner(flag) {
     }
 }
 
+function processScroll() {
+    $('.main-nav ul').onePageNav({
+        currentClass: 'active',
+        changeHash: false,
+        scrollSpeed: 900,
+        scrollOffset: 0,
+        scrollThreshold: 0.3,
+        filter: ':not(.no-scroll)'
+    });
+}
+
+function processNoScroll(){
+    $.each($(".scroll"), function () {
+        //$(this).removeClass('scroll').addClass('no-scroll');
+        console.log($(this).prop('href'))
+        console.log($(this).attr('data-noscroll'))
+        $(this).prop('href', $(this).attr('data-noscroll'))
+    });
+}
 //function spinner() {
 //    this.prototype.show = function(){
 //        $(".overlay").show();
