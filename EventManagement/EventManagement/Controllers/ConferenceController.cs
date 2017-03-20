@@ -29,7 +29,7 @@ namespace EventManagement.Controllers
             return PartialView(obj);
         }
 
-        [Route("Conference/{id}/Team")]
+        [Route("Conference/{id}/OrganisingCommitte")]
         public ActionResult Team(int id)
         {
             ViewData["ConferenceId"] = id;
@@ -108,11 +108,11 @@ namespace EventManagement.Controllers
             }
         }
 
-        [Route("Conference/{id}/Tracks/")]
-        public ActionResult Tracks(int id)
+        [Route("Conference/{id}/ScientificSessions/")]
+        public ActionResult ScientificSessions(int id)
         {
             ViewData["ConferenceId"] = id;
-            return View(_confManager.GetConferenceTracks(id));
+            return View("tracks",_confManager.GetConferenceTracks(id));
         }
 
         [Route("Conference/PartialAbstractSubmit/{id}")]

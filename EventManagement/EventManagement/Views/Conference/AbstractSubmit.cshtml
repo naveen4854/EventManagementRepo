@@ -1,4 +1,8 @@
 ﻿@model EventManagement.DataModels.AbstractSubmitDTO
+@{
+    ViewBag.Title = "Abstract Submit";
+    Layout = "~/Views/Shared/Layouts/_ConferenceLayout.cshtml";
+}
 <div class="NotHome">
     <h2>Submit Abstract</h2>
     @using (Html.BeginForm("SubmitAbstract", "Conference", FormMethod.Post, new { encType = "multipart/form-data" }))
