@@ -1129,3 +1129,12 @@ th.next i:before {
     width: 200px;
     border-radius: 10%;
 }
+
+.noUpperCase {
+    text-transform: none !important;
+}
+
+.fontfamilyAlt {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 30px;
+}

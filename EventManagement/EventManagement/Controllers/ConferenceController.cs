@@ -115,8 +115,8 @@ namespace EventManagement.Controllers
             return View(_confManager.GetConferenceTracks(id));
         }
 
-        [Route("Conference/AbstractSubmit/{id}")]
-        public ActionResult AbstractSubmit(int id)
+        [Route("Conference/PartialAbstractSubmit/{id}")]
+        public ActionResult PartialAbstractSubmit(int id)
         {
             ViewData["ConferenceId"] = id;
             ViewBag.Titles = _confManager.GetTitles();
@@ -125,6 +125,18 @@ namespace EventManagement.Controllers
             ViewBag.Tracks = _confManager.GetConferenceTracks(id);
 
             return PartialView("PartialAbstractSubmit");
+        }
+
+        [Route("Conference/{confId}/AbstractSubmit")]
+        public ActionResult AbstractSubmit(int confId)
+        {
+            ViewData["ConferenceId"] = confId;
+            ViewBag.Titles = _confManager.GetTitles();
+            ViewBag.Categories = _confManager.GetCategories();
+            ViewBag.Countries = _confManager.GetCountries();
+            ViewBag.Tracks = _confManager.GetConferenceTracks(confId);
+
+            return View();
         }
 
         [HttpPost]

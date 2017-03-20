@@ -7,6 +7,7 @@
     <div class="col-12">
         <div style="padding:0px 20px 20px 120px">
             <h2 class="heading">Our Scientific Sessions</h2>
+            <label class="heading" style="color:red;font-size:14px"><i class="fa fa-asterisk" aria-hidden="true"></i> Please Click On Session To Submit Abstract</label>
             <br />
             <div style="font-size:19px">
                 @for (int i = 0; i <= Model.Count() / 3; i++)
@@ -42,7 +43,7 @@
     function loadPartial(confId, trackId) {
         spinner(true);
         var options = { "backdrop": "static", keyboard: true };
-        var url = "@Url.Content("~/Conference/AbstractSubmit/")";
+        var url = "@Url.Content("~/Conference/PartialAbstractSubmit/")";
         $.ajax({
             type: "GET",
             url: url + confId,
