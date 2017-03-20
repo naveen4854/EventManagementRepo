@@ -354,6 +354,7 @@
     <Content Include="Views\CMS\SientificAdvisor.cshtml" />
     <Content Include="Views\Home\ScientificAdvisors.cshtml" />
     <Content Include="Views\Conference\Poster.cshtml" />
+    <Content Include="Views\Home\PartialScientificAdvisors.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

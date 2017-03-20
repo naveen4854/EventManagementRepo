@@ -44,7 +44,7 @@ $(function ($) {
 
 
     // Carousel Auto Slide Off
-    $('#event-carousel, #twitter-feed, #sponsor-carousel ').carousel({
+    $('#event-carousel, #SA-carousel, #twitter-feed, #sponsor-carousel ').carousel({
         interval: false
     });
 
@@ -93,10 +93,10 @@ function showGoogleMaps(loc) {
 }
 
 function spinner(flag) {
-    if(flag){
+    if (flag) {
         $(".overlay").show();
     }
-    else{
+    else {
         $(".overlay").hide();
     }
 }
