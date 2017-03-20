@@ -53,6 +53,7 @@ namespace EventManagement.Controllers
 
         public ActionResult ScientificAdvisors()
         {
+            Server.MapPath("");
             var SAlst = _confManager.GetSientificAdvisors();
             return View(SAlst);
         }

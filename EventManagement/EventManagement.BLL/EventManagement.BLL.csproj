@@ -53,6 +53,7 @@
     <Compile Include="ConferenceManager.cs" />
     <Compile Include="Helpers\MailHelper.cs" />
     <Compile Include="Helpers\UploadHelper.cs" />
+    <Compile Include="Helpers\Utilities.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

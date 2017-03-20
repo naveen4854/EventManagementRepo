@@ -1123,3 +1123,9 @@ th.next i:before {
 #home{
     min-height: calc(100vh - 38px);
 }
+
+.userImg {
+    height: 200px;
+    width: 200px;
+    border-radius: 10%;
+}

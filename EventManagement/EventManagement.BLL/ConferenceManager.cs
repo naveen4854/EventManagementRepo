@@ -62,7 +62,11 @@ namespace EventManagement.BLL
 
         public ConferenceDTO GetConferenceTeam(int id)
         {
-            return confOperations.GetConferenceTeam(id);
+            var conf = confOperations.GetConferenceTeam(id);
+            foreach (var team in conf.Team) {
+                team.ImageUrl = Utilities.ProcessDefaultImage(team.ImageUrl, "~/Content/images/confteam/");
+            }
+            return conf;
         }
 
         public ConferenceDTO GetAllConferenceTeam(int id)
@@ -83,7 +87,11 @@ namespace EventManagement.BLL
         public List<ProgramDTO> GetConferencePrograms(int id, int day)
         {
             var conf = confOperations.GetConferencePeriod(id);
-            return confOperations.GetProgramsByConf(id).Where(q => q.ProgramDt.Date == conf.StartDt.AddDays(day).Date).ToList();
+            var prglst = confOperations.GetProgramsByConf(id).Where(q => q.ProgramDt.Date == conf.StartDt.AddDays(day).Date).ToList();
+            foreach (var prg in prglst) {
+                prg.ImageUrl = Utilities.ProcessDefaultImage(prg.ImageUrl, "~/Content/images/confprog/");
+            }
+            return prglst;
         }
 
         public IEnumerable<ProgramDTO> GetConferencePosters(int id)
@@ -143,7 +151,7 @@ namespace EventManagement.BLL
 
         public IEnumerable<ConferenceImageDTO> GetConferenceImagesDTO(int id)
         {
-            return  confOperations.GetConferenceImagesDTO(id);
+            return confOperations.GetConferenceImagesDTO(id);
         }
 
         public bool DeleteTrack(int id)
@@ -221,7 +229,7 @@ namespace EventManagement.BLL
 
         public int GetRegPrice(int regTypeId, int regClassId, int confId)
         {
-            return confOperations.GetRegPrice(regTypeId,regClassId, confId);
+            return confOperations.GetRegPrice(regTypeId, regClassId, confId);
         }
 
         public bool DeleteConferenceImage(int id)
@@ -292,7 +300,12 @@ namespace EventManagement.BLL
 
         public IEnumerable<TeamMemberDTO> GetSientificAdvisors()
         {
-            return confOperations.GetScientificAdvisors();
+            var SAlst = confOperations.GetScientificAdvisors();
+            foreach (var sa in SAlst)
+            {
+                sa.ImageUrl = Utilities.ProcessDefaultImage(sa.ImageUrl, "~/Content/images/confteam/");
+            }
+            return SAlst;
         }
 
         public bool UpdateProgram(ProgramDTO obj)

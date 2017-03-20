@@ -175,6 +175,7 @@
     <Content Include="Content\images\confteam\c1_t2.jpg" />
     <Content Include="Content\images\confteam\c1_t3.png" />
     <Content Include="Content\images\contact-bg.jpg" />
+    <Content Include="Content\images\default.png" />
     <Content Include="Content\images\ear-piece.png" />
     <Content Include="Content\images\event-bg.jpg" />
     <Content Include="Content\images\event\confShortImage\c1.000.jpg" />
