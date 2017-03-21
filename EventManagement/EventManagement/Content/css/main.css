@@ -129,11 +129,17 @@ h2 {
     }
 
         .navbar-right li a:hover,
-        .navbar-right li a:focus,
+        /*.navbar-right li a:focus,*/
         .navbar-right .active a {
-            background-color: #fff;
-            color: #16728f;
+            background-color: #fff !important;
+            color: #16728f !important;
         }
+
+        .navbar-right li a:focus {
+            background-color: #1B7B98;
+        color: #fff;
+        }
+
 
 .homeicon {
     padding: 30px 20px !important;
@@ -1120,7 +1126,7 @@ th.next i:before {
     font-style: normal;
 }
 
-#home{
+#home {
     min-height: calc(100vh - 38px);
 }
 
