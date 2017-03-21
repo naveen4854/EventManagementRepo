@@ -6,8 +6,21 @@
 <div class="NotHome">
     <div class="col-12">
         <div style="padding:0px 20px 20px 120px">
-            <h2 class="heading">Our Scientific Sessions</h2>
-            <label class="heading" style="color:red;font-size:14px"><i class="fa fa-asterisk" aria-hidden="true"></i> Please Click On Session To Submit Abstract</label>
+            <div class="row">
+                <div class="col-md-10">
+                    <h2 class="heading">Our Scientific Sessions</h2>
+                    <label class="heading" style="color:red;font-size:14px">
+                        @*<i class="fa fa-asterisk" aria-hidden="true"></i>*@
+                        Please Click On Session To Submit Abstract
+                    </label>
+                </div>
+                <div class="col-md-2 pointer" style="text-align:center" onclick="dwnldSampleAbstract()">
+                    <div class="col-md-12">
+                        <i class="fa fa-file-word-o" aria-hidden="true" style="font-size:30px"></i>
+                    </div>
+                    <label class="col-md-12" style="font-weight: normal;">Sample Abstract</label>
+                </div>
+            </div>
             <br />
             <div style="font-size:19px">
                 @for (int i = 0; i <= Model.Count() / 3; i++)
@@ -31,15 +44,14 @@
                     <div id='myModalContent'></div>
                 </div>
             </div>
-        </div>  
+        </div>
 
         <div style="padding-top:150px">
-          @*  @{ Html.RenderAction("AbstractSubmit", "Conference", new { tracks = @Model, id = @ViewData["ConferenceId"] }); }*@
+            @*  @{ Html.RenderAction("AbstractSubmit", "Conference", new { tracks = @Model, id = @ViewData["ConferenceId"] }); }*@
         </div>
     </div>
 </div>
 <script type="text/javascript">
-
     function loadPartial(confId, trackId) {
         spinner(true);
         var options = { "backdrop": "static", keyboard: true };
@@ -69,4 +81,18 @@
     $(document).ready(function () {
         processNoScroll();
     });
+
+    function dwnldSampleAbstract() {
+        window.location = '@Url.Content("~/Conference/DownloadSampleAbstract/")';
+        @*$.ajax(
+            {
+                url: '@Url.Content("~/Conference/DownloadSampleAbstract/")',
+                contentType: 'application/json; charset=utf-8',
+                datatype: 'json',
+                type: "GET",
+                success: function (res) {
+                    debugger;
+                }
+            });*@
+    }
 </script>

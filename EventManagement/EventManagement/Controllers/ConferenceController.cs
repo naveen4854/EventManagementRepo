@@ -92,8 +92,8 @@ namespace EventManagement.Controllers
             }
         }
 
-        [Route("Conference/{id}/download/")]
-        public ActionResult getfile(int id)
+        [Route("Conference/{id}/DownloadBrochure/")]
+        public ActionResult DownloadBrochure(int id)
         {
             ViewData["ConferenceId"] = id;
             var fileName = _confManager.GetConferenceBrochure(id);
@@ -101,6 +101,21 @@ namespace EventManagement.Controllers
             {
                 DirectoryInfo dirInfo = new DirectoryInfo(HostingEnvironment.MapPath("~/Content/downloads/confbrouchers"));
                 return File(dirInfo.FullName + @"\" + fileName, "application / docx", "brochure.docx");
+            }
+            else
+            {
+                return RedirectToAction("Index", "Error");
+            }
+        }
+
+        [Route("Conference/DownloadSampleAbstract/")]
+        public ActionResult DownloadSampleAbstract()
+        {
+            var fileName = "Sample Abstract.docx";
+            if (!string.IsNullOrEmpty(fileName))
+            {
+                DirectoryInfo dirInfo = new DirectoryInfo(HostingEnvironment.MapPath("~/Content/downloads/"));
+                return File(dirInfo.FullName + @"\" + fileName, "application / docx", "Sample Abstract.docx");
             }
             else
             {

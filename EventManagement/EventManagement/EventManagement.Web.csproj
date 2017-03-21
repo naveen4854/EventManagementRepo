@@ -250,6 +250,7 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\downloads\confbrouchers\c1_b1.docx" />
     <Content Include="Content\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\downloads\Sample Abstract.docx" />
     <None Include="Properties\PublishProfiles\gffdgg.pubxml" />
     <None Include="Properties\PublishProfiles\loll.pubxml" />
     <None Include="Properties\PublishProfiles\yg.pubxml" />
