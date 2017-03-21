@@ -10,10 +10,6 @@
         @{ Html.RenderAction("PartialHome", "Conference", new { obj = Model }); }
     </section>
 
-    <section id="team">
-        @{ Html.RenderAction("PartialTeam", "Conference", new { id = Model.Id }); }
-    </section>
-
     <section id="about">
         <div class="about-content">
             <div class="container">
@@ -27,6 +23,10 @@
                 </div>
             </div>
         </div>
+    </section>
+
+    <section id="team">
+        @{ Html.RenderAction("PartialTeam", "Conference", new { id = Model.Id }); }
     </section>
 
     <section id="programSchedule">
@@ -86,5 +86,7 @@
 </div>
 
 <script>
-    processScroll();
+    $(document).ready(function () {
+        processScroll();
+    });
 </script>
