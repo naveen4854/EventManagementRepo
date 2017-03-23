@@ -7,6 +7,7 @@
                 <div class="col-12">
                     <div id="SA-carousel" class="carousel slide" data-interval="false">
                         <h2 class="heading">Our Scientific Advisors</h2>
+                        <button class="btn flRt" onclick="redirect('@Url.Content("~/Home/ScientificAdvisors")')"><text>View More</text></button>
                         <a class="even-control-left" href="#SA-carousel" data-slide="prev"><i class="fa fa-angle-left"></i></a>
                         <a class="even-control-right" href="#SA-carousel" data-slide="next"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
                         <div class="carousel-inner">
@@ -32,11 +33,9 @@
                     </div>
                 </div>
             </div>
-            <div>
-                <span>
-                    <a href="@Url.Content("~/Home/ScientificAdvisors")">View More...</a>
-                </span>
-            </div>
+            @*<div style="float:right;padding:0 0 10px 0">
+                <button class="btn" onclick="redirect('@Url.Content("~/Home/ScientificAdvisors")')"><text>View More</text></button>
+            </div>*@
         </div>
                                             }
 }

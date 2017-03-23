@@ -120,6 +120,11 @@ function processNoScroll(){
         $(this).prop('href', $(this).attr('data-noscroll'))
     });
 }
+
+function redirect(url) {
+    location.href = url;
+}
+
 //function spinner() {
 //    this.prototype.show = function(){
 //        $(".overlay").show();
