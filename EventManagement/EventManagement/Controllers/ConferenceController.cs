@@ -123,6 +123,21 @@ namespace EventManagement.Controllers
             }
         }
 
+        [Route("Conference/SponsorExhibitor/")]
+        public ActionResult SponsorExhibitor()
+        {
+            var fileName = "Sponsor and Exhibitor.PDF";
+            if (!string.IsNullOrEmpty(fileName))
+            {
+                DirectoryInfo dirInfo = new DirectoryInfo(HostingEnvironment.MapPath("~/Content/downloads/"));
+                return File(dirInfo.FullName + @"\" + fileName, "application / pdf", "Sponsor and Exhibitor.PDF");
+            }
+            else
+            {
+                return RedirectToAction("Index", "Error");
+            }
+        }
+
         [Route("Conference/{id}/ScientificSessions/")]
         public ActionResult ScientificSessions(int id)
         {

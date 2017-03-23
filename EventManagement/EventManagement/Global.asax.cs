@@ -27,7 +27,7 @@ namespace EventManagement
         {
             Exception exception = Server.GetLastError();
             Server.ClearError();
-            Response.Redirect("/Error/ErrMsg?err=" + string.Join("||", exception.Message.Split(new string[] { Environment.NewLine }, StringSplitOptions.None)));
+            Response.Redirect("~/Error");
         }
 
         protected void Application_BeginRequest(object sender, EventArgs e)
