@@ -24,7 +24,7 @@
                                         <div class="col-sm-3" style="text-align:center">
                                             <div class="programdt single-event pointer">
                                                 @*<h2 id="prgdt_@confday" class="@if (confday == 0) { <text>highlight</text>} " onclick="loadPartial(@confday)">@Model.StartDt.AddDays(confday).ToString("dd.MM.yyy")</h2>*@
-                                                <h2 id="prgdt_@confday" class="noUpperCase fontfamilyAlt @if (confday == 0) { <text>highlight</text>} " onclick="loadPartial(@confday)">Day @confday (@Model.StartDt.AddDays(confday).ToString("dd.MM.yyy"))</h2>
+                                                <h2 id="prgdt_@confday" class="noUpperCase fontfamilyAlt @if (confday == 0) { <text>highlight</text>} " onclick="loadPartial(@confday)">Day @(confday + 1 ) (@Model.StartDt.AddDays(confday).ToString("dd.MM.yyy"))</h2>
                                             </div>
                                         </div>
                                 }
