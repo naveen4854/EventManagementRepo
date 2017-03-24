@@ -396,12 +396,14 @@ h2 {
 *******Event CSS******
 **************************/
 #conferences {
-    background-color: #33888F;
-    background-image: url("../images/performar-bg.jpg");
+    /*background-color: #33888F;
+    background-image: url("../images/performar-bg.jpg");*/
     background-position: 50% 0;
     background-size: contain;
     position: relative;
     background-repeat: no-repeat;
+    height: 500px;
+    overflow: hidden;
 }
 
 .guitar {
@@ -425,9 +427,10 @@ h2 {
 }
 
     .single-event h4 {
-        color: #FFFFFF;
+        /*color: #FFFFFF;*/
+        color: #1B7B98;
         font-size: 24px;
-        font-weight: 300;
+        font-weight: 400;
         line-height: 26px;
         margin-top: 25px;
         text-transform: uppercase;
@@ -469,7 +472,7 @@ h2 {
 **************************/
 
 #about {
-    background-color: #75B46E;
+    /*background-color: #75B46E;*/
     position: relative;
     width: 100%;
     display: flex;
@@ -486,11 +489,11 @@ h2 {
 
 .about-content {
     width: 100%;
-    background-image: url("../images/about-bg.jpg");
+    /*background-image: url("../images/about-bg.jpg");*/
     background-position: left bottom;
     background-repeat: no-repeat;
     background-size: cover;
-    padding: 70px 70px 110px;
+    padding: 5px 70px 110px;
 }
 
 
@@ -506,6 +509,7 @@ h2 {
     .about-content p.q {
         font-size: 22px;
         font-family: 'Yanone Kaffeesatz', 'sans-serif';
+        color: #1B7B98;
     }
 
 #about .btn-primary {
@@ -676,6 +680,11 @@ h2 {
     background-size: contain;
     background-repeat: no-repeat;
     position: relative;
+    margin: 10px;
+    /* border-radius: 5%; */
+    border: 1px solid;
+    overflow: hidden;
+    /*border-radius: 1%;*/
 }
 
 .ear-piece {
@@ -834,7 +843,7 @@ h2 {
 }
 
 #conferenceTeam {
-    background-color: #33888F;
+    /*background-color: #33888F;*/
     background-position: 50% 0;
     background-size: contain;
     position: relative;
@@ -936,9 +945,15 @@ h2 {
     border: 1px solid black;
     border-radius: 20px;
     padding: 10px;
-    background-image: url("../images/info-bg-2.jpg");
+    /*background-image: url("../images/info-bg-2.jpg");*/
     color: black;
     font-weight: bold;
+    text-align: center;
+    margin: 5px;
+}
+.border-container {
+    height: 100%;
+    padding: 0 5px 0 5px;
 }
 
 .header {
@@ -1151,3 +1166,57 @@ th.next i:before {
 .flRt {
     float: right;
 }
+
+.carousel-control.right {
+    left: auto;
+    right: 0;
+    background-image: none;
+    /* background-image: linear-gradient(to right,rgba(0,0,0,.0001) 0,rgba(0,0,0,.5) 100%); */
+    /* background-repeat: repeat-x; */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#80000000', GradientType=1);
+}
+
+.carousel-control.left {
+    background-image: none;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#80000000', endColorstr='#00000000', GradientType=1);
+}
+
+.carousel-control {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 15%;
+    /* opacity: .5; */
+    filter: alpha(opacity=50);
+    font-size: 20px;
+    color: black;
+    text-align: center;
+    /* text-shadow: 0 1px 2px rgba(0,0,0,.6); */
+}
+
+    .carousel-control:hover,
+    .carousel-control:focus {
+        color: #1B7B98 !important;
+        opacity: 1;
+    }
+
+#conferences .carousel-control {
+    bottom: 135px;
+}
+
+#SA {
+    /*background-color: #33888F;
+    background-image: url("../images/performar-bg.jpg");*/
+    padding: 5px;
+    background-position: 50% 0;
+    background-size: contain;
+    position: relative;
+    background-repeat: no-repeat;
+    height: 500px;
+    overflow: hidden;
+}
+
+    #SA .carousel-control {
+        bottom: 88px;
+    }
