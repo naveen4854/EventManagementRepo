@@ -6,7 +6,7 @@ namespace EventManagement.DataModels
     public class AbstractSubmitDTO
     {
 
-        [Display(Name= "Submitted By")]
+        [Display(Name= "Name")]
         public string SubmittedBy { get; set; }
         [Display(Name= "Email Id")]
         [Required(ErrorMessage = "Your must provide a EmailId")]

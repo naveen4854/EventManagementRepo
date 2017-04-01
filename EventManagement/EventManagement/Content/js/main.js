@@ -114,11 +114,11 @@ function processScroll() {
 
 function processNoScroll(){
     $.each($(".scroll"), function () {
-        //$(this).removeClass('scroll').addClass('no-scroll');
-        console.log($(this).prop('href'))
-        console.log($(this).attr('data-noscroll'))
-        $(this).prop('href', $(this).attr('data-noscroll'))
+        $(this).prop('href', $(this).attr('data-noscroll'));
+        if (!$(this).hasClass("force-scroll"))
+            $(this).removeClass(".scroll").addClass("no-scroll");
     });
+    processScroll();
 }
 
 function redirect(url) {

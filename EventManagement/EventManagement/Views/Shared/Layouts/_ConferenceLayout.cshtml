@@ -61,12 +61,6 @@
                     <div class="collapse navbar-collapse">
                         <ul class="nav navbar-nav navbar-right">
                             <li class="active"><a class="scroll homeicon" data-scroll="#Home" data-noscroll="@Url.Content("~/Conference/Home/"+@ViewData["ConferenceId"]+"#Home")" href="#Home"><i style="" class="fa fa-home" aria-hidden="true"></i></a></li>
-
-                            @*<li class="active">
-                                <a class="scroll homeicon"  data-noscroll="@Url.Content("~/Conference/Home/"+@ViewData["ConferenceId"]+"#Home")" href="#Home">
-                                    <i style="" class="fa fa-home" aria-hidden="true"></i>
-                                </a>
-                            </li>*@
                             <li class="dropdown">
                                 <a class="no-scroll pointer">General info</a>
                                 <div class="dropdown-content">
@@ -93,7 +87,7 @@
                             </li>
                             <li><a class="scroll" data-noscroll="@Url.Content("~/Conference/Home/"+@ViewData["ConferenceId"]+"#venue")"  href="#venue">Venue</a></li>
                             <li><a class="no-scroll" href="@Url.Content("~/Conference/"+@ViewData["ConferenceId"]+ "/Guidelines/")">Guidelines</a></li>
-                            <li><a class="scroll" data-noscroll="@Url.Content("~/Conference/Home/"+@ViewData["ConferenceId"]+"/#Contact")" href="#Contact">Contact</a></li>
+                            <li><a class="scroll force-scroll" data-noscroll="@Url.Content("~/Conference/Home/"+@ViewData["ConferenceId"]+"/#Contact")" href="#Contact">Contact</a></li>
                         </ul>
                     </div>
                 </div>
@@ -105,29 +99,31 @@
         @RenderBody()
     </div>
     <footer id="footer" style="padding:35px 0 0 0">
-        <div class="container">
-            <div class="footer-content">
-                <div class="row">
-                    <div class="text-center">
-                        <div id="confContact">
-                            <div class="contactTitle defaultcolor">CONTACT US</div>
-                            <div><strong>Scientific Cognizance</strong></i><br></div>
-                            <div style="padding-left: 46px;">
-                                27 Old Gloucester Street,
-                                LONDON,
-                                WC1N 3AX,
-                                UNITED KINGDOM
+        <section id="Contact">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="row">
+                        <div class="text-center">
+                            <div id="confContact">
+                                <div class="contactTitle defaultcolor">CONTACT US</div>
+                                <div><strong>Scientific Cognizance</strong></i><br></div>
+                                <div style="padding-left: 46px;">
+                                    27 Old Gloucester Street,
+                                    LONDON,
+                                    WC1N 3AX,
+                                    UNITED KINGDOM
+                                </div>
+                                <div><i class="fa fa-phone" aria-hidden="true"> &nbsp;+91 7259422687</i></div>
+                                <div><i class="fa fa-envelope" aria-hidden="true"> &nbsp;sc_admin@scientificcognizance.com</i></div>
+                                <p></p>
                             </div>
-                            <div><i class="fa fa-phone" aria-hidden="true"> &nbsp;+91 7259422687</i></div>
-                            <div><i class="fa fa-envelope" aria-hidden="true"> &nbsp;sc_admin@scientificcognizance.com</i></div>
-                            <p></p>
+                            <p style="text-transform:uppercase"><span>©</span> Copyright 2017. <span class="defaultcolor">scientificcognizance.com </span>All Right Reserved.</p>
                         </div>
-                        <p style="text-transform:uppercase"><span>©</span> Copyright 2017. <span class="defaultcolor">scientificcognizance.com </span>All Right Reserved.</p>
                     </div>
                 </div>
             </div>
-        </div>
-    </footer>
+        </section>
+</footer>
     <!--/#footer-->
 </body>
 
