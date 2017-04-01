@@ -13,7 +13,7 @@
 </p>
 <h2>Program</h2>
 
-@using (Html.BeginForm("UpdateProgram", "CMS", new { encType = "multipart/form-data" }))
+@using (Html.BeginForm("UpdateProgram", "CMS", FormMethod.Post, new { encType = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     @Html.HiddenFor(model => model.Id)

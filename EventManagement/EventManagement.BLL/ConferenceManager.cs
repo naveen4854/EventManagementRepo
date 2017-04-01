@@ -63,7 +63,8 @@ namespace EventManagement.BLL
         public ConferenceDTO GetConferenceTeam(int id)
         {
             var conf = confOperations.GetConferenceTeam(id);
-            foreach (var team in conf.Team) {
+            foreach (var team in conf.Team)
+            {
                 team.ImageUrl = Utilities.ProcessDefaultImage(team.ImageUrl, "~/Content/images/confteam/");
             }
             return conf;
@@ -88,7 +89,8 @@ namespace EventManagement.BLL
         {
             var conf = confOperations.GetConferencePeriod(id);
             var prglst = confOperations.GetProgramsByConf(id).Where(q => q.ProgramDt.Date == conf.StartDt.AddDays(day).Date).ToList();
-            foreach (var prg in prglst) {
+            foreach (var prg in prglst)
+            {
                 prg.ImageUrl = Utilities.ProcessDefaultImage(prg.ImageUrl, "~/Content/images/confprog/");
             }
             return prglst;
@@ -118,14 +120,17 @@ namespace EventManagement.BLL
         {
             foreach (var image in obj.ImagesUpload)
             {
-                var fileName = _uploadHelper.UploadFile(image, "~/content/images");
+                var fileName = "";
+                if (image != null)
+                    fileName = _uploadHelper.UploadFile(image, "~/content/images");
                 confOperations.PostConferenceImage(new ConferenceImageDTO { Name = fileName, ConferenceId = obj.Id });
             }
         }
 
         public void AddConferenceTeam(TeamMemberDTO obj)
         {
-            obj.ImageUrl = _uploadHelper.UploadFile(obj.ImageUpload, "~/content/images/confteam");
+            if (obj.ImageUpload != null)
+                obj.ImageUrl = _uploadHelper.UploadFile(obj.ImageUpload, "~/content/images/confteam");
             confOperations.AddConferenceTeam(obj);
         }
 
@@ -191,18 +196,13 @@ namespace EventManagement.BLL
 
         public bool PostAbstract(AbstractSubmitDTO obj)
         {
-            var fileName = Guid.NewGuid() + "_" + obj.DocUpload.FileName;
+            if (obj.DocUpload != null)
+                obj.DocUrl = _uploadHelper.UploadFile(obj.DocUpload, "~/content/uploads/");
 
-            if (obj.DocUpload != null && obj.DocUpload.ContentLength > 0)
-            {
-                var uploadDir = "~/content/uploads/";
-                var filePath = Path.Combine(System.Web.HttpContext.Current.Server.MapPath(uploadDir), fileName);
-                obj.DocUpload.SaveAs(filePath);
-            }
-            obj.DocUrl = fileName;
             var id = confOperations.PostAbstract(obj);
 
-            _mailHelper.SendMailWithAttachment("sc_admin@scientificcognizance.com", obj.EmailId, fileName);
+            if (!string.IsNullOrEmpty(obj.DocUrl))
+                _mailHelper.SendMailWithAttachment("sc_admin@scientificcognizance.com", obj.EmailId, obj.DocUrl);
 
             return true;
         }
@@ -214,15 +214,8 @@ namespace EventManagement.BLL
 
         public bool AddConferenceProgram(ProgramDTO obj)
         {
-            var fileName = Guid.NewGuid() + "_" + obj.ImageUpload.FileName;
-
-            if (obj.ImageUpload != null && obj.ImageUpload.ContentLength > 0)
-            {
-                var uploadDir = "~/Content/images/confprog/";
-                var filePath = Path.Combine(System.Web.HttpContext.Current.Server.MapPath(uploadDir), fileName);
-                obj.ImageUpload.SaveAs(filePath);
-            }
-            obj.ImageUrl = fileName;
+            if (obj.ImageUpload != null)
+                obj.ImageUrl = _uploadHelper.UploadFile(obj.ImageUpload, "~/Content/images/confprog/");
 
             return confOperations.AddProgram(obj);
         }
@@ -259,7 +252,8 @@ namespace EventManagement.BLL
 
         public bool UpdateTeamMember(TeamMemberDTO obj)
         {
-            //obj.ImageUrl = _uploadHelper.UploadFile(obj.ImageUpload, "~/content/images/confteam");
+            if (obj.ImageUpload != null)
+                obj.ImageUrl = _uploadHelper.UploadFile(obj.ImageUpload, "~/content/images/confteam");
             return confOperations.UpdateTeamMember(obj);
         }
 
@@ -280,16 +274,8 @@ namespace EventManagement.BLL
 
         public bool AddProgram(ProgramDTO obj)
         {
-            var fileName = Guid.NewGuid() + "_" + obj.ImageUpload.FileName;
-
-            if (obj.ImageUpload != null && obj.ImageUpload.ContentLength > 0)
-            {
-                var uploadDir = "~/Content/images/confprog/";
-                var filePath = Path.Combine(System.Web.HttpContext.Current.Server.MapPath(uploadDir), fileName);
-                obj.ImageUpload.SaveAs(filePath);
-            }
-            obj.ImageUrl = fileName;
-
+            if (obj.ImageUpload != null)
+                obj.ImageUrl = _uploadHelper.UploadFile(obj.ImageUpload, "~/Content/images/confprog/");
             return confOperations.AddProgram(obj);
         }
 
@@ -310,6 +296,8 @@ namespace EventManagement.BLL
 
         public bool UpdateProgram(ProgramDTO obj)
         {
+            if (obj.ImageUpload != null)
+                obj.ImageUrl = _uploadHelper.UploadFile(obj.ImageUpload, "~/Content/images/confprog/");
             return confOperations.UpdateProgram(obj);
         }
 

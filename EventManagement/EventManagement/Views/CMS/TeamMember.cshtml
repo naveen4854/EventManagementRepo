@@ -15,7 +15,7 @@
 
 <h2>TeamMember</h2>
 
-@using (Html.BeginForm("UpdateTeamMember", "CMS", new { encType = "multipart/form-data" }))
+@using (Html.BeginForm("UpdateTeamMember", "CMS", FormMethod.Post, new { encType = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 

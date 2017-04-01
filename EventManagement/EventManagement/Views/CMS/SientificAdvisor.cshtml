@@ -15,7 +15,7 @@
 
 <h2>Edit Scientific Advisor</h2>
 
-@using (Html.BeginForm("UpdateSientificAdvisor", "CMS", new { encType = "multipart/form-data" }))
+@using (Html.BeginForm("UpdateSientificAdvisor", "CMS", FormMethod.Post, new { encType = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
