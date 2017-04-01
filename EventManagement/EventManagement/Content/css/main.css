@@ -105,7 +105,7 @@ h2 {
     height: 90px;
     margin-bottom: 20px;
     position: relative;
-    width: 297px;
+    width: 200px;
 }
 
     .navbar-brand img {
@@ -1186,7 +1186,7 @@ th.next i:before {
     top: 0;
     left: 0;
     bottom: 0;
-    width: 15%;
+    width: 6%;
     /* opacity: .5; */
     filter: alpha(opacity=50);
     font-size: 20px;
@@ -1220,3 +1220,10 @@ th.next i:before {
     #SA .carousel-control {
         bottom: 88px;
     }
+i.fa.fa-circle {
+    font-size: 9px;
+    vertical-align: middle;
+}
+.sub {
+margin-left:30px;
+}
