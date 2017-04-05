@@ -1279,3 +1279,6 @@ li.track {
         font-family: 'Yanone Kaffeesatz', 'sans-serif';
         color: #1B7B98;
     }
+.guidelines p {
+        font-size: 15px;
+    }
