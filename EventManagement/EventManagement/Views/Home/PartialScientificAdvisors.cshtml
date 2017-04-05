@@ -7,7 +7,7 @@
                 <div class="col-12">
                     <div id="SA-carousel" class="carousel slide" data-interval="false">
                         <h2 class="header">Our Scientific Advisors</h2>
-                        <button class="btn flRt" onclick="redirect('@Url.Content("~/Home/ScientificAdvisors")')"><text>View More</text></button>
+                        <button class="push-btn btn--sm flRt" onclick="redirect('@Url.Content("~/Home/ScientificAdvisors")')"><text>View More</text></button>
                         <div class="carousel-inner">
                             @for (int i = 0; i <= Model.Count() / 4; i++)
                             {

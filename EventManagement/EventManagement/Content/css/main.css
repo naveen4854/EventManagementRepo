@@ -438,11 +438,11 @@ h2 {
 
 
     .single-event h5 {
-        font-size: 18px;
+        font-size: 14px;
         /*font-weight: 100;*/
         display: block;
         color: black;
-        font-family: 'Dosis',sans-serif;
+        font-family: "Open Sans",Arial,sans-serif;
         font-weight: normal;
     }
 
@@ -493,7 +493,7 @@ h2 {
     background-position: left bottom;
     background-repeat: no-repeat;
     background-size: cover;
-    padding: 5px 70px 110px;
+    padding: 5px 70px 50px;
 }
 
 
@@ -502,8 +502,11 @@ h2 {
 }
 
 .about-content p {
-    font-size: 17px;
-    font-family: 'Dosis',sans-serif;
+    font-weight: 400;
+    line-height: 25px;
+    font-size: 15px;
+    font-family: "Open Sans",Arial,sans-serif;
+    text-align: center;
 }
 
     .about-content p.q {
@@ -524,7 +527,17 @@ h2 {
         background-color: #126d55;
     }
 
+#programSchedule .about-content p {
+    text-align: left !important;
+    line-height: 20px;
+}
 
+    #programSchedule .about-content p.q {
+        font-size: 22px;
+        font-family: 'Yanone Kaffeesatz', 'sans-serif';
+        color: #1B7B98;
+        text-align: center !important;
+    }
 
 /*************************
 ******Twitter CSS****
@@ -874,29 +887,10 @@ h2 {
 }
 
 .btn {
-    background: rgba(255,255,255,.3);
-    color: black;
-    border-radius: 7px;
     text-align: center;
     font-size: 1.7rem;
     font-family: "Open Sans",Arial,sans-serifstyle;
     /*font-family: 'Yanone Kaffeesatz', 'sans-serif';*/
-    border: 1px solid black;
-    text-transform: uppercase;
-}
-
-    .btn:hover {
-        background-color: #1B7B98;
-        color: white;
-        -o-transition: .5s;
-        -ms-transition: .5s;
-        -moz-transition: .5s;
-        -webkit-transition: .5s;
-        transition: .5s;
-    }
-
-#confHome button text {
-    padding: 0px 20px 0px 20px;
 }
 
 #confHome .Intro {
@@ -947,10 +941,11 @@ h2 {
     padding: 10px;
     /*background-image: url("../images/info-bg-2.jpg");*/
     color: black;
-    font-weight: bold;
+    /*font-weight: bold;*/
     text-align: center;
     margin: 5px;
 }
+
 .border-container {
     height: 100%;
     padding: 0 5px 0 5px;
@@ -959,6 +954,7 @@ h2 {
 .header {
     text-align: center;
     font-weight: bold;
+    color: #1B7B98;
 }
 
 .txtArea {
@@ -997,11 +993,22 @@ h2 {
 
     #regTab th {
         text-align: center;
+        background: #1B7B98;
+        color: white;
+        vertical-align: middle;
     }
 
     #regTab tr {
         text-align: center;
     }
+
+        #regTab tr:nth-child(even) {
+            background: #FFF;
+        }
+
+        #regTab tr:nth-child(odd) {
+            background: #f0f0f0;
+        }
 
 .txtctr {
     text-align: center;
@@ -1187,12 +1194,12 @@ th.next i:before {
     left: 0;
     bottom: 0;
     width: 6%;
-    /* opacity: .5; */
+    opacity: .5;
     filter: alpha(opacity=50);
     font-size: 20px;
     color: black;
     text-align: center;
-    /* text-shadow: 0 1px 2px rgba(0,0,0,.6); */
+    text-shadow: none !important;
 }
 
     .carousel-control:hover,
@@ -1220,10 +1227,50 @@ th.next i:before {
     #SA .carousel-control {
         bottom: 88px;
     }
+
 i.fa.fa-circle {
     font-size: 9px;
     vertical-align: middle;
 }
+
 .sub {
-margin-left:30px;
+    margin-left: 30px;
 }
+
+.regpolicy {
+    width: 100%;
+    /* background-image: url(../images/about-bg.jpg); */
+    background-position: left bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 5px 70px 50px;
+}
+
+    .regpolicy p.q {
+        font-size: 22px;
+        font-family: 'Yanone Kaffeesatz', 'sans-serif';
+        color: #1B7B98;
+    }
+
+#sessions {
+    font-size: 15px;
+}
+
+li.track {
+    margin: 3px;
+}
+
+.sampleAbstract {
+    text-align: center;
+    margin: 20px 0 20px 0;
+}
+
+/*.sampleAbstract .btn:hover {
+        background-color:#2092b5;
+        color: white;
+        -o-transition: .5s;
+        -ms-transition: .5s;
+        -moz-transition: .5s;
+        -webkit-transition: .5s;
+        transition: .5s;
+    }*/

@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/Layouts/_ConferenceLayout.cshtml";
 }
 <div class="NotHome NoBg">
-    <h2>Registration</h2>
+    <h2 class="header">Registration</h2>
 
     @using (Html.BeginForm("test", "conference", new { name = "form1" }))
     {
@@ -15,153 +15,67 @@
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="row">
-                <div class="col-md-5">
+                <div class="col-md-6">
                     <div class="form-group">
-                        <div class="col-md-12">
+                        <div class="col-md-offset-1 col-md-10">
                             @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", @placeholder = "Name" } })
                             @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="col-md-12">
-                            @Html.EditorFor(model => model.EmailId, new { htmlAttributes = new { @class = "form-control", @placeholder = "Email" } })
-                            @Html.ValidationMessageFor(model => model.EmailId, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-12">
+                        <div class="col-md-offset-1 col-md-10">
                             @Html.EditorFor(model => model.Organization, new { htmlAttributes = new { @class = "form-control", @placeholder = "Organization/ Institute" } })
                             @Html.ValidationMessageFor(model => model.Organization, "", new { @class = "text-danger" })
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="col-md-12">
-                            @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control", @placeholder = "Phone Number" } })
-                            @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.CountryId, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-6">
-                            @Html.DropDownList("Country", new SelectList(@ViewBag.Countries, "Id", "Name"), new { @class = "form-control" })
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-12">
+                        <div class="col-md-offset-1 col-md-10">
                             @Html.TextAreaFor(model => model.Address, new { @class = "form-control txtArea", @placeholder = "Billing Address" })
                             @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
                         </div>
                     </div>
                 </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <div class="col-md-offset-1 col-md-10">
+                            @Html.EditorFor(model => model.EmailId, new { htmlAttributes = new { @class = "form-control", @placeholder = "Email" } })
+                            @Html.ValidationMessageFor(model => model.EmailId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-1 col-md-6">
+                            @Html.DropDownList("Country", new SelectList(@ViewBag.Countries, "Id", "Name"), "Select Country", new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-1 col-md-10">
+                            @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control", @placeholder = "Phone Number" } })
+                            @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            @*<div id="regpricingdiv" class="col-md-12">
-                    <div class="col-12" style="padding:20px">
-                        <div class="col-md-5">
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.RegTypeId, htmlAttributes: new { @class = "control-label col-md-5" })
-                                <div class="col-md-6">
-                                    @Html.DropDownList("RegTypeId", new SelectList(@ViewBag.Reglst, "Id", "Name"), new { @class = "form-control", @onchange = "retriveRegPrice()" })
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-5">
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.RegClassId, htmlAttributes: new { @class = "control-label col-md-5" })
-                                <div class="col-md-6">
-                                    @Html.DropDownList("RegClassId", new SelectList(@ViewBag.regclasslst, "Id", "Name"), new { @class = "form-control", @onchange = "retriveRegPrice()" })
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <div class="form-group">
-                                <label id="lblRegPrice"></label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12" style="padding:20px">
-                        <div class="col-md-5">
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.AccId, htmlAttributes: new { @class = "control-label col-md-5" })
-                                <div class="col-md-6">
-                                    @Html.DropDownList("AccId", new SelectList(@ViewBag.acclst, "Id", "Name"), new { @class = "form-control", @onchange = "retriveAccPrice()" })
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-5">
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.OccId, htmlAttributes: new { @class = "control-label col-md-5" })
-                                <div class="col-md-6">
-                                    @Html.DropDownList("OccId", new SelectList(@ViewBag.occlst, "Id", "Name"), new { @class = "form-control", @onchange = "retriveAccPrice()" })
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <div class="form-group">
-                                <label id="lblAccPrice"></label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12" style="padding:20px">
-                        <div class="col-md-5">
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.AccompanyId, htmlAttributes: new { @class = "control-label col-md-5" })
-                                <div class="col-md-6">
-                                    @Html.DropDownList("accompanyPrices", new SelectList(@ViewBag.AccompanyPrices, "Id", "Name"), new { data_val = Model.Amount, @class = "form-control", @onchange = "getAccompanyPrice()" })
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-5">
-                        </div>
-                        <div class="col-md-2">
-                            <div class="form-group">
-                                <label id="lblAccompanyPrice"></label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12" style="padding:20px">
-                        <div class="col-md-5">
-                            <div class="form-group">
-                                <label>Total Price</label>
-                            </div>
-                        </div>
-                        <div class="col-md-5">
-                        </div>
-                        <div class="col-md-2">
-                            <div class="form-group">
-                                <label id="lblTotalPrice1"></label>
-                            </div>
-                        </div>
-                    </div>
-                </div>*@
-
-            @*<div class="col-12 col-md-12 col-sm-12 prices">
-                    @Html.EditorFor(m => m.Reg)
-                </div>
-
-                <div class="col-12 col-md-12 col-sm-12 prices">
-                    @Html.EditorFor(m => m.acc)
-                </div>*@
             <div class="table-responsive" id="regTab">
 
-                <div class="row">
-                    <h2>Register For</h2>
-                </div>
+                @*<div class="row">
+                        <h2>Register For</h2>
+                    </div>*@
                 <table class="table">
                     <colgroup>
-                        <col class="grey" style="text-align:left" />
-                        <col class="blue" span="1" />
-                        <col class="pink" span="1" />
+                        <col />
+                        <col />
+                        <col />
                     </colgroup>
                     <thead>
                         <tr>
-                            <th style="border:none">
-                                &nbsp;
+                            <th>
+                                REGISTER FOR
                             </th>
-                            <th colspan="1">
+                            <th>
                                 Earlybird Registration on/before<br>June 20, 2017
                             </th>
-                            <th colspan="1">
+                            <th>
                                 Standard Registration After<br>June 20, 2017
                             </th>
                     </thead>
@@ -169,11 +83,11 @@
                         @{
                             foreach (var regtype in Model.Reg)
                             {
-                                <tr>
-                                    <td>
-                                        @regtype.Name
-                                    </td>
-                                    @{
+                        <tr>
+                            <td>
+                                @regtype.Name
+                            </td>
+                            @{
                                         foreach (var pricetype in regtype.PricingTypes)
                                         {
                                             var htmlAttr = new Dictionary<string, object>();
@@ -184,32 +98,32 @@
                                             {
                                                 htmlAttr.Add("disabled", "disabled");
                                             }
-                                            <td>
-                                                @Html.RadioButton("regprice", false, htmlAttr) @pricetype.Price
-                                            </td>
+                                    <td>
+                                        @Html.RadioButton("regprice", false, htmlAttr) @pricetype.Price
+                                    </td>
                                         }
-                                    }
-                                </tr>
+                            }
+                        </tr>
                                         }
                         }
                     </tbody>
                 </table>
 
                 <div class="row">
-                    <div class="col-12">
+                    <div class="col-12 sub">
                         @Html.CheckBox("accompany", new{ data_val = 200 , @class = "", @onClick = "calculateTotal()" })
                         <label>Accompany A Person to Conference ($200) ?</label>
                     </div>
                 </div>
 
-                <div class="row">
-                    <h2>Accomodation Prices</h2>
-                </div>
+                @*<div class="row">
+                        <h2>Accomodation Prices</h2>
+                    </div>*@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th style="border:none">
-                                &nbsp;
+                            <th>
+                                ACCOMODATION PRICES
                             </th>
                             <th colspan="1">
                                 Single Occupancy
@@ -225,11 +139,11 @@
                         @{
                             foreach (var regtype in Model.acc)
                             {
-                                <tr>
-                                    <td>
-                                        @regtype.Name
-                                    </td>
-                                    @{
+                        <tr>
+                            <td>
+                                @regtype.Name
+                            </td>
+                            @{
                                         foreach (var occtype in regtype.occ)
                                         {
                                             var htmlAttr = new Dictionary<string, object>();
@@ -240,12 +154,12 @@
                                             {
                                                 htmlAttr.Add("disabled", "disabled");
                                             }
-                                            <td>
-                                                @Html.RadioButton("accprice", false, htmlAttr) @occtype.Price
-                                            </td>
+                                    <td>
+                                        @Html.RadioButton("accprice", false, htmlAttr) @occtype.Price
+                                    </td>
                                         }
-                                    }
-                                </tr>
+                            }
+                        </tr>
                                         }
                         }
                     </tbody>
@@ -267,12 +181,12 @@
             </div>
 
             <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Register" class="btn btn-default" />
+                <div class="col-md-offset-5 col-md-7">
+                    <input type="submit" value="Register" class="push-btn" />
                 </div>
             </div>
         </div>
-                                        }
+                                }
 </div>
 <script type="text/JavaScript">
     $(document).ready(function () {
@@ -301,12 +215,12 @@
             if ($(this).prop('checked'))
                 accomodationPrice = parseInt($(this).attr('data-val'));
         });
-        
+
         //var accomodationPrice = parseInt($('#lblAccPrice').prop('data-val'));
         //var accompanyprice = parseInt($('#lblAccompanyPrice').prop('data-val'));
         //var regprice = parseInt($('#lblRegPrice').prop('data-val'));
         var res = regprice + accompanyprice + accomodationPrice;
-        var total = { val: res, txt: "$" + res };
+        var total = { val: res, txt: "$ " + res };
         $('#lblTotalPrice').text(total.txt);
         $('#lblTotalPrice').prop('data-val', total.amt);
     }
@@ -374,6 +288,6 @@
             }
         });
     }
-    
+
 
 </script>
