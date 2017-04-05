@@ -1229,7 +1229,7 @@ th.next i:before {
     }
 
 i.fa.fa-circle {
-    font-size: 9px;
+    font-size: 7px;
     vertical-align: middle;
 }
 
@@ -1274,3 +1274,8 @@ li.track {
         -webkit-transition: .5s;
         transition: .5s;
     }*/
+.guidelines p.q {
+        font-size: 22px;
+        font-family: 'Yanone Kaffeesatz', 'sans-serif';
+        color: #1B7B98;
+    }
