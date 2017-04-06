@@ -270,7 +270,7 @@ namespace EventManagement.DAL.Operations
                 teamMem.Chair = obj.isChair;
                 teamMem.FK_MemberType = obj.MemberTypeId;
                 teamMem.Info = obj.Info;
-                //teamMem.ImageUrl = obj.ImageUrl;
+                teamMem.ImageUrl = obj.ImageUrl;
             }
             using (var entitiesX = new EventManagementEntities())
             {

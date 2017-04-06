@@ -8,19 +8,17 @@
 <p>
     @Html.ActionLink("Create New", "NewTeamMember")
 </p>
-<br />
 <p>
-    @Html.ActionLink("All Tracks", "AllTeamMembers", new { confid = Model.ConferenceId })
+    @Html.ActionLink("All TeamMembers", "AllTeamMembers", new { confid = Model.ConferenceId })
 </p>
 
-<h2>TeamMember</h2>
+<h2>Edit Team Member</h2>
 
 @using (Html.BeginForm("UpdateTeamMember", "CMS", FormMethod.Post, new { encType = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>TeamMemberDTO</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)
@@ -73,8 +71,8 @@
 
 
         <div class="form-group">
-            @*@Html.TextBoxFor(model => model.ImageUpload, new { @type = "file" })*@
-            @*@Html.ValidationMessageFor(model => model.ImagesUpload, "", new { @class = "text-danger" })*@
+            @Html.TextBoxFor(model => model.ImageUpload, new { @type = "file" })
+            @Html.ValidationMessageFor(model => model.ImageUpload, "", new { @class = "text-danger" })
         </div>
 
         <div class="form-group">
@@ -85,6 +83,3 @@
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
