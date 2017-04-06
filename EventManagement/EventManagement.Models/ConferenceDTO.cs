@@ -13,6 +13,10 @@ namespace EventManagement.DataModels
         public int Id { get; set; }
         [Display(Name = "Conference Name")]
         public string Name { get; set; }
+
+        [Display(Name = "Conference Display Name")]
+        public string DisplayId { get; set; }
+
         [Display(Name = "Description")]
         public string Desc { get; set; }
         [Display(Name = "Theme")]

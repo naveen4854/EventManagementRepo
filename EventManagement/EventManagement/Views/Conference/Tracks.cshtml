@@ -31,7 +31,7 @@
                         @foreach (var mem in obj)
                 {
                             <div class="col-md-4">
-                                <li class="track" onclick="loadPartial(@ViewData["ConferenceId"],@mem.Id)">@mem.Name</li>
+                                <li class="track" onclick="loadPartial('@ViewData["Conferencekey"]',@mem.Id)">@mem.Name</li>
                             </div>
                         }
                     </div>
@@ -50,13 +50,13 @@
     </div>
 </div>
 <script type="text/javascript">
-    function loadPartial(confId, trackId) {
+    function loadPartial(confkey, trackId) {
         spinner(true);
         var options = { "backdrop": "static", keyboard: true };
         var url = "@Url.Content("~/Conference/PartialAbstractSubmit/")";
         $.ajax({
             type: "GET",
-            url: url + confId,
+            url: url + confkey,
             contentType: "application/json; charset=utf-8",
             //datatype: "json",
             success: function (data) {

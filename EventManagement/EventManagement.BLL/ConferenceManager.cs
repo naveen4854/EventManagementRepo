@@ -50,6 +50,11 @@ namespace EventManagement.BLL
             return confOperations.DeleteVenue(id);
         }
 
+        public int GetConferenceId(string key)
+        {
+            return confOperations.GetConferenceId(key);
+        }
+
         public ConferenceDTO GetConference(int id)
         {
             return confOperations.GetConference(id);

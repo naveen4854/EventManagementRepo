@@ -38,6 +38,7 @@ namespace EventManagement.DAL.Models
         public string brochure { get; set; }
         public string SpeakerList { get; set; }
         public string shortImageUrl { get; set; }
+        public string DisplayId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ConferenceImage> ConferenceImages { get; set; }

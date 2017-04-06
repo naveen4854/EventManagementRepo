@@ -16,7 +16,7 @@
                                 <h4>@prg.Name</h4>
                                 <h5>@prg.Info</h5>
                                 <h5>@prg.Title</h5>
-                                <button onclick="abstractModal(@ViewData["ConferenceId"],@prg.Id)">Abstract</button>
+                                <button onclick="abstractModal('@ViewData["Conferencekey"]',@prg.Id)">Abstract</button>
                             </div>
                         </div>
                     }
@@ -38,11 +38,12 @@
 </div>
 <script>
 
-    function abstractModal(confId, prgId) {
+    function abstractModal(confkey, prgId) {
         var options = { "backdrop": "static", keyboard: true };
+        var url = "@Url.Content("~/Conference/")";
         $.ajax({
             type: "GET",
-            url: '/Conference/' + confId + '/Abstract/' + prgId,
+            url: url + confkey + '/Abstract/' + prgId,
             contentType: "application/json; charset=utf-8",
             datatype: "json",
             success: function (data) {

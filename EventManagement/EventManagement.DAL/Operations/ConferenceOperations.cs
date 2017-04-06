@@ -23,7 +23,8 @@ namespace EventManagement.DAL.Operations
                 ShortDesc = q.ShortDescription,
                 StartDt = q.startDt,
                 EndDt = q.endDt,
-                ShortImgUrl = q.shortImageUrl
+                ShortImgUrl = q.shortImageUrl,
+                DisplayId = q.DisplayId
             }).ToList();
         }
 
@@ -64,6 +65,11 @@ namespace EventManagement.DAL.Operations
                 entitiesX.SaveChanges();
             }
             return true;
+        }
+
+        public int GetConferenceId(string key)
+        {
+            return managementConsoleEntities.Conferences.FirstOrDefault(q => q.DisplayId == key).Id;
         }
 
         public bool DeleteVenue(int id)
@@ -221,7 +227,8 @@ namespace EventManagement.DAL.Operations
         {
             var a = new Conference
             {
-                Name = obj.Name,
+                Name = obj.Name.Trim(),
+                DisplayId = obj.Name.Trim().Replace(' ','_'),
                 Description = obj.Desc,
                 ShortDescription = obj.ShortDesc,
                 FK_VenueId = obj.Venue.Id,

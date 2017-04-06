@@ -19,9 +19,16 @@ namespace EventManagement.Controllers
         {
             _confManager = new ConferenceManager();
         }
-        public ActionResult Home(int id)
+        [Route("Conference/{key}/Home")]
+        public ActionResult Home(string key)
         {
+            var id = 0;
+            if (!string.IsNullOrEmpty(key))
+               id = _confManager.GetConferenceId(key);
+            if (id == 0)
+                throw new ArgumentException("Conference Not Found", "original");
             ViewData["ConferenceId"] = id;
+            ViewData["Conferencekey"] = key;
             return View(_confManager.GetConference(id));
         }
         public ActionResult PartialHome(ConferenceDTO obj)
@@ -29,24 +36,42 @@ namespace EventManagement.Controllers
             return PartialView(obj);
         }
 
-        [Route("Conference/{id}/OrganisingCommitte")]
-        public ActionResult Team(int id)
+        [Route("Conference/{key}/OrganisingCommitte")]
+        public ActionResult Team(string key)
         {
+            var id = 0;
+            if (!string.IsNullOrEmpty(key))
+                id = _confManager.GetConferenceId(key);
+            if (id == 0)
+                throw new ArgumentException("Conference Not Found", "original");
             ViewData["ConferenceId"] = id;
+            ViewData["Conferencekey"] = key;
             return View(_confManager.GetConferenceTeam(id));
         }
 
-        [Route("Conference/{id}/PartialTeam")]
-        public ActionResult PartialTeam(int id)
+        [Route("Conference/{key}/PartialTeam")]
+        public ActionResult PartialTeam(string key)
         {
+            var id = 0;
+            if (!string.IsNullOrEmpty(key))
+                id = _confManager.GetConferenceId(key);
+            if (id == 0)
+                throw new ArgumentException("Conference Not Found", "original");
             ViewData["ConferenceId"] = id;
+            ViewData["Conferencekey"] = key;
             return PartialView(_confManager.GetConferenceTeam(id));
         }
 
-        [Route("Conference/{id}/Chair")]
-        public ActionResult Chair(int id)
+        [Route("Conference/{key}/Chair")]
+        public ActionResult Chair(string key)
         {
+            var id = 0;
+            if (!string.IsNullOrEmpty(key))
+                id = _confManager.GetConferenceId(key);
+            if (id == 0)
+                throw new ArgumentException("Conference Not Found", "original");
             ViewData["ConferenceId"] = id;
+            ViewData["Conferencekey"] = key;
             return View(_confManager.GetConferenceChair(id));
         }
 
@@ -55,47 +80,70 @@ namespace EventManagement.Controllers
             return PartialView(venue);
         }
 
-        [Route("Conference/{id}/Program/")]
-        public ActionResult Program(int id)
+        [Route("Conference/{key}/Program/")]
+        public ActionResult Program(string key)
         {
+            var id = 0;
+            if (!string.IsNullOrEmpty(key))
+                id = _confManager.GetConferenceId(key);
+            if (id == 0)
+                throw new ArgumentException("Conference Not Found", "original");
             ViewData["ConferenceId"] = id;
+            ViewData["Conferencekey"] = key;
             return View(_confManager.GetConferencePeriod(id));
         }
 
-        [Route("Conference/{id}/Program/{day}")]
-        public ActionResult PartialProgram(int id, int day)
+        [Route("Conference/{key}/Program/{day}")]
+        public ActionResult PartialProgram(string key, int day)
         {
+            var id = 0;
+            if (!string.IsNullOrEmpty(key))
+                id = _confManager.GetConferenceId(key);
+            if (id == 0)
+                throw new ArgumentException("Conference Not Found", "original");
             ViewData["ConferenceId"] = id;
+            ViewData["Conferencekey"] = key;
             return PartialView(_confManager.GetConferencePrograms(id, day));
         }
 
-        [Route("Conference/{id}/Poster/")]
-        public ActionResult Poster(int id)
+        [Route("Conference/{key}/Poster/")]
+        public ActionResult Poster(string key)
         {
+            var id = 0;
+            if (!string.IsNullOrEmpty(key))
+                id = _confManager.GetConferenceId(key);
+            if (id == 0)
+                throw new ArgumentException("Conference Not Found", "original");
             ViewData["ConferenceId"] = id;
+            ViewData["Conferencekey"] = key;
             return View(_confManager.GetConferencePosters(id));
         }
 
 
-        [Route("Conference/{id}/Abstract/{prgId}")]
-        public ActionResult PartialAbstract(int id, int prgId)
+        [Route("Conference/{key}/Abstract/{prgId}")]
+        public ActionResult PartialAbstract(string key, int prgId)
         {
-            try
-            {
+                var id = 0;
+                if (!string.IsNullOrEmpty(key))
+                    id = _confManager.GetConferenceId(key);
+                if (id == 0)
+                    throw new ArgumentException("Conference Not Found", "original");
                 ViewData["ConferenceId"] = id;
+                ViewData["Conferencekey"] = key;
                 var a = _confManager.GetAbstract(id, prgId);
                 return PartialView("PartialAbstract", a);
-            }
-            catch (Exception e)
-            {
-                return RedirectToAction("Index", "Error");
-            }
-        }
+         }
 
-        [Route("Conference/{id}/DownloadBrochure/")]
-        public ActionResult DownloadBrochure(int id)
+        [Route("Conference/{key}/DownloadBrochure/")]
+        public ActionResult DownloadBrochure(string key)
         {
+            var id = 0;
+            if (!string.IsNullOrEmpty(key))
+                id = _confManager.GetConferenceId(key);
+            if (id == 0)
+                throw new ArgumentException("Conference Not Found", "original");
             ViewData["ConferenceId"] = id;
+            ViewData["Conferencekey"] = key;
             var fileName = _confManager.GetConferenceBrochure(id);
             if (!string.IsNullOrEmpty(fileName))
             {
@@ -138,17 +186,29 @@ namespace EventManagement.Controllers
             }
         }
 
-        [Route("Conference/{id}/ScientificSessions/")]
-        public ActionResult ScientificSessions(int id)
+        [Route("Conference/{key}/ScientificSessions/")]
+        public ActionResult ScientificSessions(string key)
         {
+            var id = 0;
+            if (!string.IsNullOrEmpty(key))
+                id = _confManager.GetConferenceId(key);
+            if (id == 0)
+                throw new ArgumentException("Conference Not Found", "original");
             ViewData["ConferenceId"] = id;
+            ViewData["Conferencekey"] = key;
             return View("tracks",_confManager.GetConferenceTracks(id));
         }
 
-        [Route("Conference/PartialAbstractSubmit/{id}")]
-        public ActionResult PartialAbstractSubmit(int id)
+        [Route("Conference/PartialAbstractSubmit/{key}")]
+        public ActionResult PartialAbstractSubmit(string key)
         {
+            var id = 0;
+            if (!string.IsNullOrEmpty(key))
+                id = _confManager.GetConferenceId(key);
+            if (id == 0)
+                throw new ArgumentException("Conference Not Found", "original");
             ViewData["ConferenceId"] = id;
+            ViewData["Conferencekey"] = key;
             ViewBag.Titles = _confManager.GetTitles();
             ViewBag.Categories = _confManager.GetCategories();
             ViewBag.Countries = _confManager.GetCountries();
@@ -157,14 +217,20 @@ namespace EventManagement.Controllers
             return PartialView("PartialAbstractSubmit");
         }
 
-        [Route("Conference/{confId}/AbstractSubmit")]
-        public ActionResult AbstractSubmit(int confId)
+        [Route("Conference/{key}/AbstractSubmit")]
+        public ActionResult AbstractSubmit(string key)
         {
-            ViewData["ConferenceId"] = confId;
+            var id = 0;
+            if (!string.IsNullOrEmpty(key))
+                id = _confManager.GetConferenceId(key);
+            if (id == 0)
+                throw new ArgumentException("Conference Not Found", "original");
+            ViewData["ConferenceId"] = id;
+            ViewData["Conferencekey"] = key;
             ViewBag.Titles = _confManager.GetTitles();
             ViewBag.Categories = _confManager.GetCategories();
             ViewBag.Countries = _confManager.GetCountries();
-            ViewBag.Tracks = _confManager.GetConferenceTracks(confId);
+            ViewBag.Tracks = _confManager.GetConferenceTracks(id);
 
             return View();
         }
@@ -176,10 +242,16 @@ namespace EventManagement.Controllers
             return RedirectToAction("Tracks", "Conference", new { id = obj.ConferenceId });
         }
 
-        [Route("Conference/{id}/Registration/")]
-        public ActionResult Registration(int id)
+        [Route("Conference/{key}/Registration/")]
+        public ActionResult Registration(string key)
         {
+            var id = 0;
+            if (!string.IsNullOrEmpty(key))
+                id = _confManager.GetConferenceId(key);
+            if (id == 0)
+                throw new ArgumentException("Conference Not Found", "original");
             ViewData["ConferenceId"] = id;
+            ViewData["Conferencekey"] = key;
             var dt = new DateTime(2017, 06, 20);
             ViewBag.Countries = _confManager.GetCountries();
             var pricingTypeLst1 = new List<PricingType>
@@ -272,31 +344,16 @@ namespace EventManagement.Controllers
             return RedirectToAction("Registration", "Conference", new { id = 8 });
         }
 
-        //[Route("Conference/Submit/")]
-        //[HttpPost]
-        //public ActionResult AbstractSubmit(AbstractSubmitDTO obj)
-        //{
-        //    _confManager.PostAbstract(obj);
-        //    return new HttpStatusCodeResult(HttpStatusCode.OK);
-        //}
-
-        //[Route("Conference/mail/")]
-        //public void AbstractSubmit()
-        //{
-        //    var client = new SmtpClient("smtp.gmail.com", 587)
-        //    {
-        //        UseDefaultCredentials = false,
-        //        Credentials = new NetworkCredential("sc_admin@scientificcognizance.com", "SC_admin_2017"),
-        //        //Credentials = new NetworkCredential("naveen4854@gmail.com", "naveenkumar@1"),
-        //        EnableSsl = true,
-        //    };
-        //    client.Send("sc_admin@scientificcognizance.com", "naveen4854@gmail.com", "Test", "test message");
-        //}
-
-        [Route("Conference/{id}/Guidelines/")]
-        public ActionResult Guidelines(int id)
+        [Route("Conference/{key}/Guidelines/")]
+        public ActionResult Guidelines(string key)
         {
+            var id = 0;
+            if (!string.IsNullOrEmpty(key))
+                id = _confManager.GetConferenceId(key);
+            if (id == 0)
+                throw new ArgumentException("Conference Not Found", "original");
             ViewData["ConferenceId"] = id;
+            ViewData["Conferencekey"] = key;
             return View();
         }
 

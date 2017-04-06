@@ -61,34 +61,34 @@
                     </div>
                     <div class="collapse navbar-collapse">
                         <ul class="nav navbar-nav navbar-right">
-                            <li class="active"><a class="scroll homeicon" data-scroll="#Home" data-noscroll="@Url.Content("~/Conference/Home/"+@ViewData["ConferenceId"]+"#Home")" href="#Home"><i style="" class="fa fa-home" aria-hidden="true"></i></a></li>
+                            <li class="active"><a class="scroll homeicon" data-scroll="#Home" data-noscroll="@Url.Content("~/Conference/"+@ViewData["Conferencekey"]+"/Home#Home")" href="#Home"><i style="" class="fa fa-home" aria-hidden="true"></i></a></li>
                             <li class="dropdown">
                                 <a class="no-scroll pointer">General info</a>
                                 <div class="dropdown-content">
-                                    <a class="no-scroll" href="@Url.Content("~/Conference/"+@ViewData["ConferenceId"]+ "/OrganisingCommitte/")">Organising Committe</a>
-                                    <a class="no-scroll" href="@Url.Content("~/Conference/"+@ViewData["ConferenceId"]+ "/ScientificSessions/")">Scientific Sessions</a>
+                                    <a class="no-scroll" href="@Url.Content("~/Conference/"+@ViewData["Conferencekey"]+ "/OrganisingCommitte/")">Organising Committe</a>
+                                    <a class="no-scroll" href="@Url.Content("~/Conference/"+@ViewData["Conferencekey"]+ "/ScientificSessions/")">Scientific Sessions</a>
                                     <a class="no-scroll" href="@Url.Content("~/Conference/SponsorExhibitor/")">Sponsor/Exhibitor</a>
                                 </div>
                             </li>
-                            <li><a class="no-scroll" href="@Url.Content("~/Conference/"+@ViewData["ConferenceId"]+ "/AbstractSubmit/")">Abstract Submission</a></li>
+                            <li><a class="no-scroll" href="@Url.Content("~/Conference/"+@ViewData["Conferencekey"]+ "/AbstractSubmit/")">Abstract Submission</a></li>
                             <li class="dropdown">
                                 <a class="no-scroll pointer">Registration</a>
                                 <div class="dropdown-content">
-                                    <a class="no-scroll" href="@Url.Content("~/Conference/"+@ViewData["ConferenceId"]+ "/Registration/")">Register Now</a>
+                                    <a class="no-scroll" href="@Url.Content("~/Conference/"+@ViewData["Conferencekey"]+ "/Registration/")">Register Now</a>
                                     <a class="no-scroll" href="">Registration policy</a>
                                 </div>
                             </li>
                             <li class="dropdown">
                                 <a class="no-scroll pointer">Agenda</a>
                                 <div class="dropdown-content">
-                                    <a class="no-scroll" href="@Url.Content("~/Conference/"+@ViewData["ConferenceId"]+ "/Program/")">Program</a>
-                                    <a class="no-scroll" href="@Url.Content("~/Conference/"+@ViewData["ConferenceId"]+ "/Poster/")">Poster</a>
-                                    <a class="no-scroll" href="@Url.Content("~/Conference/"+@ViewData["ConferenceId"]+ "/DownloadBrochure")">Brochure</a>
+                                    <a class="no-scroll" href="@Url.Content("~/Conference/"+@ViewData["Conferencekey"]+ "/Program/")">Program</a>
+                                    <a class="no-scroll" href="@Url.Content("~/Conference/"+@ViewData["Conferencekey"]+ "/Poster/")">Poster</a>
+                                    <a class="no-scroll" href="@Url.Content("~/Conference/"+@ViewData["Conferencekey"]+ "/DownloadBrochure")">Brochure</a>
                                 </div>
                             </li>
-                            <li><a class="scroll" data-noscroll="@Url.Content("~/Conference/Home/"+@ViewData["ConferenceId"]+"#venue")"  href="#venue">Venue</a></li>
-                            <li><a class="no-scroll" href="@Url.Content("~/Conference/"+@ViewData["ConferenceId"]+ "/Guidelines/")">Guidelines</a></li>
-                            <li><a class="scroll force-scroll" data-noscroll="@Url.Content("~/Conference/Home/"+@ViewData["ConferenceId"]+"/#Contact")" href="#Contact">Contact</a></li>
+                            <li><a class="scroll" data-noscroll="@Url.Content("~/Conference/"+@ViewData["Conferencekey"]+"/Home#venue")"  href="#venue">Venue</a></li>
+                            <li><a class="no-scroll" href="@Url.Content("~/Conference/"+@ViewData["Conferencekey"]+ "/Guidelines/")">Guidelines</a></li>
+                            <li><a class="scroll force-scroll" data-noscroll="@Url.Content("~/Conference/"+@ViewData["Conferencekey"]+"/Home#Contact")" href="#Contact">Contact</a></li>
                         </ul>
                     </div>
                 </div>

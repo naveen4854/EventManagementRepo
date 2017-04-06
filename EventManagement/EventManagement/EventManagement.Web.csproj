@@ -170,6 +170,7 @@
     <Content Include="Content\images\bb782dd7-4ac2-4e96-844e-a69f13b498ff_4.jpg" />
     <Content Include="Content\images\c6334584-4b3f-49d7-afd7-e669675d5dd2_7.jpg" />
     <Content Include="Content\images\c9591074-f8f6-45b1-ba44-a8e56af357ba_gc-nursing-awards.jpg" />
+    <Content Include="Content\images\COGNIZANCE SCIENTIFIC LOGO 1.png" />
     <Content Include="Content\images\confprog\c1_p1_1.jpg" />
     <Content Include="Content\images\confteam\c1_chair.jpg" />
     <Content Include="Content\images\confteam\c1_t1.jpg" />
@@ -360,6 +361,7 @@
     <Content Include="Views\Conference\Poster.cshtml" />
     <Content Include="Views\Home\PartialScientificAdvisors.cshtml" />
     <Content Include="Views\Conference\AbstractSubmit.cshtml" />
+    <Content Include="Views\Conference\PartialAbstract.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
