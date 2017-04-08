@@ -445,6 +445,7 @@ namespace EventManagement.DAL.Operations
                 ImageUrls = conf.ConferenceImages.Select(q => q.ImageUrl).ToList(),
                 StartDt = conf.startDt,
                 EndDt = conf.endDt,
+                DisplayId = conf.DisplayId,
                 Venue = new VenueDTO
                 {
                     Id = conf.Venue.Id,

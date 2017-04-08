@@ -7,7 +7,10 @@
     [Abstract]        VARCHAR (MAX) NULL,
     [FK_ConferenceId] INT           NOT NULL,
     [ProgramDt]       DATETIME      NOT NULL,
+    [isPoster]        BIT           NOT NULL,
     CONSTRAINT [PK_Program] PRIMARY KEY CLUSTERED ([Id] ASC),
     CONSTRAINT [FK_Program_Conference] FOREIGN KEY ([FK_ConferenceId]) REFERENCES [dbo].[Conference] ([Id])
 );
+
+
 
