@@ -20,7 +20,9 @@
     </div>
     <div>
         <div class="carousel-caption Intro">
-            <text>@Model.Name</text>
+            <p class="row confIntro">@Model.Name</p>
+            <p class="row theme">@Model.ShortDesc</p>
+            <p class="row theme">(@Model.StartDt.ToShortDateString() - @Model.EndDt.ToShortDateString())</p>
         </div>
         <div class="col-12 carousel-caption">
             <div class="col-md-4">

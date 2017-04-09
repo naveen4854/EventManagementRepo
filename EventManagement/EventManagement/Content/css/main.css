@@ -893,7 +893,7 @@ h2 {
 }
 
 #confHome .carousel-caption {
-    bottom: 20%;
+    bottom: 10%;
 }
 
 .btn {
@@ -903,11 +903,14 @@ h2 {
     /*font-family: 'Yanone Kaffeesatz', 'sans-serif';*/
 }
 
+.theme {
+    font-size:20px !important;
+}
 #confHome .Intro {
-    bottom: 50%;
+    bottom: 25%;
 }
 
-    #confHome .Intro text {
+    #confHome .Intro .confIntro {
         font-size: 40px;
         text-transform: uppercase;
     }
