@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "RegistrationPolicy";
+    Layout = "~/Views/Shared/Layouts/_ConferenceLayout.cshtml";
+}
+<div class="NotHome">
+    @{ Html.RenderAction("PartialRegistrationPolicy", "Shared"); }
+</div>
+<script>
+    $(document).ready(function () {
+        processNoScroll();
+    });
+    $('.panel-heading').click(function () {
+        $.each($('.panel-heading'), function () {
+            $(this).removeClass('panel-highlight');
+        });
+        $(this).addClass('panel-highlight');
+    })
+</script>

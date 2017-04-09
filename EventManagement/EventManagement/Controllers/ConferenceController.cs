@@ -357,5 +357,23 @@ namespace EventManagement.Controllers
             return View();
         }
 
+        [Route("Conference/{key}/RegistrationPolicy/")]
+        public ActionResult RegistrationPolicy(string key)
+        {
+            var id = 0;
+            if (!string.IsNullOrEmpty(key))
+                id = _confManager.GetConferenceId(key);
+            if (id == 0)
+                throw new ArgumentException("Conference Not Found", "original");
+            ViewData["ConferenceId"] = id;
+            ViewData["Conferencekey"] = key;
+            return View();
+        }
+
+        [Route("Conference/ModalRegistrationPolicy/")]
+        public ActionResult ModalRegistrationPolicy()
+        {
+            return PartialView();
+        }
     }
 }

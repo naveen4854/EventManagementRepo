@@ -58,11 +58,15 @@ namespace EventManagement.Controllers
             return View(SAlst);
         }
 
-
         public ActionResult PartialScientificAdvisors()
         {
             var SAlst = _confManager.GetSientificAdvisors();
             return PartialView(SAlst);
+        }
+
+        public ActionResult RegistrationPolicy()
+        {
+            return View();
         }
     }
 }

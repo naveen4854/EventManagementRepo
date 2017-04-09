@@ -1,0 +1,19 @@
+﻿<div class="row" style="margin:10px 10px 0px 25px">
+    <div class="col-md-11"><h2>Registration Policies</h2></div>
+    <div class="col-md-1 pointer">
+        <i class="fa fa-window-close" id="modalClose" aria-hidden="true"></i>
+    </div>
+</div>
+@{ Html.RenderAction("PartialRegistrationPolicy", "Shared"); }
+
+<script>
+    $('.panel-heading').click(function () {
+        $.each($('.panel-heading'), function () {
+            $(this).removeClass('panel-highlight');
+        });
+        $(this).addClass('panel-highlight');
+    });
+    $('#modalClose').click(function () {
+        $('.modal').modal('hide');
+    });
+</script>

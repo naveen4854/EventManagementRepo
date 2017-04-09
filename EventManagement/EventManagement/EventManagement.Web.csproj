@@ -281,6 +281,7 @@
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PurchaseController.cs" />
+    <Compile Include="Controllers\SharedController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -362,6 +363,10 @@
     <Content Include="Views\Home\PartialScientificAdvisors.cshtml" />
     <Content Include="Views\Conference\AbstractSubmit.cshtml" />
     <Content Include="Views\Conference\PartialAbstract.cshtml" />
+    <Content Include="Views\Conference\RegistrationPolicy.cshtml" />
+    <Content Include="Views\Home\RegistrationPolicy.cshtml" />
+    <Content Include="Views\Conference\ModalRegistrationPolicy.cshtml" />
+    <Content Include="Views\Shared\PartialRegistrationPolicy.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

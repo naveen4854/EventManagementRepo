@@ -796,7 +796,7 @@ h2 {
         }
 
 .pointer {
-    cursor: pointer;
+    cursor: pointer !important;
 }
 
 
@@ -871,6 +871,16 @@ h2 {
 .NotHome {
     position: relative;
     min-height: calc(100vh - 150px);
+    /*min-height: 100vh - 188px;*/
+    padding: 190px 20px 20px 20px;
+    /*background-color: #33888F;*/
+    overflow: auto;
+    /*position:absolute;*/
+}
+
+.NotMainHome {
+    position: relative;
+    min-height: calc(100vh - 30px);
     /*min-height: 100vh - 188px;*/
     padding: 190px 20px 20px 20px;
     /*background-color: #33888F;*/
@@ -1248,7 +1258,8 @@ i.fa.fa-circle {
     background-position: left bottom;
     background-repeat: no-repeat;
     background-size: cover;
-    padding: 5px 70px 50px;
+    padding: 25px 70px 50px;
+    font-size: 15px;
 }
 
     .regpolicy p.q {
@@ -1256,6 +1267,8 @@ i.fa.fa-circle {
         font-family: 'Yanone Kaffeesatz', 'sans-serif';
         color: #1B7B98;
     }
+
+
 
 #sessions {
     font-size: 15px;
@@ -1279,12 +1292,46 @@ li.track {
         -webkit-transition: .5s;
         transition: .5s;
     }*/
-.guidelines p.q {
+.guidelines {
+    width: 100%;
+    /* background-image: url(../images/about-bg.jpg); */
+    background-position: left bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 25px 70px 50px;
+    font-size: 15px;
+}
+
+    .guidelines p.q {
+        font-size: 22px;
+        font-family: 'Yanone Kaffeesatz', 'sans-serif';
+        color: #1B7B98;
+    }
+
+    .guidelines p {
+        font-size: 15px;
+    }
+
+.panel-highlight {
+    background-color: #1B7B98 !important;
+}
+
+    .panel-highlight .panel-title {
+        color: white;
+    }
+
+.panel-heading {
+    cursor: pointer !important;
+}
+
+.panel-title {
     font-size: 22px;
     font-family: 'Yanone Kaffeesatz', 'sans-serif';
     color: #1B7B98;
 }
-
-.guidelines p {
-    font-size: 15px;
+.txthighlight {
+    text-decoration:underline;
+}
+.txthighlight:hover {
+    color: red;
 }

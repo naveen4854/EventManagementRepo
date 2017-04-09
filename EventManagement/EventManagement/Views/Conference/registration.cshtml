@@ -98,9 +98,9 @@
                                             {
                                                 htmlAttr.Add("disabled", "disabled");
                                             }
-                                    <td>
-                                        @Html.RadioButton("regprice", false, htmlAttr) @pricetype.Price
-                                    </td>
+                            <td>
+                                @Html.RadioButton("regprice", false, htmlAttr) @pricetype.Price
+                            </td>
                                         }
                             }
                         </tr>
@@ -154,9 +154,9 @@
                                             {
                                                 htmlAttr.Add("disabled", "disabled");
                                             }
-                                    <td>
-                                        @Html.RadioButton("accprice", false, htmlAttr) @occtype.Price
-                                    </td>
+                            <td>
+                                @Html.RadioButton("accprice", false, htmlAttr) @occtype.Price
+                            </td>
                                         }
                             }
                         </tr>
@@ -179,16 +179,60 @@
                 </div>
 
             </div>
-
-            <div class="form-group">
-                <div class="col-md-offset-5 col-md-7">
-                    <input type="submit" value="Register" class="push-btn" />
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <div class="col-md-offset-1 col-md-10">
+                            @Html.CheckBoxFor(model => model.TermsAndConditions, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.LabelFor(model => model.TermsAndConditions, new { @class = "pointer txthighlight", @onclick = "loadPartial()" })
+                        </div>
+                        <div class="col-md-offset-1 col-md-10">
+                            @Html.ValidationMessageFor(model => model.TermsAndConditions, "", new { @class = "text-danger" })
+                        </div>
+                        </div>
+                </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-5 col-md-7">
+                        <input type="submit" value="Register" class="push-btn" />
+                    </div>
                 </div>
             </div>
-        </div>
                                 }
+    <div id='myModal' class='modal'>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div id='myModalContent'></div>
+            </div>
+        </div>
+    </div>
 </div>
 <script type="text/JavaScript">
+    function loadPartial() {
+        spinner(true);
+        var options = { "backdrop": "static", keyboard: true };
+        var url = "@Url.Content("~/Conference/ModalRegistrationPolicy/")";
+        $.ajax({
+            type: "GET",
+            url: url,
+            contentType: "application/json; charset=utf-8",
+            //datatype: "json",
+            success: function (data) {
+                spinner(false);
+                $('#myModalContent').html(data);
+                $('#myModal').modal(options);
+                $('#myModal').modal('show');
+
+            },
+            error: function () {
+                $('#myModalContent').html("Error fetching Registration Policy");
+            }
+        });
+    }
+
+    //$('.modal').click(function (e) {
+    //    e.stopPropagation();
+    //});
     $(document).ready(function () {
         processNoScroll();
         calculateTotal();
@@ -289,5 +333,14 @@
         });
     }
 
+    //$.validator.unobtrusive.adapters.addBool("MustBeTrueAttribute", "required");
 
+    $.validator.unobtrusive.adapters.add("checkboxtrue", function (options) {
+        if (options.element.tagName.toUpperCase() == "INPUT" && options.element.type.toUpperCase() == "CHECKBOX") {
+            options.rules["required"] = true;
+            if (options.message) {
+                options.messages["required"] = options.message;
+            }
+        }
+    });
 </script>

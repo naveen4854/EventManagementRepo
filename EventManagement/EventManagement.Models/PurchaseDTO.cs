@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using EventManagement.DataModels.Helpers;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace EventManagement.DataModels
@@ -31,6 +32,10 @@ namespace EventManagement.DataModels
         [Display(Name="Accompaning Persons")]
         public int AccompanyId { get; set; }
         public int Amount { get; set; }
+
+        [Display(Name = "Terms and Conditions")]
+        [MustBeTrue(ErrorMessage = "Terms and Conditions havent been accepted")]
+        public bool TermsAndConditions { get; set; }
         public IEnumerable<RegistrationTypeDTO> Reg { get; set; }
         public IEnumerable<AccommodationDTO> acc { get; set; }
     }
