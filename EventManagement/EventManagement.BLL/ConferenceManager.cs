@@ -20,6 +20,13 @@ namespace EventManagement.BLL
             _mailHelper = new MailHelper();
             _uploadHelper = new UploadHelper();
         }
+
+        public string GetNextConference()
+        {
+            var conferences = confOperations.GetConferences().OrderBy(q => q.StartDt);
+            return conferences.FirstOrDefault(q => DateTime.Compare(q.StartDt, DateTime.Now.Date) >= 0).DisplayId;
+        }
+
         public List<ConferenceDTO> GetConferences()
         {
             return confOperations.GetConferences();

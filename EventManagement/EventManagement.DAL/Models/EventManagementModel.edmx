@@ -190,7 +190,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="Description" Type="varchar(max)" />
-          <Property Name="Telephone" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Telephone" Type="varchar" MaxLength="15" />
           <Property Name="Email" Type="varchar" MaxLength="100" />
           <Property Name="Address" Type="varchar(max)" Nullable="false" />
           <Property Name="latitude" Type="float" Nullable="false" />
@@ -678,7 +678,7 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Conferences" Relationship="EventManagementModel.FK_Conference_Venue" FromRole="Venue" ToRole="Conference" />
-          <Property Name="Telephone" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Telephone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Address" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="latitude" Type="Double" Nullable="false" />

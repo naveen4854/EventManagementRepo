@@ -22,7 +22,8 @@ namespace EventManagement.Controllers
         }
         public ActionResult PartialHome()
         {
-            return PartialView();
+            var key = _confManager.GetNextConference();
+            return PartialView("PartialHome", key);
         }
         public ActionResult PartialConferences()
         {

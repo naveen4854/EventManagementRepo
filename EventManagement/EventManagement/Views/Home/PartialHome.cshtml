@@ -1,4 +1,6 @@
-﻿<div id="main-slider" class="carousel slide" data-ride="carousel">
+﻿@model string
+
+<div id="main-slider" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
         <li data-target="#main-slider" data-slide-to="0" class="active"></li>
         <li data-target="#main-slider" data-slide-to="1"></li>
@@ -39,6 +41,6 @@
 <div>
     <div class="carousel-caption">
         <h2>register for our next event </h2>
-        <a href="#">GRAB YOUR TICKETS <i class="fa fa-angle-right"></i></a>
+        <a href="@Url.Content("~/Conference/"+@Model+ "/Registration/")" target="_blank">Click Here <i class="fa fa-angle-right"></i></a>
     </div>
 </div>
