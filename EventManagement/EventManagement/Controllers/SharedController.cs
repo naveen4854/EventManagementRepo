@@ -13,5 +13,11 @@ namespace EventManagement.Controllers
         {
             return PartialView();
         }
+
+        [Route("Shared/Logo/")]
+        public ActionResult Logo()
+        {
+            return PartialView();
+        }
     }
 }

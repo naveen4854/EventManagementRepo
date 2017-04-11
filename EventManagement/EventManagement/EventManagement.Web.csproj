@@ -368,6 +368,7 @@
     <Content Include="Views\Home\RegistrationPolicy.cshtml" />
     <Content Include="Views\Conference\ModalRegistrationPolicy.cshtml" />
     <Content Include="Views\Shared\PartialRegistrationPolicy.cshtml" />
+    <Content Include="Views\Shared\Logo.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

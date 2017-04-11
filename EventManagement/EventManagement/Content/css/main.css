@@ -101,16 +101,19 @@ h2 {
 }
 
 .navbar-brand {
-    background-color: #1B7B98;
+    /*background-color: rgba(27, 123, 152, 0.5);*/
+    background-color: rgba(255, 255, 255, 0.5);
     height: 90px;
     margin-bottom: 20px;
     position: relative;
-    width: 200px;
+    width: 250px;
+    /* opacity: 0.5; */
 }
 
     .navbar-brand img {
         position: absolute;
-        top: -35px;
+        top: 6px;
+        width: 200px;
     }
 
 .navbar-right {
@@ -173,12 +176,13 @@ h2 {
         margin-top: 0;
         padding: 0;
         margin-bottom: 0;
-        width: 125px;
+        width: 180px;
     }
 
         .fixed-menu .navbar-brand img {
-            height: 60px;
+            height: 50px;
             top: 0;
+            width: 176px;
         }
 
     .fixed-menu .header-top {
@@ -904,8 +908,9 @@ h2 {
 }
 
 .theme {
-    font-size:20px !important;
+    font-size: 20px !important;
 }
+
 #confHome .Intro {
     bottom: 25%;
 }
@@ -1332,9 +1337,11 @@ li.track {
     font-family: 'Yanone Kaffeesatz', 'sans-serif';
     color: #1B7B98;
 }
+
 .txthighlight {
-    text-decoration:underline;
+    text-decoration: underline;
 }
-.txthighlight:hover {
-    color: red;
-}
+
+    .txthighlight:hover {
+        color: red;
+    }
