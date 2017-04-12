@@ -14,13 +14,16 @@ namespace EventManagement.DataModels
         [Display(Name = "Conference Name")]
         public string Name { get; set; }
 
-        [Display(Name = "Conference Display Name")]
+        [Display(Name = "Conference URL")]
         public string DisplayId { get; set; }
 
         [Display(Name = "Description")]
         public string Desc { get; set; }
         [Display(Name = "Theme")]
         public string ShortDesc { get; set; }
+
+        [Display(Name = "Conference Email")]
+        public string ConfEmail { get; set; }
         public string ShortImgUrl { get; set; }
         [Display(Name = "Start Date")]
         public DateTime StartDt { get; set; }
@@ -31,5 +34,8 @@ namespace EventManagement.DataModels
         public VenueDTO Venue { get; set; }
         public List<ProgramDTO> Programs { get; set; }
         public IEnumerable<HttpPostedFileBase> ImagesUpload { get; set; }
+        [Display(Name = "Short Image")]
+        public HttpPostedFileBase ShortImageUpload { get; set; }
+
     }
 }

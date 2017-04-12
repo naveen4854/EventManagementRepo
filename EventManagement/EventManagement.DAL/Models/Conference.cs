@@ -39,10 +39,10 @@ namespace EventManagement.DAL.Models
         public string SpeakerList { get; set; }
         public string shortImageUrl { get; set; }
         public string DisplayId { get; set; }
+        public string ConfEmail { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ConferenceImage> ConferenceImages { get; set; }
-        public virtual Venue Venue { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Program> Programs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -57,5 +57,6 @@ namespace EventManagement.DAL.Models
         public virtual ICollection<AccompanyPricing> AccompanyPricings { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ConferenceTeam> ConferenceTeams { get; set; }
+        public virtual Venue Venue { get; set; }
     }
 }

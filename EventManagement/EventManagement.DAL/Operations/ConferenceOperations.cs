@@ -36,7 +36,6 @@ namespace EventManagement.DAL.Operations
                 Name = q.Name,
                 Desc = q.Description,
                 Address = q.Address,
-                Email = q.Email,
                 Telephone = q.Telephone,
                 Map = new MapDTO { Latitude = q.latitude, Longitude = q.longitude }
             }).ToList();
@@ -55,7 +54,6 @@ namespace EventManagement.DAL.Operations
                 venue.Description = obj.Desc;
                 venue.Address = obj.Address;
                 venue.Telephone = obj.Telephone;
-                venue.Email = obj.Email;
                 venue.latitude = obj.Map.Latitude;
                 venue.longitude = obj.Map.Longitude;
             }
@@ -111,7 +109,6 @@ namespace EventManagement.DAL.Operations
                 Name = venue.Name,
                 Desc = venue.Description,
                 Address = venue.Address,
-                Email = venue.Email,
                 Telephone = venue.Telephone,
                 Map = new MapDTO { Latitude = venue.latitude, Longitude = venue.longitude }
             };
@@ -147,6 +144,9 @@ namespace EventManagement.DAL.Operations
                 conf.endDt = obj.EndDt;
                 conf.ShortDescription = obj.ShortDesc;
                 conf.FK_VenueId = obj.Venue.Id;
+                conf.shortImageUrl = obj.ShortImgUrl ?? conf.shortImageUrl;
+                conf.DisplayId = obj.DisplayId;
+                conf.ConfEmail = obj.ConfEmail;
             }
             using (var entitiesX = new EventManagementEntities())
             {
@@ -211,7 +211,6 @@ namespace EventManagement.DAL.Operations
                 Description = obj.Desc,
                 Address = obj.Address,
                 Telephone = obj.Telephone,
-                Email = obj.Email,
                 latitude = obj.Map.Latitude,
                 longitude = obj.Map.Longitude,
             };
@@ -228,12 +227,15 @@ namespace EventManagement.DAL.Operations
             var a = new Conference
             {
                 Name = obj.Name.Trim(),
-                DisplayId = obj.Name.Trim().Replace(' ','_'),
+                //DisplayId = obj.Name.Trim().Replace(' ','_'),
                 Description = obj.Desc,
                 ShortDescription = obj.ShortDesc,
                 FK_VenueId = obj.Venue.Id,
                 startDt = obj.StartDt,
-                endDt = obj.EndDt
+                endDt = obj.EndDt,
+                shortImageUrl = obj.ShortImgUrl ?? "",
+                DisplayId = obj.DisplayId,
+                ConfEmail = obj.ConfEmail
             };
             using (var entities = new EventManagementEntities())
             {
@@ -446,13 +448,14 @@ namespace EventManagement.DAL.Operations
                 StartDt = conf.startDt,
                 EndDt = conf.endDt,
                 DisplayId = conf.DisplayId,
+                ConfEmail = conf.ConfEmail,
                 Venue = new VenueDTO
                 {
                     Id = conf.Venue.Id,
                     Name = conf.Venue.Name,
                     Desc = conf.Venue.Description,
                     Address = conf.Venue.Address,
-                    Email = conf.Venue.Email,
+                    Email = conf.ConfEmail,
                     Telephone = conf.Venue.Telephone,
                     Map = new MapDTO { Latitude = conf.Venue.latitude, Longitude = conf.Venue.longitude }
                 }

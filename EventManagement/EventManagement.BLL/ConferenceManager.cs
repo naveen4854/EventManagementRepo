@@ -69,6 +69,8 @@ namespace EventManagement.BLL
 
         public bool AddConference(ConferenceDTO obj)
         {
+            if (obj.ShortImageUpload != null)
+                obj.ShortImgUrl = _uploadHelper.UploadFile(obj.ShortImageUpload, "~/content/images/event/confShortImage/");
             return confOperations.AddConference(obj);
         }
 
@@ -115,6 +117,8 @@ namespace EventManagement.BLL
 
         public bool UpdateConference(ConferenceDTO obj)
         {
+            if (obj.ShortImageUpload != null)
+                obj.ShortImgUrl = _uploadHelper.UploadFile(obj.ShortImageUpload, "~/content/images/event/confShortImage/");
             return confOperations.UpdateConference(obj);
         }
 

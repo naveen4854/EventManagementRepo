@@ -84,6 +84,7 @@ namespace EventManagement.Controllers
             return RedirectToAction("AllConferences", "CMS");
         }
 
+        [HttpPost]
         public ActionResult UpdateConference(ConferenceDTO obj)
         {
             var venue = _confManager.UpdateConference(obj);

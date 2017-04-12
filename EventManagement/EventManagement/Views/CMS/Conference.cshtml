@@ -12,7 +12,7 @@
 
 <h2>Edit Conference</h2>
 
-@using (Html.BeginForm("UpdateConference", "CMS"))
+@using (Html.BeginForm("UpdateConference", "CMS", FormMethod.Post, new { encType = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
@@ -26,6 +26,22 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DisplayId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DisplayId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DisplayId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ConfEmail, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ConfEmail, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ConfEmail, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -67,6 +83,12 @@
             <div class="col-md-10">
                 @Html.DropDownListFor(model => model.Venue.Id, new SelectList(@ViewBag.Venues, "Id", "Name"), new { @class = "form-control" })
             </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ShortImageUpload, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.TextBoxFor(model => model.ShortImageUpload, new { @type = "file" })
+            @Html.ValidationMessageFor(model => model.ShortImageUpload, "", new { @class = "text-danger" })
         </div>
 
         <div class="form-group">
