@@ -899,6 +899,8 @@ h2 {
 
 #confHome .carousel-caption {
     bottom: 10%;
+    left: 15% !important;
+    right: 15% !important;
 }
 
 .btn {
@@ -914,11 +916,13 @@ h2 {
 
 #confHome .Intro {
     bottom: 25%;
+    background-color: rgba(0, 0, 0, 0.2);
 }
 
     #confHome .Intro .confIntro {
         font-size: 40px;
         text-transform: uppercase;
+        margin: 5px;
     }
 
 #confHome .about-content {
@@ -972,11 +976,13 @@ h2 {
     .border:hover {
         transition: background-color 0.5s ease;
         background-color: rgba(27, 123, 152, 0.7);
-        color:white;
+        color: white;
     }
+
         .border:hover .q {
-            color:black !important;
+            color: black !important;
         }
+
 .border-container {
     height: 100%;
     padding: 0 5px 0 5px;

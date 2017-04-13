@@ -22,7 +22,22 @@
         <div class="carousel-caption Intro">
             <p class="row confIntro">@Model.Name</p>
             <p class="row theme">@Model.ShortDesc</p>
-            <p class="row theme">(@Model.StartDt.ToShortDateString() - @Model.EndDt.ToShortDateString())</p>
+            @{
+                var str = "";
+                str = Model.StartDt.ToString("MMMM dd") + " - " + Model.EndDt.ToString("MMMM dd") + " " + Model.StartDt.Year;
+                if (Model.StartDt.Year != Model.EndDt.Year)
+                {
+                    str = Model.StartDt.ToString("MMMM dd yyyy") + " - " + Model.EndDt.ToString("MMMM dd yyyy");
+                }
+                else if (Model.StartDt.Month != Model.EndDt.Month)
+                {
+                    str = Model.StartDt.ToString("MMMM dd") + " - " + Model.EndDt.ToString("MMMM dd") + " " + Model.StartDt.Year;
+                }
+                else {
+                    str = Model.StartDt.ToString("dd") + " - " + Model.EndDt.ToString("dd") + " " + Model.StartDt.ToString("MMMM") + " " + Model.StartDt.Year;
+                }
+                <p class="row theme">(@str)</p>
+            }
         </div>
         <div class="col-12 carousel-caption">
             <div class="col-md-4">
