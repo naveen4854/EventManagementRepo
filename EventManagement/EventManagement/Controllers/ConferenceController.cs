@@ -24,7 +24,7 @@ namespace EventManagement.Controllers
         {
             var id = 0;
             if (!string.IsNullOrEmpty(key))
-               id = _confManager.GetConferenceId(key);
+                id = _confManager.GetConferenceId(key);
             if (id == 0)
                 throw new ArgumentException("Conference Not Found", "original");
             ViewData["ConferenceId"] = id;
@@ -123,20 +123,6 @@ namespace EventManagement.Controllers
         [Route("Conference/{key}/Abstract/{prgId}")]
         public ActionResult PartialAbstract(string key, int prgId)
         {
-                var id = 0;
-                if (!string.IsNullOrEmpty(key))
-                    id = _confManager.GetConferenceId(key);
-                if (id == 0)
-                    throw new ArgumentException("Conference Not Found", "original");
-                ViewData["ConferenceId"] = id;
-                ViewData["Conferencekey"] = key;
-                var a = _confManager.GetAbstract(id, prgId);
-                return PartialView("PartialAbstract", a);
-         }
-
-        [Route("Conference/{key}/DownloadBrochure/")]
-        public ActionResult DownloadBrochure(string key)
-        {
             var id = 0;
             if (!string.IsNullOrEmpty(key))
                 id = _confManager.GetConferenceId(key);
@@ -144,16 +130,31 @@ namespace EventManagement.Controllers
                 throw new ArgumentException("Conference Not Found", "original");
             ViewData["ConferenceId"] = id;
             ViewData["Conferencekey"] = key;
-            var fileName = _confManager.GetConferenceBrochure(id);
-            if (!string.IsNullOrEmpty(fileName))
-            {
-                DirectoryInfo dirInfo = new DirectoryInfo(HostingEnvironment.MapPath("~/Content/downloads/confbrouchers"));
-                return File(dirInfo.FullName + @"\" + fileName, "application / docx", "brochure.docx");
-            }
-            else
-            {
-                return RedirectToAction("Index", "Error");
-            }
+            var a = _confManager.GetAbstract(id, prgId);
+            return PartialView("PartialAbstract", a);
+        }
+
+        [Route("Conference/{key}/DownloadBrochure/")]
+        public ActionResult DownloadBrochure(string key)
+        {
+            return RedirectToAction("Index", "Error");
+            //var id = 0;
+            //if (!string.IsNullOrEmpty(key))
+            //    id = _confManager.GetConferenceId(key);
+            //if (id == 0)
+            //    throw new ArgumentException("Conference Not Found", "original");
+            //ViewData["ConferenceId"] = id;
+            //ViewData["Conferencekey"] = key;
+            //var fileName = _confManager.GetConferenceBrochure(id);
+            //if (!string.IsNullOrEmpty(fileName))
+            //{
+            //    DirectoryInfo dirInfo = new DirectoryInfo(HostingEnvironment.MapPath("~/Content/downloads/confbrouchers"));
+            //    return File(dirInfo.FullName + @"\" + fileName, "application / docx", "brochure.docx");
+            //}
+            //else
+            //{
+            //    return RedirectToAction("Index", "Error");
+            //}
         }
 
         [Route("Conference/DownloadSampleAbstract/")]
@@ -196,11 +197,11 @@ namespace EventManagement.Controllers
                 throw new ArgumentException("Conference Not Found", "original");
             ViewData["ConferenceId"] = id;
             ViewData["Conferencekey"] = key;
-            return View("tracks",_confManager.GetConferenceTracks(id));
+            return View("tracks", _confManager.GetConferenceTracks(id));
         }
 
-        [Route("Conference/PartialAbstractSubmit/{key}")]
-        public ActionResult PartialAbstractSubmit(string key)
+        [Route("Conference/{key}/PartialAbstractSubmit/{trackId}")]
+        public ActionResult PartialAbstractSubmit(string key, int trackId)
         {
             var id = 0;
             if (!string.IsNullOrEmpty(key))
@@ -213,6 +214,7 @@ namespace EventManagement.Controllers
             ViewBag.Categories = _confManager.GetCategories();
             ViewBag.Countries = _confManager.GetCountries();
             ViewBag.Tracks = _confManager.GetConferenceTracks(id);
+            ViewBag.Track = trackId;
 
             return PartialView("PartialAbstractSubmit");
         }
@@ -374,6 +376,12 @@ namespace EventManagement.Controllers
         public ActionResult ModalRegistrationPolicy()
         {
             return PartialView();
+        }
+        [Route("Conference/{key}/Email/")]
+        public ActionResult ConferenceEmail(string key)
+        {
+            var email = _confManager.GetConferenceEmail(key);
+            return PartialView("ConferenceEmail", email);
         }
     }
 }

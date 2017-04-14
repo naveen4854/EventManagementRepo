@@ -57,7 +57,7 @@
                 </div>
                 <div class="form-group">
                     <div class="col-md-offset-1 col-md-10">
-                        @Html.DropDownListFor(model => model.Track, new SelectList(@ViewBag.Tracks, "Id", "Name"), "Select Scientific Sessions", new { @class = "form-control" })
+                        @Html.DropDownListFor(model => model.Track, new SelectList(@ViewBag.Tracks, "Id", "Name", @ViewBag.Track), "Select Scientific Sessions", new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.Track, "", new { @class = "text-danger" })
                     </div>
                 </div>

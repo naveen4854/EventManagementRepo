@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EventManagement.Notifications;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,9 +9,10 @@ namespace EventManagement.Controllers
 {
     public class ErrorController : Controller
     {
-        public ViewResult Index()
+        public ActionResult Index()
         {
-            return View("Error");
+			this.ShowMessage(MessageType.Error, "Error message while displaying a partial view.");
+            return PartialView();
         }
         public ViewResult ErrMsg(string err)
         {

@@ -4,12 +4,34 @@
     <div id="googlemaps" style="overflow: hidden;"></div>
     <div id="contactform">
         <p class="mapsPartBox">
-        </p><div class="mapsPartTitle">Venue Address</div>
-        <div  class="contactPhone">
-            <i class="fa fa-building" aria-hidden="true"></i> &nbsp;@Model.Address<br />
+        </p><div class="mapsPartTitle">Venue Address:</div>
+        <div class="contactPhone">
+            <div class="col-md-1"><i class="fa fa-building" aria-hidden="true"></i></div>
+            <div class="col-md-11" style="line-height: 14px;padding-top: 6px;">
+                @{
+                    List<string> ad = Model.Address.Split(',').ToList();
+                    foreach (var a in ad)
+                    {
+                        var st = "";
+                        if (ad.IndexOf(a) == ad.Count - 1)
+                        {
+                            st = a + ".";
+                        }
+                        else
+                        {
+                            st = a + ",";
+                        }
+                        <p>
+                            @st
+                        </p>
+                    }
+
+                }
+            </div>
+            <br />
         </div>
-        <div class="contactPhone"><i class="fa fa-phone" aria-hidden="true"> &nbsp;@Model.Telephone</i></div>
-        <div class="contactMail"><i class="fa fa-envelope" aria-hidden="true"> &nbsp;<a href="@Model.Email">@Model.Email</a></i></div>
+        @*<div class="contactPhone"><i class="fa fa-phone" aria-hidden="true"> &nbsp;@Model.Telephone</i></div>
+            <div class="contactMail"><i class="fa fa-envelope" aria-hidden="true"> &nbsp;</i></div>*@
         <p></p>
     </div>
     <script>

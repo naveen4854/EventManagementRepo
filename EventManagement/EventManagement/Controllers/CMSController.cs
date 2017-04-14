@@ -125,7 +125,7 @@ namespace EventManagement.Controllers
         {
             _confManager.AddTrack(obj);
             var tracks = _confManager.GetConferenceTracks(obj.ConferenceId);
-            return PartialView("AllTracks", tracks);
+            return RedirectToAction("AllTracks", obj.ConferenceId);
         }
 
         [HttpPost]
@@ -133,7 +133,7 @@ namespace EventManagement.Controllers
         {
             _confManager.UpdateTrack(obj);
             var tracks = _confManager.GetConferenceTracks(obj.ConferenceId);
-            return PartialView("AllTracks", tracks);
+            return RedirectToAction("AllTracks", obj.ConferenceId);
         }
 
         public ActionResult DeleteTrack(int id)

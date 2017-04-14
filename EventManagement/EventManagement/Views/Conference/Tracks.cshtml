@@ -53,10 +53,10 @@
     function loadPartial(confkey, trackId) {
         spinner(true);
         var options = { "backdrop": "static", keyboard: true };
-        var url = "@Url.Content("~/Conference/PartialAbstractSubmit/")";
+        var url = "@Url.Content("~/Conference/")";
         $.ajax({
             type: "GET",
-            url: url + confkey,
+            url: url + confkey + "/PartialAbstractSubmit/" + trackId,
             contentType: "application/json; charset=utf-8",
             //datatype: "json",
             success: function (data) {

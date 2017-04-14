@@ -321,5 +321,10 @@ namespace EventManagement.BLL
         {
             return confOperations.DeleteProgram(id);
         }
+
+        public string GetConferenceEmail(string key)
+        {
+            return confOperations.GetConferenceEmail(key);
+        }
     }
 }

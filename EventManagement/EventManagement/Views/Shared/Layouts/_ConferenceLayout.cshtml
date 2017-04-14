@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using EventManagement.Notifications;
+<!DOCTYPE html>
 
 <html>
 
@@ -15,6 +16,7 @@
     <script type="text/javascript" src="@Url.Content("~/Content/js/main.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/scripts/jquery.validate.min.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/scripts/jquery.validate.unobtrusive.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/scripts/toastr.js")"></script>
 
     <link href="@Url.Content("~/Content/css/bootstrap.min.css")" rel="stylesheet">
     <link href="@Url.Content("~/Content/css/font-awesome.min.css")" rel="stylesheet">
@@ -22,6 +24,7 @@
     <link href="@Url.Content("~/Content/css/animate.css")" rel="stylesheet">
     <link href="@Url.Content("~/Content/css/responsive.css")" rel="stylesheet">
     <link href="@Url.Content("~/Content/css/pushy-buttons.css")" rel="stylesheet">
+    <link href="@Url.Content("~/Content/css/toastr.css")" rel="stylesheet">
 
     <link rel="shortcut icon" href="@Url.Content("~/Content/images/ico/favicon.ico")">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="@Url.Content("~/Content/images/ico/apple-touch-icon-144-precomposed.png")" )">
@@ -33,6 +36,9 @@
     <title>Cognizance Scientific - Conference</title>
 </head>
 <body>
+    <div id="mvcNotify" style="display: none">
+        @Html.RenderMessages()
+    </div>
     <div class="overlay">
         <div id="loading-img"></div>
     </div>
@@ -105,7 +111,7 @@
                         <div class="text-center">
                             <div id="confContact">
                                 <div class="contactTitle defaultcolor">CONTACT US</div>
-                                <div><strong>Cognizance Scientific</strong></i><br></div>
+                                <div><strong>Cognizance Scientific</strong><br></div>
                                 <div style="padding-left: 46px;">
                                     27 Old Gloucester Street,
                                     LONDON,
@@ -113,7 +119,7 @@
                                     UNITED KINGDOM
                                 </div>
                                 <div><i class="fa fa-phone" aria-hidden="true"> &nbsp;+441315104271</i></div>
-                                <div><i class="fa fa-envelope" aria-hidden="true"> &nbsp;contact@scientificcognizance.com</i></div>
+                                <div><i class="fa fa-envelope" aria-hidden="true"> &nbsp;@{ Html.RenderAction("ConferenceEmail", "Conference", new { key = @ViewData["Conferencekey"] }); } </i></div>
                                 <p></p>
                             </div>
                             <p style="text-transform:uppercase"><span>©</span> Copyright 2017. <span class="defaultcolor">scientificcognizance.com </span>All Right Reserved.</p>

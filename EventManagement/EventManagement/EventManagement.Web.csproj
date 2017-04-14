@@ -239,9 +239,13 @@
     <Content Include="Content\js\jquery.scrollTo.js" />
     <Content Include="Content\js\main.js" />
     <Content Include="Content\js\modernizr.custom.86080.js" />
+    <Content Include="Content\css\mvcNotify.css" />
+    <Content Include="Content\js\mvcNotify.js" />
     <Content Include="Content\js\respond.min.js" />
     <Content Include="Content\js\smoothscroll.js" />
     <Content Include="Content\js\viewportchecker.js" />
+    <Content Include="Content\css\toastr.css" />
+    <Content Include="Content\css\toastr.min.css" />
     <Content Include="Global.asax" />
     <Content Include="scripts\ai.0.22.9-build00167.js" />
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
@@ -256,6 +260,8 @@
     <Content Include="Content\fonts\fontawesome-webfont.woff2" />
     <Content Include="Content\downloads\Sample Abstract.docx" />
     <Content Include="Content\downloads\Sponsor and Exhibitor.pdf" />
+    <Content Include="Content\css\toastr.scss" />
+    <Content Include="Content\css\toastr.less" />
     <None Include="Properties\PublishProfiles\gffdgg.pubxml" />
     <None Include="Properties\PublishProfiles\loll.pubxml" />
     <None Include="Properties\PublishProfiles\yg.pubxml" />
@@ -269,6 +275,8 @@
     <Content Include="scripts\jquery.validate.min.js" />
     <Content Include="scripts\jquery.validate.unobtrusive.js" />
     <Content Include="scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="scripts\toastr.js" />
+    <Content Include="scripts\toastr.min.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -287,6 +295,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Notifications\AjaxMessagesFilter.cs" />
+    <Compile Include="Notifications\ControllerExtensions.cs" />
+    <Compile Include="Notifications\HtmlHelperExtensions.cs" />
+    <Compile Include="Notifications\MessageType.cs" />
     <Compile Include="PayPalFunctions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -370,6 +382,7 @@
     <Content Include="Views\Conference\ModalRegistrationPolicy.cshtml" />
     <Content Include="Views\Shared\PartialRegistrationPolicy.cshtml" />
     <Content Include="Views\Shared\Logo.cshtml" />
+    <Content Include="Views\Conference\ConferenceEmail.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
