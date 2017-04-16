@@ -11,5 +11,6 @@ namespace EventManagement.DataModels
         public int Price { get; set; }
         public string Name { get; set; }
         public bool IsActive { get; set; }
+        public int RegClassId { get; set; }
     }
 }

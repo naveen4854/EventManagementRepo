@@ -18,6 +18,7 @@ namespace EventManagement.DAL.Models
         public MST_RegistrationClass()
         {
             this.Pricings = new HashSet<Pricing>();
+            this.Conference_RegClass_Mapping = new HashSet<Conference_RegClass_Mapping>();
         }
     
         public int Id { get; set; }
@@ -26,5 +27,7 @@ namespace EventManagement.DAL.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Pricing> Pricings { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Conference_RegClass_Mapping> Conference_RegClass_Mapping { get; set; }
     }
 }

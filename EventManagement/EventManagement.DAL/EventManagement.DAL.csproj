@@ -72,6 +72,9 @@
     <Compile Include="Models\ConferenceTeam.cs">
       <DependentUpon>EventManagementModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Conference_RegClass_Mapping.cs">
+      <DependentUpon>EventManagementModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Country.cs">
       <DependentUpon>EventManagementModel.tt</DependentUpon>
     </Compile>

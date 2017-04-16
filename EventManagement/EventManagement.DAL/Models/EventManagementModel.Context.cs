@@ -44,5 +44,6 @@ namespace EventManagement.DAL.Models
         public virtual DbSet<MemberType> MemberTypes { get; set; }
         public virtual DbSet<ConferenceTeam> ConferenceTeams { get; set; }
         public virtual DbSet<Venue> Venues { get; set; }
+        public virtual DbSet<Conference_RegClass_Mapping> Conference_RegClass_Mapping { get; set; }
     }
 }

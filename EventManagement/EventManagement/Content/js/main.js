@@ -66,7 +66,7 @@ $(function ($) {
     //    scrollThreshold: 0.3,
     //    filter: ':not(.no-scroll)'
     //});
-    toastr.info('Are you the 6 fingered man?')
+    //toastr.info('Are you the 6 fingered man?')
 });
 function showGoogleMaps(loc) {
 

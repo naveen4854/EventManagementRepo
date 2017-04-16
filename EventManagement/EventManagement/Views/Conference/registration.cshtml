@@ -72,12 +72,14 @@
                             <th>
                                 REGISTER FOR
                             </th>
-                            <th>
-                                Earlybird Registration on/before<br>June 20, 2017
-                            </th>
-                            <th>
-                                Standard Registration After<br>June 20, 2017
-                            </th>
+                            @{
+                                foreach (var pricetype in @ViewBag.RegClasslst)
+                                {
+                                    <th>
+                                        @pricetype.Name
+                                    </th>
+                                }
+                            }
                     </thead>
                     <tbody>
                         @{

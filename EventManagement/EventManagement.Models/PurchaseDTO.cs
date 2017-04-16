@@ -33,7 +33,7 @@ namespace EventManagement.DataModels
         public int AccompanyId { get; set; }
         public int Amount { get; set; }
 
-        [Display(Name = "Terms and Conditions")]
+        [Display(Name = "Accept Terms and Conditions")]
         [MustBeTrue(ErrorMessage = "Terms and Conditions havent been accepted")]
         public bool TermsAndConditions { get; set; }
         public IEnumerable<RegistrationTypeDTO> Reg { get; set; }

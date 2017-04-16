@@ -65,6 +65,35 @@ namespace EventManagement.DAL.Operations
             return true;
         }
 
+        public IEnumerable<RegistrationClass> GetConferenceRegClassMapping(int id)
+        {
+            return managementConsoleEntities.Conference_RegClass_Mapping.Where(q => q.FK_ConferenceId == id).Select(q => new RegistrationClass
+            {
+                Id = q.FK_RegClassId,
+                FromDt = q.FromDt,
+                ToDt = q.ToDt,
+                Name = q.MST_RegistrationClass.Name
+            });
+        }
+
+        public IEnumerable<RegistrationTypeDTO> GetConferencePrices(int id)
+        {
+            var c = managementConsoleEntities.MST_RegistrationType.Select(q => new RegistrationTypeDTO
+            {
+                Id = q.Id,
+                Name = q.Name,
+                IsActive = q.IsActive,
+                PricingTypes = q.Pricings.Where(x => x.FK_ConferenceId == id).Select(x => new PricingType
+                {
+                    RegClassId = x.FK_RegClass,
+                    Name = x.MST_RegistrationClass.Name,
+                    IsActive = true,
+                    Price = x.Amout
+                })
+            });
+            return c;
+        }
+
         public int GetConferenceId(string key)
         {
             return managementConsoleEntities.Conferences.FirstOrDefault(q => q.DisplayId == key).Id;

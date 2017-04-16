@@ -62,6 +62,39 @@ namespace EventManagement.BLL
             return confOperations.GetConferenceId(key);
         }
 
+        public IEnumerable<RegistrationTypeDTO> GetConferencePrices(int id, IEnumerable<RegistrationClass> regclass)
+        {
+            var priceList = confOperations.GetConferencePrices(id).ToList();
+            priceList.ForEach(q =>
+            {
+                q.PricingTypes.ToList().ForEach(
+                    x =>
+                    {
+                        x.IsActive = regclass.FirstOrDefault(y => y.Id == x.RegClassId).IsActive;
+                    });
+            });
+
+
+            return priceList;
+        }
+
+        public IEnumerable<RegistrationClass> GetConferenceRegClassMapping(int id)
+        {
+            var c = confOperations.GetConferenceRegClassMapping(id).ToList();
+            c.ForEach(q =>
+            {
+                if (q.FromDt == null)
+                    q.Name = q.Name + " Registration On/Before " + q.ToDt.GetValueOrDefault().ToString("MMMM dd,yyyy");
+                else if (q.ToDt == null)
+                    q.Name = q.Name + " Registration After " + q.FromDt.GetValueOrDefault().ToString("MMMM dd,yyyy");
+                else
+                    q.Name = q.Name + " Registration From " + q.FromDt.GetValueOrDefault().ToString("MMMM dd,yyyy") + " To " + q.ToDt.GetValueOrDefault().ToString("MMMM dd,yyyy");
+
+                q.IsActive = DateTime.Compare(DateTime.Now, q.FromDt ?? DateTime.Now) >= 0 && DateTime.Compare(DateTime.Now, q.ToDt ?? DateTime.Now) <= 0;
+            });
+            return c;
+        }
+
         public ConferenceDTO GetConference(int id)
         {
             return confOperations.GetConference(id);

@@ -65,6 +65,16 @@
           <Property Name="DisplayId" Type="varchar(max)" Nullable="false" />
           <Property Name="ConfEmail" Type="varchar(max)" />
         </EntityType>
+        <EntityType Name="Conference_RegClass_Mapping">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FK_ConferenceId" Type="int" Nullable="false" />
+          <Property Name="FK_RegClassId" Type="int" Nullable="false" />
+          <Property Name="FromDt" Type="datetime" />
+          <Property Name="ToDt" Type="datetime" />
+        </EntityType>
         <EntityType Name="ConferenceImages">
           <Key>
             <PropertyRef Name="Id" />
@@ -316,6 +326,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Conference_RegClass_Mapping_Conference">
+          <End Role="Conference" Type="Self.Conference" Multiplicity="1" />
+          <End Role="Conference_RegClass_Mapping" Type="Self.Conference_RegClass_Mapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Conference">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Conference_RegClass_Mapping">
+              <PropertyRef Name="FK_ConferenceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Conference_RegClass_Mapping_MST_RegistrationClass">
+          <End Role="MST_RegistrationClass" Type="Self.MST_RegistrationClass" Multiplicity="1" />
+          <End Role="Conference_RegClass_Mapping" Type="Self.Conference_RegClass_Mapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MST_RegistrationClass">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Conference_RegClass_Mapping">
+              <PropertyRef Name="FK_RegClassId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Conference_Venue">
           <End Role="Venue" Type="Self.Venue" Multiplicity="1" />
           <End Role="Conference" Type="Self.Conference" Multiplicity="*" />
@@ -430,6 +464,7 @@
           <EntitySet Name="AccompanyPricing" EntityType="Self.AccompanyPricing" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Conference" EntityType="Self.Conference" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Conference_RegClass_Mapping" EntityType="Self.Conference_RegClass_Mapping" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ConferenceImages" EntityType="Self.ConferenceImages" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ConferenceTeam" EntityType="Self.ConferenceTeam" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
@@ -483,6 +518,14 @@
           <AssociationSet Name="FK_AccompanyPricing_MST_Accompany" Association="Self.FK_AccompanyPricing_MST_Accompany">
             <End Role="MST_Accompany" EntitySet="MST_Accompany" />
             <End Role="AccompanyPricing" EntitySet="AccompanyPricing" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Conference_RegClass_Mapping_Conference" Association="Self.FK_Conference_RegClass_Mapping_Conference">
+            <End Role="Conference" EntitySet="Conference" />
+            <End Role="Conference_RegClass_Mapping" EntitySet="Conference_RegClass_Mapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Conference_RegClass_Mapping_MST_RegistrationClass" Association="Self.FK_Conference_RegClass_Mapping_MST_RegistrationClass">
+            <End Role="MST_RegistrationClass" EntitySet="MST_RegistrationClass" />
+            <End Role="Conference_RegClass_Mapping" EntitySet="Conference_RegClass_Mapping" />
           </AssociationSet>
           <AssociationSet Name="FK_Conference_Venue" Association="Self.FK_Conference_Venue">
             <End Role="Venue" EntitySet="Venue" />
@@ -621,6 +664,15 @@
             <End Role="Venue" EntitySet="Venues" />
             <End Role="Conference" EntitySet="Conferences" />
           </AssociationSet>
+          <EntitySet Name="Conference_RegClass_Mapping" EntityType="EventManagementModel.Conference_RegClass_Mapping" />
+          <AssociationSet Name="FK_Conference_RegClass_Mapping_Conference" Association="EventManagementModel.FK_Conference_RegClass_Mapping_Conference">
+            <End Role="Conference" EntitySet="Conferences" />
+            <End Role="Conference_RegClass_Mapping" EntitySet="Conference_RegClass_Mapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Conference_RegClass_Mapping_MST_RegistrationClass" Association="EventManagementModel.FK_Conference_RegClass_Mapping_MST_RegistrationClass">
+            <End Role="MST_RegistrationClass" EntitySet="MST_RegistrationClass" />
+            <End Role="Conference_RegClass_Mapping" EntitySet="Conference_RegClass_Mapping" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Conference">
           <Key>
@@ -648,6 +700,7 @@
           <Property Name="DisplayId" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="ConfEmail" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Venue" Relationship="EventManagementModel.FK_Conference_Venue" FromRole="Conference" ToRole="Venue" />
+          <NavigationProperty Name="Conference_RegClass_Mapping" Relationship="EventManagementModel.FK_Conference_RegClass_Mapping_Conference" FromRole="Conference" ToRole="Conference_RegClass_Mapping" />
         </EntityType>
         <EntityType Name="ConferenceImage">
           <Key>
@@ -834,6 +887,7 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Pricings" Relationship="EventManagementModel.FK_Pricing_MST_RegistrationClass" FromRole="MST_RegistrationClass" ToRole="Pricing" />
+          <NavigationProperty Name="Conference_RegClass_Mapping" Relationship="EventManagementModel.FK_Conference_RegClass_Mapping_MST_RegistrationClass" FromRole="MST_RegistrationClass" ToRole="Conference_RegClass_Mapping" />
         </EntityType>
         <EntityType Name="MST_RegistrationType">
           <Key>
@@ -1079,6 +1133,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Conference_RegClass_Mapping">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FK_ConferenceId" Type="Int32" Nullable="false" />
+          <Property Name="FK_RegClassId" Type="Int32" Nullable="false" />
+          <Property Name="FromDt" Type="DateTime" Precision="3" />
+          <Property Name="ToDt" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Conference" Relationship="EventManagementModel.FK_Conference_RegClass_Mapping_Conference" FromRole="Conference_RegClass_Mapping" ToRole="Conference" />
+          <NavigationProperty Name="MST_RegistrationClass" Relationship="EventManagementModel.FK_Conference_RegClass_Mapping_MST_RegistrationClass" FromRole="Conference_RegClass_Mapping" ToRole="MST_RegistrationClass" />
+        </EntityType>
+        <Association Name="FK_Conference_RegClass_Mapping_Conference">
+          <End Type="EventManagementModel.Conference" Role="Conference" Multiplicity="1" />
+          <End Type="EventManagementModel.Conference_RegClass_Mapping" Role="Conference_RegClass_Mapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Conference">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Conference_RegClass_Mapping">
+              <PropertyRef Name="FK_ConferenceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Conference_RegClass_Mapping_MST_RegistrationClass">
+          <End Type="EventManagementModel.MST_RegistrationClass" Role="MST_RegistrationClass" Multiplicity="1" />
+          <End Type="EventManagementModel.Conference_RegClass_Mapping" Role="Conference_RegClass_Mapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MST_RegistrationClass">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Conference_RegClass_Mapping">
+              <PropertyRef Name="FK_RegClassId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1291,6 +1381,17 @@
                 <ScalarProperty Name="Telephone" ColumnName="Telephone" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Conference_RegClass_Mapping">
+            <EntityTypeMapping TypeName="EventManagementModel.Conference_RegClass_Mapping">
+              <MappingFragment StoreEntitySet="Conference_RegClass_Mapping">
+                <ScalarProperty Name="ToDt" ColumnName="ToDt" />
+                <ScalarProperty Name="FromDt" ColumnName="FromDt" />
+                <ScalarProperty Name="FK_RegClassId" ColumnName="FK_RegClassId" />
+                <ScalarProperty Name="FK_ConferenceId" ColumnName="FK_ConferenceId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

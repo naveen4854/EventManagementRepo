@@ -241,7 +241,7 @@ namespace EventManagement.Controllers
         public ActionResult SubmitAbstract(AbstractSubmitDTO obj)
         {
             _confManager.PostAbstract(obj);
-            return RedirectToAction("Tracks", "Conference", new { id = obj.ConferenceId });
+            return RedirectToAction("ScientificSessions", "Conference", new { id = obj.ConferenceId });
         }
 
         [Route("Conference/{key}/Registration/")]
@@ -252,39 +252,15 @@ namespace EventManagement.Controllers
                 id = _confManager.GetConferenceId(key);
             if (id == 0)
                 throw new ArgumentException("Conference Not Found", "original");
+
+
             ViewData["ConferenceId"] = id;
             ViewData["Conferencekey"] = key;
             var dt = new DateTime(2017, 06, 20);
             ViewBag.Countries = _confManager.GetCountries();
-            var pricingTypeLst1 = new List<PricingType>
-            {
-                new PricingType { Name = "Early", IsActive = DateTime.Compare(dt,DateTime.Now.Date)>=0, Price = 699},
-                new PricingType { Name = "Standard", IsActive = DateTime.Compare(dt,DateTime.Now.Date)<0, Price = 799},
-            };
 
-            var pricingTypeLst2 = new List<PricingType>
-            {
-                new PricingType { Name = "Early", IsActive = DateTime.Compare(dt,DateTime.Now.Date)>=0, Price = 599},
-                new PricingType { Name = "Standard", IsActive = DateTime.Compare(dt,DateTime.Now.Date)<0, Price = 699},
-            };
-
-            var pricingTypeLst3 = new List<PricingType>
-            {
-                new PricingType { Name = "Early", IsActive = DateTime.Compare(dt,DateTime.Now.Date)>=0, Price = 399},
-                new PricingType { Name = "Standard", IsActive = DateTime.Compare(dt,DateTime.Now.Date)<0, Price = 499},
-            };
-
-            var pricingTypeLst4 = new List<PricingType>
-            {
-                new PricingType { Name = "Early", IsActive = DateTime.Compare(dt,DateTime.Now.Date)>=0, Price = 299},
-                new PricingType { Name = "Standard", IsActive = DateTime.Compare(dt,DateTime.Now.Date)<0, Price = 299},
-            };
-
-            var regTypelst = new List<RegistrationTypeDTO>();
-            regTypelst.Add(new RegistrationTypeDTO { Id = 1, Name = "Speaker Registration", IsActive = true, PricingTypes = pricingTypeLst1 });
-            regTypelst.Add(new RegistrationTypeDTO { Id = 2, Name = "Delegate Registration", IsActive = true, PricingTypes = pricingTypeLst2 });
-            regTypelst.Add(new RegistrationTypeDTO { Id = 3, Name = "Poster Registration", IsActive = true, PricingTypes = pricingTypeLst3 });
-            regTypelst.Add(new RegistrationTypeDTO { Id = 4, Name = "Student Delegate", IsActive = true, PricingTypes = pricingTypeLst4 });
+            var regclass = _confManager.GetConferenceRegClassMapping(id);
+            var regTypelst = _confManager.GetConferencePrices(id, regclass);
 
 
             var occlst1 = new List<OccupancyDTO> {
@@ -309,7 +285,7 @@ namespace EventManagement.Controllers
                 new AccommodationDTO { Name = "For 4 Nights", occ = occlst3},
             };
 
-            ViewBag.Reglst = regTypelst;
+            ViewBag.RegClasslst = regclass;
 
             var purchase = new PurchaseDTO();
             purchase.Reg = regTypelst;

@@ -25,6 +25,7 @@ namespace EventManagement.DAL.Models
             this.AccommodationPricings = new HashSet<AccommodationPricing>();
             this.AccompanyPricings = new HashSet<AccompanyPricing>();
             this.ConferenceTeams = new HashSet<ConferenceTeam>();
+            this.Conference_RegClass_Mapping = new HashSet<Conference_RegClass_Mapping>();
         }
     
         public int Id { get; set; }
@@ -58,5 +59,7 @@ namespace EventManagement.DAL.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ConferenceTeam> ConferenceTeams { get; set; }
         public virtual Venue Venue { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Conference_RegClass_Mapping> Conference_RegClass_Mapping { get; set; }
     }
 }
