@@ -288,6 +288,11 @@ namespace EventManagement.DAL.Operations
             return true;
         }
 
+        public string GetConferenceKey(int conferenceId)
+        {
+            return managementConsoleEntities.Conferences.FirstOrDefault(q => q.Id == conferenceId).DisplayId;
+        }
+
         public bool DeleteConferenceImage(int id)
         {
             ConferenceImage img;

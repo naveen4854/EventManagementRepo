@@ -282,6 +282,11 @@ namespace EventManagement.BLL
             return confOperations.GetRegPrice(regTypeId, regClassId, confId);
         }
 
+        public string GetConferenceKey(int conferenceId)
+        {
+            return confOperations.GetConferenceKey(conferenceId);
+        }
+
         public bool DeleteConferenceImage(int id)
         {
             return confOperations.DeleteConferenceImage(id);

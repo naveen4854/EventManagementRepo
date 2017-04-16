@@ -409,6 +409,7 @@ h2 {
     background-repeat: no-repeat;
     height: 500px;
     overflow: hidden;
+    background-color: rgba(0,0,0,0.4);
 }
 
 .guitar {
@@ -430,6 +431,8 @@ h2 {
 .single-event {
     margin-bottom: 70px;
 }
+
+   
 
     .single-event h4 {
         /*color: #FFFFFF;*/
@@ -499,6 +502,7 @@ h2 {
     background-repeat: no-repeat;
     background-size: cover;
     padding: 5px 70px 50px;
+    background-color: white;
 }
 
 
@@ -949,6 +953,12 @@ h2 {
     border: 1px solid black;
 }
 
+    #home .img:hover {
+    height: 250px;
+    width: 3000px;
+    
+    }
+
 #home #main-slider .item {
     height: 100vh;
 }
@@ -963,8 +973,9 @@ h2 {
 
 .border {
     height: 100%;
-    border: 1px solid black;
-    border-radius: 20px;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    /*border-radius: 20px;*/
     padding: 10px;
     /*background-image: url("../images/info-bg-2.jpg");*/
     color: black;
@@ -1364,3 +1375,14 @@ li.track {
     .txthighlight:hover {
         color: red;
     }
+
+.dropdown-content a {
+    font-size: 18px !important;
+    padding: 15px 20px 10px 20px !important;
+}
+
+.aa {
+    background: url('../images/slider/bg11.jpg') top right no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}

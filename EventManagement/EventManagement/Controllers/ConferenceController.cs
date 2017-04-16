@@ -241,7 +241,8 @@ namespace EventManagement.Controllers
         public ActionResult SubmitAbstract(AbstractSubmitDTO obj)
         {
             _confManager.PostAbstract(obj);
-            return RedirectToAction("ScientificSessions", "Conference", new { id = obj.ConferenceId });
+            var confkey = _confManager.GetConferenceKey(obj.ConferenceId);
+            return RedirectToAction("ScientificSessions", "Conference", new { key = confkey });
         }
 
         [Route("Conference/{key}/Registration/")]
