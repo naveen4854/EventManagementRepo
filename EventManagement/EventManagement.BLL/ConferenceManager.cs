@@ -57,6 +57,11 @@ namespace EventManagement.BLL
             return confOperations.DeleteVenue(id);
         }
 
+        public void AddCountry(CountryModel country)
+        {
+            confOperations.AddCountry(country);
+        }
+
         public int GetConferenceId(string key)
         {
             return confOperations.GetConferenceId(key);

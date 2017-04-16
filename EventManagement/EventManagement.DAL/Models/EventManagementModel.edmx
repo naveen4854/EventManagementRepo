@@ -103,6 +103,7 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="CallingCode" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="MemberType">
           <Key>
@@ -810,6 +811,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="AbstractsSubmitteds" Relationship="EventManagementModel.FK_AbstractsSubmitted_Country" FromRole="Country" ToRole="AbstractsSubmitted" />
+          <Property Name="CallingCode" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Title">
           <Key>
@@ -1257,6 +1259,7 @@
           <EntitySetMapping Name="Countries">
             <EntityTypeMapping TypeName="EventManagementModel.Country">
               <MappingFragment StoreEntitySet="Country">
+                <ScalarProperty Name="CallingCode" ColumnName="CallingCode" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>

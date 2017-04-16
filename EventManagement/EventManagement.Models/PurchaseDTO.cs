@@ -20,6 +20,7 @@ namespace EventManagement.DataModels
         [DataType(DataType.EmailAddress)]
         public string EmailId { get; set; }
         [Display(Name="Country")]
+        [Required(ErrorMessage = "Your must select a Country")]
         public int CountryId { get; set; }
         [Display(Name="Interested In")]
         public int RegTypeId { get; set; }

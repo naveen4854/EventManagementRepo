@@ -65,6 +65,20 @@ namespace EventManagement.DAL.Operations
             return true;
         }
 
+        public void AddCountry(CountryModel country)
+        {
+            var c = new Country
+            {
+                Name = country.Name,
+                CallingCode = country.CallingCodes
+            };
+            using (var entities = new EventManagementEntities())
+            {
+                entities.Countries.Add(c);
+                entities.SaveChanges();
+            }
+        }
+
         public IEnumerable<RegistrationClass> GetConferenceRegClassMapping(int id)
         {
             return managementConsoleEntities.Conference_RegClass_Mapping.Where(q => q.FK_ConferenceId == id).Select(q => new RegistrationClass
