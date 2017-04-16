@@ -254,9 +254,12 @@ namespace EventManagement.BLL
                 obj.DocUrl = _uploadHelper.UploadFile(obj.DocUpload, "~/content/uploads/");
 
             var id = confOperations.PostAbstract(obj);
+            var confEmail = confOperations.GetConferenceEmail(obj.ConferenceId);
+            if (!string.IsNullOrEmpty(obj.DocUrl))
+                _mailHelper.SendMailWithAttachment(confEmail, obj.EmailId, obj.DocUrl,"Abstract Submission", "Thank you for submitting your abstract");
 
             if (!string.IsNullOrEmpty(obj.DocUrl))
-                _mailHelper.SendMailWithAttachment("sc_admin@scientificcognizance.com", obj.EmailId, obj.DocUrl);
+                _mailHelper.SendMailWithAttachment("sc_admin@scientificcognizance.com", confEmail, obj.DocUrl, "Abstract Submission", "Abstract has been received ");
 
             return true;
         }
@@ -360,9 +363,9 @@ namespace EventManagement.BLL
             return confOperations.DeleteProgram(id);
         }
 
-        public string GetConferenceEmail(string key)
+        public string GetConferenceEmail(int id)
         {
-            return confOperations.GetConferenceEmail(key);
+            return confOperations.GetConferenceEmail(id);
         }
     }
 }

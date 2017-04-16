@@ -356,7 +356,14 @@ namespace EventManagement.Controllers
         [Route("Conference/{key}/Email/")]
         public ActionResult ConferenceEmail(string key)
         {
-            var email = _confManager.GetConferenceEmail(key);
+            var id = 0;
+            if (!string.IsNullOrEmpty(key))
+                id = _confManager.GetConferenceId(key);
+            if (id == 0)
+                throw new ArgumentException("Conference Not Found", "original");
+            ViewData["ConferenceId"] = id;
+            ViewData["Conferencekey"] = key;
+            var email = _confManager.GetConferenceEmail(id);
             return PartialView("ConferenceEmail", email);
         }
     }

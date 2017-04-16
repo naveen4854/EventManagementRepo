@@ -347,9 +347,9 @@ namespace EventManagement.DAL.Operations
             return new ProgramDTO { Id = prg.Id, ConferenceId = prg.FK_ConferenceId };
         }
 
-        public string GetConferenceEmail(string key)
+        public string GetConferenceEmail(int id)
         {
-            return managementConsoleEntities.Conferences.FirstOrDefault(q => q.DisplayId == key).ConfEmail;
+            return managementConsoleEntities.Conferences.FirstOrDefault(q => q.Id == id).ConfEmail;
         }
 
         public bool UpdateProgram(ProgramDTO obj)
