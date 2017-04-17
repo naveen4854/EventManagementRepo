@@ -77,7 +77,8 @@ function showGoogleMaps(loc) {
         streetViewControl: false, // hide the yellow Street View pegman
         scaleControl: true, // allow users to zoom the Google Map
         mapTypeId: google.maps.MapTypeId.ROADMAP,
-        center: latLng
+        center: latLng,
+        scrollwheel: false,
     };
 
     map = new google.maps.Map(document.getElementById('googlemaps'),
@@ -112,7 +113,7 @@ function processScroll() {
     });
 }
 
-function processNoScroll(){
+function processNoScroll() {
     $.each($(".scroll"), function () {
         $(this).prop('href', $(this).attr('data-noscroll'));
         if (!$(this).hasClass("force-scroll"))
@@ -211,6 +212,4 @@ function redirect(url) {
 
 ////	map.setStyle("map_style");
 ////}());
-
-
 
