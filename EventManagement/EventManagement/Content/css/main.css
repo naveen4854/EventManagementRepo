@@ -878,7 +878,46 @@ h2 {
     background-size: contain;
     position: relative;
     background-repeat: no-repeat;
+    min-height: 400px;
+    /*background-color: rgba(0,0,0,0.4);*/
 }
+
+    #conferenceTeam .carousel-control .glyphicon-chevron-left, .carousel-control .glyphicon-chevron-right, .carousel-control .icon-prev, .carousel-control .icon-next {
+        margin-top: -48px;
+    }
+
+    #conferenceTeam .single-event {
+        margin-bottom: 70px;
+    }
+
+        #conferenceTeam .single-event:hover h4 {
+            color: #1B7B98 !important;
+        }
+
+        #conferenceTeam .single-event:hover h5 {
+            color: black;
+            display: block !important;
+        }
+
+        #conferenceTeam .single-event h4 {
+            /*color: #FFFFFF;*/
+            color: #1B7B98;
+            font-size: 24px;
+            font-weight: 400;
+            line-height: 26px;
+            margin-top: 25px;
+            text-transform: uppercase;
+        }
+
+
+        #conferenceTeam .single-event h5 {
+            font-size: 14px;
+            /*font-weight: 100;*/
+            display: block !important;
+            color: black;
+            font-family: "Open Sans",Arial,sans-serif;
+            font-weight: normal;
+        }
 
 .highlight {
     color: orange;
@@ -887,7 +926,7 @@ h2 {
 
 .NotHome {
     position: relative;
-    min-height: calc(100vh - 150px);
+    min-height: calc(100vh - 150px) !important;
     /*min-height: 100vh - 188px;*/
     padding: 190px 20px 20px 20px;
     /*background-color: #33888F;*/
@@ -1393,7 +1432,7 @@ li.track {
     padding: 15px 20px 10px 20px !important;
 }
 
-.aa {
+.fixedBg {
     background: url('../images/slider/bg11.jpg') top right no-repeat;
     background-attachment: fixed;
     background-size: cover;
@@ -1434,3 +1473,7 @@ li.track {
         background-color: #1B7B98 !important;
         color: white !important;
     }
+
+.white {
+    color: white !important;
+}

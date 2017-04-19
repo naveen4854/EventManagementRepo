@@ -179,7 +179,9 @@ namespace EventManagement.Controllers
             if (!string.IsNullOrEmpty(fileName))
             {
                 DirectoryInfo dirInfo = new DirectoryInfo(HostingEnvironment.MapPath("~/Content/downloads/"));
-                return File(dirInfo.FullName + @"\" + fileName, "application / pdf", "Sponsor and Exhibitor.PDF");
+                string mimeType = "application/pdf";
+                Response.AppendHeader("Content-Disposition", "inline; filename=" + fileName);
+                return File(dirInfo.FullName + @"\" + fileName, mimeType);
             }
             else
             {

@@ -16,8 +16,18 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="contact-text">
-                            <h2 style="text-align: center;font-weight: bold;">About @Model.Name</h2>
-                            <p>@Model.Desc</p>
+                            <h2 class="header">About @Model.Name</h2>
+                            @{
+                                string[] stringSeparators = new string[] { "[split]" };
+                                var splits = Model.Desc.Split(stringSeparators, StringSplitOptions.None);
+
+                                for (var i = 0; i < @splits.Length; i++)
+                                {
+                                    <p>
+                                        @splits[i]
+                                    </p>
+                                }
+                            }
                         </div>
                     </div>
                 </div>

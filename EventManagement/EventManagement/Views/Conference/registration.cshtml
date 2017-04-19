@@ -76,8 +76,16 @@
                             @{
                                 foreach (var pricetype in @ViewBag.RegClasslst)
                                 {
+                                    string[] stringSeparators = new string[] { "[split]" };
+                                    var splits = pricetype.Name.Split(stringSeparators, StringSplitOptions.None);
                                     <th>
-                                        @pricetype.Name
+                                        @{
+                                            for (var i = 0; i < @splits.Length; i++)
+                                            {
+                                                @splits[i]
+                                                <br />
+                                            }
+                                        }
                                     </th>
                                 }
                             }
@@ -86,11 +94,11 @@
                         @{
                             foreach (var regtype in Model.Reg)
                             {
-                        <tr>
-                            <td>
-                                @regtype.Name
-                            </td>
-                            @{
+                                <tr>
+                                    <td>
+                                        @regtype.Name
+                                    </td>
+                                    @{
                                         foreach (var pricetype in regtype.PricingTypes)
                                         {
                                             var htmlAttr = new Dictionary<string, object>();
@@ -101,12 +109,12 @@
                                             {
                                                 htmlAttr.Add("disabled", "disabled");
                                             }
-                            <td>
-                                @Html.RadioButton("regprice", false, htmlAttr) @pricetype.Price
-                            </td>
+                                            <td>
+                                                @Html.RadioButton("regprice", false, htmlAttr) @pricetype.Price
+                                            </td>
                                         }
-                            }
-                        </tr>
+                                    }
+                                </tr>
                                         }
                         }
                     </tbody>
@@ -114,7 +122,7 @@
 
                 <div class="row">
                     <div class="col-12 sub">
-                        @Html.CheckBox("accompany", new{ data_val = 200 , @class = "", @onClick = "calculateTotal()" })
+                        @Html.CheckBox("accompany", new { data_val = 200, @class = "", @onClick = "calculateTotal()" })
                         <label>Accompany A Person to Conference ($200) ?</label>
                     </div>
                 </div>
@@ -142,11 +150,11 @@
                         @{
                             foreach (var regtype in Model.acc)
                             {
-                        <tr>
-                            <td>
-                                @regtype.Name
-                            </td>
-                            @{
+                                <tr>
+                                    <td>
+                                        @regtype.Name
+                                    </td>
+                                    @{
                                         foreach (var occtype in regtype.occ)
                                         {
                                             var htmlAttr = new Dictionary<string, object>();
@@ -157,12 +165,12 @@
                                             {
                                                 htmlAttr.Add("disabled", "disabled");
                                             }
-                            <td>
-                                @Html.RadioButton("accprice", false, htmlAttr) @occtype.Price
-                            </td>
+                                            <td>
+                                                @Html.RadioButton("accprice", false, htmlAttr) @occtype.Price
+                                            </td>
                                         }
-                            }
-                        </tr>
+                                    }
+                                </tr>
                                         }
                         }
                     </tbody>
@@ -192,16 +200,16 @@
                         <div class="col-md-offset-1 col-md-10">
                             @Html.ValidationMessageFor(model => model.TermsAndConditions, "", new { @class = "text-danger" })
                         </div>
-                        </div>
-                </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-5 col-md-7">
-                        <input type="submit" value="Register" class="push-btn" />
                     </div>
                 </div>
             </div>
-                                }
+            <div class="form-group">
+                <div class="col-md-offset-5 col-md-7">
+                    <input type="submit" value="Register" class="push-btn" />
+                </div>
+            </div>
+        </div>
+                                        }
     <div id='myModal' class='modal'>
         <div class="modal-dialog">
             <div class="modal-content">

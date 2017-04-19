@@ -268,10 +268,7 @@ namespace EventManagement.Controllers
                 var conferenceId = confid ?? confs.FirstOrDefault().Id;
                 ViewBag.ConfId = conferenceId;
                 var conf = _confManager.GetAllConferenceTeam(conferenceId);
-                if (conf.Team.Count() > 0)
-                    return View("AllTeamMembers", conf.Team);
-                else
-                    return RedirectToAction("NewTeamMember", "CMS");
+                return View("AllTeamMembers", conf.Team);
             }
             else
                 return RedirectToAction("AddConference", "CMS");

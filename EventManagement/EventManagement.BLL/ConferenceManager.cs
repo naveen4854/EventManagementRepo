@@ -89,11 +89,11 @@ namespace EventManagement.BLL
             c.ForEach(q =>
             {
                 if (q.FromDt == null)
-                    q.Name = q.Name + " Registration On/Before " + q.ToDt.GetValueOrDefault().ToString("MMMM dd,yyyy");
+                    q.Name = q.Name + " Registration [split] On/Before " + q.ToDt.GetValueOrDefault().ToString("MMMM dd,yyyy");
                 else if (q.ToDt == null)
-                    q.Name = q.Name + " Registration After " + q.FromDt.GetValueOrDefault().ToString("MMMM dd,yyyy");
+                    q.Name = q.Name + " Registration [split] After " + q.FromDt.GetValueOrDefault().ToString("MMMM dd,yyyy");
                 else
-                    q.Name = q.Name + " Registration From " + q.FromDt.GetValueOrDefault().ToString("MMMM dd,yyyy") + " To " + q.ToDt.GetValueOrDefault().ToString("MMMM dd,yyyy");
+                    q.Name = q.Name + " Registration [split] From " + q.FromDt.GetValueOrDefault().ToString("MMMM dd,yyyy") + " To " + q.ToDt.GetValueOrDefault().ToString("MMMM dd,yyyy");
 
                 q.IsActive = DateTime.Compare(DateTime.Now, q.FromDt ?? DateTime.Now) >= 0 && DateTime.Compare(DateTime.Now, q.ToDt ?? DateTime.Now) <= 0;
             });
