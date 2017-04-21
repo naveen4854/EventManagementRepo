@@ -80,8 +80,11 @@
     <Compile Include="ConferenceTeamDTO.cs" />
     <Compile Include="CountryModel.cs" />
     <Compile Include="Enum\MemberTypeEnum.cs" />
+    <Compile Include="Helpers\FileTypeAttribute.cs" />
+    <Compile Include="Helpers\MaxFileSizeAttribute.cs" />
     <Compile Include="Helpers\MustBeTrueAttribute.cs" />
     <Compile Include="LogOnViewModel.cs" />
+    <Compile Include="MailData.cs" />
     <Compile Include="MapDTO.cs" />
     <Compile Include="MemberTypeDTO.cs" />
     <Compile Include="OccupancyDTO.cs" />

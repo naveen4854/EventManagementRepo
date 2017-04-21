@@ -265,6 +265,16 @@ namespace EventManagement.DAL.Operations
             return true;
         }
 
+        public string GetCategory(int category)
+        {
+            return managementConsoleEntities.Categories.FirstOrDefault(q => q.Id == category).Name;
+        }
+
+        public string GetCountry(int country)
+        {
+            return managementConsoleEntities.Countries.FirstOrDefault(q => q.Id == country).Name;
+        }
+
         public bool AddConference(ConferenceDTO obj)
         {
             var a = new Conference

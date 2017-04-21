@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using EventManagement.DataModels.Helpers;
+using System.ComponentModel.DataAnnotations;
 using System.Web;
 
 namespace EventManagement.DataModels
@@ -6,21 +7,24 @@ namespace EventManagement.DataModels
     public class AbstractSubmitDTO
     {
 
-        [Display(Name= "Name")]
+        [Display(Name = "Name")]
         [Required(ErrorMessage = "Your must provide a Name")]
         public string SubmittedBy { get; set; }
-        [Display(Name= "Email Id")]
+        [Display(Name = "Email Id")]
         [Required(ErrorMessage = "Your must provide a EmailId")]
         public string EmailId { get; set; }
         public string Organisation { get; set; }
-        [Display(Name="Upload Abstract")]
+        [Display(Name = "Upload Abstract")]
         [Required(ErrorMessage = "Your must Select a File")]
+        [MaxFileSize(3 * 1024 * 1024, ErrorMessage = "Maximum allowed file size is {0} bytes")]
+        [FileType("DOC,DOCX,PDF")]
+        //[FileExtensions(Extensions = "doc,docx,pdf", ErrorMessage = "Please upload valid file(doc,docx,pdf)")]
         public HttpPostedFileBase DocUpload { get; set; }
         public string DocUrl { get; set; }
-        [Display(Name="Interested In")]
+        [Display(Name = "Interested In")]
         [Required(ErrorMessage = "Your must Select Interest")]
         public int Category { get; set; }
-        [Display(Name="Sessions")]
+        [Display(Name = "Sessions")]
         [Required(ErrorMessage = "Your must Select a Session")]
         public int Track { get; set; }
         [Required(ErrorMessage = "Your must Select a Country")]

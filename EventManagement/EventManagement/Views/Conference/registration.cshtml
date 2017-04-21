@@ -6,7 +6,9 @@
 }
 <div class="NotHome NoBg">
     <h2 class="header">Registration</h2>
-
+    <div id="over" style="">
+        <img class="img-responsive" src="@Url.Content("~/Content/images/Registration_FlowChart.png")" alt="slider" />
+    </div>
     @using (Html.BeginForm("test", "conference", new { name = "form1" }))
     {
         @Html.AntiForgeryToken()
@@ -87,7 +89,7 @@
                                             }
                                         }
                                     </th>
-                                }
+                                            }
                             }
                     </thead>
                     <tbody>
@@ -354,4 +356,12 @@
             }
         }
     });
+
+    $.validator.unobtrusive.adapters.add('filesize', ['maxsize'], function (options) {
+        options.rules['filesize'] = options.params;
+        if (options.message) {
+            options.messages['filesize'] = options.message;
+        }
+    });
+
 </script>

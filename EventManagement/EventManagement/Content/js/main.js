@@ -126,6 +126,50 @@ function redirect(url) {
     location.href = url;
 }
 
+function loadValidators() {
+    $.validator.unobtrusive.adapters.add('filesize', ['maxsize'], function (options) {
+        options.rules['filesize'] = options.params;
+        if (options.message) {
+            options.messages['filesize'] = options.message;
+        }
+    });
+    $.validator.addMethod('filesize', function (value, element, params) {
+        if (element.files.length < 1) {
+            // No files selected
+            return true;
+        }
+
+        if (!element.files || !element.files[0].size) {
+            // This browser doesn't support the HTML5 API
+            return true;
+        }
+
+        return element.files[0].size <= params.maxsize;
+    }, '');
+
+    $.validator.unobtrusive.adapters.add('filetype', ['validtypes'], function (options) {
+        options.rules['filetype'] = { validtypes: options.params.validtypes.split(',') };
+        options.messages['filetype'] = options.message;
+    });
+
+    $.validator.addMethod("filetype", function (value, element, param) {
+        for (var i = 0; i < element.files.length; i++) {
+            var extension = getFileExtension(element.files[0].name);
+            if ($.inArray(extension, param.validtypes) === -1) {
+                return false;
+            }
+        }
+        return true;
+    });
+}
+
+function getFileExtension(fileName) {
+    if (/[.]/.exec(fileName)) {
+        return /[^.]+$/.exec(fileName)[0].toLowerCase();
+    }
+    return null;
+}
+
 //function spinner() {
 //    this.prototype.show = function(){
 //        $(".overlay").show();

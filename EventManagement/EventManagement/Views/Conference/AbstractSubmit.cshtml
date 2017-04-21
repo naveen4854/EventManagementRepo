@@ -12,7 +12,7 @@
             <button class="push-btn btn--sm push-btn--blue flRt" onclick="dwnldSampleAbstract()"><text><i class="fa fa-download" aria-hidden="true"></i>  Sample Abstract</text></button>
         </div>
     </div>
-    @using (Html.BeginForm("SubmitAbstract", "Conference", FormMethod.Post, new { encType = "multipart/form-data" }))
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "AbstractSubmitform", encType = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken()
         @Html.HiddenFor(model => model.ConferenceId, new { Value = @ViewData["ConferenceId"] })
@@ -75,15 +75,15 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.DocUpload, htmlAttributes: new { @class = "control-label col-md-offset-1 col-md-3" })
                         <div class="col-md-8">
-                            @Html.TextBoxFor(m => m.DocUpload, new { type = "file" })
+                            @Html.TextBoxFor(m => m.DocUpload, new { id = "upFiles", type = "file", @class = "btn btn-default btn-file" })
                             @Html.ValidationMessageFor(model => model.DocUpload, "", new { @class = "text-danger" })
                             @*<input type="file" id="upFiles" class="btn" />*@
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="col-md-offset-5 col-md-7">
-                        <input type="submit" value="Submit" class="push-btn" onclick="spinner(true)"/>
+                    <div class="col-md-12 txtctr">
+                        <input type="button" value="Submit" class="push-btn" onclick="postAbstract()" />
                     </div>
                 </div>
             </div>
@@ -91,12 +91,85 @@
     }
 </div>
 <script>
+
     $(document).ready(function () {
         processNoScroll();
+       // loadValidators();
     });
 
+    function postAbstract() {
+        if($('#AbstractSubmitform').valid()){
+            spinner(true);
+            var data = new FormData();
+            var files = $("#upFiles").prop("files");
+            data.append("DocUpload", files[0]);
+
+            data.append("conferenceId", @ViewData["ConferenceId"]);
+            data.append("title", $("#Title").val());
+            data.append("submittedBy", $("#SubmittedBy").val());
+            data.append("emailId", $("#EmailId").val());
+            data.append("telephone", $("#telephone").val());
+            data.append("organisation", $("#Organisation").val());
+            data.append("country", $("#Country").val());
+            data.append("track", $("#Track").val());
+            data.append("category", $("#Category").val());
+
+            var url = "@Url.Content("~/Conference/SubmitAbstract")";
+
+            $.ajax({
+                type: 'POST',
+                contentType: false,
+                processData: false,
+                url: url,
+                data: data,
+                success: function (response) {
+                    spinner(false);
+                    window.location.href = response.Url;
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    toastr.info('Something went wrong!!')
+                },
+            });
+        }
+    }
+  
     function dwnldSampleAbstract() {
         window.location = '@Url.Content("~/Conference/DownloadSampleAbstract/")';
     }
+    
+    $.validator.unobtrusive.adapters.add('filesize', ['maxsize'], function (options) {
+        options.rules['filesize'] = options.params;
+        if (options.message) {
+            options.messages['filesize'] = options.message;
+        }
+    });
+    $.validator.addMethod('filesize', function (value, element, params) {
+        if (element.files.length < 1) {
+            // No files selected
+            return true;
+        }
+
+        if (!element.files || !element.files[0].size) {
+            // This browser doesn't support the HTML5 API
+            return true;
+        }
+
+        return element.files[0].size <= params.maxsize;
+    }, '');
+
+    $.validator.unobtrusive.adapters.add('filetype', ['validtypes'], function (options) {
+        options.rules['filetype'] = { validtypes: options.params.validtypes.split(',') };
+        options.messages['filetype'] = options.message;
+    });
+
+    $.validator.addMethod("filetype", function (value, element, param) {
+        for (var i = 0; i < element.files.length; i++) {
+            var extension = getFileExtension(element.files[0].name);
+            if ($.inArray(extension, param.validtypes) === -1) {
+                return false;
+            }
+        }
+        return true;
+    });
 
 </script>

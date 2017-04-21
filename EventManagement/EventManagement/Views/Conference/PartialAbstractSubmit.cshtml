@@ -1,6 +1,6 @@
 ﻿@model EventManagement.DataModels.AbstractSubmitDTO
 
-@using (Html.BeginForm("SubmitAbstract", "Conference", FormMethod.Post, new { @id = "modalAbsSub", encType = "multipart/form-data" }))
+@using (Html.BeginForm(null, null, FormMethod.Post, new { @id = "modalAbstractSubmitform", encType = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
@@ -70,61 +70,93 @@
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.DocUpload, htmlAttributes: new { @class = "control-label col-md-5" })
+                    @Html.LabelFor(model => model.DocUpload, htmlAttributes: new { @class = "control-label col-md-3" })
                     <div class="col-md-7">
-                        @Html.TextBoxFor(m => m.DocUpload, new { type = "file" })
+                        @Html.TextBoxFor(m => m.DocUpload, new { type = "file", @class = "btn btn-default btn-file" })
                         @Html.ValidationMessageFor(model => model.DocUpload, "", new { @class = "text-danger" })
                         @*<input type="file" id="upFiles" class="btn" />*@
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Submit" class="push-btn" />
+                    <div class="col-md-12 txtctr">
+                        <input type="button" value="Submit" class="push-btn" onclick="postAbstract()" />
                     </div>
+
                 </div>
             </div>
         </div>
     </div>
 }
 <script>
-    $.validator.unobtrusive.parse("#modalAbsSub");
     function postAbstract() {
-        var data = new FormData();
-        var files = $("#upFiles").prop("files");
-        data.append("DocUpload", files[0]);
+        if($('#modalAbstractSubmitform').valid()){
+            var data = new FormData();
+            var files = $("#upFiles").prop("files");
+            data.append("DocUpload", files[0]);
 
-        data.append("conferenceId", @ViewData["ConferenceId"]);
-        data.append("title", $("#Title").val());
-        data.append("submittedBy", $("#SubmittedBy").val());
-        data.append("emailId", $("#EmailId").val());
-        data.append("telephone", $("#telephone").val());
-        data.append("organisation", $("#Organisation").val());
-        data.append("country", $("#Country").val());
-        data.append("track", $("#Track").val());
-        data.append("category", $("#Category").val());
+            data.append("conferenceId", @ViewData["ConferenceId"]);
+            data.append("title", $("#Title").val());
+            data.append("submittedBy", $("#SubmittedBy").val());
+            data.append("emailId", $("#EmailId").val());
+            data.append("telephone", $("#telephone").val());
+            data.append("organisation", $("#Organisation").val());
+            data.append("country", $("#Country").val());
+            data.append("track", $("#Track").val());
+            data.append("category", $("#Category").val());
 
-        $.ajax({
-            type: 'POST',
-            contentType: false,
-            processData: false,
-            url: "/Conference/Submit",
-            data: data,
-            success: function (returnPayload) {
-                console && console.log("request succeeded");
-            },
-            error: function (xhr, ajaxOptions, thrownError) {
-                console && console.log("request failed");
-            },
-        });
+            var url = "@Url.Content("~/Conference/SubmitAbstract")";
 
-        //$("#submit").click(function() {
-        //    $.post($("#form").attr("action"), $("#form").serialize(), function(html) {
-        //        $("div.result").html(html);
-        //    });
-        //    return false; // prevent normal submit
-        //});
+            $.ajax({
+                type: 'POST',
+                contentType: false,
+                processData: false,
+                url: url,
+                data: data,
+                success: function (response) {
+                    window.location.href = response.Url;
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    toastr.info('Something went wrong!!')
+                },
+            });
+        }
     }
+
+    $.validator.unobtrusive.adapters.add('filesize', ['maxsize'], function (options) {
+        options.rules['filesize'] = options.params;
+        if (options.message) {
+            options.messages['filesize'] = options.message;
+        }
+    });
+    $.validator.addMethod('filesize', function (value, element, params) {
+        if (element.files.length < 1) {
+            // No files selected
+            return true;
+        }
+
+        if (!element.files || !element.files[0].size) {
+            // This browser doesn't support the HTML5 API
+            return true;
+        }
+
+        return element.files[0].size <= params.maxsize;
+    }, '');
+    $.validator.unobtrusive.adapters.add('filetype', ['validtypes'], function (options) {
+        options.rules['filetype'] = { validtypes: options.params.validtypes.split(',') };
+        options.messages['filetype'] = options.message;
+    });
+
+    $.validator.addMethod("filetype", function (value, element, param) {
+        for (var i = 0; i < element.files.length; i++) {
+            var extension = getFileExtension(element.files[0].name);
+            if ($.inArray(extension, param.validtypes) === -1) {
+                return false;
+            }
+        }
+        return true;
+    });
+    $.validator.unobtrusive.parse("#modalAbstractSubmitform");
 
     $('#modalClose').click(function () {
         $('.modal').modal('hide');

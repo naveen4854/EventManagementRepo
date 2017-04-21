@@ -244,7 +244,22 @@ namespace EventManagement.Controllers
         {
             _confManager.PostAbstract(obj);
             var confkey = _confManager.GetConferenceKey(obj.ConferenceId);
-            return RedirectToAction("ScientificSessions", "Conference", new { key = confkey });
+            var redirectUrl = Url.RouteUrl(routeName: "SubmitSuccess", routeValues: new { key = confkey });
+            return Json(new { Url = redirectUrl });
+        }
+
+        [Route("Conference/{key}/SubmitSuccess", Name = "SubmitSuccess")]
+        public ActionResult AbstractSubmitSuccess(string key)
+        {
+            var id = 0;
+            if (!string.IsNullOrEmpty(key))
+                id = _confManager.GetConferenceId(key);
+            if (id == 0)
+                throw new ArgumentException("Conference Not Found", "original");
+            ViewData["ConferenceId"] = id;
+            ViewData["Conferencekey"] = key;
+            
+            return View();
         }
 
         [Route("Conference/{key}/Registration/")]

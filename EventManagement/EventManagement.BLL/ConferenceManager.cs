@@ -255,11 +255,24 @@ namespace EventManagement.BLL
 
             var id = confOperations.PostAbstract(obj);
             var confEmail = confOperations.GetConferenceEmail(obj.ConferenceId);
-            if (!string.IsNullOrEmpty(obj.DocUrl))
-                _mailHelper.SendMailWithAttachment(confEmail, obj.EmailId, obj.DocUrl,"Abstract Submission", "Thank you for submitting your abstract");
+
+            var _track = confOperations.GetTrack(obj.Track);
+            var _country = confOperations.GetCountry(obj.Country);
+            var _category = confOperations.GetCategory(obj.Category);
+
+            var mailData = new List<MailData>();
+            mailData.Add(new MailData { Placeholder = "{NAME}", Data = obj.SubmittedBy });
+            mailData.Add(new MailData { Placeholder = "{EMAIL}", Data = obj.EmailId });
+            mailData.Add(new MailData { Placeholder = "{COUNTRY}", Data = _country });
+            mailData.Add(new MailData { Placeholder = "{TELEPHONE}", Data = obj.Telephone.ToString() });
+            mailData.Add(new MailData { Placeholder = "{TRACK}", Data = _track.Name });
+            mailData.Add(new MailData { Placeholder = "{INTEREST}", Data = _category });
 
             if (!string.IsNullOrEmpty(obj.DocUrl))
-                _mailHelper.SendMailWithAttachment("sc_admin@scientificcognizance.com", confEmail, obj.DocUrl, "Abstract Submission", "Abstract has been received ");
+                _mailHelper.SendMailWithAttachment(confEmail, obj.EmailId, obj.DocUrl, "Abstract Submission", "AbstractSubmitter", mailData);
+
+            if (!string.IsNullOrEmpty(obj.DocUrl))
+                _mailHelper.SendMailWithAttachment("sc_admin@scientificcognizance.com", confEmail, obj.DocUrl, "Abstract Submission", "AbstractReciever", mailData);
 
             return true;
         }
