@@ -362,7 +362,7 @@ namespace EventManagement.DAL.Operations
             return new ProgramDTO { Id = prg.Id, ConferenceId = prg.FK_ConferenceId };
         }
 
-        public string GetConferenceEmail(int id)
+        public string GetConferenceEmailId(int id)
         {
             return managementConsoleEntities.Conferences.FirstOrDefault(q => q.Id == id).ConfEmail;
         }
@@ -625,6 +625,7 @@ namespace EventManagement.DAL.Operations
                 FK_TrackID = obj.Track,
                 FK_TitleId = obj.Title,
                 FK_ConferenceId = obj.ConferenceId,
+                Telephone = obj.Telephone
             };
             var id = -1;
             using (var entities = new EventManagementEntities())

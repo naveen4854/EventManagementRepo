@@ -33,7 +33,7 @@ namespace EventManagement.DataModels
         [Required(ErrorMessage = "Your must provide a PhoneNumber")]
         [DataType(DataType.PhoneNumber)]
         [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Not a valid Phone number")]
-        public int Telephone { get; set; }
+        public string Telephone { get; set; }
         public int ConferenceId { get; set; }
 
     }

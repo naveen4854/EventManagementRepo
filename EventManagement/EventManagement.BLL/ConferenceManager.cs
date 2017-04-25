@@ -254,7 +254,8 @@ namespace EventManagement.BLL
                 obj.DocUrl = _uploadHelper.UploadFile(obj.DocUpload, "~/content/uploads/");
 
             var id = confOperations.PostAbstract(obj);
-            var confEmail = confOperations.GetConferenceEmail(obj.ConferenceId);
+
+            var confEmail = confOperations.GetConferenceEmailId(obj.ConferenceId);
 
             var _track = confOperations.GetTrack(obj.Track);
             var _country = confOperations.GetCountry(obj.Country);
@@ -383,7 +384,7 @@ namespace EventManagement.BLL
 
         public string GetConferenceEmail(int id)
         {
-            return confOperations.GetConferenceEmail(id);
+            return confOperations.GetConferenceEmailId(id);
         }
     }
 }

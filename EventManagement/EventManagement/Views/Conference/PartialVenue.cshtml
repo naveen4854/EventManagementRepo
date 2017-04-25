@@ -1,14 +1,15 @@
 ﻿@model EventManagement.DataModels.VenueDTO
 
-<div class="contact-section">
-    <div id="googlemaps" style="overflow: hidden;"></div>
-    <div id="contactform">
-        <p class="mapsPartBox">
-        </p><div class="mapsPartTitle">Venue Address:</div>
-        <div class="contactPhone">
-            <div class="col-md-1"><i class="fa fa-building" aria-hidden="true"></i></div>
-            <div class="col-md-11" style="line-height: 14px;padding-top: 6px;">
-                @{
+<div class="venue-section">
+    <div class="venue-map">
+        <div id="googlemaps" style="overflow: hidden;"></div>
+        <div id="contactform">
+            <p class="mapsPartBox">
+            </p><div class="mapsPartTitle">Venue Address:</div>
+            <div class="contactPhone">
+                <div class="col-md-1"><i class="fa fa-building" aria-hidden="true"></i></div>
+                <div class="col-md-11" style="line-height: 14px;padding-top: 6px;">
+                    @{
                     List<string> ad = Model.Address.Split(',').ToList();
                     foreach (var a in ad)
                     {
@@ -26,16 +27,48 @@
                         </p>
                     }
 
-                }
+                    }
+                </div>
+                <br />
             </div>
-            <br />
+            @*<div class="contactPhone"><i class="fa fa-phone" aria-hidden="true"> &nbsp;@Model.Telephone</i></div>
+                <div class="contactMail"><i class="fa fa-envelope" aria-hidden="true"> &nbsp;</i></div>*@
+            <p></p>
         </div>
-        @*<div class="contactPhone"><i class="fa fa-phone" aria-hidden="true"> &nbsp;@Model.Telephone</i></div>
-            <div class="contactMail"><i class="fa fa-envelope" aria-hidden="true"> &nbsp;</i></div>*@
-        <p></p>
     </div>
-    <script>
-        var loc = {lat: @Model.Map.Latitude,long: @Model.Map.Longitude}
-        google.maps.event.addDomListener(window, 'load', showGoogleMaps(loc));
-    </script>
-</div>  
+    <div id="venue-slider" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#venue-slider" data-slide-to="0" class="active"></li>
+            <li data-target="#venue-slider" data-slide-to="1"></li>
+            <li data-target="#venue-slider" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="item active row">
+                <div class="col-md-6">
+                    <div class="img-wrapper" style="background-image: url('@Url.Content("~/Content/images/venue/v1.jpg")" )');"></div>
+                </div>
+                <div class="col-md-6">
+                    <div class="img-wrapper" style="background-image: url('@Url.Content("~/Content/images/venue/v2.jpg")" )');"></div>
+                </div>
+            </div>
+            <div class="item row">
+                <div class="col-md-6">
+                    <div class="img-wrapper" style="background-image: url('@Url.Content("~/Content/images/venue/v3.jpg")" )');"></div>
+                </div>
+                <div class="col-md-6">
+                    <div class="img-wrapper" style="background-image: url('@Url.Content("~/Content/images/venue/v4.jpg")" )');"></div>
+                </div>
+            </div>
+            <div class="item row">
+                <div class="col-md-6">
+                    <div class="img-wrapper" style="background-image: url('@Url.Content("~/Content/images/venue/v5.jpg")" )');"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var loc = {lat: @Model.Map.Latitude,long: @Model.Map.Longitude}
+    google.maps.event.addDomListener(window, 'load', showGoogleMaps(loc));
+</script>
