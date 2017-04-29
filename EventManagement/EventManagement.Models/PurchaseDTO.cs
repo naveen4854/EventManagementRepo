@@ -6,6 +6,8 @@ namespace EventManagement.DataModels
 {
     public class PurchaseDTO
     {
+        public int ConferenceId { get; set; }
+
         [Required(ErrorMessage = "Your must provide Name")]
         public string Name { get; set; }
         [Required(ErrorMessage = "Your must provide Address")]

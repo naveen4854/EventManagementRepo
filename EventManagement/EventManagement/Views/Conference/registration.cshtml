@@ -9,13 +9,15 @@
     <div id="over" style="">
         <img class="img-responsive" src="@Url.Content("~/Content/images/Registration_FlowChart.png")" alt="slider" />
     </div>
-    @using (Html.BeginForm("test", "conference", new { name = "form1" }))
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "RegistrationForm" }))
     {
         @Html.AntiForgeryToken()
 
         <div class="form-horizontal" id="registration">
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.ConferenceId, new { Value = @ViewData["ConferenceId"] })
+            @Html.HiddenFor(model => model.Amount, new { Value = @ViewData["ConferenceId"] })
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
@@ -207,7 +209,7 @@
             </div>
             <div class="form-group">
                 <div class="col-md-offset-5 col-md-7">
-                    <input type="submit" value="Register" class="push-btn" />
+                    <input type="button" value="Register" class="push-btn" onclick="postRegistration()" />
                 </div>
             </div>
         </div>
@@ -219,8 +221,52 @@
             </div>
         </div>
     </div>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+        <input type="hidden" name="cmd" value="_s-xclick">
+        <input type="hidden" name="hosted_button_id" value="9L272F9Q9LNJG">
+        <input type="image" src="https://www.paypalobjects.com/en_GB/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal – The safer, easier way to pay online!">
+        <img alt="" border="0" src="https://www.paypalobjects.com/en_GB/i/scr/pixel.gif" width="1" height="1">
+    </form>
+
+    <div id="RegFormHolder"></div>
 </div>
 <script type="text/JavaScript">
+
+    function postRegistration() {
+        if($('#RegistrationForm').valid()){
+            spinner(true);
+            var data = new FormData();
+
+            data.append("conferenceId", @ViewData["ConferenceId"]);
+            data.append("name", $("#Name").val());
+            data.append("Organization", $("#Organization").val());
+            data.append("Address", $("#Address").val());
+            data.append("EmailId", $("#EmailId").val());
+            data.append("CountryId", $("#CountryId").val());
+            data.append("PhoneNumber", $("#PhoneNumber").val());
+            data.append("Amount", $("#Amount").val());
+
+            var url = "@Url.Content("~/Conference/Register")";
+
+            $.ajax({
+                type: 'POST',
+                contentType: false,
+                processData: false,
+                url: url,
+                data: data,
+                success: function (response) {
+                    spinner(false);
+                    $('#RegFormHolder').html(response);
+                    document.paymentIntegrationForm.submit();
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    toastr.info('Something went wrong!!')
+                },
+            });
+        }
+    }
+
     function loadPartial() {
         spinner(true);
         var options = { "backdrop": "static", keyboard: true };
@@ -277,9 +323,10 @@
         //var accompanyprice = parseInt($('#lblAccompanyPrice').prop('data-val'));
         //var regprice = parseInt($('#lblRegPrice').prop('data-val'));
         var res = regprice + accompanyprice + accomodationPrice;
-        var total = { val: res, txt: "$ " + res };
+        var total = { amt: parseInt(res), txt: "$ " + res };
         $('#lblTotalPrice').text(total.txt);
         $('#lblTotalPrice').prop('data-val', total.amt);
+        $('#Amount').val(total.amt);
     }
 
     function retriveRegPrice() {

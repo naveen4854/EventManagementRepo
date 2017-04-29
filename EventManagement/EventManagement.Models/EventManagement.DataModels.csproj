@@ -95,6 +95,7 @@
     <Compile Include="RegistrationClass.cs" />
     <Compile Include="RegistrationTypeDTO.cs" />
     <Compile Include="RegistrationPeriodDTO.cs" />
+    <Compile Include="RemotePost.cs" />
     <Compile Include="TitleModel.cs" />
     <Compile Include="TrackDTO.cs" />
     <Compile Include="User.cs" />
