@@ -63,6 +63,7 @@
     <Folder Include="dbo\Tables\" />
     <Folder Include="Security\" />
     <Folder Include="Snapshots" />
+    <Folder Include="dbo\Stored Procedures\" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Conference.sql" />
@@ -87,6 +88,12 @@
     <Build Include="dbo\Tables\AccompanyPricing.sql" />
     <Build Include="dbo\Tables\AccommodationPricing.sql" />
     <Build Include="dbo\Tables\MemberType.sql" />
+    <Build Include="dbo\Tables\Registrations_Log.sql" />
+    <Build Include="dbo\Tables\ELMAH_Error.sql" />
+    <Build Include="dbo\Tables\Conference_RegClass_Mapping.sql" />
+    <Build Include="dbo\Stored Procedures\ELMAH_LogError.sql" />
+    <Build Include="dbo\Stored Procedures\ELMAH_GetErrorXml.sql" />
+    <Build Include="dbo\Stored Procedures\ELMAH_GetErrorsXml.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="EventManagement.Database.publish.xml" />

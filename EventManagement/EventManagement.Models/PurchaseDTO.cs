@@ -6,6 +6,7 @@ namespace EventManagement.DataModels
 {
     public class PurchaseDTO
     {
+        public int RegId { get; set; }
         public int ConferenceId { get; set; }
 
         [Required(ErrorMessage = "Your must provide Name")]
@@ -24,9 +25,9 @@ namespace EventManagement.DataModels
         [Display(Name = "Country")]
         [Required(ErrorMessage = "Your must select a Country")]
         public int CountryId { get; set; }
-        [Display(Name = "Interested In")]
+        [Display(Name = "Registration Type Id")]
         public int RegTypeId { get; set; }
-        [Display(Name = "Organisation Type")]
+        [Display(Name = "Pricing Type Id")]
         public int RegClassId { get; set; }
         [Display(Name = "Accommodation")]
         public int AccId { get; set; }
@@ -34,7 +35,8 @@ namespace EventManagement.DataModels
         public int OccId { get; set; }
         [Display(Name = "Accompaning Persons")]
         public int AccompanyId { get; set; }
-        public int Amount { get; set; }
+        public double Amount { get; set; }
+        public string ItemDesription { get; set; }
 
         [Display(Name = "Accept Terms and Conditions")]
         [MustBeTrue(ErrorMessage = "Terms and Conditions havent been accepted")]

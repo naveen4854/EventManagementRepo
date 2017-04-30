@@ -36,6 +36,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -88,6 +89,7 @@
     <Compile Include="MapDTO.cs" />
     <Compile Include="MemberTypeDTO.cs" />
     <Compile Include="OccupancyDTO.cs" />
+    <Compile Include="PayPalModel.cs" />
     <Compile Include="PricingType.cs" />
     <Compile Include="ProgramDTO.cs" />
     <Compile Include="PurchaseDTO.cs" />

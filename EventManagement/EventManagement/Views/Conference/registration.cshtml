@@ -18,6 +18,8 @@
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             @Html.HiddenFor(model => model.ConferenceId, new { Value = @ViewData["ConferenceId"] })
             @Html.HiddenFor(model => model.Amount, new { Value = @ViewData["ConferenceId"] })
+            @Html.HiddenFor(model => model.RegTypeId, new { Value = @ViewData["ConferenceId"] })
+            @Html.HiddenFor(model => model.RegClassId, new { Value = @ViewData["ConferenceId"] })
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
@@ -106,8 +108,10 @@
                                         foreach (var pricetype in regtype.PricingTypes)
                                         {
                                             var htmlAttr = new Dictionary<string, object>();
-                                            htmlAttr.Add("class", "regpricec");
+                                            htmlAttr.Add("class", "priceType");
                                             htmlAttr.Add("data-val", pricetype.Price);
+                                            htmlAttr.Add("data-regType", regtype.Id);
+                                            htmlAttr.Add("data-regClass", pricetype.RegClassId);
                                             htmlAttr.Add("onClick", "calculateTotal()");
                                             if (!pricetype.IsActive)
                                             {
@@ -152,14 +156,14 @@
                     </thead>
                     <tbody>
                         @{
-                            foreach (var regtype in Model.acc)
+                            foreach (var acctype in Model.acc)
                             {
                                 <tr>
                                     <td>
-                                        @regtype.Name
+                                        @acctype.Name
                                     </td>
                                     @{
-                                        foreach (var occtype in regtype.occ)
+                                        foreach (var occtype in acctype.occ)
                                         {
                                             var htmlAttr = new Dictionary<string, object>();
                                             htmlAttr.Add("class", "accpricec");
@@ -181,15 +185,9 @@
                 </table>
 
                 <div class="col-12 txtctr" style="padding:20px">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Total Price($)</label>
-                        </div>
-                    </div>
-                    <div class="col-md-6 txtctr">
-                        <div class="form-group">
-                            <label name="price" id="lblTotalPrice"></label>
-                        </div>
+                    <div class="border col-md-offset-4 col-md-4">
+                        <label>TOTAL PRICE : </label>
+                        <label name="price" id="lblTotalPrice"></label>
                     </div>
                 </div>
 
@@ -207,9 +205,32 @@
                     </div>
                 </div>
             </div>
+
             <div class="form-group">
                 <div class="col-md-offset-5 col-md-7">
                     <input type="button" value="Register" class="push-btn" onclick="postRegistration()" />
+                </div>
+            </div>
+        </div>
+        <div class="sub regpolicy">
+            <div class="sub">
+                <p class="q">Registration Includes</p>
+                <div class="sub">
+                    <p><i class="fa fa-circle" aria-hidden="true"></i>Access to main conference sessions, exhibits, poster sessions and round table discussions.</p>
+                    <p><i class="fa fa-circle" aria-hidden="true"></i>Conference ID cards &  Proceedings (Hard Copy) provided at venue.</p>
+                    <p><i class="fa fa-circle" aria-hidden="true"></i>Lunch, refreshments and two coffee breaks during the conference.</p>
+                    <p><i class="fa fa-circle" aria-hidden="true"></i>A free paper abstract(For Speakers).</p>
+                    <p><i class="fa fa-circle" aria-hidden="true"></i>Certificate of Presentation.</p>
+                    <p><i class="fa fa-circle" aria-hidden="true"></i>Access to cocktail party for  one to one discussion .</p>
+                    <p><i class="fa fa-circle" aria-hidden="true"></i>WiFi in meeting rooms.</p>
+                </div>
+            </div>
+            <div class="sub">
+                <p class="q">Accommodation Includes</p>
+                <div class="sub">
+                    <p><i class="fa fa-circle" aria-hidden="true"></i>Breakfast during your stay.</p>
+                    <p><i class="fa fa-circle" aria-hidden="true"></i>Car parking will be provided.</p>
+                    <p><i class="fa fa-circle" aria-hidden="true"></i>Free access to Swimming pool .</p>
                 </div>
             </div>
         </div>
@@ -222,18 +243,37 @@
         </div>
     </div>
 
-    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-        <input type="hidden" name="cmd" value="_s-xclick">
-        <input type="hidden" name="hosted_button_id" value="9L272F9Q9LNJG">
-        <input type="image" src="https://www.paypalobjects.com/en_GB/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal – The safer, easier way to pay online!">
-        <img alt="" border="0" src="https://www.paypalobjects.com/en_GB/i/scr/pixel.gif" width="1" height="1">
-    </form>
+    @*<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+
+            <!-- Identify your business so that you can collect the payments. -->
+            <input type="hidden" name="business" value="contact-facilitator@scientificcognizance.com">
+
+            <!-- Specify a Buy Now button. -->
+            <input type="hidden" name="cmd" value="_xclick">
+
+            <!-- Specify details about the item that buyers will purchase. -->
+            <input type="hidden" name="item_name" value="Hot Sauce-12oz. Bottle">
+            <input type="hidden" name="amount" value="5.95">
+            <input type="hidden" name="currency_code" value="USD">
+
+            <!-- Display the payment button. -->
+            <input type="image" name="submit" border="0"
+                   src="https://www.paypalobjects.com/webstatic/en_US/i/btn/png/btn_buynow_107x26.png"
+                   alt="Buy Now">
+            <img alt="" border="0" width="1" height="1"
+                 src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif">
+
+        </form>*@
 
     <div id="RegFormHolder"></div>
 </div>
 <script type="text/JavaScript">
 
     function postRegistration() {
+        if(parseInt($("#Amount").val()) == 0){
+            toastr.error("Please select what you want to register for");
+            return;
+        }
         if($('#RegistrationForm').valid()){
             spinner(true);
             var data = new FormData();
@@ -246,6 +286,8 @@
             data.append("CountryId", $("#CountryId").val());
             data.append("PhoneNumber", $("#PhoneNumber").val());
             data.append("Amount", $("#Amount").val());
+            data.append("RegTypeId", $("#RegTypeId").val());
+            data.append("RegClassId", $("#RegClassId").val());
 
             var url = "@Url.Content("~/Conference/Register")";
 
@@ -257,8 +299,13 @@
                 data: data,
                 success: function (response) {
                     spinner(false);
-                    $('#RegFormHolder').html(response);
-                    document.paymentIntegrationForm.submit();
+                    var options = { "backdrop": "static", keyboard: true };
+                    $('#myModalContent').html(response);
+                    $('#myModal').modal(options);
+                    $('#myModal').modal('show');
+                    //$('#RegFormHolder').html(response);
+                    //document.hiddenRegform.submit();
+                    //window.location.href = response.Url;
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
                     toastr.info('Something went wrong!!')
@@ -289,16 +336,10 @@
         });
     }
 
-    //$('.modal').click(function (e) {
-    //    e.stopPropagation();
-    //});
     $(document).ready(function () {
         processNoScroll();
         calculateTotal();
-        //disable_radio();
-        //retriveRegPrice();
-        //retriveAccPrice();
-        //getAccompanyPrice();
+     
     });
 
     function calculateTotal() {
@@ -306,9 +347,12 @@
         var accompanyprice = 0;
         var accomodationPrice = 0;
 
-        $.each($('.regpricec'), function () {
-            if ($(this).prop('checked'))
+        $.each($('.priceType'), function () {
+            if ($(this).prop('checked')){
                 regprice = parseInt($(this).attr('data-val'));
+                $('#RegTypeId').val($(this).attr('data-regType'))
+                $('#RegClassId').val($(this).attr('data-regClass'))
+            }
         });
 
         if ($('#accompany').prop("checked"))
@@ -319,82 +363,13 @@
                 accomodationPrice = parseInt($(this).attr('data-val'));
         });
 
-        //var accomodationPrice = parseInt($('#lblAccPrice').prop('data-val'));
-        //var accompanyprice = parseInt($('#lblAccompanyPrice').prop('data-val'));
-        //var regprice = parseInt($('#lblRegPrice').prop('data-val'));
         var res = regprice + accompanyprice + accomodationPrice;
         var total = { amt: parseInt(res), txt: "$ " + res };
         $('#lblTotalPrice').text(total.txt);
         $('#lblTotalPrice').prop('data-val', total.amt);
         $('#Amount').val(total.amt);
     }
-
-    function retriveRegPrice() {
-        var regtypeId = $('#RegTypeId').val();
-        var regClassId = $('#RegClassId').val();
-        var url = "@Url.Content("~/Conference/GetRegPrice")";
-        $.ajax({
-            type: "GET",
-            traditional: true,
-            async: false,
-            cache: false,
-            url: url,
-            data: { regTypeId: regtypeId, regClassId: regClassId },
-            context: document.body,
-            success: function (result) {
-                $('#lblRegPrice').text(result.txt);
-                $('#lblRegPrice').prop('data-val', result.val);
-                calculateTotal();
-            },
-            error: function (xhr) {
-            }
-        });
-    }
-
-    function retriveAccPrice() {
-        var accId = $('#AccId').val();
-        var occId = $('#OccId').val();
-        var url = "@Url.Content("~/Conference/GetAccPrice")";
-        $.ajax({
-            type: "GET",
-            traditional: true,
-            async: false,
-            cache: false,
-            url: url,
-            data: { AccTypeId: accId, OccId: occId },
-            context: document.body,
-            success: function (result) {
-                $('#lblAccPrice').text(result.txt);
-                $('#lblAccPrice').prop('data-val', result.val);
-                calculateTotal();
-            },
-            error: function (xhr) {
-            }
-        });
-    }
-    function getAccompanyPrice() {
-        var accompanyId = $('#accompanyPrices').val();
-        var url = "@Url.Content("~/Conference/getAccompanyPrice")";
-        $.ajax({
-            type: "GET",
-            traditional: true,
-            async: false,
-            cache: false,
-            url: url,
-            data: { accompanyId: accompanyId },
-            context: document.body,
-            success: function (result) {
-                $('#lblAccompanyPrice').text(result.txt);
-                $('#lblAccompanyPrice').prop('data-val', result.val);
-                calculateTotal();
-            },
-            error: function (xhr) {
-            }
-        });
-    }
-
-    //$.validator.unobtrusive.adapters.addBool("MustBeTrueAttribute", "required");
-
+    
     $.validator.unobtrusive.adapters.add("checkboxtrue", function (options) {
         if (options.element.tagName.toUpperCase() == "INPUT" && options.element.type.toUpperCase() == "CHECKBOX") {
             options.rules["required"] = true;

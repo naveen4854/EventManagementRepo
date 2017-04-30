@@ -41,6 +41,18 @@ namespace EventManagement.DAL.Operations
             }).ToList();
         }
 
+        public PurchaseDTO GetRegistrationDetails(int regId)
+        {
+            var regdet = managementConsoleEntities.Registrations_Log.FirstOrDefault(q => q.Id == regId);
+            return new PurchaseDTO
+            {
+                RegId = regdet.Id,
+                ConferenceId = regdet.FK_ConferenceId,
+                Amount = regdet.TotalPrice,
+                ItemDesription = regdet.Description,
+            };
+        }
+
         public bool UpdateVenue(VenueDTO obj)
         {
             Venue venue;
@@ -392,6 +404,32 @@ namespace EventManagement.DAL.Operations
             return true;
         }
 
+        public int RegisterForConference(PurchaseDTO obj)
+        {
+            var a = new Registrations_Log
+            {
+                SubmittedBy = obj.Name,
+                EmailId = obj.EmailId,
+                FK_CountryId = obj.CountryId,
+                Organisation = obj.Organization,
+                FK_ConferenceId = obj.ConferenceId,
+                Telephone = obj.PhoneNumber,
+                FK_RegClassId = obj.RegClassId,
+                FK_RegTypeId = obj.RegTypeId,
+                TotalPrice = obj.Amount,
+                Description = obj.ItemDesription,
+                Address = obj.Address
+            };
+            var id = -1;
+            using (var entities = new EventManagementEntities())
+            {
+                entities.Registrations_Log.Add(a);
+                entities.SaveChanges();
+                id = a.Id;
+            }
+            return id;
+        }
+
         public ProgramDTO GetProgram(int id)
         {
             var prg = managementConsoleEntities.Programs.FirstOrDefault(q => q.Id == id);
@@ -612,7 +650,7 @@ namespace EventManagement.DAL.Operations
             return managementConsoleEntities.Programs.Where(q => q.FK_ConferenceId == id && q.Id == prgId).Select(q => q.Abstract).FirstOrDefault();
         }
 
-        public int PostAbstract(AbstractSubmitDTO obj)
+        public int SubmitAbstract(AbstractSubmitDTO obj)
         {
             var a = new AbstractsSubmitted
             {

@@ -19,6 +19,7 @@ namespace EventManagement.DAL.Models
         {
             this.Pricings = new HashSet<Pricing>();
             this.Conference_RegClass_Mapping = new HashSet<Conference_RegClass_Mapping>();
+            this.Registrations_Log = new HashSet<Registrations_Log>();
         }
     
         public int Id { get; set; }
@@ -29,5 +30,7 @@ namespace EventManagement.DAL.Models
         public virtual ICollection<Pricing> Pricings { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Conference_RegClass_Mapping> Conference_RegClass_Mapping { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Registrations_Log> Registrations_Log { get; set; }
     }
 }

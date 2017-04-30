@@ -21,7 +21,7 @@
     <div>
         <div class="carousel-caption Intro">
             <p class="row confIntro">@Model.Name</p>
-            <p class="row theme">@Model.ShortDesc</p>
+            <p class="row theme q">@Model.ShortDesc</p>
             @{
                 var str = "";
                 str = Model.StartDt.ToString("MMMM dd") + " - " + Model.EndDt.ToString("MMMM dd") + " " + Model.StartDt.Year;
@@ -33,10 +33,12 @@
                 {
                     str = Model.StartDt.ToString("MMMM dd") + " - " + Model.EndDt.ToString("MMMM dd") + " " + Model.StartDt.Year;
                 }
-                else {
+                else
+                {
                     str = Model.StartDt.ToString("dd") + " - " + Model.EndDt.ToString("dd") + " " + Model.StartDt.ToString("MMMM") + " " + Model.StartDt.Year;
                 }
                 <p class="row theme">(@str)</p>
+                <p class="row theme q">Venue - @Model.Venue.Name</p>
             }
         </div>
         <div class="col-12 carousel-caption">

@@ -32,6 +32,11 @@ namespace EventManagement.BLL
             return confOperations.GetConferences();
         }
 
+        public PurchaseDTO GetRegistrationDetails(int regId)
+        {
+            return confOperations.GetRegistrationDetails(regId);
+        }
+
         public VenueDTO GetVenue(int id)
         {
             return confOperations.GetVenue(id);
@@ -248,12 +253,12 @@ namespace EventManagement.BLL
             return confOperations.GetTitles();
         }
 
-        public bool PostAbstract(AbstractSubmitDTO obj)
+        public bool SubmitAbstract(AbstractSubmitDTO obj)
         {
             if (obj.DocUpload != null)
                 obj.DocUrl = _uploadHelper.UploadFile(obj.DocUpload, "~/content/uploads/");
 
-            var id = confOperations.PostAbstract(obj);
+            var id = confOperations.SubmitAbstract(obj);
 
             var confEmail = confOperations.GetConferenceEmailId(obj.ConferenceId);
 
@@ -385,6 +390,11 @@ namespace EventManagement.BLL
         public string GetConferenceEmail(int id)
         {
             return confOperations.GetConferenceEmailId(id);
+        }
+
+        public int RegisterForConference(PurchaseDTO obj)
+        {
+            return confOperations.RegisterForConference(obj);
         }
     }
 }

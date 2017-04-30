@@ -16,7 +16,7 @@ namespace EventManagement.Controllers
 {
     public class ConferenceController : Controller
     {
-        private ConferenceManager _confManager;
+        private readonly ConferenceManager _confManager;
         public ConferenceController()
         {
             _confManager = new ConferenceManager();
@@ -244,7 +244,7 @@ namespace EventManagement.Controllers
         [HttpPost]
         public ActionResult SubmitAbstract(AbstractSubmitDTO obj)
         {
-            _confManager.PostAbstract(obj);
+            _confManager.SubmitAbstract(obj);
             var confkey = _confManager.GetConferenceKey(obj.ConferenceId);
             var redirectUrl = Url.RouteUrl(routeName: "SubmitSuccess", routeValues: new { key = confkey });
             return Json(new { Url = redirectUrl });
@@ -313,6 +313,81 @@ namespace EventManagement.Controllers
             return View(purchase);
         }
 
+        [Route("Conference/{key}/Registration/Success/{regId}")]
+        public ActionResult RegistrationSuccess(string key,int regId)
+        {
+            var id = 0;
+            if (!string.IsNullOrEmpty(key))
+                id = _confManager.GetConferenceId(key);
+            if (id == 0)
+                throw new ArgumentException("Conference Not Found", "original");
+            ViewData["ConferenceId"] = id;
+            ViewData["Conferencekey"] = key;
+            return View();
+        }
+
+        [Route("Conference/{key}/Registration/Fail/{regId}")]
+        public ActionResult RegistrationFail(string key, int regId)
+        {
+            var id = 0;
+            if (!string.IsNullOrEmpty(key))
+                id = _confManager.GetConferenceId(key);
+            if (id == 0)
+                throw new ArgumentException("Conference Not Found", "original");
+            ViewData["ConferenceId"] = id;
+            ViewData["Conferencekey"] = key;
+            return View();
+        }
+
+        [Route("Conference/{key}/Registration/Cancel/{regId}")]
+        public ActionResult RegistrationCancel(string key, int regId)
+        {
+            var id = 0;
+            if (!string.IsNullOrEmpty(key))
+                id = _confManager.GetConferenceId(key);
+            if (id == 0)
+                throw new ArgumentException("Conference Not Found", "original");
+            ViewData["ConferenceId"] = id;
+            ViewData["Conferencekey"] = key;
+            return View();
+        }
+
+
+        [HttpPost]
+        public ActionResult Register(PurchaseDTO obj)
+        {
+            var regId = _confManager.RegisterForConference(obj);
+            if (regId == -1)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Bad Request");
+
+            return RedirectToAction("ValidateCommand", "PayPal", new { RegId = regId });
+
+            //RemotePost myremotepost = new RemotePost();
+            //string key = "3wj8Vdij";
+            //string salt = "xjqlt4Zeui";
+
+            ////posting all the parameters required for integration.
+
+            //myremotepost.Url = "https://secure.payu.in/_payment";
+            //myremotepost.Add("key", key);
+            //string txnid = Generatetxnid();
+            //myremotepost.Add("txnid", txnid);
+            //myremotepost.Add("amount", amount);
+            //myremotepost.Add("productinfo", productInfo);
+            //myremotepost.Add("firstname", firstName);
+            //myremotepost.Add("phone", phone);
+            //myremotepost.Add("email", email);
+            //myremotepost.Add("surl", surl);//Change the success url here depending upon the port number of your local system.
+            //myremotepost.Add("furl", furl);//Change the failure url here depending upon the port number of your local system.
+            //myremotepost.Add("service_provider", "payu_paisa");
+            //string hashString = key + "|" + txnid + "|" + amount + "|" + productInfo + "|" + firstName + "|" + email + "|||||||||||" + salt;
+            ////string hashString = "3Q5c3q|2590640|3053.00|OnlineBooking|vimallad|ladvimal@gmail.com|||||||||||mE2RxRwx";
+            //string hash = Generatehash512(hashString);
+            //myremotepost.Add("hash", hash);
+
+            //myremotepost.Post();
+        }
+
         public ActionResult GetRegPrice(int regTypeId, int regClassId)
         {
             var confId = 8;
@@ -332,45 +407,6 @@ namespace EventManagement.Controllers
             var confId = 8;
             var amount = _confManager.GetAccompanyPrice(accompanyId, confId);
             return Json(new { txt = "$" + amount, val = amount }, JsonRequestBehavior.AllowGet);
-        }
-
-        [HttpPost]
-        public void Register(PurchaseDTO obj)
-        {
-            string firstName = obj.Name.ToString();
-            string amount = obj.Amount.ToString();
-            string productInfo = "product 1".ToString();
-            string email = obj.EmailId.ToString();
-            string phone = obj.PhoneNumber.ToString();
-            var redirectUrl = Url.Action("SubmitSuccess", "Conference", new { key = obj.ConferenceId }, Request.Url.Scheme);
-            string surl = redirectUrl;
-            string furl = redirectUrl;
-
-
-            RemotePost myremotepost = new RemotePost();
-            string key = "3wj8Vdij";
-            string salt = "xjqlt4Zeui";
-
-            //posting all the parameters required for integration.
-
-            myremotepost.Url = "https://secure.payu.in/_payment";
-            myremotepost.Add("key", key);
-            string txnid = Generatetxnid();
-            myremotepost.Add("txnid", txnid);
-            myremotepost.Add("amount", amount);
-            myremotepost.Add("productinfo", productInfo);
-            myremotepost.Add("firstname", firstName);
-            myremotepost.Add("phone", phone);
-            myremotepost.Add("email", email);
-            myremotepost.Add("surl", surl);//Change the success url here depending upon the port number of your local system.
-            myremotepost.Add("furl", furl);//Change the failure url here depending upon the port number of your local system.
-            myremotepost.Add("service_provider", "payu_paisa");
-            string hashString = key + "|" + txnid + "|" + amount + "|" + productInfo + "|" + firstName + "|" + email + "|||||||||||" + salt;
-            //string hashString = "3Q5c3q|2590640|3053.00|OnlineBooking|vimallad|ladvimal@gmail.com|||||||||||mE2RxRwx";
-            string hash = Generatehash512(hashString);
-            myremotepost.Add("hash", hash);
-
-            myremotepost.Post();
         }
 
         [Route("Conference/{key}/Guidelines/")]

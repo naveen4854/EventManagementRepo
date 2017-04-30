@@ -34,7 +34,12 @@
         <EntityTypeShape EntityType="EventManagementModel.Venue" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="EventManagementModel.Conference_RegClass_Mapping" Width="1.5" PointX="10.625" PointY="4.125" />
         <AssociationConnector Association="EventManagementModel.FK_Conference_RegClass_Mapping_MST_RegistrationClass" />
-      </Diagram>
+        <EntityTypeShape EntityType="EventManagementModel.ELMAH_Error" Width="1.5" PointX="5.375" PointY="12.25" />
+        <EntityTypeShape EntityType="EventManagementModel.Registrations_Log" Width="1.5" PointX="13.625" PointY="6.375" />
+        <AssociationConnector Association="EventManagementModel.FK_Registrations_Log_Country" />
+        <AssociationConnector Association="EventManagementModel.FK_Registrations_Log_MST_RegistrationClass" />
+        <AssociationConnector Association="EventManagementModel.FK_Registrations_Log_MST_RegistrationType" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

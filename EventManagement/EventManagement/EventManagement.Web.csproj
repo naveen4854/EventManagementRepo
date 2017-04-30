@@ -299,6 +299,7 @@
     <Compile Include="Controllers\ConferenceController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PayPalController.cs" />
     <Compile Include="Controllers\PurchaseController.cs" />
     <Compile Include="Controllers\SharedController.cs" />
     <Compile Include="Global.asax.cs">
@@ -393,6 +394,11 @@
     <Content Include="Views\Shared\Logo.cshtml" />
     <Content Include="Views\Conference\ConferenceEmail.cshtml" />
     <Content Include="Views\Conference\AbstractSubmitSuccess.cshtml" />
+    <Content Include="Views\PayPal\ValidateCommand.cshtml" />
+    <Content Include="Views\PayPal\test.cshtml" />
+    <Content Include="Views\Conference\RegistrationCancel.cshtml" />
+    <Content Include="Views\Conference\RegistrationFail.cshtml" />
+    <Content Include="Views\Conference\RegistrationSuccess.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

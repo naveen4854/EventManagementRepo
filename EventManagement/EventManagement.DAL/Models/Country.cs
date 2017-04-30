@@ -18,6 +18,7 @@ namespace EventManagement.DAL.Models
         public Country()
         {
             this.AbstractsSubmitteds = new HashSet<AbstractsSubmitted>();
+            this.Registrations_Log = new HashSet<Registrations_Log>();
         }
     
         public int Id { get; set; }
@@ -26,5 +27,7 @@ namespace EventManagement.DAL.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AbstractsSubmitted> AbstractsSubmitteds { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Registrations_Log> Registrations_Log { get; set; }
     }
 }

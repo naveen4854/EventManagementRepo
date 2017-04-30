@@ -78,6 +78,9 @@
     <Compile Include="Models\Country.cs">
       <DependentUpon>EventManagementModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ELMAH_Error.cs">
+      <DependentUpon>EventManagementModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\EventManagementModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -115,6 +118,9 @@
       <DependentUpon>EventManagementModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Program.cs">
+      <DependentUpon>EventManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Registrations_Log.cs">
       <DependentUpon>EventManagementModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Title.cs">
