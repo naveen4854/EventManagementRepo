@@ -1,4 +1,6 @@
-﻿@model EventManagement.DataModels.ConferenceDTO
+﻿@using EventManagement.DataModels.Extensions;
+
+@model EventManagement.DataModels.ConferenceDTO
 
 @{
     ViewBag.Title = "Index";
@@ -19,12 +21,11 @@
                             <h2 class="header">About @Model.Name</h2>
                             @{
                                 string[] stringSeparators = new string[] { "[split]" };
-                                var splits = Model.Desc.Split(stringSeparators, StringSplitOptions.None);
-
-                                for (var i = 0; i < @splits.Length; i++)
+                                var output = Model.Desc.FormatString(stringSeparators);
+                                for (var i = 0; i < output.Length; i++)
                                 {
                                     <p>
-                                        @splits[i]
+                                        @output[i]
                                     </p>
                                 }
                             }

@@ -8,7 +8,8 @@
                 <div class="row">
                     <div class="col-10">
                         <div id="event-carousel" class="carousel slide" data-interval="false">
-                            <h2 class="header white">Our Organising Committe</h2>
+                            <h2 class="header">Our Organising Committe Members</h2>
+                            <button class="push-btn btn--sm flRt" onclick="redirect('@Url.Content("~/Conference/"+@ViewData["Conferencekey"]+ "/OrganisingCommitte/")')"><text>View All</text></button>
                             <div class="carousel-inner">
                                 @for (int i = 0; i <= Model.Team.Count() / 4; i++)
                                 {

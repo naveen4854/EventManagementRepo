@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 
-namespace EventManagement.DataModels.Helpers
+namespace EventManagement.DataModels.AttributeHelpers
 {
     public class MustBeTrueAttribute : ValidationAttribute, IClientValidatable
     {

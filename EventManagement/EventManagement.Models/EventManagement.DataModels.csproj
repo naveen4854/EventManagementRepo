@@ -81,9 +81,10 @@
     <Compile Include="ConferenceTeamDTO.cs" />
     <Compile Include="CountryModel.cs" />
     <Compile Include="Enum\MemberTypeEnum.cs" />
-    <Compile Include="Helpers\FileTypeAttribute.cs" />
-    <Compile Include="Helpers\MaxFileSizeAttribute.cs" />
-    <Compile Include="Helpers\MustBeTrueAttribute.cs" />
+    <Compile Include="AttributeHelpers\FileTypeAttribute.cs" />
+    <Compile Include="AttributeHelpers\MaxFileSizeAttribute.cs" />
+    <Compile Include="AttributeHelpers\MustBeTrueAttribute.cs" />
+    <Compile Include="Extensions\Helper.cs" />
     <Compile Include="LogOnViewModel.cs" />
     <Compile Include="MailData.cs" />
     <Compile Include="MapDTO.cs" />
@@ -106,6 +107,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

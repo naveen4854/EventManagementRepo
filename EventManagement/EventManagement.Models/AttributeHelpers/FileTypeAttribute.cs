@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
-namespace EventManagement.DataModels.Helpers
+namespace EventManagement.DataModels.AttributeHelpers
 {
     [AttributeUsage(AttributeTargets.Property, AllowMultiple = false, Inherited = true)]
     public class FileTypeAttribute : ValidationAttribute, IClientValidatable

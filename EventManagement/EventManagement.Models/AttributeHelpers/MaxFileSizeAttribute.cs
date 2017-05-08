@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Web;
 using System.Web.Mvc;
 
-namespace EventManagement.DataModels.Helpers
+namespace EventManagement.DataModels.AttributeHelpers
 {
     public class MaxFileSizeAttribute : ValidationAttribute, IClientValidatable
     {

@@ -1,4 +1,4 @@
-﻿using EventManagement.DataModels.Helpers;
+﻿using EventManagement.DataModels.AttributeHelpers;
 using System.ComponentModel.DataAnnotations;
 using System.Web;
 
