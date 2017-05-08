@@ -275,10 +275,10 @@ namespace EventManagement.BLL
             mailData.Add(new MailData { Placeholder = "{INTEREST}", Data = _category });
 
             if (!string.IsNullOrEmpty(obj.DocUrl))
-                _mailHelper.SendMailWithAttachment(confEmail, obj.EmailId, obj.DocUrl, "Abstract Submission", "AbstractSubmitter", mailData);
+                _mailHelper.SendMailWithAttachment(confEmail, obj.EmailId, null, obj.DocUrl, "Abstract Submission", "AbstractSubmitter", mailData);
 
             if (!string.IsNullOrEmpty(obj.DocUrl))
-                _mailHelper.SendMailWithAttachment("sc_admin@scientificcognizance.com", confEmail, obj.DocUrl, "Abstract Submission", "AbstractReciever", mailData);
+                _mailHelper.SendMailWithAttachment("sc_admin@scientificcognizance.com", confEmail, obj.EmailId, obj.DocUrl, "Abstract Submission", "AbstractReciever", mailData);
 
             return true;
         }

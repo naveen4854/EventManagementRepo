@@ -247,7 +247,7 @@ namespace EventManagement.Controllers
             _confManager.SubmitAbstract(obj);
             var confkey = _confManager.GetConferenceKey(obj.ConferenceId);
             var redirectUrl = Url.RouteUrl(routeName: "SubmitSuccess", routeValues: new { key = confkey });
-            return Json(new { Url = redirectUrl });
+            return Json(new { Url = Url.Action("action", "controller") });
         }
 
         [Route("Conference/{key}/SubmitSuccess", Name = "SubmitSuccess")]

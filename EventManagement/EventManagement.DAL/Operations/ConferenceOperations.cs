@@ -49,7 +49,7 @@ namespace EventManagement.DAL.Operations
                 RegId = regdet.Id,
                 ConferenceId = regdet.FK_ConferenceId,
                 Amount = regdet.TotalPrice,
-                ItemDesription = regdet.Description,
+                ItemDescription = regdet.Description,
             };
         }
 
@@ -417,7 +417,7 @@ namespace EventManagement.DAL.Operations
                 FK_RegClassId = obj.RegClassId,
                 FK_RegTypeId = obj.RegTypeId,
                 TotalPrice = obj.Amount,
-                Description = obj.ItemDesription,
+                Description = obj.ItemDescription,
                 Address = obj.Address
             };
             var id = -1;

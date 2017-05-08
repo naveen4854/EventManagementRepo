@@ -17,7 +17,7 @@ namespace EventManagement.BLL.Helpers
         StreamReader _textStreamReader;
         private readonly string server = "smtp.gmail.com";
         private readonly int port = 587;
-        public void SendMailWithAttachment(string from, string to, string fileName, string mailSubject, string bodyHtml, IEnumerable<MailData> mailData)
+        public void SendMailWithAttachment(string from, string to, string sender, string fileName, string mailSubject, string bodyHtml, IEnumerable<MailData> mailData)
         {
             // Specify the file to be attached and sent.
             string file = Path.Combine(System.Web.HttpContext.Current.Server.MapPath("~/content/uploads/"), fileName);
@@ -29,6 +29,8 @@ namespace EventManagement.BLL.Helpers
                to,
                mailSubject,
                mailBody);
+            if (sender != null)
+                message.Sender = new MailAddress(sender);
             message.IsBodyHtml = true;
             // Create  the file attachment for this e-mail message.
             Attachment data = new Attachment(file, MediaTypeNames.Application.Octet);

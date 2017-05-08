@@ -48,7 +48,7 @@ namespace EventManagement.Controllers
                 cancel_return = baseUrl + string.Format(ConfigurationManager.AppSettings["cancel_return"], confKey, regId),
                 notify_url = baseUrl + string.Format(ConfigurationManager.AppSettings["notify_url"], confKey, regId),
                 currency_code = "USD",
-                item_name = regDet.ItemDesription,
+                item_name = regDet.ItemDescription,
                 amount = regDet.Amount.ToString()
             };
 

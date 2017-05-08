@@ -91,6 +91,7 @@
 <script>
     function postAbstract() {
         if($('#modalAbstractSubmitform').valid()){
+            spinner(true);
             var data = new FormData();
             var files = $("#upFiles").prop("files");
             data.append("DocUpload", files[0]);
@@ -114,7 +115,11 @@
                 url: url,
                 data: data,
                 success: function (response) {
-                    window.location.href = response.Url;
+                    spinner(false);
+                    if(response.Url == undefined)
+                        toastr.info('Something went wrong!!')
+                    else
+                        window.location.href = response.Url;
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
                     toastr.info('Something went wrong!!')

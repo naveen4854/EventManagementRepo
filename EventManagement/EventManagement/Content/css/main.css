@@ -1607,3 +1607,6 @@ li.track {
         transform: rotate(359deg);
     }
 }
+.noTransform {
+    text-transform : none !important;
+}

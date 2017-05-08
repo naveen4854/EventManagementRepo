@@ -94,7 +94,7 @@
 
     $(document).ready(function () {
         processNoScroll();
-       // loadValidators();
+        // loadValidators();
     });
 
     function postAbstract() {
@@ -124,7 +124,10 @@
                 data: data,
                 success: function (response) {
                     spinner(false);
-                    window.location.href = response.Url;
+                    if(response.Url == undefined)
+                        toastr.info('Something went wrong!!')
+                    else
+                        window.location.href = response.Url;
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
                     toastr.info('Something went wrong!!')
@@ -132,11 +135,11 @@
             });
         }
     }
-  
+
     function dwnldSampleAbstract() {
         window.location = '@Url.Content("~/Conference/DownloadSampleAbstract/")';
     }
-    
+
     $.validator.unobtrusive.adapters.add('filesize', ['maxsize'], function (options) {
         options.rules['filesize'] = options.params;
         if (options.message) {
