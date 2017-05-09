@@ -32,7 +32,7 @@ namespace EventManagement.Controllers
         [Route("Shared/LoadCountries/")]
         public ActionResult LoadCountries()
         {
-            var URL = "https://restcountries.eu/rest/v2/all?fields=name";
+            var URL = "https://restcountries.eu/rest/v2/all?fields=name;callingCodes";
             var urlParameters = "";
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri(URL);
@@ -53,6 +53,12 @@ namespace EventManagement.Controllers
             return PartialView();
         }
 
-
+        [HttpPost]
+        [Route("Shared/GetCountryDetails/{id}")]
+        public ActionResult GetCountryDetails(int id)
+        {
+            var country = _confManager.GetCountryDetails(id);
+            return Json(country);
+        }
     }
 }

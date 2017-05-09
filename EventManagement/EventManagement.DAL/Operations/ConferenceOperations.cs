@@ -12,10 +12,10 @@ namespace EventManagement.DAL.Operations
 {
     public class ConferenceOperations
     {
-        private EventManagementEntities managementConsoleEntities = new EventManagementEntities();
+        private EventManagementEntities _entities = new EventManagementEntities();
         public List<ConferenceDTO> GetConferences()
         {
-            return managementConsoleEntities.Conferences.Select(q => new ConferenceDTO
+            return _entities.Conferences.Select(q => new ConferenceDTO
             {
                 Id = q.Id,
                 Name = q.Name,
@@ -30,7 +30,7 @@ namespace EventManagement.DAL.Operations
 
         public List<VenueDTO> GetVenues()
         {
-            return managementConsoleEntities.Venues.Select(q => new VenueDTO
+            return _entities.Venues.Select(q => new VenueDTO
             {
                 Id = q.Id,
                 Name = q.Name,
@@ -43,7 +43,7 @@ namespace EventManagement.DAL.Operations
 
         public PurchaseDTO GetRegistrationDetails(int regId)
         {
-            var regdet = managementConsoleEntities.Registrations_Log.FirstOrDefault(q => q.Id == regId);
+            var regdet = _entities.Registrations_Log.FirstOrDefault(q => q.Id == regId);
             return new PurchaseDTO
             {
                 RegId = regdet.Id,
@@ -77,23 +77,57 @@ namespace EventManagement.DAL.Operations
             return true;
         }
 
+        public CountryModel GetCountryDetails(int id)
+        {
+            var country = _entities.Countries.FirstOrDefault(q => q.Id == id);
+
+            return new CountryModel
+            {
+                Id = country.Id,
+                Name = country.Name,
+                CallingCode = country.CallingCode
+            };
+        }
+
         public void AddCountry(CountryModel country)
         {
-            var c = new Country
+            //check if country already exists
+            if (_entities.Countries.Any(q => q.Name == country.Name))
             {
-                Name = country.Name,
-                CallingCode = country.CallingCodes
-            };
-            using (var entities = new EventManagementEntities())
+                Country co;
+                using (var entities = new EventManagementEntities())
+                {
+                    co = entities.Countries.Where(q => q.Name == country.Name).FirstOrDefault();
+                }
+                if (co != null)
+                {
+                    co.Name = country.Name;
+                    co.CallingCode = country.CallingCode;
+                }
+                using (var entitiesX = new EventManagementEntities())
+                {
+                    entitiesX.Entry(co).State = EntityState.Modified;
+                    entitiesX.SaveChanges();
+                }
+            }
+            else
             {
-                entities.Countries.Add(c);
-                entities.SaveChanges();
+                var c = new Country
+                {
+                    Name = country.Name,
+                    CallingCode = country.CallingCode
+                };
+                using (var entities = new EventManagementEntities())
+                {
+                    entities.Countries.Add(c);
+                    entities.SaveChanges();
+                }
             }
         }
 
         public IEnumerable<RegistrationClass> GetConferenceRegClassMapping(int id)
         {
-            return managementConsoleEntities.Conference_RegClass_Mapping.Where(q => q.FK_ConferenceId == id).Select(q => new RegistrationClass
+            return _entities.Conference_RegClass_Mapping.Where(q => q.FK_ConferenceId == id).Select(q => new RegistrationClass
             {
                 Id = q.FK_RegClassId,
                 FromDt = q.FromDt,
@@ -104,7 +138,7 @@ namespace EventManagement.DAL.Operations
 
         public IEnumerable<RegistrationTypeDTO> GetConferencePrices(int id)
         {
-            var c = managementConsoleEntities.MST_RegistrationType.Select(q => new RegistrationTypeDTO
+            var c = _entities.MST_RegistrationType.Select(q => new RegistrationTypeDTO
             {
                 Id = q.Id,
                 Name = q.Name,
@@ -122,7 +156,7 @@ namespace EventManagement.DAL.Operations
 
         public int GetConferenceId(string key)
         {
-            return managementConsoleEntities.Conferences.FirstOrDefault(q => q.DisplayId == key).Id;
+            return _entities.Conferences.FirstOrDefault(q => q.DisplayId == key).Id;
         }
 
         public bool DeleteVenue(int id)
@@ -142,7 +176,7 @@ namespace EventManagement.DAL.Operations
 
         public IEnumerable<ProgramDTO> GetPostersByConf(int id)
         {
-            return managementConsoleEntities.Programs.Where(q => q.FK_ConferenceId == id && q.isPoster).Select(q => new ProgramDTO
+            return _entities.Programs.Where(q => q.FK_ConferenceId == id && q.isPoster).Select(q => new ProgramDTO
             {
                 Id = q.Id,
                 Name = q.Name,
@@ -157,7 +191,7 @@ namespace EventManagement.DAL.Operations
 
         public VenueDTO GetVenue(int id)
         {
-            var venue = managementConsoleEntities.Venues.FirstOrDefault(q => q.Id == id);
+            var venue = _entities.Venues.FirstOrDefault(q => q.Id == id);
             return new VenueDTO
             {
                 Id = venue.Id,
@@ -248,7 +282,7 @@ namespace EventManagement.DAL.Operations
 
         public TrackDTO GetTrack(int id)
         {
-            var track = managementConsoleEntities.Tracks.Where(q => q.Id == id).FirstOrDefault();
+            var track = _entities.Tracks.Where(q => q.Id == id).FirstOrDefault();
             return new TrackDTO
             {
                 Id = track.Id,
@@ -279,12 +313,12 @@ namespace EventManagement.DAL.Operations
 
         public string GetCategory(int category)
         {
-            return managementConsoleEntities.Categories.FirstOrDefault(q => q.Id == category).Name;
+            return _entities.Categories.FirstOrDefault(q => q.Id == category).Name;
         }
 
         public string GetCountry(int country)
         {
-            return managementConsoleEntities.Countries.FirstOrDefault(q => q.Id == country).Name;
+            return _entities.Countries.FirstOrDefault(q => q.Id == country).Name;
         }
 
         public bool AddConference(ConferenceDTO obj)
@@ -312,7 +346,7 @@ namespace EventManagement.DAL.Operations
 
         public string GetConferenceKey(int conferenceId)
         {
-            return managementConsoleEntities.Conferences.FirstOrDefault(q => q.Id == conferenceId).DisplayId;
+            return _entities.Conferences.FirstOrDefault(q => q.Id == conferenceId).DisplayId;
         }
 
         public bool DeleteConferenceImage(int id)
@@ -332,7 +366,7 @@ namespace EventManagement.DAL.Operations
 
         public IEnumerable<MemberTypeDTO> GetMemberTypes()
         {
-            return managementConsoleEntities.MemberTypes.Select(q => new MemberTypeDTO { Id = q.Id, Name = q.Type, Description = q.Description });
+            return _entities.MemberTypes.Select(q => new MemberTypeDTO { Id = q.Id, Name = q.Type, Description = q.Description });
         }
 
         public bool UpdateTeamMember(TeamMemberDTO obj)
@@ -377,7 +411,7 @@ namespace EventManagement.DAL.Operations
 
         public string GetConferenceEmailId(int id)
         {
-            return managementConsoleEntities.Conferences.FirstOrDefault(q => q.Id == id).ConfEmail;
+            return _entities.Conferences.FirstOrDefault(q => q.Id == id).ConfEmail;
         }
 
         public bool UpdateProgram(ProgramDTO obj)
@@ -433,7 +467,7 @@ namespace EventManagement.DAL.Operations
 
         public ProgramDTO GetProgram(int id)
         {
-            var prg = managementConsoleEntities.Programs.FirstOrDefault(q => q.Id == id);
+            var prg = _entities.Programs.FirstOrDefault(q => q.Id == id);
 
             return new ProgramDTO
             {
@@ -465,7 +499,7 @@ namespace EventManagement.DAL.Operations
 
         public TeamMemberDTO GetTeamMember(int id)
         {
-            var teamMem = managementConsoleEntities.ConferenceTeams.Where(q => q.Id == id).FirstOrDefault();
+            var teamMem = _entities.ConferenceTeams.Where(q => q.Id == id).FirstOrDefault();
             return new TeamMemberDTO
             {
                 Id = teamMem.Id,
@@ -481,17 +515,17 @@ namespace EventManagement.DAL.Operations
 
         public int GetAccPrice(int accTypeId, int occId, int confId)
         {
-            return managementConsoleEntities.AccommodationPricings.Where(q => q.FK_AccomodationTypeId == accTypeId && q.FK_OccupancyId == occId && q.FK_ConferenceId == confId).FirstOrDefault().Amout;
+            return _entities.AccommodationPricings.Where(q => q.FK_AccomodationTypeId == accTypeId && q.FK_OccupancyId == occId && q.FK_ConferenceId == confId).FirstOrDefault().Amout;
         }
 
         public int GetAccompanyPrice(int accompanyId, int confId)
         {
-            return managementConsoleEntities.AccompanyPricings.Where(q => q.FK_conferenceId == confId && q.FK_AccompanyId == accompanyId).FirstOrDefault().Amount;
+            return _entities.AccompanyPricings.Where(q => q.FK_conferenceId == confId && q.FK_AccompanyId == accompanyId).FirstOrDefault().Amount;
         }
 
         public IEnumerable<AccompanyPriceDTO> GetAllAccompanyPrice(int id)
         {
-            var acc = managementConsoleEntities.AccompanyPricings.Where(q => q.FK_conferenceId == id).Select(q => new AccompanyPriceDTO
+            var acc = _entities.AccompanyPricings.Where(q => q.FK_conferenceId == id).Select(q => new AccompanyPriceDTO
             {
                 Id = q.MST_Accompany.Id,
                 Name = q.MST_Accompany.Name,
@@ -503,7 +537,7 @@ namespace EventManagement.DAL.Operations
 
         public int GetRegPrice(int regTypeId, int regClassId, int confId)
         {
-            return managementConsoleEntities.Pricings.Where(q => q.FK_RegClass == regClassId && q.FK_RegType == regTypeId && q.FK_ConferenceId == confId).FirstOrDefault().Amout;
+            return _entities.Pricings.Where(q => q.FK_RegClass == regClassId && q.FK_RegType == regTypeId && q.FK_ConferenceId == confId).FirstOrDefault().Amout;
         }
 
         public bool AddTrack(TrackDTO obj)
@@ -524,12 +558,12 @@ namespace EventManagement.DAL.Operations
 
         public List<string> GetConferenceImages(int id)
         {
-            return managementConsoleEntities.ConferenceImages.Where(q => q.FK_ConferenceId == id).Select(q => q.ImageUrl).ToList();
+            return _entities.ConferenceImages.Where(q => q.FK_ConferenceId == id).Select(q => q.ImageUrl).ToList();
         }
 
         public List<ConferenceImageDTO> GetConferenceImagesDTO(int id)
         {
-            return managementConsoleEntities.ConferenceImages.Where(q => q.FK_ConferenceId == id).Select(q => new ConferenceImageDTO
+            return _entities.ConferenceImages.Where(q => q.FK_ConferenceId == id).Select(q => new ConferenceImageDTO
             {
                 Id = q.Id,
                 ImageUrl = q.ImageUrl,
@@ -539,7 +573,7 @@ namespace EventManagement.DAL.Operations
 
         public ConferenceDTO GetConference(int Id)
         {
-            var conf = managementConsoleEntities.Conferences.FirstOrDefault(q => q.Id == Id);
+            var conf = _entities.Conferences.FirstOrDefault(q => q.Id == Id);
             return new ConferenceDTO
             {
                 Id = conf.Id,
@@ -622,7 +656,7 @@ namespace EventManagement.DAL.Operations
 
         public List<ProgramDTO> GetProgramsByConf(int id)
         {
-            return managementConsoleEntities.Programs.Where(q => q.FK_ConferenceId == id && !q.isPoster).Select(q => new ProgramDTO
+            return _entities.Programs.Where(q => q.FK_ConferenceId == id && !q.isPoster).Select(q => new ProgramDTO
             {
                 Id = q.Id,
                 Name = q.Name,
@@ -637,7 +671,7 @@ namespace EventManagement.DAL.Operations
 
         public List<TrackDTO> GetConferenceTracks(int id)
         {
-            return managementConsoleEntities.Tracks.Where(q => q.FK_ConferenceId == id).Select(q => new TrackDTO
+            return _entities.Tracks.Where(q => q.FK_ConferenceId == id).Select(q => new TrackDTO
             {
                 Id = q.Id,
                 Name = q.Name,
@@ -648,7 +682,7 @@ namespace EventManagement.DAL.Operations
 
         public string GetAbstract(int id, int prgId)
         {
-            return managementConsoleEntities.Programs.Where(q => q.FK_ConferenceId == id && q.Id == prgId).Select(q => q.Abstract).FirstOrDefault();
+            return _entities.Programs.Where(q => q.FK_ConferenceId == id && q.Id == prgId).Select(q => q.Abstract).FirstOrDefault();
         }
 
         public int SubmitAbstract(AbstractSubmitDTO obj)
@@ -678,12 +712,12 @@ namespace EventManagement.DAL.Operations
 
         public string GetConferenceBrochure(int id)
         {
-            return managementConsoleEntities.Conferences.FirstOrDefault(q => q.Id == id).brochure;
+            return _entities.Conferences.FirstOrDefault(q => q.Id == id).brochure;
         }
 
         public ConferenceDTO GetConferencePeriod(int id)
         {
-            var conf = managementConsoleEntities.Conferences.FirstOrDefault(q => q.Id == id);
+            var conf = _entities.Conferences.FirstOrDefault(q => q.Id == id);
             return new ConferenceDTO
             {
                 Id = conf.Id,
@@ -694,7 +728,7 @@ namespace EventManagement.DAL.Operations
 
         public ConferenceDTO GetConferenceTeam(int id)
         {
-            var conf = managementConsoleEntities.ConferenceTeams.Where(q => q.FK_ConferenceId == id && q.MemberType.Type == MemberTypeEnum.OCM).Select(q => new TeamMemberDTO
+            var conf = _entities.ConferenceTeams.Where(q => q.FK_ConferenceId == id && q.MemberType.Type == MemberTypeEnum.OCM).Select(q => new TeamMemberDTO
             {
                 Id = q.Id,
                 ConferenceId = q.FK_ConferenceId,
@@ -713,7 +747,7 @@ namespace EventManagement.DAL.Operations
 
         public ConferenceDTO GetAllConferenceTeam(int id)
         {
-            var conf = managementConsoleEntities.ConferenceTeams.Where(q => q.FK_ConferenceId == id && !(q.MemberType.Type == MemberTypeEnum.SA)).Select(q => new TeamMemberDTO
+            var conf = _entities.ConferenceTeams.Where(q => q.FK_ConferenceId == id && !(q.MemberType.Type == MemberTypeEnum.SA)).Select(q => new TeamMemberDTO
             {
                 Id = q.Id,
                 ConferenceId = q.FK_ConferenceId,
@@ -732,7 +766,7 @@ namespace EventManagement.DAL.Operations
 
         public ConferenceDTO GetConferenceChair(int id)
         {
-            var conf = managementConsoleEntities.ConferenceTeams.Where(q => q.FK_ConferenceId == id && q.MemberType.Type == MemberTypeEnum.Chair).Select(q => new TeamMemberDTO
+            var conf = _entities.ConferenceTeams.Where(q => q.FK_ConferenceId == id && q.MemberType.Type == MemberTypeEnum.Chair).Select(q => new TeamMemberDTO
             {
                 ConferenceId = q.FK_ConferenceId,
                 Name = q.Name,
@@ -749,7 +783,7 @@ namespace EventManagement.DAL.Operations
 
         public IEnumerable<TeamMemberDTO> GetScientificAdvisors()
         {
-            var team = managementConsoleEntities.ConferenceTeams.Where(q => q.MemberType.Type == MemberTypeEnum.SA).Select(q => new TeamMemberDTO
+            var team = _entities.ConferenceTeams.Where(q => q.MemberType.Type == MemberTypeEnum.SA).Select(q => new TeamMemberDTO
             {
                 Id = q.Id,
                 Name = q.Name,
@@ -765,16 +799,17 @@ namespace EventManagement.DAL.Operations
 
         public List<CountryModel> GetCountries()
         {
-            return managementConsoleEntities.Countries.Select(q => new CountryModel
+            return _entities.Countries.Select(q => new CountryModel
             {
                 Id = q.Id,
                 Name = q.Name,
+                CallingCode = q.CallingCode
             }).ToList();
         }
 
         public List<CategoryModel> GetCategories()
         {
-            return managementConsoleEntities.Categories.Select(q => new CategoryModel
+            return _entities.Categories.Select(q => new CategoryModel
             {
                 Id = q.Id,
                 Name = q.Name,
@@ -783,7 +818,7 @@ namespace EventManagement.DAL.Operations
 
         public List<TitleModel> GetTitles()
         {
-            return managementConsoleEntities.Titles.Select(q => new TitleModel
+            return _entities.Titles.Select(q => new TitleModel
             {
                 Id = q.Id,
                 Name = q.Name,

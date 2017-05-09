@@ -10,6 +10,7 @@ namespace EventManagement.DataModels
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public int CallingCodes { get; set; }
+        public string[] CallingCodes { get; set; }
+        public int CallingCode { get; set; }
     }
 }

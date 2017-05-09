@@ -437,7 +437,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>2207</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost/eve</IISUrl>
+          <IISUrl>http://localhost/eve/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

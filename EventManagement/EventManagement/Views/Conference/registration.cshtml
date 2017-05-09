@@ -20,7 +20,7 @@
             @Html.HiddenFor(model => model.Amount)
             @Html.HiddenFor(model => model.RegTypeId)
             @Html.HiddenFor(model => model.RegClassId)
-            @Html.HiddenFor(model => model.ItemDescription, new { Value = "Conference Registration"})
+            @Html.HiddenFor(model => model.ItemDescription, new { Value = "Conference Registration" })
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
@@ -51,12 +51,15 @@
                     </div>
                     <div class="form-group">
                         <div class="col-md-offset-1 col-md-6">
-                            @Html.DropDownListFor(model => model.CountryId, new SelectList(@ViewBag.Countries, "Id", "Name"), "Select Country", new { @class = "form-control" })
+                            @Html.DropDownListFor(model => model.CountryId, new SelectList(@ViewBag.Countries, "Id", "Name"), "Select Country", new { @class = "form-control", onchange="getCountryCallingCode()" })
                             @Html.ValidationMessageFor(model => model.CountryId, "", new { @class = "text-danger" })
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="col-md-offset-1 col-md-10">
+                        <div class="col-md-offset-1 col-md-2">
+                            <input id="callingCode" class="form-control" readonly="readonly" />
+                        </div>
+                        <div class="col-md-8">
                             @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control", @placeholder = "Phone Number" } })
                             @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
                         </div>
@@ -274,7 +277,24 @@
     <div id="RegFormHolder"></div>
 </div>
 <script type="text/JavaScript">
-
+    function getCountryCallingCode(){
+        var countryId = $("#CountryId").val();
+        if(countryId != undefined){
+            var url = "@Url.Content("~/Shared/GetCountryDetails")";
+            $.ajax({
+                type: 'POST',
+                contentType: false,
+                processData: false,
+                url: url + '/' + countryId,
+                success: function (response) {
+                    $("#callingCode").val('+' + response.CallingCode);
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    toastr.error('Country Calling Code not found')
+                },
+            });
+        }
+    }
     function postRegistration() {
         if(parseInt($("#Amount").val()) == 0){
             toastr.error("Please select what you want to Register for");
@@ -353,7 +373,7 @@
     $(document).ready(function () {
         processNoScroll();
         calculateTotal();
-     
+
     });
 
     function calculateTotal() {
@@ -383,7 +403,7 @@
         $('#lblTotalPrice').prop('data-val', total.amt);
         $('#Amount').val(total.amt);
     }
-    
+
     $.validator.unobtrusive.adapters.add("checkboxtrue", function (options) {
         if (options.element.tagName.toUpperCase() == "INPUT" && options.element.type.toUpperCase() == "CHECKBOX") {
             options.rules["required"] = true;
