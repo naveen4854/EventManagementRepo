@@ -1610,3 +1610,11 @@ li.track {
 .noTransform {
     text-transform : none !important;
 }
+
+.biography p {
+    font-weight: 400;
+    line-height: 25px;
+    font-size: 15px;
+    font-family: "Open Sans",Arial,sans-serif;
+    text-align: center;
+}

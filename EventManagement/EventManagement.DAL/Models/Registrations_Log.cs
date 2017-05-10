@@ -29,8 +29,8 @@ namespace EventManagement.DAL.Models
         public string Description { get; set; }
     
         public virtual Conference Conference { get; set; }
-        public virtual Country Country { get; set; }
         public virtual MST_RegistrationClass MST_RegistrationClass { get; set; }
         public virtual MST_RegistrationType MST_RegistrationType { get; set; }
+        public virtual Country Country { get; set; }
     }
 }

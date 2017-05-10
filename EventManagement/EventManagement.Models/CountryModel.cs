@@ -11,6 +11,6 @@ namespace EventManagement.DataModels
         public int Id { get; set; }
         public string Name { get; set; }
         public string[] CallingCodes { get; set; }
-        public int CallingCode { get; set; }
+        public string CallingCode { get; set; }
     }
 }

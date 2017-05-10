@@ -41,20 +41,23 @@
                         @Html.ValidationMessageFor(model => model.Organisation, "", new { @class = "text-danger" })
                     </div>
                 </div>
-
                 <div class="form-group">
                     <div class="col-md-offset-1 col-md-10">
+                        @Html.DropDownListFor(model => model.Country, new SelectList(@ViewBag.Countries, "Id", "Name"), "Select Country", new { @class = "form-control", onchange = "getCountryCallingCode()" })
+                        @Html.ValidationMessageFor(model => model.Country, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-1 col-md-2">
+                        <input id="callingCode" class="form-control" readonly="readonly" />
+                    </div>
+                    <div class="col-md-8">
                         @Html.EditorFor(model => model.Telephone, new { htmlAttributes = new { @class = "form-control", @placeholder = @Html.DisplayNameFor(m => m.Telephone) } })
                         @Html.ValidationMessageFor(model => model.Telephone, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <div class="col-md-offset-1 col-md-10">
-                        @Html.DropDownListFor(model => model.Country, new SelectList(@ViewBag.Countries, "Id", "Name"), "Select Country", new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.Country, "", new { @class = "text-danger" })
-                    </div>
-                </div>
+               
                 <div class="form-group">
                     <div class="col-md-offset-1 col-md-10">
                         @Html.DropDownListFor(model => model.Track, new SelectList(@ViewBag.Tracks, "Id", "Name", @ViewBag.Track), "Select Scientific Sessions", new { @class = "form-control" })
@@ -89,6 +92,29 @@
     </div>
 }
 <script>
+    function getCountryCallingCode(){
+        var countryId = $("#Country").val();
+        if(countryId == undefined || countryId == ""){
+            $("#callingCode").val('');
+            return;
+        }
+        if(countryId != undefined ){
+            var url = "@Url.Content("~/Shared/GetCountryDetails")";
+            $.ajax({
+                type: 'POST',
+                contentType: false,
+                processData: false,
+                url: url + '/' + countryId,
+                success: function (response) {
+                    $("#callingCode").val('+' + response.CallingCode);
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    toastr.error('Country Calling Code not found')
+                },
+            });
+        }
+    }
+
     function postAbstract() {
         if($('#modalAbstractSubmitform').valid()){
             spinner(true);

@@ -64,10 +64,7 @@ namespace EventManagement.BLL
 
         public void AddCountry(CountryModel country)
         {
-            int converted = 0;
-            if (country.CallingCodes.Length > 0)
-                int.TryParse(country.CallingCodes[0], out converted);
-            country.CallingCode = converted;
+            country.CallingCode = country.CallingCodes.Length > 0 ? country.CallingCodes[0] : "0";
             confOperations.AddCountry(country);
         }
 

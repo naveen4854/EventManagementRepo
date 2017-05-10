@@ -1,4 +1,5 @@
-﻿@model EventManagement.DataModels.ConferenceDTO
+﻿@using EventManagement.DataModels.Extensions;
+@model EventManagement.DataModels.ConferenceDTO
 @{
     if (Model.Team.Count() > 0)
     {
@@ -8,7 +9,7 @@
                 <div class="row">
                     <div class="col-10">
                         <div id="event-carousel" class="carousel slide" data-interval="false">
-                            <h2 class="header">Our Organising Committe Members</h2>
+                            <h2 class="header">Our Organizing Committe Members</h2>
                             <button class="push-btn btn--sm flRt" onclick="redirect('@Url.Content("~/Conference/"+@ViewData["Conferencekey"]+ "/OrganisingCommitte/")')"><text>View All</text></button>
                             <div class="carousel-inner">
                                 @for (int i = 0; i <= Model.Team.Count() / 4; i++)
@@ -22,7 +23,16 @@
                                                     <div class="single-event pointer">
                                                         <img class="img-responsive userImg" src="@Url.Content(mem.ImageUrl)" alt="event-image">
                                                         <h4>@mem.Name</h4>
-                                                        <h5 class="noTransform">@mem.Info</h5>
+                                                        @{
+                                                            string[] stringSeparators = new string[] { "[split]" };
+                                                            var output = mem.Info.FormatString(stringSeparators);
+                                                            for (var n = 0; n < output.Length; n++)
+                                                            {
+                                                                <h5 class="noTransform">
+                                                                    @output[n]
+                                                                </h5>
+                                                            }
+                                                        }
                                                     </div>
                                                 </div>
                                             }

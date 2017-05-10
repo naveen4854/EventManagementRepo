@@ -9,12 +9,10 @@
         <EntityTypeShape EntityType="EventManagementModel.Track" Width="1.5" PointX="0.75" PointY="4.75" />
         <EntityTypeShape EntityType="EventManagementModel.AbstractsSubmitted" Width="1.5" PointX="8" PointY="2.75" />
         <EntityTypeShape EntityType="EventManagementModel.Category" Width="1.5" PointX="5.75" PointY="1.875" />
-        <EntityTypeShape EntityType="EventManagementModel.Country" Width="1.5" PointX="0.75" PointY="7.75" />
         <EntityTypeShape EntityType="EventManagementModel.Title" Width="1.5" PointX="5.75" PointY="7.625" />
         <AssociationConnector Association="EventManagementModel.FK_AbstractsSubmitted_Category" />
         <AssociationConnector Association="EventManagementModel.FK_AbstractsSubmitted_Title" />
         <AssociationConnector Association="EventManagementModel.FK_AbstractsSubmitted_Track" />
-        <AssociationConnector Association="EventManagementModel.FK_AbstractsSubmitted_Country" />
         <EntityTypeShape EntityType="EventManagementModel.MST_RegistrationClass" Width="1.5" PointX="8.375" PointY="8.375" />
         <EntityTypeShape EntityType="EventManagementModel.MST_RegistrationType" Width="1.5" PointX="8.375" PointY="11.375" />
         <EntityTypeShape EntityType="EventManagementModel.Pricing" Width="1.5" PointX="10.625" PointY="8" />
@@ -36,9 +34,11 @@
         <AssociationConnector Association="EventManagementModel.FK_Conference_RegClass_Mapping_MST_RegistrationClass" />
         <EntityTypeShape EntityType="EventManagementModel.ELMAH_Error" Width="1.5" PointX="5.375" PointY="12.25" />
         <EntityTypeShape EntityType="EventManagementModel.Registrations_Log" Width="1.5" PointX="13.625" PointY="6.375" />
-        <AssociationConnector Association="EventManagementModel.FK_Registrations_Log_Country" />
         <AssociationConnector Association="EventManagementModel.FK_Registrations_Log_MST_RegistrationClass" />
         <AssociationConnector Association="EventManagementModel.FK_Registrations_Log_MST_RegistrationType" />
+        <EntityTypeShape EntityType="EventManagementModel.Country" Width="1.5" PointX="5.75" PointY="4.75" />
+        <AssociationConnector Association="EventManagementModel.FK_AbstractsSubmitted_Country" />
+        <AssociationConnector Association="EventManagementModel.FK_Registrations_Log_Country" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -9,7 +9,7 @@
         <div class="container">
             @if (Model.Team.Count() > 0)
             {
-                <h2 class="header">Our Organising Committe Members</h2>
+                <h2 class="header">Our Organizing Committe Members</h2>
                 for (int i = 0; i <= Model.Team.Count() / 4; i++)
                 {
                     <div class="row">
@@ -30,7 +30,24 @@
                                             </h5>
                                         }
                                      }
-                                    <button class="push-btn btn--sm" onclick="abstractModal('@mem.Biography')"><text>Biography</text></button>
+                                    <div id="@mem.Id" style="display:none">
+                                        @{
+                                            if (string.IsNullOrEmpty(mem.Biography))
+                                            {
+                                                <p>Bio yet to be added</p>
+                                            }
+                                            else
+                                            {
+                                                string[] separators = new string[] { "[split]" };
+                                                var outbio = mem.Biography.FormatString(separators);
+                                                for (var n = 0; n < outbio.Length; n++)
+                                                {
+                                                    <p>@outbio[n]</p>
+                                                }
+                                            }
+                                        }
+                                    </div>
+                                    <button class="push-btn btn--sm" onclick="abstractModal('@mem.Id')"><text>Biography</text></button>
                                 </div>
                             </div>    
                         }
@@ -46,9 +63,8 @@
 }
 
 <div id='myModal' class='modal'>
-
     <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content biography">
 
             <div id='myModalContent' class="col-12">
                 <div class="row" style="margin:20px">
@@ -74,8 +90,8 @@
     function abstractModal(data) {
 
         var options = { "backdrop": "static", keyboard: true };
-
-        $('#modaltxt').html(data);
+        console.log($('#' + data).html());
+        $('#modaltxt').html($('#' + data).html());
         $('#myModal').modal(options);
         $('#myModal').modal('show');
 

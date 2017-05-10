@@ -29,7 +29,7 @@ namespace EventManagement.DAL.Models
         public virtual Category Category { get; set; }
         public virtual Title Title { get; set; }
         public virtual Track Track { get; set; }
-        public virtual Country Country { get; set; }
         public virtual Conference Conference { get; set; }
+        public virtual Country Country { get; set; }
     }
 }

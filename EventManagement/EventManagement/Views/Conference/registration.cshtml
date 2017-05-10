@@ -51,7 +51,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-md-offset-1 col-md-6">
-                            @Html.DropDownListFor(model => model.CountryId, new SelectList(@ViewBag.Countries, "Id", "Name"), "Select Country", new { @class = "form-control", onchange="getCountryCallingCode()" })
+                            @Html.DropDownListFor(model => model.CountryId, new SelectList(@ViewBag.Countries, "Id", "Name"), "Select Country", new { @class = "form-control", onchange = "getCountryCallingCode()" })
                             @Html.ValidationMessageFor(model => model.CountryId, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -88,15 +88,15 @@
                                 {
                                     string[] stringSeparators = new string[] { "[split]" };
                                     var splits = pricetype.Name.Split(stringSeparators, StringSplitOptions.None);
-                                    <th>
-                                        @{
+                            <th>
+                                @{
                                             for (var i = 0; i < @splits.Length; i++)
                                             {
-                                                @splits[i]
-                                                <br />
+                                        @splits[i]
+                                        <br />
                                             }
-                                        }
-                                    </th>
+                                }
+                            </th>
                                             }
                             }
                     </thead>
@@ -104,11 +104,11 @@
                         @{
                             foreach (var regtype in Model.Reg)
                             {
-                                <tr>
-                                    <td>
-                                        @regtype.Name
-                                    </td>
-                                    @{
+                        <tr>
+                            <td>
+                                @regtype.Name
+                            </td>
+                            @{
                                         foreach (var pricetype in regtype.PricingTypes)
                                         {
                                             var htmlAttr = new Dictionary<string, object>();
@@ -121,12 +121,12 @@
                                             {
                                                 htmlAttr.Add("disabled", "disabled");
                                             }
-                                            <td>
-                                                @Html.RadioButton("regprice", false, htmlAttr) $@pricetype.Price
-                                            </td>
+                                    <td>
+                                        @Html.RadioButton("regprice", false, htmlAttr) $@pricetype.Price
+                                    </td>
                                         }
-                                    }
-                                </tr>
+                            }
+                        </tr>
                                         }
                         }
                     </tbody>
@@ -162,11 +162,11 @@
                         @{
                             foreach (var acctype in Model.acc)
                             {
-                                <tr>
-                                    <td>
-                                        @acctype.Name
-                                    </td>
-                                    @{
+                        <tr>
+                            <td>
+                                @acctype.Name
+                            </td>
+                            @{
                                         foreach (var occtype in acctype.occ)
                                         {
                                             var htmlAttr = new Dictionary<string, object>();
@@ -177,12 +177,12 @@
                                             {
                                                 htmlAttr.Add("disabled", "disabled");
                                             }
-                                            <td>
-                                                @Html.RadioButton("accprice", false, htmlAttr) $@occtype.Price
-                                            </td>
+                                    <td>
+                                        @Html.RadioButton("accprice", false, htmlAttr) $@occtype.Price
+                                    </td>
                                         }
-                                    }
-                                </tr>
+                            }
+                        </tr>
                                         }
                         }
                     </tbody>
@@ -243,7 +243,7 @@
                 </div>
             </div>
         </div>
-                                        }
+                                }
     <div id='myModal' class='modal'>
         <div class="modal-dialog">
             <div class="modal-content">
@@ -251,35 +251,16 @@
             </div>
         </div>
     </div>
-
-    @*<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
-
-            <!-- Identify your business so that you can collect the payments. -->
-            <input type="hidden" name="business" value="contact-facilitator@scientificcognizance.com">
-
-            <!-- Specify a Buy Now button. -->
-            <input type="hidden" name="cmd" value="_xclick">
-
-            <!-- Specify details about the item that buyers will purchase. -->
-            <input type="hidden" name="item_name" value="Hot Sauce-12oz. Bottle">
-            <input type="hidden" name="amount" value="5.95">
-            <input type="hidden" name="currency_code" value="USD">
-
-            <!-- Display the payment button. -->
-            <input type="image" name="submit" border="0"
-                   src="https://www.paypalobjects.com/webstatic/en_US/i/btn/png/btn_buynow_107x26.png"
-                   alt="Buy Now">
-            <img alt="" border="0" width="1" height="1"
-                 src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif">
-
-        </form>*@
-
     <div id="RegFormHolder"></div>
 </div>
 <script type="text/JavaScript">
     function getCountryCallingCode(){
         var countryId = $("#CountryId").val();
-        if(countryId != undefined){
+        if(countryId == undefined || countryId == ""){
+            $("#callingCode").val('');
+            return;
+        }
+        if(countryId != undefined ){
             var url = "@Url.Content("~/Shared/GetCountryDetails")";
             $.ajax({
                 type: 'POST',
