@@ -9,47 +9,49 @@
                 <li data-target="#main-slider" data-slide-to="@i" class="@if (i == 0) { <text>active</text>}"></li>
             }
         </ol>
-        <div class="carousel-inner">
-            @for (int i = 0; i < Model.ImageUrls.Count(); i++)
+        <div>
+            <div class="carousel-inner">
+                @for (int i = 0; i < Model.ImageUrls.Count(); i++)
             {
-                <div class="item @if (i == 0) { <text>active</text>}">
-                    <img class="img-responsive" src="@Url.Content("~/Content/images/" + Model.ImageUrls[i])" alt="slider">
+                    <div class="item @if (i == 0) { <text>active</text>}">
+                        <img class="img-responsive" src="@Url.Content("~/Content/images/" + Model.ImageUrls[i])" alt="slider">
+                    </div>
+                }
+            </div>
+            <div class="carousel-caption">
+                <div class="Intro">
+                    <p class="row confIntro">@Model.Name</p>
+                    <p class="row theme q">@Model.ShortDesc</p>
+                    @{
+                        var str = "";
+                        str = Model.StartDt.ToString("MMMM dd") + " - " + Model.EndDt.ToString("MMMM dd") + " " + Model.StartDt.Year;
+                        if (Model.StartDt.Year != Model.EndDt.Year)
+                        {
+                            str = Model.StartDt.ToString("MMMM dd yyyy") + " - " + Model.EndDt.ToString("MMMM dd yyyy");
+                        }
+                        else if (Model.StartDt.Month != Model.EndDt.Month)
+                        {
+                            str = Model.StartDt.ToString("MMMM dd") + " - " + Model.EndDt.ToString("MMMM dd") + " " + Model.StartDt.Year;
+                        }
+                        else
+                        {
+                            str = Model.StartDt.ToString("dd") + " - " + Model.EndDt.ToString("dd") + " " + Model.StartDt.ToString("MMMM") + " " + Model.StartDt.Year;
+                        }
+                        <p class="row theme">(@str)</p>
+                        <p class="row theme q">Venue - @Model.Venue.Name</p>
+                    }
                 </div>
-            }
-        </div>
-    </div>
-    <div>
-        <div class="carousel-caption Intro">
-            <p class="row confIntro">@Model.Name</p>
-            <p class="row theme q">@Model.ShortDesc</p>
-            @{
-                var str = "";
-                str = Model.StartDt.ToString("MMMM dd") + " - " + Model.EndDt.ToString("MMMM dd") + " " + Model.StartDt.Year;
-                if (Model.StartDt.Year != Model.EndDt.Year)
-                {
-                    str = Model.StartDt.ToString("MMMM dd yyyy") + " - " + Model.EndDt.ToString("MMMM dd yyyy");
-                }
-                else if (Model.StartDt.Month != Model.EndDt.Month)
-                {
-                    str = Model.StartDt.ToString("MMMM dd") + " - " + Model.EndDt.ToString("MMMM dd") + " " + Model.StartDt.Year;
-                }
-                else
-                {
-                    str = Model.StartDt.ToString("dd") + " - " + Model.EndDt.ToString("dd") + " " + Model.StartDt.ToString("MMMM") + " " + Model.StartDt.Year;
-                }
-                <p class="row theme">(@str)</p>
-                <p class="row theme q">Venue - @Model.Venue.Name</p>
-            }
-        </div>
-        <div class="col-12 carousel-caption">
-            <div class="col-md-4">
-                <button class="push-btn" onclick="redirect('@Url.Content("~/Conference/"+Model.DisplayId+ "/Program/")')"><text>PROGRAM</text></button>
-            </div>
-            <div class="col-md-4">
-                <button class="push-btn" onclick="redirect('@Url.Content("~/Conference/"+Model.DisplayId+ "/Registration/")')"><text>REGISTER</text></button>
-            </div>
-            <div class="col-md-4">
-                <button class="push-btn" onclick="redirect('@Url.Content("~/Conference/"+Model.DisplayId+ "/AbstractSubmit/")')"><text>SUBMIT ABSTRACT</text></button>
+                <div class="col-12">
+                    <div class="col-md-4">
+                        <button class="push-btn" onclick="redirect('@Url.Content("~/Conference/"+Model.DisplayId+ "/Program/")')"><text>PROGRAM</text></button>
+                    </div>
+                    <div class="col-md-4">
+                        <button class="push-btn" onclick="redirect('@Url.Content("~/Conference/"+Model.DisplayId+ "/Registration/")')"><text>REGISTER</text></button>
+                    </div>
+                    <div class="col-md-4">
+                        <button class="push-btn" onclick="redirect('@Url.Content("~/Conference/"+Model.DisplayId+ "/AbstractSubmit/")')"><text>SUBMIT ABSTRACT</text></button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
