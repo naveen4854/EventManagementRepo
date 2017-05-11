@@ -39,7 +39,7 @@ namespace EventManagement.Controllers
         }
 
         [Route("Conference/{key}/OrganisingCommitte")]
-        public ActionResult Team(string key)
+        public ActionResult OrganisingCommitte(string key)
         {
             var id = 0;
             if (!string.IsNullOrEmpty(key))
@@ -48,11 +48,11 @@ namespace EventManagement.Controllers
                 throw new ArgumentException("Conference Not Found", "original");
             ViewData["ConferenceId"] = id;
             ViewData["Conferencekey"] = key;
-            return View(_confManager.GetConferenceTeam(id));
+            return View(_confManager.GetConferenceOCM(id));
         }
 
-        [Route("Conference/{key}/PartialTeam")]
-        public ActionResult PartialTeam(string key)
+        [Route("Conference/{key}/PartialOCM")]
+        public ActionResult PartialOCM(string key)
         {
             var id = 0;
             if (!string.IsNullOrEmpty(key))
@@ -61,7 +61,7 @@ namespace EventManagement.Controllers
                 throw new ArgumentException("Conference Not Found", "original");
             ViewData["ConferenceId"] = id;
             ViewData["Conferencekey"] = key;
-            return PartialView(_confManager.GetConferenceTeam(id));
+            return PartialView(_confManager.GetConferenceOCM(id));
         }
 
         [Route("Conference/{key}/Chair")]
@@ -452,6 +452,32 @@ namespace EventManagement.Controllers
             ViewData["Conferencekey"] = key;
             var email = _confManager.GetConferenceEmail(id);
             return PartialView("ConferenceEmail", email);
+        }
+
+        [Route("Conference/{key}/KeynoteSpeakers")]
+        public ActionResult KeynoteSpeakers(string key)
+        {
+            var id = 0;
+            if (!string.IsNullOrEmpty(key))
+                id = _confManager.GetConferenceId(key);
+            if (id == 0)
+                throw new ArgumentException("Conference Not Found", "original");
+            ViewData["ConferenceId"] = id;
+            ViewData["Conferencekey"] = key;
+            return View(_confManager.GetConferenceKeynoteSpeakers(id));
+        }
+
+        [Route("Conference/{key}/PartialKeynoteSpeakers")]
+        public ActionResult PartialKeynoteSpeakers(string key)
+        {
+            var id = 0;
+            if (!string.IsNullOrEmpty(key))
+                id = _confManager.GetConferenceId(key);
+            if (id == 0)
+                throw new ArgumentException("Conference Not Found", "original");
+            ViewData["ConferenceId"] = id;
+            ViewData["Conferencekey"] = key;
+            return PartialView(_confManager.GetConferenceKeynoteSpeakers(id));
         }
 
         public string Generatehash512(string text)

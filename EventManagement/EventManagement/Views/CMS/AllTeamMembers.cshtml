@@ -33,6 +33,9 @@
         <th>
             @Html.DisplayNameFor(model => model.ImageUrl)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MemberTypeDesc)
+        </th>
         <th></th>
     </tr>
 
@@ -53,6 +56,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ImageUrl)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MemberTypeDesc)
             </td>
             <td>
                 @Html.ActionLink("Edit", "TeamMember", new { id = item.Id }) |

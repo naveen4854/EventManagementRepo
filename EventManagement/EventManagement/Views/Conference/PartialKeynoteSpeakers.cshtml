@@ -1,7 +1,7 @@
 ﻿@using EventManagement.DataModels.Extensions;
-@model EventManagement.DataModels.ConferenceDTO
+@model IEnumerable<EventManagement.DataModels.TeamMemberDTO>
 @{
-    if (Model.Team.Count() > 0)
+    if (Model.Count() > 0)
     {
         <div id="conferenceTeam">
             <div class="container">
@@ -9,14 +9,14 @@
                 <div class="row">
                     <div class="col-10">
                         <div id="event-carousel" class="carousel slide" data-interval="false">
-                            <h2 class="header">Our Organizing Committe Members</h2>
-                            <button class="push-btn btn--sm flRt" onclick="redirect('@Url.Content("~/Conference/"+@ViewData["Conferencekey"]+ "/OrganisingCommitte/")')"><text>View All</text></button>
+                            <h2 class="header">KEYNOTE SPEAKERS</h2>
+                            <button class="push-btn btn--sm flRt" onclick="redirect('@Url.Content("~/Conference/"+@ViewData["Conferencekey"]+ "/KeynoteSpeakers/")')"><text>View All</text></button>
                             <div class="carousel-inner">
-                                @for (int i = 0; i <= Model.Team.Count() / 4; i++)
+                                @for (int i = 0; i <= Model.Count() / 4; i++)
                                 {
                                     <div class="item @if (i == 0) { <text>active</text>} ">
                                         <div class="row">
-                                            @{ var obj = Model.Team.Skip(i * 4).Take(4);}
+                                            @{ var obj = Model.Skip(i * 4).Take(4);}
                                             @foreach (var mem in obj)
                                             {
                                                 <div class="col-sm-3">
@@ -35,14 +35,14 @@
                                                         }
                                                     </div>
                                                 </div>
-                                            }
+                                                            }
                                         </div>
                                     </div>
-                                                }
+                                                            }
                             </div>
                         </div>
                     </div>
-                    @if (Model.Team.Count() > 4)
+                    @if (Model.Count() > 4)
                     {
                     <!-- Left and right controls -->
                         <a class="left carousel-control" href="#event-carousel" role="button" data-slide="prev">
@@ -58,5 +58,5 @@
 
             </div>
         </div>
-                                                }
+    }
 }

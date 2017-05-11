@@ -15,6 +15,8 @@ namespace EventManagement.DataModels
         public int? ConferenceId { get; set; }
         [Display(Name="Member Type")]
         public int MemberTypeId { get; set; }
+        [Display(Name="Member Type")]
+        public string MemberTypeDesc { get; set; }
         public string Name { get; set; }
         [Display(Name = "Affiliation")]
         public string Info { get; set; }

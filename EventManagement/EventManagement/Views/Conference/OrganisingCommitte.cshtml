@@ -1,0 +1,108 @@
+﻿@using EventManagement.DataModels.Extensions;
+@model IEnumerable<EventManagement.DataModels.TeamMemberDTO>
+@{
+    ViewBag.Title = "Team";
+    Layout = "~/Views/Shared/Layouts/_ConferenceLayout.cshtml";
+}
+@{
+    <div id="conferenceTeam" class="NotHome">
+        <div class="container">
+            @if (Model.Count() > 0)
+            {
+                <h2 class="header">Our Organizing Committe Members</h2>
+                for (int i = 0; i <= Model.Count() / 4; i++)
+                {
+                    <div class="row">
+                        @{ var obj = Model.Skip(i * 4).Take(4);}
+                        @foreach (var mem in obj)
+                        {
+                            <div class="col-md-3 col-sm-3">
+                                <div class="single-event pointer">
+                                    <img class="img-responsive userImg" src="@Url.Content(mem.ImageUrl)" alt="event-image">
+                                    <h4>@mem.Name</h4>
+                                    @{
+                                        string[] stringSeparators = new string[] { "[split]" };
+                                        var output = mem.Info.FormatString(stringSeparators);
+                                        for (var n = 0; n < output.Length; n++)
+                                        {
+                                            <h5 class="noTransform">
+                                                @output[n]
+                                            </h5>
+                                        }
+                                     }
+                                    <div id="@mem.Id" style="display:none">
+                                        @{
+                                            if (string.IsNullOrEmpty(mem.Biography))
+                                            {
+                                                <p>Bio yet to be added</p>
+                                            }
+                                            else
+                                            {
+                                                string[] separators = new string[] { "[split]" };
+                                                var outbio = mem.Biography.FormatString(separators);
+                                                for (var n = 0; n < outbio.Length; n++)
+                                                {
+                                                    <p>@outbio[n]</p>
+                                                }
+                                            }
+                                        }
+                                    </div>
+                                    <button class="push-btn btn--sm" onclick="abstractModal('@mem.Id')"><text>Biography</text></button>
+                                </div>
+                            </div>    
+                        }
+                    </div>
+                }
+            }
+            else
+            {
+                <h2 class="header">No Team yet</h2>
+            }
+        </div>
+    </div>
+}
+
+<div id='myModal' class='modal'>
+    <div class="modal-dialog">
+        <div class="modal-content biography">
+
+            <div id='myModalContent' class="col-12">
+                <div class="row" style="margin:20px">
+                    <div class="col-12">
+                        <div class="col-md-11"><h2 class="defaultcolor">Biography</h2></div>
+                        <div class="col-md-1 pointer">
+                            <i class="fa fa-window-close" id="modalClose" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </div>
+                <div id="modaltxt" class="row" style="margin:20px">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+
+    $(document).ready(function () {
+        processNoScroll();
+    });
+
+    function abstractModal(data) {
+
+        var options = { "backdrop": "static", keyboard: true };
+        console.log($('#' + data).html());
+        $('#modaltxt').html($('#' + data).html());
+        $('#myModal').modal(options);
+        $('#myModal').modal('show');
+
+    }
+
+    $('.modal').click(function (e) {
+        e.stopPropagation();
+    });
+    $('#modalClose').click(function () {
+        $('.modal').modal('hide');
+    });
+
+
+</script>

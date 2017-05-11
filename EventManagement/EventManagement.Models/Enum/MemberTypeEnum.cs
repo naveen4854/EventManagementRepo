@@ -11,5 +11,6 @@ namespace EventManagement.DataModels.Enum
         public const string OCM = "OCM";
         public const string Chair = "Chair";
         public const string SA = "Scientific Advisor";
+        public const string KeynoteSpeaker = "Keynote Speaker";
     }
 }

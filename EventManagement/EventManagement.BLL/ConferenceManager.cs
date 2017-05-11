@@ -123,14 +123,14 @@ namespace EventManagement.BLL
             return confOperations.AddConference(obj);
         }
 
-        public ConferenceDTO GetConferenceTeam(int id)
+        public IEnumerable<TeamMemberDTO> GetConferenceOCM(int id)
         {
-            var conf = confOperations.GetConferenceTeam(id);
-            foreach (var team in conf.Team)
+            var confTeam = confOperations.GetConferenceOCM(id);
+            foreach (var team in confTeam)
             {
                 team.ImageUrl = Utilities.ProcessDefaultImage(team.ImageUrl, "~/Content/images/confteam/");
             }
-            return conf;
+            return confTeam;
         }
 
         public ConferenceDTO GetAllConferenceTeam(int id)
@@ -401,6 +401,16 @@ namespace EventManagement.BLL
         public int RegisterForConference(PurchaseDTO obj)
         {
             return confOperations.RegisterForConference(obj);
+        }
+
+        public object GetConferenceKeynoteSpeakers(int id)
+        {
+            var confteam = confOperations.GetConferenceKeynoteSpeakers(id);
+            foreach (var team in confteam)
+            {
+                team.ImageUrl = Utilities.ProcessDefaultImage(team.ImageUrl, "~/Content/images/confteam/");
+            }
+            return confteam;
         }
     }
 }

@@ -605,7 +605,7 @@ namespace EventManagement.DAL.Operations
                 Name = obj.Name,
                 Biography = obj.Biography,
                 Chair = obj.isChair,
-                ImageUrl = obj.ImageUrl,
+                ImageUrl = obj.ImageUrl ?? "",
                 Info = obj.Info,
                 FK_ConferenceId = obj.ConferenceId,
                 FK_MemberType = obj.MemberTypeId
@@ -726,9 +726,9 @@ namespace EventManagement.DAL.Operations
             };
         }
 
-        public ConferenceDTO GetConferenceTeam(int id)
+        public IEnumerable<TeamMemberDTO> GetConferenceKeynoteSpeakers(int id)
         {
-            var conf = _entities.ConferenceTeams.Where(q => q.FK_ConferenceId == id && q.MemberType.Type == MemberTypeEnum.OCM).Select(q => new TeamMemberDTO
+            var confTeam = _entities.ConferenceTeams.Where(q => q.FK_ConferenceId == id && q.MemberType.Type == MemberTypeEnum.KeynoteSpeaker).Select(q => new TeamMemberDTO
             {
                 Id = q.Id,
                 ConferenceId = q.FK_ConferenceId,
@@ -739,15 +739,12 @@ namespace EventManagement.DAL.Operations
                 ImageUrl = q.ImageUrl,
                 MemberTypeId = q.FK_MemberType
             }).ToList();
-            return new ConferenceDTO
-            {
-                Team = conf
-            };
+            return confTeam;
         }
 
-        public ConferenceDTO GetAllConferenceTeam(int id)
+        public IEnumerable<TeamMemberDTO> GetConferenceOCM(int id)
         {
-            var conf = _entities.ConferenceTeams.Where(q => q.FK_ConferenceId == id && !(q.MemberType.Type == MemberTypeEnum.SA)).Select(q => new TeamMemberDTO
+            var confTeam = _entities.ConferenceTeams.Where(q => q.FK_ConferenceId == id && q.MemberType.Type == MemberTypeEnum.OCM).Select(q => new TeamMemberDTO
             {
                 Id = q.Id,
                 ConferenceId = q.FK_ConferenceId,
@@ -757,6 +754,23 @@ namespace EventManagement.DAL.Operations
                 Biography = q.Biography,
                 ImageUrl = q.ImageUrl,
                 MemberTypeId = q.FK_MemberType
+            }).ToList();
+            return confTeam;
+        }
+
+        public ConferenceDTO GetAllConferenceTeam(int id)
+        {
+            var conf = _entities.ConferenceTeams.Where(q => q.FK_ConferenceId == id).Select(q => new TeamMemberDTO
+            {
+                Id = q.Id,
+                ConferenceId = q.FK_ConferenceId,
+                Name = q.Name,
+                Info = q.Info,
+                isChair = q.Chair,
+                Biography = q.Biography,
+                ImageUrl = q.ImageUrl,
+                MemberTypeId = q.FK_MemberType,
+                MemberTypeDesc = q.MemberType.Description
             }).ToList();
             return new ConferenceDTO
             {

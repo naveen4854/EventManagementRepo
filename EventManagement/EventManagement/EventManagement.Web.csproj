@@ -340,7 +340,7 @@
     <Content Include="Views\Shared\Layouts\_ConferenceLayout.cshtml" />
     <Content Include="Views\Conference\Home.cshtml" />
     <Content Include="Views\Conference\PartialHome.cshtml" />
-    <Content Include="Views\Conference\Team.cshtml" />
+    <Content Include="Views\Conference\OrganisingCommitte.cshtml" />
     <Content Include="Views\Conference\Chair.cshtml" />
     <Content Include="Views\Conference\PartialVenue.cshtml" />
     <Content Include="Views\Conference\Program.cshtml" />
@@ -371,7 +371,7 @@
     <Content Include="Views\CMS\NewImage.cshtml" />
     <Content Include="Views\CMS\AllImages.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Conference\PartialTeam.cshtml" />
+    <Content Include="Views\Conference\PartialOCM.cshtml" />
     <Content Include="Views\CMS\AllTeamMembers.cshtml" />
     <Content Include="Views\CMS\NewTeamMember.cshtml" />
     <Content Include="Views\CMS\TeamMember.cshtml" />
@@ -400,6 +400,8 @@
     <Content Include="Views\Conference\RegistrationCancel.cshtml" />
     <Content Include="Views\Conference\RegistrationFail.cshtml" />
     <Content Include="Views\Conference\RegistrationSuccess.cshtml" />
+    <Content Include="Views\Conference\KeynoteSpeakers.cshtml" />
+    <Content Include="Views\Conference\PartialKeynoteSpeakers.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

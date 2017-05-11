@@ -36,8 +36,12 @@
         </div>
     </section>
 
-    <section id="team">
-        @{ Html.RenderAction("PartialTeam", "Conference", new { id = Model.Id }); }
+    <section id="keynotespeakers">
+        @{ Html.RenderAction("PartialKeynoteSpeakers", "Conference", new { id = Model.Id }); }
+    </section>
+
+    <section id="OCM">
+        @{ Html.RenderAction("PartialOCM", "Conference", new { id = Model.Id }); }
     </section>
 
     <section id="programSchedule">
