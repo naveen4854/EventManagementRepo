@@ -961,6 +961,8 @@ h2 {
 }
 
 #confHome .Intro {
+    margin: 10px 0px;
+    padding: 10px;
     bottom: 25%;
     background-color: rgba(0, 0, 0, 0.2);
 }
@@ -1547,9 +1549,11 @@ li.track {
 }
 
 @keyframes spinner {
-  to {transform: rotate(360deg);}
+    to {
+        transform: rotate(360deg);
+    }
 }
- 
+
 .spinner {
     position: absolute;
     left: 50%;
@@ -1607,8 +1611,9 @@ li.track {
         transform: rotate(359deg);
     }
 }
+
 .noTransform {
-    text-transform : none !important;
+    text-transform: none !important;
 }
 
 .biography p {
@@ -1618,3 +1623,47 @@ li.track {
     font-family: "Open Sans",Arial,sans-serif;
     text-align: center;
 }
+
+.shadow {
+    color: #fff;
+    font-family: Arvo;
+    font-weight: bold;
+    text-shadow: -3px -3px 0 #222, 3px -3px 0 #222, -3px 3px 0 #222, 3px 3px 0 #222, 4px 4px 0 #fff, 5px 5px 0 #fff, 6px 6px 0 #fff, 7px 7px 0 #fff;
+    line-height: 0.8em;
+    letter-spacing: 0.1em;
+    transform: scaleY(0.7);
+    -webkit-transform: scaleY(0.7);
+    -moz-transform: scaleY(0.7);
+    margin: 0;
+    text-align: center;
+}
+
+.card {
+    padding: 3%;
+    background: white;
+    margin: auto;
+    transition: .3s ease;
+    box-shadow: 0 4px 20px rgba(0,0,0,.3);
+}
+
+    .card:hover {
+        box-shadow: 0 5px 20px rgba(0,0,0,.8);
+    }
+
+        .card:hover .card-content {
+            background-position: -100% 0;
+        }
+
+.card-content {
+    background: linear-gradient(to right, rgba(255,255,255,0) 50%, rgba(27,123,152,.3) 50%);
+    background-size: 200%;
+    background-position: 0 0;
+    /*display: inline;*/
+    transition: .5s ease-in-out;
+    font-family: raleway, arial, sans-serif !important;
+}
+
+    .card-content a {
+        color: white;
+        text-decoration: none;
+    }

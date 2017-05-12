@@ -145,6 +145,7 @@
   <ItemGroup>
     <Content Include="App_Readme\Elmah.txt" />
     <Content Include="Content\css\animate.css" />
+    <Content Include="Content\css\aos.css" />
     <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\css\datepicker.css" />
     <Content Include="Content\css\font-awesome.css" />
@@ -238,6 +239,8 @@
     <Content Include="Content\images\venue\v4.jpg" />
     <Content Include="Content\images\venue\v5.jpg" />
     <Content Include="Content\images\watch.png" />
+    <Content Include="Content\js\animate.js" />
+    <Content Include="Content\js\aos.js" />
     <Content Include="Content\js\bootstrap-datepicker.js" />
     <Content Include="Content\js\bootstrap.min.js" />
     <Content Include="Content\js\coundown-timer.js" />
