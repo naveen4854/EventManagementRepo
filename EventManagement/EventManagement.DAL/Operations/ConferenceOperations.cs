@@ -453,7 +453,8 @@ namespace EventManagement.DAL.Operations
                 FK_RegTypeId = obj.RegTypeId,
                 TotalPrice = obj.Amount,
                 Description = obj.ItemDescription,
-                Address = obj.Address
+                Address = obj.Address,
+                Reg_Desc = obj.RegDescription ?? "Normal Reg"
             };
             var id = -1;
             using (var entities = new EventManagementEntities())

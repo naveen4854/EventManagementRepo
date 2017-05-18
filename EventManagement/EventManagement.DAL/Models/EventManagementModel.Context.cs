@@ -45,7 +45,7 @@ namespace EventManagement.DAL.Models
         public virtual DbSet<Venue> Venues { get; set; }
         public virtual DbSet<Conference_RegClass_Mapping> Conference_RegClass_Mapping { get; set; }
         public virtual DbSet<ELMAH_Error> ELMAH_Error { get; set; }
-        public virtual DbSet<Registrations_Log> Registrations_Log { get; set; }
         public virtual DbSet<Country> Countries { get; set; }
+        public virtual DbSet<Registrations_Log> Registrations_Log { get; set; }
     }
 }

@@ -1651,7 +1651,7 @@ li.track {
     }
 
         .card:hover .card-content {
-            background-position: -100% 0;
+            /*background-position: -100% 0;*/
         }
 
 .card-content {

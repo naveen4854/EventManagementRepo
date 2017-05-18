@@ -150,7 +150,7 @@
                 url: url,
                 data: data,
                 success: function (response) {
-                    spinner(false);
+                    toastr.info('Abstract Sucessfully Submitted');
                     if(response.Url == undefined)
                         toastr.info('Something went wrong!!')
                     else

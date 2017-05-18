@@ -7,8 +7,8 @@ namespace EventManagement.DataModels
     public class PurchaseDTO
     {
         public int RegId { get; set; }
+        [Required(ErrorMessage = "Please select a conference")]
         public int ConferenceId { get; set; }
-
         [Required(ErrorMessage = "You must provide Name")]
         public string Name { get; set; }
         [Required(ErrorMessage = "You must provide Address")]
@@ -26,17 +26,23 @@ namespace EventManagement.DataModels
         [Required(ErrorMessage = "You must select a Country")]
         public int CountryId { get; set; }
         [Display(Name = "Registration Type Id")]
-        public int RegTypeId { get; set; }
+        public int? RegTypeId { get; set; }
         [Display(Name = "Pricing Type Id")]
-        public int RegClassId { get; set; }
+        public int? RegClassId { get; set; }
         [Display(Name = "Accommodation")]
         public int AccId { get; set; }
         [Display(Name = "Occupancy for")]
         public int OccId { get; set; }
         [Display(Name = "Accompaning Persons")]
         public int AccompanyId { get; set; }
+
+        [Required(ErrorMessage = "You must enter the Amount")]
         public double Amount { get; set; }
         public string ItemDescription { get; set; }
+
+        [Required(ErrorMessage = "You must describe the registration")]
+        [Display(Name = "Describe the registration for")]
+        public string RegDescription { get; set; }
 
         [Display(Name = "Accept Terms and Conditions")]
         [MustBeTrue(ErrorMessage = "Terms and Conditions havent been accepted")]

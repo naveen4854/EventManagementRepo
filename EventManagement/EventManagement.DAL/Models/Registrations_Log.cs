@@ -22,15 +22,16 @@ namespace EventManagement.DAL.Models
         public int FK_CountryId { get; set; }
         public string Address { get; set; }
         public int FK_ConferenceId { get; set; }
-        public int FK_RegTypeId { get; set; }
-        public int FK_RegClassId { get; set; }
+        public Nullable<int> FK_RegTypeId { get; set; }
+        public Nullable<int> FK_RegClassId { get; set; }
         public int FK_StatusId { get; set; }
         public double TotalPrice { get; set; }
         public string Description { get; set; }
+        public string Reg_Desc { get; set; }
     
         public virtual Conference Conference { get; set; }
+        public virtual Country Country { get; set; }
         public virtual MST_RegistrationClass MST_RegistrationClass { get; set; }
         public virtual MST_RegistrationType MST_RegistrationType { get; set; }
-        public virtual Country Country { get; set; }
     }
 }

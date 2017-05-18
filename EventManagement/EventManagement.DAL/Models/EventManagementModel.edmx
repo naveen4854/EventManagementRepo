@@ -207,11 +207,12 @@
           <Property Name="FK_CountryId" Type="int" Nullable="false" />
           <Property Name="Address" Type="varchar(max)" Nullable="false" />
           <Property Name="FK_ConferenceId" Type="int" Nullable="false" />
-          <Property Name="FK_RegTypeId" Type="int" Nullable="false" />
-          <Property Name="FK_RegClassId" Type="int" Nullable="false" />
+          <Property Name="FK_RegTypeId" Type="int" />
+          <Property Name="FK_RegClassId" Type="int" />
           <Property Name="FK_StatusId" Type="int" Nullable="false" />
           <Property Name="TotalPrice" Type="float" Nullable="false" />
           <Property Name="Description" Type="varchar(max)" />
+          <Property Name="Reg_Desc" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="Title">
           <Key>
@@ -506,7 +507,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Registrations_Log_MST_RegistrationClass">
-          <End Role="MST_RegistrationClass" Type="Self.MST_RegistrationClass" Multiplicity="1" />
+          <End Role="MST_RegistrationClass" Type="Self.MST_RegistrationClass" Multiplicity="0..1" />
           <End Role="Registrations_Log" Type="Self.Registrations_Log" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="MST_RegistrationClass">
@@ -518,7 +519,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Registrations_Log_MST_RegistrationType">
-          <End Role="MST_RegistrationType" Type="Self.MST_RegistrationType" Multiplicity="1" />
+          <End Role="MST_RegistrationType" Type="Self.MST_RegistrationType" Multiplicity="0..1" />
           <End Role="Registrations_Log" Type="Self.Registrations_Log" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="MST_RegistrationType">
@@ -770,9 +771,18 @@
             <End Role="Conference_RegClass_Mapping" EntitySet="Conference_RegClass_Mapping" />
           </AssociationSet>
           <EntitySet Name="ELMAH_Error" EntityType="EventManagementModel.ELMAH_Error" />
+          <EntitySet Name="Countries" EntityType="EventManagementModel.Country" />
+          <AssociationSet Name="FK_AbstractsSubmitted_Country" Association="EventManagementModel.FK_AbstractsSubmitted_Country">
+            <End Role="Country" EntitySet="Countries" />
+            <End Role="AbstractsSubmitted" EntitySet="AbstractsSubmitteds" />
+          </AssociationSet>
           <EntitySet Name="Registrations_Log" EntityType="EventManagementModel.Registrations_Log" />
           <AssociationSet Name="FK_Registrations_Log_Conference" Association="EventManagementModel.FK_Registrations_Log_Conference">
             <End Role="Conference" EntitySet="Conferences" />
+            <End Role="Registrations_Log" EntitySet="Registrations_Log" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Registrations_Log_Country" Association="EventManagementModel.FK_Registrations_Log_Country">
+            <End Role="Country" EntitySet="Countries" />
             <End Role="Registrations_Log" EntitySet="Registrations_Log" />
           </AssociationSet>
           <AssociationSet Name="FK_Registrations_Log_MST_RegistrationClass" Association="EventManagementModel.FK_Registrations_Log_MST_RegistrationClass">
@@ -781,15 +791,6 @@
           </AssociationSet>
           <AssociationSet Name="FK_Registrations_Log_MST_RegistrationType" Association="EventManagementModel.FK_Registrations_Log_MST_RegistrationType">
             <End Role="MST_RegistrationType" EntitySet="MST_RegistrationType" />
-            <End Role="Registrations_Log" EntitySet="Registrations_Log" />
-          </AssociationSet>
-          <EntitySet Name="Countries" EntityType="EventManagementModel.Country" />
-          <AssociationSet Name="FK_AbstractsSubmitted_Country" Association="EventManagementModel.FK_AbstractsSubmitted_Country">
-            <End Role="Country" EntitySet="Countries" />
-            <End Role="AbstractsSubmitted" EntitySet="AbstractsSubmitteds" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Registrations_Log_Country" Association="EventManagementModel.FK_Registrations_Log_Country">
-            <End Role="Country" EntitySet="Countries" />
             <End Role="Registrations_Log" EntitySet="Registrations_Log" />
           </AssociationSet>
           </EntityContainer>
@@ -1287,64 +1288,6 @@
           <Property Name="Sequence" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="AllXml" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="Registrations_Log">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SubmittedBy" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="EmailId" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Telephone" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="Organisation" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="FK_CountryId" Type="Int32" Nullable="false" />
-          <Property Name="Address" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="FK_ConferenceId" Type="Int32" Nullable="false" />
-          <Property Name="FK_RegTypeId" Type="Int32" Nullable="false" />
-          <Property Name="FK_RegClassId" Type="Int32" Nullable="false" />
-          <Property Name="FK_StatusId" Type="Int32" Nullable="false" />
-          <Property Name="TotalPrice" Type="Double" Nullable="false" />
-          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Conference" Relationship="EventManagementModel.FK_Registrations_Log_Conference" FromRole="Registrations_Log" ToRole="Conference" />
-          <NavigationProperty Name="MST_RegistrationClass" Relationship="EventManagementModel.FK_Registrations_Log_MST_RegistrationClass" FromRole="Registrations_Log" ToRole="MST_RegistrationClass" />
-          <NavigationProperty Name="MST_RegistrationType" Relationship="EventManagementModel.FK_Registrations_Log_MST_RegistrationType" FromRole="Registrations_Log" ToRole="MST_RegistrationType" />
-          <NavigationProperty Name="Country" Relationship="EventManagementModel.FK_Registrations_Log_Country" FromRole="Registrations_Log" ToRole="Country" />
-        </EntityType>
-        <Association Name="FK_Registrations_Log_Conference">
-          <End Type="EventManagementModel.Conference" Role="Conference" Multiplicity="1" />
-          <End Type="EventManagementModel.Registrations_Log" Role="Registrations_Log" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Conference">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Registrations_Log">
-              <PropertyRef Name="FK_ConferenceId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Registrations_Log_MST_RegistrationClass">
-          <End Type="EventManagementModel.MST_RegistrationClass" Role="MST_RegistrationClass" Multiplicity="1" />
-          <End Type="EventManagementModel.Registrations_Log" Role="Registrations_Log" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MST_RegistrationClass">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Registrations_Log">
-              <PropertyRef Name="FK_RegClassId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Registrations_Log_MST_RegistrationType">
-          <End Type="EventManagementModel.MST_RegistrationType" Role="MST_RegistrationType" Multiplicity="1" />
-          <End Type="EventManagementModel.Registrations_Log" Role="Registrations_Log" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MST_RegistrationType">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Registrations_Log">
-              <PropertyRef Name="FK_RegTypeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="Country">
           <Key>
             <PropertyRef Name="Id" />
@@ -1367,6 +1310,41 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Registrations_Log">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SubmittedBy" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="EmailId" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Telephone" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Organisation" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FK_CountryId" Type="Int32" Nullable="false" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FK_ConferenceId" Type="Int32" Nullable="false" />
+          <Property Name="FK_RegTypeId" Type="Int32" />
+          <Property Name="FK_RegClassId" Type="Int32" />
+          <Property Name="FK_StatusId" Type="Int32" Nullable="false" />
+          <Property Name="TotalPrice" Type="Double" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Reg_Desc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Conference" Relationship="EventManagementModel.FK_Registrations_Log_Conference" FromRole="Registrations_Log" ToRole="Conference" />
+          <NavigationProperty Name="Country" Relationship="EventManagementModel.FK_Registrations_Log_Country" FromRole="Registrations_Log" ToRole="Country" />
+          <NavigationProperty Name="MST_RegistrationClass" Relationship="EventManagementModel.FK_Registrations_Log_MST_RegistrationClass" FromRole="Registrations_Log" ToRole="MST_RegistrationClass" />
+          <NavigationProperty Name="MST_RegistrationType" Relationship="EventManagementModel.FK_Registrations_Log_MST_RegistrationType" FromRole="Registrations_Log" ToRole="MST_RegistrationType" />
+        </EntityType>
+        <Association Name="FK_Registrations_Log_Conference">
+          <End Type="EventManagementModel.Conference" Role="Conference" Multiplicity="1" />
+          <End Type="EventManagementModel.Registrations_Log" Role="Registrations_Log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Conference">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Registrations_Log">
+              <PropertyRef Name="FK_ConferenceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Registrations_Log_Country">
           <End Type="EventManagementModel.Country" Role="Country" Multiplicity="1" />
           <End Type="EventManagementModel.Registrations_Log" Role="Registrations_Log" Multiplicity="*" />
@@ -1376,6 +1354,30 @@
             </Principal>
             <Dependent Role="Registrations_Log">
               <PropertyRef Name="FK_CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Registrations_Log_MST_RegistrationClass">
+          <End Type="EventManagementModel.MST_RegistrationClass" Role="MST_RegistrationClass" Multiplicity="0..1" />
+          <End Type="EventManagementModel.Registrations_Log" Role="Registrations_Log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MST_RegistrationClass">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Registrations_Log">
+              <PropertyRef Name="FK_RegClassId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Registrations_Log_MST_RegistrationType">
+          <End Type="EventManagementModel.MST_RegistrationType" Role="MST_RegistrationType" Multiplicity="0..1" />
+          <End Type="EventManagementModel.Registrations_Log" Role="Registrations_Log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MST_RegistrationType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Registrations_Log">
+              <PropertyRef Name="FK_RegTypeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1615,9 +1617,19 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Countries">
+            <EntityTypeMapping TypeName="EventManagementModel.Country">
+              <MappingFragment StoreEntitySet="Country">
+                <ScalarProperty Name="CallingCode" ColumnName="CallingCode" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Registrations_Log">
             <EntityTypeMapping TypeName="EventManagementModel.Registrations_Log">
               <MappingFragment StoreEntitySet="Registrations_Log">
+                <ScalarProperty Name="Reg_Desc" ColumnName="Reg_Desc" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
                 <ScalarProperty Name="FK_StatusId" ColumnName="FK_StatusId" />
@@ -1630,15 +1642,6 @@
                 <ScalarProperty Name="Telephone" ColumnName="Telephone" />
                 <ScalarProperty Name="EmailId" ColumnName="EmailId" />
                 <ScalarProperty Name="SubmittedBy" ColumnName="SubmittedBy" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Countries">
-            <EntityTypeMapping TypeName="EventManagementModel.Country">
-              <MappingFragment StoreEntitySet="Country">
-                <ScalarProperty Name="CallingCode" ColumnName="CallingCode" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

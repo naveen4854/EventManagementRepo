@@ -69,5 +69,13 @@ namespace EventManagement.Controllers
         {
             return View();
         }
+
+        [Route("Conference/Register")]
+        public ActionResult DiscountReg()
+        {
+            ViewBag.Conferences = _confManager.GetConferences();
+            ViewBag.Countries = _confManager.GetCountries();
+            return View();
+        }
     }
 }
