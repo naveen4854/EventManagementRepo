@@ -77,6 +77,24 @@ namespace EventManagement.DAL.Operations
             return true;
         }
 
+        public void UpdateRegStatus(int regId, RegStatusEnum status)
+        {
+            Registrations_Log reglog;
+            using (var entities = new EventManagementEntities())
+            {
+                reglog = entities.Registrations_Log.Where(q => q.Id == regId).FirstOrDefault();
+            }
+            if (reglog != null)
+            {
+                reglog.FK_StatusId = (int)status;
+            }
+            using (var entitiesX = new EventManagementEntities())
+            {
+                entitiesX.Entry(reglog).State = EntityState.Modified;
+                entitiesX.SaveChanges();
+            }
+        }
+
         public CountryModel GetCountryDetails(int id)
         {
             var country = _entities.Countries.FirstOrDefault(q => q.Id == id);
@@ -454,7 +472,8 @@ namespace EventManagement.DAL.Operations
                 TotalPrice = obj.Amount,
                 Description = obj.ItemDescription,
                 Address = obj.Address,
-                Reg_Desc = obj.RegDescription ?? "Normal Reg"
+                Reg_Desc = obj.RegDescription ?? "Normal Reg",
+                FK_StatusId = (int)RegStatusEnum.Start
             };
             var id = -1;
             using (var entities = new EventManagementEntities())

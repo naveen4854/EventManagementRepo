@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using EventManagement.BLL.Helpers;
+using EventManagement.DataModels.Enum;
 
 namespace EventManagement.BLL
 {
@@ -66,6 +67,11 @@ namespace EventManagement.BLL
         {
             country.CallingCode = country.CallingCodes.Length > 0 ? country.CallingCodes[0] : "0";
             confOperations.AddCountry(country);
+        }
+
+        public void UpdateRegStatus(int regId, RegStatusEnum status)
+        {
+            confOperations.UpdateRegStatus(regId, status);
         }
 
         public CountryModel GetCountryDetails(int id)

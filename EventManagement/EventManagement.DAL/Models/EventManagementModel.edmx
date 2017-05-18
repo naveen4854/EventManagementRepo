@@ -171,6 +171,14 @@
           <Property Name="Name" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="MST_Status">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Value" Type="varchar(max)" Nullable="false" />
+          <Property Name="Description" Type="varchar(max)" />
+        </EntityType>
         <EntityType Name="Pricing">
           <Key>
             <PropertyRef Name="Id" />
@@ -530,6 +538,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Registrations_Log_MST_Status">
+          <End Role="MST_Status" Type="Self.MST_Status" Multiplicity="1" />
+          <End Role="Registrations_Log" Type="Self.Registrations_Log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MST_Status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Registrations_Log">
+              <PropertyRef Name="FK_StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Track_Conference">
           <End Role="Conference" Type="Self.Conference" Multiplicity="1" />
           <End Role="Track" Type="Self.Track" Multiplicity="*" />
@@ -559,6 +579,7 @@
           <EntitySet Name="MST_Occupancy" EntityType="Self.MST_Occupancy" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MST_RegistrationClass" EntityType="Self.MST_RegistrationClass" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MST_RegistrationType" EntityType="Self.MST_RegistrationType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MST_Status" EntityType="Self.MST_Status" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Pricing" EntityType="Self.Pricing" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Program" EntityType="Self.Program" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Registrations_Log" EntityType="Self.Registrations_Log" Schema="dbo" store:Type="Tables" />
@@ -659,6 +680,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_Registrations_Log_MST_RegistrationType" Association="Self.FK_Registrations_Log_MST_RegistrationType">
             <End Role="MST_RegistrationType" EntitySet="MST_RegistrationType" />
+            <End Role="Registrations_Log" EntitySet="Registrations_Log" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Registrations_Log_MST_Status" Association="Self.FK_Registrations_Log_MST_Status">
+            <End Role="MST_Status" EntitySet="MST_Status" />
             <End Role="Registrations_Log" EntitySet="Registrations_Log" />
           </AssociationSet>
           <AssociationSet Name="FK_Track_Conference" Association="Self.FK_Track_Conference">
@@ -791,6 +816,11 @@
           </AssociationSet>
           <AssociationSet Name="FK_Registrations_Log_MST_RegistrationType" Association="EventManagementModel.FK_Registrations_Log_MST_RegistrationType">
             <End Role="MST_RegistrationType" EntitySet="MST_RegistrationType" />
+            <End Role="Registrations_Log" EntitySet="Registrations_Log" />
+          </AssociationSet>
+          <EntitySet Name="MST_Status" EntityType="EventManagementModel.MST_Status" />
+          <AssociationSet Name="FK_Registrations_Log_MST_Status" Association="EventManagementModel.FK_Registrations_Log_MST_Status">
+            <End Role="MST_Status" EntitySet="MST_Status" />
             <End Role="Registrations_Log" EntitySet="Registrations_Log" />
           </AssociationSet>
           </EntityContainer>
@@ -1332,6 +1362,7 @@
           <NavigationProperty Name="Country" Relationship="EventManagementModel.FK_Registrations_Log_Country" FromRole="Registrations_Log" ToRole="Country" />
           <NavigationProperty Name="MST_RegistrationClass" Relationship="EventManagementModel.FK_Registrations_Log_MST_RegistrationClass" FromRole="Registrations_Log" ToRole="MST_RegistrationClass" />
           <NavigationProperty Name="MST_RegistrationType" Relationship="EventManagementModel.FK_Registrations_Log_MST_RegistrationType" FromRole="Registrations_Log" ToRole="MST_RegistrationType" />
+          <NavigationProperty Name="MST_Status" Relationship="EventManagementModel.FK_Registrations_Log_MST_Status" FromRole="Registrations_Log" ToRole="MST_Status" />
         </EntityType>
         <Association Name="FK_Registrations_Log_Conference">
           <End Type="EventManagementModel.Conference" Role="Conference" Multiplicity="1" />
@@ -1378,6 +1409,27 @@
             </Principal>
             <Dependent Role="Registrations_Log">
               <PropertyRef Name="FK_RegTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="MST_Status">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Value" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Registrations_Log" Relationship="EventManagementModel.FK_Registrations_Log_MST_Status" FromRole="MST_Status" ToRole="Registrations_Log" />
+        </EntityType>
+        <Association Name="FK_Registrations_Log_MST_Status">
+          <End Type="EventManagementModel.MST_Status" Role="MST_Status" Multiplicity="1" />
+          <End Type="EventManagementModel.Registrations_Log" Role="Registrations_Log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MST_Status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Registrations_Log">
+              <PropertyRef Name="FK_StatusId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1642,6 +1694,15 @@
                 <ScalarProperty Name="Telephone" ColumnName="Telephone" />
                 <ScalarProperty Name="EmailId" ColumnName="EmailId" />
                 <ScalarProperty Name="SubmittedBy" ColumnName="SubmittedBy" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MST_Status">
+            <EntityTypeMapping TypeName="EventManagementModel.MST_Status">
+              <MappingFragment StoreEntitySet="MST_Status">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -195,6 +195,7 @@
             data.append("RegTypeId", null);
             data.append("RegClassId",null);
             data.append("ItemDescription", $("#ItemDescription").val());
+            data.append("RegDescription", $("#RegDescription").val());
 
             var url = "@Url.Content("~/Conference/RegistrationSubmit")";
 
@@ -216,6 +217,7 @@
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
                     toastr.info('Something went wrong!!')
+                    spinner(false);
                 },
             });
         }else{

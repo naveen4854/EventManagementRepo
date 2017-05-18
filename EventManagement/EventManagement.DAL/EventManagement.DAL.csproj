@@ -114,6 +114,9 @@
     <Compile Include="Models\MST_RegistrationType.cs">
       <DependentUpon>EventManagementModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\MST_Status.cs">
+      <DependentUpon>EventManagementModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Pricing.cs">
       <DependentUpon>EventManagementModel.tt</DependentUpon>
     </Compile>

@@ -33,5 +33,6 @@ namespace EventManagement.DAL.Models
         public virtual Country Country { get; set; }
         public virtual MST_RegistrationClass MST_RegistrationClass { get; set; }
         public virtual MST_RegistrationType MST_RegistrationType { get; set; }
+        public virtual MST_Status MST_Status { get; set; }
     }
 }

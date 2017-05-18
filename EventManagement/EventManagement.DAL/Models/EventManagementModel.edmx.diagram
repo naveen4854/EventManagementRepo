@@ -39,6 +39,8 @@
         <AssociationConnector Association="EventManagementModel.FK_Registrations_Log_Country" />
         <AssociationConnector Association="EventManagementModel.FK_Registrations_Log_MST_RegistrationClass" />
         <AssociationConnector Association="EventManagementModel.FK_Registrations_Log_MST_RegistrationType" />
+        <EntityTypeShape EntityType="EventManagementModel.MST_Status" Width="1.5" PointX="0.75" PointY="7.875" />
+        <AssociationConnector Association="EventManagementModel.FK_Registrations_Log_MST_Status" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

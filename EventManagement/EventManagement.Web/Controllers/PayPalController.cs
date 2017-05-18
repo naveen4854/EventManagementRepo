@@ -1,5 +1,6 @@
 ﻿using EventManagement.BLL;
 using EventManagement.DataModels;
+using EventManagement.DataModels.Enum;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -51,8 +52,8 @@ namespace EventManagement.Controllers
                 item_name = regDet.ItemDescription,
                 amount = regDet.Amount.ToString()
             };
-
-            return PartialView(paypal);
+            _confManager.UpdateRegStatus(regId, RegStatusEnum.InProgress);
+;            return PartialView(paypal);
         }
     }
 }

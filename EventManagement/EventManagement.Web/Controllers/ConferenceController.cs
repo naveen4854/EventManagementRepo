@@ -1,5 +1,6 @@
 ﻿using EventManagement.BLL;
 using EventManagement.DataModels;
+using EventManagement.DataModels.Enum;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -323,6 +324,7 @@ namespace EventManagement.Controllers
                 throw new ArgumentException("Conference Not Found", "original");
             ViewData["ConferenceId"] = id;
             ViewData["Conferencekey"] = key;
+            _confManager.UpdateRegStatus(regId, RegStatusEnum.Success);
             return View();
         }
 
@@ -336,6 +338,7 @@ namespace EventManagement.Controllers
                 throw new ArgumentException("Conference Not Found", "original");
             ViewData["ConferenceId"] = id;
             ViewData["Conferencekey"] = key;
+            _confManager.UpdateRegStatus(regId, RegStatusEnum.Fail);
             return View();
         }
 
@@ -349,6 +352,7 @@ namespace EventManagement.Controllers
                 throw new ArgumentException("Conference Not Found", "original");
             ViewData["ConferenceId"] = id;
             ViewData["Conferencekey"] = key;
+            _confManager.UpdateRegStatus(regId, RegStatusEnum.Cancelled);
             return View();
         }
 

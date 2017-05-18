@@ -47,5 +47,6 @@ namespace EventManagement.DAL.Models
         public virtual DbSet<ELMAH_Error> ELMAH_Error { get; set; }
         public virtual DbSet<Country> Countries { get; set; }
         public virtual DbSet<Registrations_Log> Registrations_Log { get; set; }
+        public virtual DbSet<MST_Status> MST_Status { get; set; }
     }
 }

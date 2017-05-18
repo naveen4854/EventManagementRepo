@@ -84,6 +84,7 @@
     <Compile Include="AttributeHelpers\FileTypeAttribute.cs" />
     <Compile Include="AttributeHelpers\MaxFileSizeAttribute.cs" />
     <Compile Include="AttributeHelpers\MustBeTrueAttribute.cs" />
+    <Compile Include="Enum\RegStatusEnum.cs" />
     <Compile Include="Extensions\Helper.cs" />
     <Compile Include="LogOnViewModel.cs" />
     <Compile Include="MailData.cs" />
