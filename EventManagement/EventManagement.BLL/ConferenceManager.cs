@@ -387,6 +387,11 @@ namespace EventManagement.BLL
             return SAlst;
         }
 
+        public IEnumerable<RegistrationViewModel> GetRegistrations()
+        {
+            return confOperations.GetRegistrations();
+        }
+
         public bool UpdateProgram(ProgramDTO obj)
         {
             if (obj.ImageUpload != null)

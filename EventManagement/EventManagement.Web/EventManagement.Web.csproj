@@ -519,6 +519,7 @@
     <Content Include="Views\Conference\KeynoteSpeakers.cshtml" />
     <Content Include="Views\Conference\PartialKeynoteSpeakers.cshtml" />
     <Content Include="Views\Home\DiscountReg.cshtml" />
+    <Content Include="Views\CMS\Registrations.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

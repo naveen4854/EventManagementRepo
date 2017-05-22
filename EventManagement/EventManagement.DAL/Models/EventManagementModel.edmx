@@ -221,6 +221,8 @@
           <Property Name="TotalPrice" Type="float" Nullable="false" />
           <Property Name="Description" Type="varchar(max)" />
           <Property Name="Reg_Desc" Type="varchar(max)" />
+          <Property Name="RegDateTime" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedDateTime" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Title">
           <Key>
@@ -1363,6 +1365,8 @@
           <NavigationProperty Name="MST_RegistrationClass" Relationship="EventManagementModel.FK_Registrations_Log_MST_RegistrationClass" FromRole="Registrations_Log" ToRole="MST_RegistrationClass" />
           <NavigationProperty Name="MST_RegistrationType" Relationship="EventManagementModel.FK_Registrations_Log_MST_RegistrationType" FromRole="Registrations_Log" ToRole="MST_RegistrationType" />
           <NavigationProperty Name="MST_Status" Relationship="EventManagementModel.FK_Registrations_Log_MST_Status" FromRole="Registrations_Log" ToRole="MST_Status" />
+          <Property Name="RegDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <Association Name="FK_Registrations_Log_Conference">
           <End Type="EventManagementModel.Conference" Role="Conference" Multiplicity="1" />
@@ -1681,6 +1685,8 @@
           <EntitySetMapping Name="Registrations_Log">
             <EntityTypeMapping TypeName="EventManagementModel.Registrations_Log">
               <MappingFragment StoreEntitySet="Registrations_Log">
+                <ScalarProperty Name="UpdatedDateTime" ColumnName="UpdatedDateTime" />
+                <ScalarProperty Name="RegDateTime" ColumnName="RegDateTime" />
                 <ScalarProperty Name="Reg_Desc" ColumnName="Reg_Desc" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />

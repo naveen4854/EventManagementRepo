@@ -28,6 +28,8 @@ namespace EventManagement.DAL.Models
         public double TotalPrice { get; set; }
         public string Description { get; set; }
         public string Reg_Desc { get; set; }
+        public System.DateTime RegDateTime { get; set; }
+        public System.DateTime UpdatedDateTime { get; set; }
     
         public virtual Conference Conference { get; set; }
         public virtual Country Country { get; set; }

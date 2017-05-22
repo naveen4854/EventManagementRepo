@@ -5,7 +5,7 @@
         @*<div class="col-md-1"></div>*@
         <div class="col-12">
             <div id="event-carousel" class="carousel slide" data-interval="false">
-                <h2 class="header white">Our Conferences</h2>
+                <h2 class="header">Our Conferences</h2>
                 <div class="carousel-inner">
                     @for (int i = 0; i <= Model.Count() / 4; i++)
                     {
@@ -14,9 +14,11 @@
                                 @{ var obj = Model.Skip(i * 4).Take(4);}
                                 @foreach (var conf in obj)
                                 {
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-3 ">
                                         <div class="single-event pointer" onclick="redirectConference('@conf.DisplayId')">
-                                            <img class="img-responsive img" src="@Url.Content("~/Content/images/event/confShortImage/" + @conf.ShortImgUrl )" alt="event-image">
+                                            <div class="card">
+                                                <div class="img-wrapper" style="background-image: url('@Url.Content("~/Content/images/event/confShortImage/" + @conf.ShortImgUrl )');"></div>
+                                            </div>
                                             <h4>@conf.Name</h4>
                                             <h5>@conf.ShortDesc</h5>
                                         </div>

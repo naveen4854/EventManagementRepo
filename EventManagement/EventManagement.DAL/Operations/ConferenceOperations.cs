@@ -87,6 +87,7 @@ namespace EventManagement.DAL.Operations
             if (reglog != null)
             {
                 reglog.FK_StatusId = (int)status;
+                reglog.UpdatedDateTime = DateTime.Now;
             }
             using (var entitiesX = new EventManagementEntities())
             {
@@ -412,6 +413,24 @@ namespace EventManagement.DAL.Operations
             return true;
         }
 
+        public IEnumerable<RegistrationViewModel> GetRegistrations()
+        {
+            return _entities.Registrations_Log.Select(q => new RegistrationViewModel
+            {
+                RegId = q.Id,
+                Address = q.Address,
+                Amount = q.TotalPrice,
+                Country = q.Country.Name,
+                PhoneNumber= q.Telephone,
+                EmailId = q.EmailId,
+                ConferenceName = q.Conference.Name,
+                Name = q.SubmittedBy,
+                Organization = q.Organisation,
+                RegDateTime = q.RegDateTime,
+                RegStatus = q.MST_Status.Value
+            });
+        }
+
         public ProgramDTO DeleteProgram(int id)
         {
             Program prg;
@@ -473,7 +492,8 @@ namespace EventManagement.DAL.Operations
                 Description = obj.ItemDescription,
                 Address = obj.Address,
                 Reg_Desc = obj.RegDescription ?? "Normal Reg",
-                FK_StatusId = (int)RegStatusEnum.Start
+                FK_StatusId = (int)RegStatusEnum.Start,
+                RegDateTime = DateTime.Now
             };
             var id = -1;
             using (var entities = new EventManagementEntities())

@@ -409,7 +409,7 @@ h2 {
     background-repeat: no-repeat;
     height: 500px;
     overflow: hidden;
-    background-color: rgba(0,0,0,0.4);
+    /*background-color: rgba(0,0,0,0.4);*/
 }
 
 .guitar {
@@ -429,21 +429,18 @@ h2 {
 }
 
 .single-event {
-    margin-bottom: 70px;
+    margin-bottom: 30px;
 }
 
     .single-event:hover h4 {
-        color: white !important;
     }
 
     .single-event:hover h5 {
-        color: white;
         display: block !important;
     }
 
     .single-event h4 {
-        color: #FFFFFF;
-        /*color: #1B7B98;*/
+        color: #1B7B98;
         font-size: 24px;
         font-weight: 400;
         line-height: 26px;
@@ -990,21 +987,14 @@ h2 {
     .fixe;
 }
 
-#home .img {
-    border-radius: 30px;
-    height: 190px;
-    width: 260px;
-    border: 1px solid black;
-    object-fit: cover;
-    /*-webkit-transition: width 2s; /* For Safari 3.1 to 6.0 */
-    transition: width 2s;
-    */;
+#home .img-wrapper {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center center;
+    border: none;
 }
-
-    #home .img:hover {
-        height: 250px;
-        width: 3000px;
-    }
 
 #home #main-slider .item {
     max-height: 100vh;
@@ -1176,6 +1166,7 @@ h2 {
 
 .defaultcolor {
     color: #1B7B98;
+    /*(27,123,152)*/
 }
 
 #loading-img {
@@ -1410,7 +1401,7 @@ li.track {
 }
 
 .fixedBg {
-    background: url('../images/slider/bg11.jpg') top right no-repeat;
+    /*background: url('../images/slider/bg11.jpg') top right no-repeat;*/
     background-attachment: fixed;
     background-size: cover;
 }
@@ -1639,7 +1630,6 @@ li.track {
 }
 
 .card {
-    padding: 3%;
     background: white;
     margin: auto;
     transition: .3s ease;
@@ -1654,6 +1644,10 @@ li.track {
             /*background-position: -100% 0;*/
         }
 
+.card-inner {
+    padding: 3%;
+}
+
 .card-content {
     background: linear-gradient(to right, rgba(255,255,255,0) 50%, rgba(27,123,152,.3) 50%);
     background-size: 200%;
@@ -1666,4 +1660,12 @@ li.track {
     .card-content a {
         color: white;
         text-decoration: none;
+    }
+
+#conferences .card {
+    box-shadow: 0 4px 20px rgba(27,123,152,.3);
+}
+
+    #conferences .card:hover {
+        box-shadow: 0 5px 20px rgba(27,123,152,.8);
     }

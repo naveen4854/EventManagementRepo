@@ -397,5 +397,13 @@ namespace EventManagement.Controllers
         }
         #endregion images
 
+        #region Registration
+        public ActionResult Registrations()
+        {
+            ViewBag.Conferences = _confManager.GetRegistrations();
+            return View();
+        }
+
+        #endregion
     }
 }
