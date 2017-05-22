@@ -354,6 +354,16 @@ namespace EventManagement.BLL
         {
             return confOperations.GetMemberTypes();
         }
+        public IEnumerable<MemberTypeDTO> GetConferenceMemberTypes()
+        {
+
+            return confOperations.GetMemberTypes().Where(q=> !q.IsHome);
+        }
+        public IEnumerable<MemberTypeDTO> GetHomeMemberTypes()
+        {
+
+            return confOperations.GetMemberTypes().Where(q => q.IsHome);
+        }
 
         public TeamMemberDTO DeleteTeamMember(int id)
         {

@@ -385,7 +385,7 @@ namespace EventManagement.DAL.Operations
 
         public IEnumerable<MemberTypeDTO> GetMemberTypes()
         {
-            return _entities.MemberTypes.Select(q => new MemberTypeDTO { Id = q.Id, Name = q.Type, Description = q.Description });
+            return _entities.MemberTypes.Select(q => new MemberTypeDTO { Id = q.Id, Name = q.Type, Description = q.Description , IsHome = q.isHome});
         }
 
         public bool UpdateTeamMember(TeamMemberDTO obj)
@@ -845,7 +845,8 @@ namespace EventManagement.DAL.Operations
                 isChair = q.Chair,
                 Biography = q.Biography,
                 ImageUrl = q.ImageUrl,
-                MemberTypeId = q.FK_MemberType
+                MemberTypeId = q.FK_MemberType,
+                MemberTypeDesc = q.MemberType.Description
             }).ToList();
 
             return team;

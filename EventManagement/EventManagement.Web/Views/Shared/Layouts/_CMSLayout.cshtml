@@ -57,8 +57,15 @@
                             <li class="scroll"><a class="no-scroll" href="@Url.Content("~/CMS/AllConferences/")">Conferences</a></li>
                             <li class="scroll"><a class="no-scroll" href="@Url.Content("~/CMS/AllTracks/")">Tracks</a></li>
                             <li class="scroll"><a class="no-scroll" href="@Url.Content("~/CMS/AllImages/")">Images</a></li>
-                            <li class="scroll"><a class="no-scroll" href="@Url.Content("~/CMS/AllTeamMembers/")">Team Members</a></li>
+                            <li class="dropdown">
+                                <a class="no-scroll pointer">Team Members</a>
+                                <div class="dropdown-content">
+                                    <a class="no-scroll" href="@Url.Content("~/CMS/AllTeamMembers/")">Conference team</a>
+                                    <a class="no-scroll" href="@Url.Content("~/CMS/AllSientificAdvisors/")">Scientific Advisors</a>
+                                </div>
+                            </li>
                             <li class="scroll"><a class="no-scroll" href="@Url.Content("~/CMS/AllPrograms/")">Programs</a></li>
+                            <li class="scroll"><a class="no-scroll" href="@Url.Content("~/CMS/Registrations/")">Registrations</a></li>
                         </ul>
                     </div>
                 </div>

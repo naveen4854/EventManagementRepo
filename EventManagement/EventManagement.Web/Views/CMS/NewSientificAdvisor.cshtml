@@ -18,8 +18,6 @@
     <div class="form-horizontal">
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.MemberTypeId)
-
 
         <div class="form-group">
             @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -40,7 +38,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.MemberTypeId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.MemberTypeId, new SelectList(@ViewBag.MemberTypes, "Id", "Name"), new { @class = "form-control", disabled = "disabled" })
+                @Html.DropDownListFor(model => model.MemberTypeId, new SelectList(@ViewBag.MemberTypes, "Id", "Name"), new { @class = "form-control"})
             </div>
         </div>
 

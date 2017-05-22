@@ -9,6 +9,7 @@ namespace EventManagement.DataModels
 {
     public class RegistrationViewModel
     {
+        [Display(Name ="Id")]
         public int RegId { get; set; }
         public string ConferenceName { get; set; }
         public string Name { get; set; }
@@ -18,8 +19,9 @@ namespace EventManagement.DataModels
         public string EmailId { get; set; }
         public string Country { get; set; }
         public double Amount { get; set; }
-        public string RegDescription { get; set; }
+        [Display(Name ="Status")]
         public string RegStatus { get; set; }
+        [Display(Name ="Date")]
         public DateTime RegDateTime { get; set; }
     }
 }

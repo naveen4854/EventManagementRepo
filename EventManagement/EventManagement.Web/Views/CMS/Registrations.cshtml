@@ -7,14 +7,8 @@
 
 <h2>Registrations</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.RegId)
-        </th>
         <th>
             @Html.DisplayNameFor(model => model.ConferenceName)
         </th>
@@ -40,9 +34,6 @@
             @Html.DisplayNameFor(model => model.Amount)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.RegDescription)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.RegStatus)
         </th>
         <th>
@@ -53,9 +44,6 @@
 
 @foreach (var item in Model) {
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.RegId)
-        </td>
         <td>
             @Html.DisplayFor(modelItem => item.ConferenceName)
         </td>
@@ -81,19 +69,12 @@
             @Html.DisplayFor(modelItem => item.Amount)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.RegDescription)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.RegStatus)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.RegDateTime)
         </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
+       
     </tr>
 }
 

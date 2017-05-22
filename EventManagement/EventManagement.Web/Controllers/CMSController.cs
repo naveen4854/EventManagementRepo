@@ -227,14 +227,14 @@ namespace EventManagement.Controllers
         public ActionResult NewTeamMember()
         {
             ViewBag.Conferences = _confManager.GetConferences();
-            ViewBag.MemberTypes = _confManager.GetMemberTypes().Where(q => !(q.Name == MemberTypeEnum.SA));
+            ViewBag.MemberTypes = _confManager.GetConferenceMemberTypes();
             return View();
         }
 
         public ActionResult TeamMember(int id)
         {
             ViewBag.Conferences = _confManager.GetConferences();
-            ViewBag.MemberTypes = _confManager.GetMemberTypes().Where(q => !(q.Name == MemberTypeEnum.SA));
+            ViewBag.MemberTypes = _confManager.GetConferenceMemberTypes();
             var teamMem = _confManager.GetTeamMember(id);
             return View(teamMem);
         }
@@ -278,15 +278,13 @@ namespace EventManagement.Controllers
         #region SA
         public ActionResult NewSientificAdvisor()
         {
-            ViewBag.MemberTypes = _confManager.GetMemberTypes();
-            var memtype = _confManager.GetMemberTypes();
-            var teamDTO = new TeamMemberDTO { MemberTypeId = memtype.FirstOrDefault(q => q.Name == MemberTypeEnum.SA).Id };
-            return View(teamDTO);
+            ViewBag.MemberTypes = _confManager.GetHomeMemberTypes();
+            return View();
         }
 
         public ActionResult SientificAdvisor(int id)
         {
-            ViewBag.MemberTypes = _confManager.GetMemberTypes();
+            ViewBag.MemberTypes = _confManager.GetHomeMemberTypes();
             var teamMem = _confManager.GetTeamMember(id);
             return View(teamMem);
         }
@@ -400,8 +398,8 @@ namespace EventManagement.Controllers
         #region Registration
         public ActionResult Registrations()
         {
-            ViewBag.Conferences = _confManager.GetRegistrations();
-            return View();
+            var registrations = _confManager.GetRegistrations();
+            return View(registrations);
         }
 
         #endregion
