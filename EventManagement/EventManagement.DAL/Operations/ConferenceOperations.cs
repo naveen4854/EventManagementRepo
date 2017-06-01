@@ -493,7 +493,8 @@ namespace EventManagement.DAL.Operations
                 Address = obj.Address,
                 Reg_Desc = obj.RegDescription ?? "Normal Reg",
                 FK_StatusId = (int)RegStatusEnum.Start,
-                RegDateTime = DateTime.Now
+                RegDateTime = DateTime.Now,
+                UpdatedDateTime = DateTime.Now
             };
             var id = -1;
             using (var entities = new EventManagementEntities())

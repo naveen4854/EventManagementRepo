@@ -11,8 +11,8 @@
                 We believe in Inclusiveness and affirmative actions.
             </p>
         </div>
-        <div class="col-12">
-            <div class="col-md-4 border-container">
+        <div class="col-md-12 col-sm-12" id="outer-container">
+            <div class="col-md-4 col-sm-4 border-container">
                 <div class="card">
                     <div class="card-inner">
                         <p class="q">
@@ -27,7 +27,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 border-container">
+            <div class="col-md-4 col-sm-4 border-container">
                 <div class="card">
                     <div class="card-inner">
                         <p class="q">
@@ -42,7 +42,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 border-container">
+            <div class="col-md-4 col-sm-4 border-container">
                 <div class="card">
                     <div class="card-inner">
                         <p class="q">
@@ -65,3 +65,10 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        var height = $('#outer-container').height();
+        console.log(height);
+        $('.border-container').height(height);
+    });
+</script>
