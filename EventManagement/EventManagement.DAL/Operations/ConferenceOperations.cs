@@ -431,6 +431,21 @@ namespace EventManagement.DAL.Operations
             });
         }
 
+        public IEnumerable<MediaPartnersDTO> GetConferenceMediaPartners(int id)
+        {
+            var mediaPartners = _entities.Conference_MediaPartners.Where(q => q.FK_ConferenceId == id);
+            return mediaPartners.Select(q => new MediaPartnersDTO {
+                Id = q.Id,
+                ConferenceId = q.FK_ConferenceId,
+                Height = q.Height,
+                ImgSrc = q.ImgSrc,
+                MediaName = q.Name,
+                Title = q.Title,
+                WebUrl = q.WebUrl,
+                Width = q.Width
+            });
+        }
+
         public ProgramDTO DeleteProgram(int id)
         {
             Program prg;

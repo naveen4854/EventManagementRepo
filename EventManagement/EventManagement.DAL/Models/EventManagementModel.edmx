@@ -65,6 +65,19 @@
           <Property Name="DisplayId" Type="varchar(max)" Nullable="false" />
           <Property Name="ConfEmail" Type="varchar(max)" />
         </EntityType>
+        <EntityType Name="Conference_MediaPartners">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FK_ConferenceId" Type="int" Nullable="false" />
+          <Property Name="WebUrl" Type="varchar(max)" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ImgSrc" Type="varchar(max)" Nullable="false" />
+          <Property Name="Width" Type="int" Nullable="false" />
+          <Property Name="Height" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Conference_RegClass_Mapping">
           <Key>
             <PropertyRef Name="Id" />
@@ -373,6 +386,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Conference_MediaPartners_Conference">
+          <End Role="Conference" Type="Self.Conference" Multiplicity="1" />
+          <End Role="Conference_MediaPartners" Type="Self.Conference_MediaPartners" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Conference">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Conference_MediaPartners">
+              <PropertyRef Name="FK_ConferenceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Conference_RegClass_Mapping_Conference">
           <End Role="Conference" Type="Self.Conference" Multiplicity="1" />
           <End Role="Conference_RegClass_Mapping" Type="Self.Conference_RegClass_Mapping" Multiplicity="*" />
@@ -571,6 +596,7 @@
           <EntitySet Name="AccompanyPricing" EntityType="Self.AccompanyPricing" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Conference" EntityType="Self.Conference" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Conference_MediaPartners" EntityType="Self.Conference_MediaPartners" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Conference_RegClass_Mapping" EntityType="Self.Conference_RegClass_Mapping" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ConferenceImages" EntityType="Self.ConferenceImages" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ConferenceTeam" EntityType="Self.ConferenceTeam" Schema="dbo" store:Type="Tables" />
@@ -628,6 +654,10 @@
           <AssociationSet Name="FK_AccompanyPricing_MST_Accompany" Association="Self.FK_AccompanyPricing_MST_Accompany">
             <End Role="MST_Accompany" EntitySet="MST_Accompany" />
             <End Role="AccompanyPricing" EntitySet="AccompanyPricing" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Conference_MediaPartners_Conference" Association="Self.FK_Conference_MediaPartners_Conference">
+            <End Role="Conference" EntitySet="Conference" />
+            <End Role="Conference_MediaPartners" EntitySet="Conference_MediaPartners" />
           </AssociationSet>
           <AssociationSet Name="FK_Conference_RegClass_Mapping_Conference" Association="Self.FK_Conference_RegClass_Mapping_Conference">
             <End Role="Conference" EntitySet="Conference" />
@@ -826,6 +856,11 @@
             <End Role="MST_Status" EntitySet="MST_Status" />
             <End Role="Registrations_Log" EntitySet="Registrations_Log" />
           </AssociationSet>
+          <EntitySet Name="Conference_MediaPartners" EntityType="EventManagementModel.Conference_MediaPartners" />
+          <AssociationSet Name="FK_Conference_MediaPartners_Conference" Association="EventManagementModel.FK_Conference_MediaPartners_Conference">
+            <End Role="Conference" EntitySet="Conferences" />
+            <End Role="Conference_MediaPartners" EntitySet="Conference_MediaPartners" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Conference">
           <Key>
@@ -855,6 +890,7 @@
           <NavigationProperty Name="Venue" Relationship="EventManagementModel.FK_Conference_Venue" FromRole="Conference" ToRole="Venue" />
           <NavigationProperty Name="Conference_RegClass_Mapping" Relationship="EventManagementModel.FK_Conference_RegClass_Mapping_Conference" FromRole="Conference" ToRole="Conference_RegClass_Mapping" />
           <NavigationProperty Name="Registrations_Log" Relationship="EventManagementModel.FK_Registrations_Log_Conference" FromRole="Conference" ToRole="Registrations_Log" />
+          <NavigationProperty Name="Conference_MediaPartners" Relationship="EventManagementModel.FK_Conference_MediaPartners_Conference" FromRole="Conference" ToRole="Conference_MediaPartners" />
         </EntityType>
         <EntityType Name="ConferenceImage">
           <Key>
@@ -1439,6 +1475,32 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Conference_MediaPartners">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FK_ConferenceId" Type="Int32" Nullable="false" />
+          <Property Name="WebUrl" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ImgSrc" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Width" Type="Int32" Nullable="false" />
+          <Property Name="Height" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Conference" Relationship="EventManagementModel.FK_Conference_MediaPartners_Conference" FromRole="Conference_MediaPartners" ToRole="Conference" />
+        </EntityType>
+        <Association Name="FK_Conference_MediaPartners_Conference">
+          <End Type="EventManagementModel.Conference" Role="Conference" Multiplicity="1" />
+          <End Type="EventManagementModel.Conference_MediaPartners" Role="Conference_MediaPartners" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Conference">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Conference_MediaPartners">
+              <PropertyRef Name="FK_ConferenceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1712,6 +1774,20 @@
               <MappingFragment StoreEntitySet="MST_Status">
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Conference_MediaPartners">
+            <EntityTypeMapping TypeName="EventManagementModel.Conference_MediaPartners">
+              <MappingFragment StoreEntitySet="Conference_MediaPartners">
+                <ScalarProperty Name="Height" ColumnName="Height" />
+                <ScalarProperty Name="Width" ColumnName="Width" />
+                <ScalarProperty Name="ImgSrc" ColumnName="ImgSrc" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="WebUrl" ColumnName="WebUrl" />
+                <ScalarProperty Name="FK_ConferenceId" ColumnName="FK_ConferenceId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

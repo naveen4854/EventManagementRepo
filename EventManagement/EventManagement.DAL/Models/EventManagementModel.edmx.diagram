@@ -41,6 +41,7 @@
         <AssociationConnector Association="EventManagementModel.FK_Registrations_Log_MST_RegistrationType" />
         <EntityTypeShape EntityType="EventManagementModel.MST_Status" Width="1.5" PointX="0.75" PointY="7.875" />
         <AssociationConnector Association="EventManagementModel.FK_Registrations_Log_MST_Status" />
+        <EntityTypeShape EntityType="EventManagementModel.Conference_MediaPartners" Width="1.5" PointX="13.375" PointY="0.75" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

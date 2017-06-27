@@ -89,6 +89,7 @@
     <Compile Include="LogOnViewModel.cs" />
     <Compile Include="MailData.cs" />
     <Compile Include="MapDTO.cs" />
+    <Compile Include="MediaPartnersDTO.cs" />
     <Compile Include="MemberTypeDTO.cs" />
     <Compile Include="OccupancyDTO.cs" />
     <Compile Include="PayPalModel.cs" />

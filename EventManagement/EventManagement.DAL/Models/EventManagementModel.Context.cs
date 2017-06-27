@@ -48,5 +48,6 @@ namespace EventManagement.DAL.Models
         public virtual DbSet<Country> Countries { get; set; }
         public virtual DbSet<Registrations_Log> Registrations_Log { get; set; }
         public virtual DbSet<MST_Status> MST_Status { get; set; }
+        public virtual DbSet<Conference_MediaPartners> Conference_MediaPartners { get; set; }
     }
 }

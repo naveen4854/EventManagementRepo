@@ -39,7 +39,7 @@ namespace EventManagement.Controllers
             return PartialView(obj);
         }
 
-        [Route("Conference/{key}/OrganisingCommitte")]
+        [Route("Conference/{key}bro/OrganisingCommitte")]
         public ActionResult OrganisingCommitte(string key)
         {
             var id = 0;
@@ -484,6 +484,17 @@ namespace EventManagement.Controllers
             return PartialView(_confManager.GetConferenceKeynoteSpeakers(id));
         }
 
+        [Route("Conference/{key}/MediaPartners")]
+        public ActionResult PartialMediaPartners(string key) {
+            var id = 0;
+            if (!string.IsNullOrEmpty(key))
+                id = _confManager.GetConferenceId(key);
+            if (id == 0)
+                throw new ArgumentException("Conference Not Found", "original");
+            ViewData["ConferenceId"] = id;
+            ViewData["Conferencekey"] = key;
+            return PartialView(_confManager.GetConferenceMediaPartners(id));
+        }
         public string Generatehash512(string text)
         {
 

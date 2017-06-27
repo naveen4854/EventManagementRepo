@@ -1,0 +1,27 @@
+﻿@model IEnumerable<EventManagement.DataModels.MediaPartnersDTO>
+
+<div id="MediaPartners">
+    @{
+        <div class="container">
+            @if (Model.Count() > 0)
+            {
+                <h2 class="header">Our Media Partners / Sponsors</h2>
+                for (int i = 0; i <= Model.Count() / 4; i++)
+                {
+                    <div class="row">
+                        @{
+                            var obj = Model.Skip(i * 4).Take(4);
+                            foreach (var m in obj)
+                            {
+                                <div class="col-md-3 col-sm-3">
+                                    <a href="@m.WebUrl" title="@m.Title" target="_blank"><img src="@Url.Content("~/Content/images/mediapartners/" + @m.ImgSrc)" width="@m.Width" height="@m.Height" alt="CLocate.com"></a>
+                                </div>
+                            }
+                        }
+                    </div>
+                                }
+
+                            }
+        </div>
+    }
+</div>

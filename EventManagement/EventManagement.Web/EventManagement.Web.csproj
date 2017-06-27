@@ -341,6 +341,7 @@
     <Content Include="Content\images\logo1.jpg" />
     <Content Include="Content\images\logo2.jpg" />
     <Content Include="Content\images\map-icon.png" />
+    <Content Include="Content\images\mediapartners\Clocate_logo.png" />
     <Content Include="Content\images\performar-bg.jpg" />
     <Content Include="Content\images\Registration_FlowChart.png" />
     <Content Include="Content\images\slider\bg1.jpg" />
@@ -395,6 +396,7 @@
     <Content Include="Global.asax" />
     <Content Include="scripts\ai.0.22.9-build00167.js" />
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
+    <Content Include="Content\uploads\3f84f11f-fd27-4cf5-89a4-ee7f7d587a43_tio2.docx" />
     <None Include="Properties\PublishProfiles\ftp.pubxml" />
     <None Include="Properties\PublishProfiles\gffdgg.pubxml" />
     <None Include="Properties\PublishProfiles\loll.pubxml" />
@@ -521,6 +523,7 @@
     <Content Include="Views\Conference\PartialKeynoteSpeakers.cshtml" />
     <Content Include="Views\Home\DiscountReg.cshtml" />
     <Content Include="Views\CMS\Registrations.cshtml" />
+    <Content Include="Views\Conference\PartialMediaPartners.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -530,7 +533,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\uploads\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

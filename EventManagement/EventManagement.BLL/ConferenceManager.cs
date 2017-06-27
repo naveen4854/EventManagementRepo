@@ -424,7 +424,7 @@ namespace EventManagement.BLL
             return confOperations.RegisterForConference(obj);
         }
 
-        public object GetConferenceKeynoteSpeakers(int id)
+        public IEnumerable<TeamMemberDTO> GetConferenceKeynoteSpeakers(int id)
         {
             var confteam = confOperations.GetConferenceKeynoteSpeakers(id);
             foreach (var team in confteam)
@@ -432,6 +432,11 @@ namespace EventManagement.BLL
                 team.ImageUrl = Utilities.ProcessDefaultImage(team.ImageUrl, "~/Content/images/confteam/");
             }
             return confteam;
+        }
+
+        public IEnumerable<MediaPartnersDTO> GetConferenceMediaPartners(int id)
+        {
+            return confOperations.GetConferenceMediaPartners(id);
         }
     }
 }

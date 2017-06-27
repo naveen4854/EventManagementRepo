@@ -104,6 +104,9 @@
         </div>
     </section>
 
+    <section id="MediaPartners">
+        @{ Html.RenderAction("PartialMediaPartners", "Conference", new { id = Model.Id }); }
+    </section>
     <section id="venue">
         @{ Html.RenderAction("PartialVenue", "Conference", new { venue = Model.Venue }); }
     </section>
