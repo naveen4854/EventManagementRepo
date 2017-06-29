@@ -8,7 +8,7 @@
 
                 <div class="row">
                     <div class="col-10">
-                        <div id="event-carousel" class="carousel slide" data-interval="false">
+                        <div id="keynotespeaker-carousel" class="carousel slide" data-interval="false">
                             <h2 class="header">KEYNOTE SPEAKERS</h2>
                             <button class="push-btn btn--sm flRt" onclick="redirect('@Url.Content("~/Conference/"+@ViewData["Conferencekey"]+ "/KeynoteSpeakers/")')"><text>View All</text></button>
                             <div class="carousel-inner">
@@ -45,11 +45,11 @@
                     @if (Model.Count() > 4)
                     {
                     <!-- Left and right controls -->
-                        <a class="left carousel-control" href="#event-carousel" role="button" data-slide="prev">
+                        <a class="left carousel-control" href="#keynotespeaker-carousel" role="button" data-slide="prev">
                             <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
                             <span class="sr-only">Previous</span>
                         </a>
-                        <a class="right carousel-control" href="#event-carousel" role="button" data-slide="next">
+                        <a class="right carousel-control" href="#keynotespeaker-carousel" role="button" data-slide="next">
                             <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                             <span class="sr-only">Next</span>
                         </a>

@@ -44,7 +44,7 @@ $(function ($) {
 
 
     // Carousel Auto Slide Off
-    $('#event-carousel, #SA-carousel, #twitter-feed, #sponsor-carousel ').carousel({
+    $('#event-carousel,#program-carousel,#conf-carousel,#ocm-carousel,#keynotespeaker-carousel, #SA-carousel, #twitter-feed, #sponsor-carousel ').carousel({
         interval: false
     });
 

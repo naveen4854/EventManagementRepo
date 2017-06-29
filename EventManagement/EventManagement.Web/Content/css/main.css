@@ -459,7 +459,7 @@ h2 {
         font-weight: normal;
     }
 
-#event-carousel {
+.carousel {
     position: relative;
 }
 
